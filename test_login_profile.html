@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار تسجيل الدخول وأيقونة البروفايل</title>
+    <style>
+        body {
+            font-family: 'Droid Arabic Kufi', Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .main-icons-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #00a19a;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .icon-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .icon-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .icon-btn img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .login-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .login-btn:hover {
+            background: #0056b3;
+        }
+        
+        .test-info {
+            background: #e7f3ff;
+            border: 1px solid #b3d7ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .status {
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <h1>اختبار تسجيل الدخول وأيقونة البروفايل</h1>
+    
+    <div class="test-container">
+        <h3>1. منطقة الأيقونات (حيث ستظهر أيقونة البروفايل)</h3>
+        <div class="main-icons-group">
+            <button class="icon-btn">
+                <img src="assets/icons/search.svg" alt="بحث">
+            </button>
+            <button class="icon-btn">
+                <img src="assets/icons/call.svg" alt="اتصال">
+            </button>
+            <!-- أيقونة البروفايل ستظهر هنا بعد تسجيل الدخول -->
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h3>2. زر تسجيل الدخول</h3>
+        <button class="login-btn">تسجيل الدخول</button>
+        
+        <div class="test-info">
+            <strong>بيانات الاختبار:</strong><br>
+            اسم المستخدم: <code>test</code><br>
+            كلمة المرور: <code>123456</code>
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h3>3. حالة النظام</h3>
+        <div id="status" class="status warning">
+            جاري تحميل النظام...
+        </div>
+        
+        <button onclick="checkLoginStatus()" style="background: #28a745; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">
+            فحص حالة تسجيل الدخول
+        </button>
+        
+        <button onclick="forceAddProfileIcon()" style="background: #17a2b8; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-right: 10px;">
+            إضافة أيقونة البروفايل يدوياً
+        </button>
+    </div>
+    
+    <div class="test-container">
+        <h3>4. سجل الأحداث</h3>
+        <div id="log" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; padding: 10px; height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px;">
+        </div>
+        <button onclick="clearLog()" style="background: #6c757d; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-top: 5px;">
+            مسح السجل
+        </button>
+    </div>
+
+    <script src="scripts/auth-system.js"></script>
+    
+    <script>
+        const originalConsoleLog = console.log;
+        const originalConsoleError = console.error;
+        
+        function logToPage(message, type = 'log') {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString('ar-EG');
+            const logEntry = document.createElement('div');
+            logEntry.style.color = type === 'error' ? '#dc3545' : type === 'warn' ? '#ffc107' : '#333';
+            logEntry.textContent = `[${timestamp}] ${message}`;
+            logDiv.appendChild(logEntry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalConsoleLog.apply(console, args);
+            logToPage(args.join(' '));
+        };
+        
+        console.error = function(...args) {
+            originalConsoleError.apply(console, args);
+            logToPage(args.join(' '), 'error');
+        };
+        
+        function updateStatus(message, type = 'warning') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+        }
+        
+        function checkLoginStatus() {
+            if (typeof AuthSystem !== 'undefined') {
+                const isLoggedIn = AuthSystem.isLoggedIn();
+                const currentUser = AuthSystem.getCurrentUser();
+                
+                if (isLoggedIn && currentUser) {
+                    updateStatus(`مسجل الدخول: ${currentUser.name}`, 'success');
+                    logToPage(`✅ المستخدم مسجل الدخول: ${currentUser.name}`);
+                } else {
+                    updateStatus('غير مسجل الدخول', 'warning');
+                    logToPage('⚠️ المستخدم غير مسجل الدخول');
+                }
+                
+                // فحص وجود أيقونة البروفايل
+                const profileIcon = document.querySelector('.profile-icon-btn');
+                if (profileIcon) {
+                    logToPage('✅ أيقونة البروفايل موجودة في الصفحة');
+                } else {
+                    logToPage('❌ أيقونة البروفايل غير موجودة');
+                }
+            } else {
+                updateStatus('نظام المصادقة غير محمل', 'error');
+                logToPage('❌ نظام المصادقة غير محمل');
+            }
+        }
+        
+        function forceAddProfileIcon() {
+            if (typeof AuthSystem !== 'undefined') {
+                logToPage('🔄 محاولة إضافة أيقونة البروفايل يدوياً...');
+                
+                // محاكاة تسجيل الدخول إذا لم يكن مسجلاً
+                if (!AuthSystem.isLoggedIn()) {
+                    logToPage('🔐 تسجيل دخول تجريبي...');
+                    AuthSystem.login('test', '123456');
+                } else {
+                    // إضافة الأيقونة مباشرة
+                    const mainIconsGroup = document.querySelector('.main-icons-group');
+                    if (mainIconsGroup) {
+                        // إزالة أيقونة موجودة
+                        const existingIcon = document.querySelector('.profile-icon-btn');
+                        if (existingIcon) {
+                            existingIcon.remove();
+                        }
+                        
+                        // إنشاء أيقونة جديدة
+                        const profileButton = document.createElement('button');
+                        profileButton.className = 'icon-btn profile-icon-btn';
+                        profileButton.title = 'الملف الشخصي';
+                        
+                        const profileIcon = document.createElement('img');
+                        profileIcon.src = 'assets/icons/profile-circle.svg';
+                        profileIcon.alt = 'الملف الشخصي';
+                        profileIcon.style.width = '24px';
+                        profileIcon.style.height = '24px';
+                        
+                        profileButton.appendChild(profileIcon);
+                        mainIconsGroup.insertBefore(profileButton, mainIconsGroup.firstChild);
+                        
+                        logToPage('✅ تم إضافة أيقونة البروفايل يدوياً');
+                        updateStatus('تم إضافة أيقونة البروفايل', 'success');
+                    } else {
+                        logToPage('❌ لم يتم العثور على مجموعة الأيقونات');
+                    }
+                }
+            }
+        }
+        
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+        
+        // فحص أولي عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            logToPage('🚀 تم تحميل صفحة الاختبار');
+            
+            setTimeout(() => {
+                checkLoginStatus();
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

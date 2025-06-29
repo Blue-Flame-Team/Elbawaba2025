@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>اختبار أيقونة البروفايل</title>
+    <style>
+        .main-icons-group { display: flex; gap: 10px; background: #00a19a; padding: 10px; }
+        .icon-btn { background: none; border: none; }
+        .icon-btn img { width: 24px; height: 24px; }
+        .login-btn { background: #007bff; color: white; padding: 10px; border: none; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>اختبار أيقونة البروفايل</h1>
+    
+    <div class="main-icons-group">
+        <button class="icon-btn"><img src="assets/icons/search.svg" alt="بحث"></button>
+        <!-- أيقونة البروفايل للديسكتوب (مخفية) -->
+        <button class="icon-btn profile-icon-btn" style="display: none;">
+            <img src="assets/icons/profile-circle.svg" alt="الملف الشخصي">
+        </button>
+        <button class="icon-btn"><img src="assets/icons/setting-2.png" alt="إعدادات"></button>
+    </div>
+    
+    <!-- أيقونة البروفايل للموبايل (مخفية) -->
+    <button class="icon-btn profile-btn" id="mobile-profile-btn" style="display: none;">
+        <img src="assets/icons/profile-circle.svg" alt="الملف الشخصي">
+    </button>
+    
+    <button class="login-btn">تسجيل الدخول</button>
+    
+    <p>بيانات الاختبار: test / 123456</p>
+    
+    <script src="scripts/auth-system.js"></script>
+</body>
+</html> 

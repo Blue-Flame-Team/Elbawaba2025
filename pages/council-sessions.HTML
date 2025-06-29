@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -10,21 +10,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    
     <!-- أوراق الأنماط -->
     <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/font-normalization.css">
     <link rel="stylesheet" href="../styles/valid-regulations/header.css">
-    <link rel="stylesheet" href="../styles/valid-regulations/footer.css">
+    <link rel="stylesheet" href="../styles/faq/footer.css">
+
+    <link rel="stylesheet" href="../styles/faq/footer.css">
     <link rel="stylesheet" href="../styles/faq/faq.css">
+
     <link rel="stylesheet" href="../styles/login-modal.css">
     <link rel="stylesheet" href="../styles/home/settings.css">
+    <link rel="stylesheet" href="../styles/search-popup.css">
+
+    <!-- ناف بار بالخلفية الفيروزية للصفحات الفرعية -->
+    <link rel="stylesheet" href="../styles/subpages-navbar.css">
+    <!-- إصلاح لقائمة الموبايل -->
+     <!-- أوراق الأنماط للموبايل -->
+    <link rel="stylesheet" href="../styles/home/topbar.css">
+    <link rel="stylesheet" href="../styles/mobile-navbar.css">
+    <link rel="stylesheet" href="../styles/mobile-view.css">
+    <link rel="stylesheet" href="../styles/mobile-menu.css">
+    <link rel="stylesheet" href="../styles/hamburger-fix.css">
+    <link rel="stylesheet" href="../styles/mobile-dropdown.css">
+    <link rel="stylesheet" href="../styles/navbar-mobile-fix.css">
+    <link rel="stylesheet" href="../styles/home/mobile-settings.css">
+    <link rel="stylesheet" href="../styles/subpage.css">
+    <link rel="stylesheet" href="../styles/faq/responsive.css">
+    <link rel="stylesheet" href="../styles/social-share-section.css">
+    <link rel="stylesheet" href="../styles/simple-zoom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        .services-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+
         .services-header {
             display: flex;
             justify-content: space-between;
@@ -69,6 +86,7 @@
             max-width: 1240px;
             margin: 30px auto 20px;
             gap: 20px;
+            padding: 0 20px;
         }
         .filter-button {
             width: 100px;
@@ -94,26 +112,24 @@
             border: 1px solid #eee;
             background-color: #fff;
         }
-        .card-item {
-            width: 285px;
-            height: 225px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            padding: 30px 20px;
-            text-align: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        /* Grid Container for Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1240px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
+
         .card-item {
-            width: 285px;
+            width: 100%;
             height: 225px;
             background-color: white;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            padding: 30px 20px;
+            padding: 20px 15px;
             text-align: center;
             transition: transform 0.2s, box-shadow 0.2s;
             display: flex;
@@ -161,11 +177,12 @@
         
         .card-content h3 {
             color: #333;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             margin: 0;
             text-align: center;
             transition: all 0.3s ease;
+            line-height: 1.4;
         }
         
         .card-item:hover .card-content h3 {
@@ -174,13 +191,8 @@
         
         .card-content p {
             font-size: 14px;
-            color: #666;
-            margin-top: 5px;
-            opacity: 0;
-            height: 0;
-            overflow: hidden;
-            transition: opacity 0.3s ease, height 0.3s ease, margin 0.3s ease;
-            margin-bottom: 0;
+            line-height: 1.5;
+            margin-top: 10px;
         }
         
         .card-item:hover .card-content p {
@@ -196,14 +208,14 @@
             color: white;
             border: none;
             border-radius: 25px;
-            padding: 10px 25px;
+            padding: 8px 20px;
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
             opacity: 0;
-            margin-top: 15px;
+            margin-top: 12px;
             transition: opacity 0.3s ease;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Droid Arabic Kufi', sans-serif;
         }
         
         .card-item:hover .service-button {
@@ -243,109 +255,459 @@
             justify-content: center;
             color: white;
         }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 1200px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .card-item {
+                height: 200px;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .card-item {
+                height: 200px;
+            }
+            .card-content h3 {
+                font-size: 15px;
+            }
+            .card-content p {
+                font-size: 13px;
+                margin-top: 8px;
+            }
+            .service-button {
+                font-size: 13px;
+                padding: 7px 18px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 0 15px;
+            }
+            .card-item {
+                height: 180px;
+                padding: 15px 12px;
+            }
+            .card-content h3 {
+                font-size: 14px;
+                line-height: 1.3;
+            }
+            .card-content p {
+                font-size: 12px;
+                line-height: 1.4;
+                margin-top: 6px;
+            }
+            .service-button {
+                font-size: 12px;
+                padding: 6px 16px;
+                margin-top: 10px;
+            }
+            .search-filter-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .search-container {
+                max-width: 100%;
+            }
+            .filter-button {
+                width: 100%;
+            }
+            .services-tabs {
+                padding: 0 15px;
+            }
+            .service-tab {
+                width: calc(50% - 10px);
+                height: auto;
+                font-size: 14px;
+                padding: 12px 10px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 0 10px;
+            }
+            .card-item {
+                height: 160px;
+                padding: 12px 10px;
+            }
+            .card-content h3 {
+                font-size: 13px;
+            }
+            .card-content p {
+                font-size: 11px;
+                margin-top: 5px;
+            }
+            .service-button {
+                font-size: 11px;
+                padding: 5px 14px;
+                margin-top: 8px;
+            }
+            .page-title {
+                font-size: 18px;
+                margin: 20px 0;
+                padding: 0 10px;
+            }
+        }
+
+        /* Social Share Section Responsive */
+        @media screen and (max-width: 1200px) {
+            .social-share-section > div {
+                width: 100% !important;
+                margin: 20px !important;
+                padding: 10px 15px !important;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .social-share-section > div {
+                flex-direction: column !important;
+                gap: 15px !important;
+                height: auto !important;
+                padding: 15px !important;
+            }
+            .social-share-section span {
+                font-size: 14px !important;
+            }
+        }
+
+        /* Settings Menu Styles */
+        .settings-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            z-index: 1000;
+            display: none;
+            padding: 8px;
+        }
+
+        .settings-menu.show {
+            display: block;
+        }
+
+        .settings-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            font-family: "Droid Arabic Kufi", sans-serif;
+        }
+
+        .settings-option:hover {
+            background-color: #f5f5f5;
+        }
+
+        .settings-option span {
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .settings-option img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contrast-submenu {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            padding: 8px;
+        }
+
+        .contrast-option:hover .contrast-submenu {
+            display: block;
+        }
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            .settings-menu {
+                position: fixed;
+                top: auto;
+                bottom: 60px;
+                left: 20px;
+                right: 20px;
+                width: auto;
+            }
+
+            .contrast-submenu {
+                position: static;
+                box-shadow: none;
+                margin-top: 8px;
+                padding: 0;
+            }
+
+            .settings-option {
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            .settings-option img {
+                width: 18px;
+                height: 18px;
+            }
+        }
     </style>
-</head>
+    <link rel="stylesheet" href="../styles/simple-zoom.css">
+<style>
+/* ?????????? ???? Droid Arabic Kufi ?????? ???????? ?????????????? */
+* {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+body, html {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td, th, select, option {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+.title, .text, .content, .description, .heading, .label, .item, .menu-item, .nav-item {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+</style></head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container">
-            <div class="top-bar-content">
-                <div class="logo">
-                    <a href="../index.html">
-                        <img src="../assets/images/logo.png" alt="محامون المملكة" class="logo-image">
+   <!-- القائمة الجانبية للموبايل -->
+ <div class="mobile-menu-overlay">
+    <div class="mobile-side-menu">
+        <div class="mobile-side-menu-links">
+            <a href="../index.html" style="color: var(--primary-color);">الرئيسية</a>
+            
+            <!-- زر نبذة عنا -->
+            <a href="#" id="about-toggle" class="dropdown-button active" style="color: var(--primary-color);">
+                نبذة عنا
+                <img src="../assets/icons/menu-Down.svg" alt="سهم" class="dropdown-arrow-svg">
+            </a>
+            
+            <!-- القائمة المنسدلة لنبذة عنا -->
+            <div id="about-submenu" class="submenu-container">
+                <a href="about-site.html">عن الموقع</a>
+                <a href="about-site.html">عن الشبكة</a>
+            </div>
+            
+            <!-- زر سياستنا -->
+            <a href="#" id="policies-toggle" class="dropdown-button active" style="color: var(--primary-color);">
+                سياستنا
+                <span class="dropdown-arrow">▼</span>
+            </a>
+            
+            <!-- القائمة المنسدلة لسياستنا -->
+            <div id="policies-submenu" class="submenu-container">
+                <a href="privacy-policy.html">سياسة الخصوصية</a>
+                <a href="terms.html">الشروط والأحكام</a>
+            </div>
+            
+            <a href="jornal-profile-view.html">جريدة أم القرى</a>
+            <a href="asanid-service.html">خدمة الأسانيد</a>
+            <a href="faq.html" class="colored-link active">الأسئلة الشائعة</a>
+        </div>
+        <div class="mobile-side-menu-buttons">
+            <a href="../index.html#subscribe" class="subscribe-btn">اشترك معنا</a>
+            <a href="#login-modal" class="login-btn" id="mobile-login-btn">تسجيل الدخول</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+ <!-- Top Bar -->
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-content">
+            <div class="logo">
+                <!-- 1. اللوجو على اليمين -->
+                <a href="../index.html" class="logo-link" data-original-font-size="16">
+                    <img src="../assets/images/logo.png" alt="محامون المملكة">
+                </a>
+                
+                <!-- 2. زر اشترك معنا -->
+                <a href="../index.html#subscribe" class="mobile-subscribe-btn" data-original-font-size="16">اشترك معنا</a>
+                
+                <!-- 3. جميع الأيقونات معاً -->
+                <div class="mobile-icons">
+                    <!-- 4. قائمة الهامبرغر في البداية (على اليسار) -->
+                    <div class="hamburger-menu" style="opacity: 1; visibility: visible; display: flex; z-index: 9999;">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    
+                    <div class="zoom-group">
+                        <button class="icon-btn zoom-out-btn" onclick="changeFontSize(-10)" title="تصغير النص" data-original-font-size="16" style="pointer-events: auto; opacity: 1;">
+                            <img src="../assets/icons/search-zoom-out.png" alt="تصغير">
+                        </button>
+                        <button class="icon-btn zoom-in-btn" onclick="changeFontSize(10)" title="تكبير النص" data-original-font-size="16" style="pointer-events: auto; opacity: 1;">
+                            <img src="../assets/icons/search-zoom-in.png" alt="تكبير">
+                        </button>
+                    </div>
+                    
+                    <!-- أيقونة البحث -->
+                    <button class="icon-btn search-btn" data-original-font-size="16">
+                        <img src="../assets/icons/search.png" alt="بحث">
+                    </button>
+                    
+                    <!-- أيقونة الملف الشخصي (تظهر بعد تسجيل الدخول) -->
+                    <button class="icon-btn profile-btn" id="mobile-profile-btn" style="display: none;" data-original-font-size="16" data-profile-setup="true">
+                        <img src="../assets/icons/profile-circle.svg" alt="الملف الشخصي">
+                    </button>
+                    
+                    <!-- أيقونة الإعدادات -->
+                    <button class="icon-btn settings-toggle-btn" data-original-font-size="16">
+                        <img src="../assets/icons/setting-2.png" alt="الإعدادات">
+                    </button>
+                    
+                    
+                </div>
+                
+                <!-- قائمة الإعدادات -->
+                <div class="settings-menu">
+                    <a href="#" class="settings-option contrast-option" data-original-font-size="16">
+                        <span>تباين</span>
+                        <img src="../assets/icons/Eye off.svg" alt="تباين">
+                    </a>
+                    <!-- قائمة خيارات التباين الفرعية -->
+                    <div class="contrast-submenu">
+                        <a href="#" class="settings-option contrast-light" data-original-font-size="16">
+                            <span>تباين فاتح</span>
+                            <img src="../assets/icons/Eye off.svg" alt="تباين فاتح">
+                        </a>
+                        <a href="#" class="settings-option contrast-dark" data-original-font-size="16">
+                            <span>تباين داكن</span>
+                            <img src="../assets/icons/Eye off-dark.svg" alt="تباين داكن">
+                        </a>
+                    </div>
+                    <a href="../pages/analytics.html" class="settings-option stats-option" data-original-font-size="16">
+                        <span>الاحصائيات</span>
+                        <img src="../assets/icons/status-up.svg" alt="الاحصائيات">
+                    </a>
+                    <a href="javascript:void(0);" class="settings-option logout-option" data-original-font-size="16">
+                        <span>خروج</span>
+                        <img src="../assets/icons/logout.svg" alt="تسجيل الخروج">
                     </a>
                 </div>
-                <div class="top-elements">
-                    <div class="top-icons">
-                        <!-- الأسئلة الشائعة -->
-                        <a href="faq.html" class="common-questions-link">
-                            <div class="common-questions">
-                                <span class="questions-text">الأسئلة الشائعة</span>
-                                <span class="question-mark">?</span>
-                            </div>
-                        </a>
-                        
-                        <!-- الأيقونات الرئيسية -->
-                        <div class="main-icons-group">
-                            <button class="icon-btn zoom-out-btn" onclick="changeFontSize(-10)" title="تصغير النص">
-                                <img src="../assets/icons/search-zoom-out.png" alt="تصغير">
-                            </button>
-                            <button class="icon-btn zoom-in-btn" onclick="changeFontSize(10)" title="تكبير النص">
-                                <img src="../assets/icons/search-zoom-in.png" alt="تكبير">
-                            </button>
-                            <button class="icon-btn search-btn">
-                                <img src="../assets/icons/search.png" alt="بحث">
-                            </button>
-                            <button class="icon-btn location-btn">
-                                <img src="../assets/icons/location.png" alt="الموقع">
-                            </button>
-                            <button class="icon-btn call-btn">
-                                <img src="../assets/icons/call.png" alt="اتصال">
-                            </button>
-                            
-                            <button class="icon-btn settings-toggle-btn">
-                                <img src="../assets/icons/setting-2.png" alt="الإعدادات">
-                            </button>
-                            <div class="settings-menu">
-                                <a href="#" class="settings-option contrast-option">
-                                    <span>تباين</span>
-                                    <i class="fas fa-eye-slash"></i>
+            </div>
+
+            <div class="top-elements">           
+                <!-- Elementos originales para vista desktop -->
+                <div class="top-icons">
+                    <a href="faq.html" class="common-questions" data-original-font-size="16">
+                        <span class="question-mark">
+                            <img src="../assets/icons/question.svg" alt="الأسئلة الشائعة">
+                        </span>
+                        <span class="questions-text">الأسئلة الشائعة</span>
+                    </a>
+                    <div class="zoom-group">
+                        <button class="icon-btn zoom-out-btn" onclick="changeFontSize(-10)" title="تصغير النص" data-original-font-size="16">
+                            <img src="../assets/icons/search-zoom-out.svg" alt="تصغير">
+                        </button>
+                        <button class="icon-btn zoom-in-btn" onclick="changeFontSize(10)" title="تكبير النص" data-original-font-size="16">
+                            <img src="../assets/icons/search-zoom-in.svg" alt="تكبير">
+                        </button>
+                    </div>
+                    
+                    <div class="main-icons-group">
+                        <button class="icon-btn search-btn" data-original-font-size="16">
+                            <img src="../assets/icons/search.png" alt="بحث">
+                        </button>
+                        <button class="icon-btn" onclick="window.location.href='../index.html#contact'" data-original-font-size="16">
+                            <img src="../assets/icons/location.png" alt="الموقع">
+                        </button>
+                        <button class="icon-btn" data-original-font-size="16">
+                            <img src="../assets/icons/call.png" alt="اتصال">
+                        </button>
+                        <button class="icon-btn profile-btn profile-icon-btn" style="display: none;" data-original-font-size="16" data-profile-setup="true">
+                            <img src="../assets/icons/profile-circle.svg" alt="الملف الشخصي">
+                        </button>
+                        <button class="icon-btn settings-toggle-btn" data-original-font-size="16">
+                            <img src="../assets/icons/setting-2.png" alt="الإعدادات">
+                        </button>
+                        <div class="settings-menu">
+                            <a href="#" class="settings-option contrast-option" data-original-font-size="16">
+                                <span>تباين</span>
+                                <img src="../assets/icons/Eye off.svg" alt="تباين">
+                            </a>
+                            <!-- قائمة خيارات التباين الفرعية -->
+                            <div class="contrast-submenu">
+                                <a href="#" class="settings-option contrast-light" data-original-font-size="16">
+                                    <span>تباين فاتح</span>
+                                    <img src="../assets/icons/Eye off.svg" alt="تباين فاتح">
                                 </a>
-                                <!-- قائمة خيارات التباين الفرعية -->
-                                <div class="contrast-submenu">
-                                    <a href="#" class="settings-option contrast-light">
-                                        <span>تباين</span>
-                                        <i class="fas fa-eye-slash"></i>
-                                    </a>
-                                    <a href="#" class="settings-option contrast-dark">
-                                        <span>تباين</span>
-                                        <i class="fas fa-eye-slash"></i>
-                                    </a>
-                                </div>
-                                <a href="#" class="settings-option stats-option">
-                                    <span>الاحصائيات</span>
-                                    <i class="fas fa-chart-line"></i>
-                                </a>
-                                <a href="#" class="settings-option logout-option">
-                                    <span>خروج</span>
-                                    <i class="fas fa-sign-out-alt"></i>
+                                <a href="#" class="settings-option contrast-dark" data-original-font-size="16">
+                                    <span>تباين داكن</span>
+                                    <img src="../assets/icons/Eye off-dark.svg" alt="تباين داكن">
                                 </a>
                             </div>
+                            <a href="../pages/analytics.html" class="settings-option stats-option" data-original-font-size="16">
+                                <span>الاحصائيات</span>
+                                <img src="../assets/icons/status-up.svg" alt="الاحصائيات">
+                            </a>
+                            <a href="javascript:void(0);" class="settings-option logout-option" data-original-font-size="16">
+                                <span>خروج</span>
+                                <img src="../assets/icons/logout.svg" alt="تسجيل الخروج">
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="top-actions">
-                    <button class="join-btn">إشترك معنا</button>
-                    <button class="login-btn">تسجيل الدخول</button>
-                </div>
+            </div>
+            <div class="top-actions">
+                <a href="../index.html#subscribe" class="join-btn" data-original-font-size="16">إشترك معنا</a>
+                <a href="#" class="login-btn" id="login-btn" data-original-font-size="16">تسجيل الدخول</a>
             </div>
         </div>
     </div>
+</div>
 
+    <!-- Navbar -->
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <ul class="nav-menu">
-                <li class="menu-item"><a href="../index.html">الرئيسية</a></li>
-                <li class="menu-item dropdown">
-                    <a href="javascript:void(0);">نبذة عنا <img src="../assets/icons/Down.png" alt="" class="dropdown-arrow"></a>
-                    <div class="dropdown-hover-area"></div>
-                    <div class="dropdown-menu">
-                        <a href="#">عن الموقع</a>
-                        <a href="#">عن الشبكة</a>
-                    </div>
-                </li>
-                <li class="menu-item dropdown">
-                    <a href="javascript:void(0);">سياساتنا <img src="../assets/icons/Down.png" alt="" class="dropdown-arrow"></a>
-                    <div class="dropdown-hover-area"></div>
-                    <div class="dropdown-menu">
-                        <a href="#">سياسة الخصوصية</a>
-                        <a href="../pages/terms.html">شروط الإشتراك</a>
-                    </div>
-                </li>
-                <li class="menu-item"><a href="#">جريدة أم القرى</a></li>
-                <li class="menu-item"><a href="#">خدمة الأسانيد</a></li>
-            </ul>
+            <div class="navbar-content">
+                <ul class="main-menu">
+                    <li class="menu-item"><a href="../index.html">الرئيسية</a></li>
+                    <li class="menu-item dropdown">
+                        <a href="javascript:void(0);" class="active">نبذة عنا <img src="../assets/icons/Down.png" alt="" class="dropdown-arrow"></a>
+                        <div class="dropdown-hover-area"></div>
+                        <div class="dropdown-menu">
+                            <a href="about-site.html" class="active">عن الموقع</a>
+                            <a href="about-site.html">عن الشبكة</a>
+                        </div>
+                    </li>
+                    <li class="menu-item dropdown">
+                        <a href="javascript:void(0);">سياستنا <img src="../assets/icons/Down.png" alt="" class="dropdown-arrow"></a>
+                        <div class="dropdown-hover-area"></div>
+                        <div class="dropdown-menu">
+                            <a href="privacy-policy.html">سياسة الخصوصية</a>
+                            <a href="terms.html">شروط الإشتراك</a>
+                        </div>
+                    </li>
+                    <li class="menu-item"><a href="jornal-profile-view.html">جريدة أم القرى</a></li>
+                    <li class="menu-item"><a href="asanid-service.html">خدمة الأسانيد</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -365,9 +727,7 @@
         <h1 class="page-title" style="color: #00a19a; text-align: center; margin-bottom: 20px;">تقارير جلسات مجلس الوزراء</h1>
         <!-- خط أفقي تحت العنوان -->
         <div style="width: 50px; height: 3px; background-color: #ff7e47; margin: 0 auto 30px;"></div>
-        
-     
-        
+
         <!-- تبويبات التصنيف -->
         <style>
             .services-tabs {
@@ -422,7 +782,7 @@
         </div>
 
         <!-- شبكة البطاقات -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1240px; margin: 40px auto;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1240px; margin: 40px auto;" class="cards-grid">
             <!-- بطاقة 1 - الأنظمة الأساسية -->
             <a href="#" style="text-decoration: none;">
                 <div class="card-item">
@@ -775,110 +1135,115 @@
                 </div>
             </a>
         </div>
- 
 
-    
     <!-- Footer -->
            <!-- Footer Social - Redesigned to match image -->
-           <div style="display: flex; align-items: center; justify-content: space-between; background-color: #f5f5f5; border-radius: 30px; padding: 10px 20px; margin: 40px 0 20px;">
-            <!-- Social Media Sharing - Left Side -->
-                <!-- Last Update - Right Side -->
-                <div style="display: flex; align-items: center; color: #666; font-size: 14px;">
-                    <span>آخر تعديل 19 ذو القعدة 1444</span>
-                    <img src="../assets/icons/clock 1.png" alt="الساعة" width="16" height="16" style="margin-right: 5px;">
-                </div>
-                       <!-- Rating - Middle Right -->
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="font-size: 14px; color: #333;">تقييم المحتوى</span>
-                <div style="display: flex; gap: 2px;">
-                    <img src="../assets/icons/star.png" alt="نجمة غير مفعلة" width="16" height="16">
-                    <img src="../assets/icons/star.png" alt="نجمة غير مفعلة" width="16" height="16">
-                    <img src="../assets/icons/star2.png" alt="نجمة مفعلة" width="16" height="16">
-                    <img src="../assets/icons/star2.png" alt="نجمة مفعلة" width="16" height="16">
-                    <img src="../assets/icons/star2.png" alt="نجمة مفعلة" width="16" height="16">
-                </div>
-            </div>
-            <!-- Followers Count - Middle -->
-            <div style="display: flex; align-items: center; color: #333; font-size: 14px;">
-                <span style="font-weight: bold; margin-left: 5px;">عدد المتابعين:</span>
-                <span>9130</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 5px;">
-                <span style="margin-right: 5px; font-size: 14px; color: #00a19a;">شارك على</span>
-                <a href="#" style="color: #00a19a;">                
-                    <img src="../assets/icons/f3.png" alt="فيسبوك" width="26" height="26">
-                </a>
-                <a href="#" style="color: #00a19a;">
-                    <img src="../assets/icons/in2.png" alt="انستغرام" width="26" height="26">
-                </a>
-                <a href="#" style="color: #00a19a;">
-                    <img src="../assets/icons/x2.png" alt="تويتر" width="26" height="26">
-                </a>
-                <a href="#" style="color: #00a19a;">
-                    <img src="../assets/icons/ln1.png" alt="لينكد إن" width="26" height="26">
-                </a>
-            </div>   
-        </div>
-    </div>
-    
-    <!-- Footer -->
-    <footer>
-        <!-- Main Footer -->
-        <div class="main-footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-column about-column">
-                        <h3 class="footer-title">عن محامي المملكة</h3>
-                        <p class="footer-text">البوابة القانونية الشاملة للمحامين والمستشارين القانونيين بالسعودية</p>
-                        <p class="footer-text">العربية السعوية</p>
-                    </div>
-                    <div class="footer-column links-column">
-                        <h3 class="footer-title">روابط سريعة</h3>
-                        <ul class="footer-links">
-                            <li><a href="../index.html">الرئيسية</a></li>
-                            <li><a href="#">عن الموقع</a></li>
-                            <li><a href="#">الأسئلة الشائعة</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column contact-column">
-                        <h3 class="footer-title">تواصل معنا</h3>
-                        <p class="contact-item email">info@mohamoon-ksa.com</p>
-                        <p class="contact-item phone">الهاتف: xxx xxxx 11 966+</p>
-                        <p class="contact-item address">العنوان: الرياض, المملكة العربية السعودية</p>
-                    </div>
-                    <div class="footer-column social-column">
-                        <h3 class="footer-title">تابعنا</h3>
-                        <div class="footer-social">
-                            <a href="#" class="footer-social-icon"><img src="../assets/icons/facebook.png" alt="فيس بوك"></a>
-                            <a href="#" class="footer-social-icon"><img src="../assets/icons/insta.png" alt="إنستجرام"></a>
-                            <a href="#" class="footer-social-icon"><img src="../assets/icons/x.png" alt="تويتر"></a>
-                            <a href="#" class="footer-social-icon"><img src="../assets/icons/ln.png" alt="لينكد إن"></a>
-                        </div>
-                        <a href="#" class="contact-btn">اتصل بنا</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-       
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="copyright-text">جميع الحقوق محفوظة © 2024 محامي المملكة</div>
-                <div class="footer-bottom-links">
-                    <a href="../pages/terms.html">الشروط والأحكام</a> | 
-                    <a href="#">سياسة الخصوصية</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+           <footer>
+  
+            <section class="social-share-section">
+                <div style="display: flex; align-items: center; justify-content: space-between; background-color: rgb(245, 245, 245); border-radius: 143px; padding: 10px 20px; margin: 40px 0px 20px; width: 1200px; height: 91px; font-size: 12.8px;" data-original-font-size="16">
+                 <!-- Social Media Sharing - Left Side -->
+                     <!-- Last Update - Right Side -->
+                     <div style="display: flex; align-items: center; color: #158885; font-size: 16px;">
+                         <img src="../assets/icons/clock.svg" alt="الساعة" width="16" height="16" style="margin-left: 5px;">
+                         <span style="font-family: 'Droid Arabic Kufi', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0%; text-align: right; color: #158885;">آخر تعديل 19 ذو القعدة 1444</span>
+                     </div>
+                            <!-- Rating - Middle Right -->
+                 <div style="display: flex; align-items: center; gap: 8px;">
+                     <div style="display: flex; align-items: center; gap: 3px;">
+                         <span style="font-family: 'Droid Arabic Kufi', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0%; text-align: right; color: #158885;">تقييم المحتوى</span>
+                         <div style="display: flex; gap: 2px;">
+                             <img src="../assets/icons/star.png" alt="نجمة غير مفعلة" width="16" height="16">
+                             <img src="../assets/icons/star.png" alt="نجمة غير مفعلة" width="16" height="16">
+                             <img src="../assets/icons/star.png" alt="نجمة غير مفعلة" width="16" height="16">
+                             <img src="../assets/icons/star2.png" alt="نجمة مفعلة" width="16" height="16">
+                             <img src="../assets/icons/star2.png" alt="نجمة مفعلة" width="16" height="16">
+                         </div>
+                     </div>
+                     <!-- Followers Count - Middle -->
+                     <div style="display: flex; align-items: center; gap: 3px;">
+                         <span style="font-family: 'Droid Arabic Kufi', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0%; text-align: right; color: #158885;">عدد الأصوات:</span>
+                         <span style="font-family: 'Droid Arabic Kufi', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0%; text-align: right; color: #158885;">9130</span>
+                     </div>
+                 </div>
+                 <div style="display: flex; align-items: center; gap: 5px;">
+                     <span style="margin-right: 5px; font-size: 14px; color: #00a19a;">شارك على</span>
+                     <a href="#" style="color: #00a19a;">
+                         <img src="../assets/icons/ln1.png" alt="لينكد إن" width="26" height="26">
+                     </a>
+                     <a href="#" style="color: #00a19a;">
+                         <img src="../assets/icons/x2.png" alt="تويتر" width="26" height="26">
+                     </a>
+                     <a href="#" style="color: #00a19a;">
+                         <img src="../assets/icons/in2.png" alt="انستغرام" width="26" height="26">
+                     </a>
+                     <a href="#" style="color: #00a19a;">                
+                         <img src="../assets/icons/f3.png" alt="فيسبوك" width="26" height="26">
+                     </a>
+                 </div>   
+             </div>
+         </section>
+         
+         <!-- Footer -->
+         <footer>
+             <!-- Main Footer -->
+             <div class="main-footer">
+                     <div class="footer-content">
+                         <div class="footer-column about-column">
+                             <h3 class="footer-title">عن محامو المملكة</h3>
+                             <p class="footer-text">البوابة القانونية الشاملة للمحامين والمستشارين القانونيين بالسعودية</p>
+                             <p class="footer-text">العربية السعوية</p>
+                         </div>
+                         <div class="footer-column links-column">
+                             <h3 class="footer-title">روابط سريعة</h3>
+                             <ul class="footer-links">
+                                 <li><a href="../index.html">الرئيسية</a></li>
+                                 <li><a href="#">عن الموقع</a></li>
+                                 <li><a href="#">الأسئلة الشائعة</a></li>
+                             </ul>
+                         </div>
+                         <div class="footer-column contact-column">
+                             <h3 class="footer-title">تواصل معنا</h3>
+                             <p class="contact-item email">info@mohamoon-ksa.com</p>
+                             <p class="contact-item phone">الهاتف: xxx xxxx 11 966+</p>
+                             <p class="contact-item address">العنوان: الرياض, المملكة العربية السعودية</p>
+                         </div>
+                         <div class="footer-column social-column">
+                             <h3 class="footer-title">تابعنا</h3>
+                             <div class="footer-social">
+                                 <a href="#" class="footer-social-icon"><img src="../assets/icons/facebook.png" alt="فيس بوك"></a>
+                                 <a href="#" class="footer-social-icon"><img src="../assets/icons/insta.png" alt="إنستجرام"></a>
+                                 <a href="#" class="footer-social-icon"><img src="../assets/icons/x.png" alt="تويتر"></a>
+                                 <a href="#" class="footer-social-icon"><img src="../assets/icons/ln.png" alt="لينكد إن"></a>
+                             </div>
+                             <a href="#" class="contact-btn">
+                                 <img src="../assets/icons/call.svg" alt="اتصال">
+                                 اتصل بنا
+                             </a>
+                         </div>
+                     </div>
+             </div>
+        
+             <!-- Footer Bottom -->
+             <div class="footer-bottom">
+                 <div class="container">
+                     <div class="copyright-text">جميع الحقوق محفوظة © 2024 محامو المملكة</div>
+                     <div class="footer-bottom-links">
+                         <a href="../pages/terms.html">الشروط والأحكام</a> | 
+                         <a href="#">سياسة الخصوصية</a>
+                     </div>
+                 </div>
+             </div>
+         </footer>
 
     <script src="../scripts/main.js"></script>
-    <script src="../scripts/settings.js"></script>
-    <script src="../scripts/icons-functionality.js"></script>
+    <script src="../scripts/sub-settings.js"></script>
 
-    <!-- نافذة تسجيل الدخول المنبثقة -->
-    <div class="login-modal" id="login-modal">
+    
+
+   
+      <!-- نافذة تسجيل الدخول المنبثقة -->
+      <div class="login-modal" id="login-modal">
         <div class="login-modal-content">
             <div class="login-modal-header">
                 <span class="close-modal">&times;</span>
@@ -920,7 +1285,11 @@
                 </div>
                 
                 <div class="help-section">
-                    <a href="#" class="help-btn self-help">
+                    <a href="#" class="help-btn customer-service">
+                        <span>خدمة العملاء</span>
+                        <img src="../assets/icons/support.png" alt="خدمة" class="help-icon">
+                    </a>
+                                        <a href="#" class="help-btn self-help">
                         <span>المساعدة الذاتية</span>
                         <img src="../assets/icons/message-search.png" alt="مساعدة" class="help-icon">
                     </a>
@@ -929,9 +1298,50 @@
         </div>
     </div>
 
-    <script src="../scripts/pages-login-modal.js"></script>
+    <!-- ملفات JavaScript بالترتيب الصحيح -->
+<script src="../scripts/main.js"></script>
+<script src="../scripts/modal-manager.js"></script>
+<script src="../scripts/persistent-login.js"></script>
+<script src="../scripts/sub-settings.js"></script>
 
-    <script src="../scripts/settings.js"></script>
-    <script src="../scripts/font-resize.js"></script>
+<!-- نظام المصادقة والتسجيل -->
+<script src="../scripts/auth-system.js"></script>
+<script src="../scripts/login-modal.js"></script>
+<script src="../scripts/password-change-modal.js"></script>
+<script src="../scripts/profile-button.js"></script>
+
+<!-- وظائف التوب بار -->
+<script src="../scripts/unified-icons.js"></script>
+<script src="../scripts/search-popup.js"></script>
+<script src="../scripts/settings.js"></script>
+<script src="../scripts/simple-zoom.js"></script>
+
+<!-- وظائف الموبايل -->
+<script src="../scripts/unified-mobile-menu.js"></script>
+<script src="../scripts/hamburger-menu.js"></script>
+<script src="../scripts/mobile-dropdown.js"></script>
+
+<!-- النافبار (آخر شيء) -->
+<script src="../scripts/unified-navbar.js"></script>
+    <!-- Ø£ÙŠÙ‚ÙˆÙ†Ø© Ø§Ù„Ø¯Ø¹Ù… Ø§Ù„Ø«Ø§Ø¨ØªØ© -->
+    <div class="support-icon-fixed">
+        <img src="../assets/icons/support.svg" alt="Ø§Ù„Ø¯Ø¹Ù… ÙˆØ§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø©">
+    </div>
+    
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

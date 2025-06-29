@@ -1,644 +1,89 @@
-/* أنماط وضع التباين الداكن - حل جذري */
-
-/* تغيير جميع النصوص إلى اللون الأسود */
-.dark-mode p, 
-.dark-mode h1, 
-.dark-mode h2, 
-.dark-mode h3, 
-.dark-mode h4, 
-.dark-mode h5, 
-.dark-mode h6, 
-.dark-mode a:not(.footer a):not(.footer-bottom a):not(.footer-links a), 
-.dark-mode span:not(.footer span):not(.footer-bottom span), 
-.dark-mode label, 
-.dark-mode li, 
-.dark-mode td, 
-.dark-mode th {
-    color: #2A2A2A !important;
-}
-
-/* تحويل جميع العناصر ذات الألوان الفيروزية */
-.dark-mode [style*="color:#00937B"], .dark-mode [style*="color: #00937B"],
-.dark-mode [style*="color:#0fa89d"], .dark-mode [style*="color: #0fa89d"],
-.dark-mode [style*="color:#00b8a9"], .dark-mode [style*="color: #00b8a9"],
-.dark-mode [style*="color:#17a891"], .dark-mode [style*="color: #17a891"],
-.dark-mode [style*="color:#00665f"], .dark-mode [style*="color: #00665f"],
-.dark-mode [style*="color: var(--primary-color)"], .dark-mode [style*="color:var(--primary-color)"] {
-    color: #2A2A2A !important;
-}
-
-.dark-mode [style*="background-color:#00937B"], .dark-mode [style*="background-color: #00937B"],
-.dark-mode [style*="background-color:#0fa89d"], .dark-mode [style*="background-color: #0fa89d"],
-.dark-mode [style*="background-color:#00b8a9"], .dark-mode [style*="background-color: #00b8a9"],
-.dark-mode [style*="background-color:#17a891"], .dark-mode [style*="background-color: #17a891"],
-.dark-mode [style*="background-color:#00665f"], .dark-mode [style*="background-color: #00665f"],
-.dark-mode [style*="background:#00937B"], .dark-mode [style*="background: #00937B"],
-.dark-mode [style*="background:#0fa89d"], .dark-mode [style*="background: #0fa89d"],
-.dark-mode [style*="background:#00b8a9"], .dark-mode [style*="background: #00b8a9"],
-.dark-mode [style*="background:#17a891"], .dark-mode [style*="background: #17a891"],
-.dark-mode [style*="background:#00665f"], .dark-mode [style*="background: #00665f"],
-.dark-mode [style*="background: var(--primary-color)"], .dark-mode [style*="background:var(--primary-color)"],
-.dark-mode [style*="background-color: var(--primary-color)"], .dark-mode [style*="background-color:var(--primary-color)"] {
-    background-color: #2A2A2A !important;
-    background: #2A2A2A !important;
-    color: white !important;
-}
-
-/* تحويل الأزرار إلى أسود مع نص أبيض */
-.dark-mode .btn:not(.contrast-light):not(.contrast-dark), 
-.dark-mode button:not(.contrast-light):not(.contrast-dark), 
-.dark-mode [class*="btn-"]:not(.contrast-light):not(.contrast-dark),
-.dark-mode [class*="-btn"]:not(.contrast-light):not(.contrast-dark) {
-    background-color: #2A2A2A !important;
-    border-color: #2A2A2A !important;
-    color: white !important;
-}
-
-/* إعدادات قسم الخدمات - مُحدّث بقواعد أكثر تحديداً */
-.dark-mode .services-section,
-.dark-mode .services-section *,
-.dark-mode .services-section .container,
-.dark-mode .services-section .services-header,
-.dark-mode .services-section .sub-header,
-.dark-mode .services-section .services-content,
-.dark-mode .services-section .sidebar-menu,
-.dark-mode .services-section .sidebar-link,
-.dark-mode .services-section .main-content-wrapper,
-.dark-mode .services-section .tab-container,
-.dark-mode .services-section .tab-portal,
-.dark-mode .services-section .services-slider,
-.dark-mode .services-section .slider-arrow,
-.dark-mode .services-section .services-cards,
-.dark-mode .services-section .service-card,
-.dark-mode .services-section .card-icon,
-.dark-mode .services-section .service-title,
-.dark-mode .services-section .card-desc,
-.dark-mode .services-section .more-btn,
-.dark-mode .services-section .community-programs-section,
-.dark-mode .services-section .community-programs-section h3 {
-    color: #2A2A2A !important;
-    background-color: #f9fbfc !important;
-}
-
-/* عنوان القسم باللون الأحمر وبدون خلفية */
-.dark-mode .section-title {
-    color: red !important;
-    background-color: transparent !important;
-}
-
-/* زر التبويب النشط باللون الأسود */
-.dark-mode .tab-publish.active {
-    background-color: #2A2A2A !important;
-    color: white !important;
-    border-color: #2A2A2A !important;
-}
-
-/* أزرار الشريط الجانبي - خلفية سوداء ونص أبيض */
-.dark-mode .services-section .sidebar-btn,
-.dark-mode .sidebar-btn {
-    background-color: #2A2A2A !important;
-    color: white !important;
-    border-color: #2A2A2A !important;
-}
-
-.dark-mode .services-section .service-card *,
-.dark-mode .service-card h3,
-.dark-mode .service-card p,
-.dark-mode .service-card a {
-    color: #2A2A2A !important;
-}
-
-.dark-mode .service-icon svg,
-.dark-mode .service-icon svg *,
-.dark-mode .service-icon path,
-.dark-mode .service-icon circle,
-.dark-mode .service-icon rect {
-    fill: #2A2A2A !important;
-    stroke: #2A2A2A !important;
-    color: #2A2A2A !important;
-}
-
-/* إعدادات قسم الاشتراك */
-.dark-mode .subscribe-section,
-.dark-mode .subscribe-section *,
-.dark-mode .subscribe-container,
-.dark-mode .subscribe-form,
-.dark-mode .subscribe-input {
-    color: #2A2A2A !important;
-}
-
-/* عنوان الاشتراك باللون الأسود */
-.dark-mode .subscribe-title {
-    color: #2A2A2A !important;
-}
-
-/* زر الاشتراك بخلفية سوداء ونص أبيض */
-.dark-mode .subscribe-btn,
-.dark-mode .subscribe-button,
-.dark-mode .subscribe-section button {
-    background-color: #2A2A2A !important;
-    color: white !important;
-    border-color: #2A2A2A !important;
-}
-
-/* عند تحويم المؤشر فوق زر الاشتراك */
-.dark-mode .subscribe-btn:hover,
-.dark-mode .subscribe-button:hover,
-.dark-mode .subscribe-section button:hover {
-    background-color: #1A1A1A !important;
-    color: white !important;
-    border-color: #1A1A1A !important;
-}
-
-/* إعدادات الفوتر - جعل النصوص بيضاء في جميع الحالات */
-.dark-mode .footer,
-.dark-mode .footer *,
-.dark-mode .footer-bottom,
-.dark-mode .footer-bottom *,
-.dark-mode .footer-links,
-.dark-mode .footer-links a,
-.dark-mode .footer-title,
-.dark-mode .footer-text,
-.dark-mode .footer-menu,
-.dark-mode .footer-menu *,
-.dark-mode .footer-menu a,
-.dark-mode .footer-info,
-.dark-mode .footer-copyright,
-.dark-mode .main-footer,
-.dark-mode .main-footer *,
-.dark-mode .footer-top,
-.dark-mode .footer-top *,
-.dark-mode .footer-column,
-.dark-mode .footer-column * {
-    color: white !important;
-}
-
-/* خلفية الفوتر */
-.dark-mode .footer,
-.dark-mode .footer-bottom,
-.dark-mode .main-footer,
-.dark-mode .footer-top,
-body.dark-mode .footer,
-body.dark-mode .footer-bottom,
-body.dark-mode .main-footer,
-body.dark-mode .footer-top,
-body.dark-mode.home-page .footer,
-body.dark-mode.home-page .footer-bottom,
-body.dark-mode.home-page .main-footer,
-body.dark-mode.home-page .footer-top {
-    background-color: #2A2A2A !important;
-}
-
-/* تأكيد إضافي للروابط والنصوص في الفوتر */
-.dark-mode .footer a,
-.dark-mode .main-footer a,
-.dark-mode .footer-top a,
-.dark-mode .footer-column a,
-.dark-mode .footer-links a,
-.dark-mode .footer-menu a,
-body.dark-mode .footer a,
-body.dark-mode .main-footer a,
-body.dark-mode .footer-top a,
-body.dark-mode .footer-column a,
-body.dark-mode .footer-links a,
-body.dark-mode .footer-menu a,
-body.dark-mode.home-page .footer a,
-body.dark-mode.home-page .main-footer a,
-body.dark-mode.home-page .footer-top a,
-body.dark-mode.home-page .footer-column a,
-body.dark-mode.home-page .footer-links a,
-body.dark-mode.home-page .footer-menu a {
-    color: white !important;
-    text-decoration-color: white !important;
-}
-
-.dark-mode .footer span,
-.dark-mode .main-footer span,
-.dark-mode .footer-top span,
-.dark-mode .footer-column span,
-body.dark-mode .footer span,
-body.dark-mode .main-footer span,
-body.dark-mode .footer-top span,
-body.dark-mode .footer-column span,
-body.dark-mode.home-page .footer span,
-body.dark-mode.home-page .main-footer span,
-body.dark-mode.home-page .footer-top span,
-body.dark-mode.home-page .footer-column span {
-    color: white !important;
-}
-
-/* قاعدة قوية للتأكد من أن كل نص في الفوتر باللون الأبيض */
-body.dark-mode .footer *,
-body.dark-mode .main-footer *,
-body.dark-mode .footer-bottom *,
-body.dark-mode .footer-top *,
-body.dark-mode .footer-column *,
-body.dark-mode .footer-links *,
-body.dark-mode .footer-menu *,
-body.dark-mode .footer-info *,
-body.dark-mode .footer-copyright *,
-body.dark-mode.home-page .footer *,
-body.dark-mode.home-page .main-footer *,
-body.dark-mode.home-page .footer-bottom *,
-body.dark-mode.home-page .footer-top *,
-body.dark-mode.home-page .footer-column *,
-body.dark-mode.home-page .footer-links *,
-body.dark-mode.home-page .footer-menu *,
-body.dark-mode.home-page .footer-info *,
-body.dark-mode.home-page .footer-copyright * {
-    color: white !important;
-}
-
-/* تحويل قسم حقوق النشر إلى اللون الأسود والنص باللون الأبيض */
-.dark-mode .copyright {
-    background-color: #2A2A2A !important;
-    color: white !important;
-}
-
-/* أنماط خاصة لصفحة الأسئلة الشائعة */
-body.dark-mode.faq-page,
-.dark-mode .faq-container,
-.dark-mode .faq-content {
-    background-color: white !important;
-}
-
-/* جعل خلفية الصفحات الفرعية بيضاء أو رمادية فاتحة */
-body.dark-mode:not(.home-page) {
-    background-color: #f5f5f5 !important;
-}
-
-body.dark-mode:not(.home-page) .main-content,
-body.dark-mode:not(.home-page) .content-area,
-body.dark-mode:not(.home-page) .page-content,
-body.dark-mode:not(.home-page) article,
-body.dark-mode:not(.home-page) section:not(.services-section):not(.contact-section):not(.subscribe-section):not(.footer):not(.copyright):not(.top-bar):not(.navbar) {
-    background-color: white !important;
-    color: #333 !important;
-}
-
-/* التأكد من أن التوب بار والناف بار يبقيان باللون الداكن والنصوص بيضاء */
+/* التوب بار والناف بار - شفاف دائماً */
+.top-bar,
+.nav-menu,
+.dark-mode .top-bar,
+.dark-mode .nav-menu,
+.dark-contrast .top-bar,
+.dark-contrast .nav-menu,
+[class*="dark"] .top-bar,
+[class*="dark"] .nav-menu,
 body.dark-mode .top-bar,
-body.dark-mode .navbar,
-body.dark-mode .topbar,
-body.dark-mode .mobile-topbar,
-body.dark-mode nav.navbar,
-body.dark-mode .nav-container,
-body.dark-mode header,
-body.dark-mode header nav,
-body.dark-mode .top-icons,
-body.dark-mode .nav-links,
-body.dark-mode .main-nav,
-body.dark-mode .head-top,
-body.dark-mode .menu-section,
-body.dark-mode.home-page .top-bar,
-body.dark-mode.home-page .navbar,
-body.dark-mode.home-page .topbar,
-body.dark-mode.home-page .mobile-topbar,
-body.dark-mode.home-page nav.navbar,
-body.dark-mode.home-page .nav-container,
-body.dark-mode.home-page header,
-body.dark-mode.home-page header nav,
-body.dark-mode.home-page .top-icons,
-body.dark-mode.home-page .nav-links,
-body.dark-mode.home-page .main-nav,
-body.dark-mode.home-page .head-top,
-body.dark-mode.home-page .menu-section {
-    background-color: #2A2A2A !important;
-    color: white !important;
-}
-
-body.dark-mode .top-bar *,
-body.dark-mode .navbar *,
-body.dark-mode .topbar *,
-body.dark-mode .mobile-topbar *,
-body.dark-mode nav.navbar *,
-body.dark-mode .nav-container *,
-body.dark-mode header *,
-body.dark-mode .top-icons *,
-body.dark-mode .nav-links *,
-body.dark-mode .main-nav *,
-body.dark-mode .head-top *,
-body.dark-mode .menu-section *,
-body.dark-mode.home-page .top-bar *,
-body.dark-mode.home-page .navbar *,
-body.dark-mode.home-page .topbar *,
-body.dark-mode.home-page .mobile-topbar *,
-body.dark-mode.home-page nav.navbar *,
-body.dark-mode.home-page .nav-container *,
-body.dark-mode.home-page header *,
-body.dark-mode.home-page .top-icons *,
-body.dark-mode.home-page .nav-links *,
-body.dark-mode.home-page .main-nav *,
-body.dark-mode.home-page .head-top *,
-body.dark-mode.home-page .menu-section * {
-    color: white !important;
-}
-
-/* أساليب إضافية للتأكد من آلنصوص بيضاء */
-body.dark-mode .top-bar a,
-body.dark-mode .navbar a,
-body.dark-mode .topbar a,
-body.dark-mode .mobile-topbar a,
-body.dark-mode nav.navbar a,
-body.dark-mode .nav-links a,
-body.dark-mode .top-icons a,
-body.dark-mode .main-nav a,
-body.dark-mode .head-top a,
-body.dark-mode .menu-section a,
-body.dark-mode.home-page .top-bar a,
-body.dark-mode.home-page .navbar a,
-body.dark-mode.home-page .topbar a,
-body.dark-mode.home-page .mobile-topbar a,
-body.dark-mode.home-page nav.navbar a,
-body.dark-mode.home-page .nav-links a,
-body.dark-mode.home-page .top-icons a,
-body.dark-mode.home-page .main-nav a,
-body.dark-mode.home-page .head-top a,
-body.dark-mode.home-page .menu-section a {
-    color: white !important;
-    text-decoration-color: white !important;
-}
-
-body.dark-mode .top-bar span,
-body.dark-mode .navbar span,
-body.dark-mode .topbar span,
-body.dark-mode .mobile-topbar span,
-body.dark-mode nav.navbar span,
-body.dark-mode .nav-links span,
-body.dark-mode .top-icons span,
-body.dark-mode .main-nav span,
-body.dark-mode .head-top span,
-body.dark-mode .menu-section span,
-body.dark-mode.home-page .top-bar span,
-body.dark-mode.home-page .navbar span,
-body.dark-mode.home-page .topbar span,
-body.dark-mode.home-page .mobile-topbar span,
-body.dark-mode.home-page nav.navbar span,
-body.dark-mode.home-page .nav-links span,
-body.dark-mode.home-page .top-icons span,
-body.dark-mode.home-page .main-nav span,
-body.dark-mode.home-page .head-top span,
-body.dark-mode.home-page .menu-section span {
-    color: white !important;
-}
-
-/* أنماط القوائم والأزرار في الناف بار */
-body.dark-mode .navbar-nav .nav-item .nav-link,
-body.dark-mode .navbar-nav .dropdown-menu,
-body.dark-mode .navbar-nav .dropdown-menu .dropdown-item,
-body.dark-mode .navbar .dropdown-menu,
-body.dark-mode .menu-item a,
-body.dark-mode.home-page .navbar-nav .nav-item .nav-link,
-body.dark-mode.home-page .navbar-nav .dropdown-menu,
-body.dark-mode.home-page .navbar-nav .dropdown-menu .dropdown-item,
-body.dark-mode.home-page .navbar .dropdown-menu,
-body.dark-mode.home-page .menu-item a {
-    color: white !important;
-    background-color: #2A2A2A !important;
-}
-
-/* قاعدة للصفحات الفرعية فقط - توحيد مظهر الناف بار */
-body.dark-mode:not(.home-page) nav,
-body.dark-mode:not(.home-page) nav *,
-body.dark-mode:not(.home-page) .navbar,
-body.dark-mode:not(.home-page) .navbar *,
-body.dark-mode:not(.home-page) .nav-menu,
-body.dark-mode:not(.home-page) .nav-menu *,
-body.dark-mode:not(.home-page) .menu-item,
-body.dark-mode:not(.home-page) .menu-item *,
-body.dark-mode:not(.home-page) .dropdown-menu,
-body.dark-mode:not(.home-page) .dropdown-menu *,
-body.dark-mode:not(.home-page) .dropdown,
-body.dark-mode:not(.home-page) .dropdown *,
-body.dark-mode:not(.home-page) header nav,
-body.dark-mode:not(.home-page) header nav *,
-body.dark-mode:not(.home-page) .nav-container,
-body.dark-mode:not(.home-page) .nav-container *,
-body.dark-mode:not(.home-page) .navigation,
-body.dark-mode:not(.home-page) .navigation *,
-body.dark-mode:not(.home-page) .top-bar,
-body.dark-mode:not(.home-page) .top-bar * {
-    color: white !important;
-    text-decoration-color: white !important;
-    background-color: #2A2A2A !important;
-}
-
-/* تحديد جميع أنواع الروابط في الناف بار للصفحات الفرعية */
-body.dark-mode:not(.home-page) nav a,
-body.dark-mode:not(.home-page) .navbar a,
-body.dark-mode:not(.home-page) .nav-menu a,
-body.dark-mode:not(.home-page) .menu-item a,
-body.dark-mode:not(.home-page) .dropdown-menu a,
-body.dark-mode:not(.home-page) header nav a,
-body.dark-mode:not(.home-page) .nav-container a,
-body.dark-mode:not(.home-page) .navigation a,
-body.dark-mode:not(.home-page) .top-bar a {
-    color: white !important;
-    text-decoration-color: white !important;
-}
-
-/* جعل خلفية الأيقونات شفافة بدون خلفية */
-.dark-mode img,
-.dark-mode svg,
-.dark-mode i[class*="fa-"],
-.dark-mode i[class*="icon"],
-.dark-mode .icon,
-.dark-mode .dropdown-arrow,
-.dark-mode .nav-icon,
-.dark-mode button img,
-.dark-mode a img,
-.dark-mode .button img,
-body.dark-mode img,
-body.dark-mode svg,
-body.dark-mode i[class*="fa-"],
-body.dark-mode i[class*="icon"],
-body.dark-mode .icon,
-body.dark-mode .dropdown-arrow,
-body.dark-mode .nav-icon,
-body.dark-mode button img,
-body.dark-mode a img,
-body.dark-mode .button img {
-    background-color: transparent !important;
-    background: transparent !important;
-}
-
-/* أيقونات الناف بار بدون خلفية */
-.dark-mode .navbar .icon-btn,
-.dark-mode .top-bar .icon-btn,
-.dark-mode .nav-menu .icon-btn,
-.dark-mode .top-icons .icon-btn,
-.dark-mode .main-icons-group .icon-btn,
-body.dark-mode .navbar .icon-btn,
-body.dark-mode .top-bar .icon-btn,
-body.dark-mode .nav-menu .icon-btn,
-body.dark-mode .top-icons .icon-btn,
-body.dark-mode .main-icons-group .icon-btn,
-.dark-mode .top-bar button,
-.dark-mode .navbar button,
-.dark-mode .nav-container button,
-.dark-mode .top-icons button,
-body.dark-mode .top-bar button,
-body.dark-mode .navbar button,
-body.dark-mode .nav-container button,
-body.dark-mode .top-icons button {
-    background-color: transparent !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-/* عناصر الأيقونات المتنوعة الأخرى */
-.dark-mode .icon-btn, 
-.dark-mode .settings-toggle-btn,
-.dark-mode .search-btn,
-.dark-mode .zoom-in-btn,
-.dark-mode .zoom-out-btn,
-.dark-mode .location-btn,
-.dark-mode .call-btn,
-body.dark-mode .icon-btn, 
-body.dark-mode .settings-toggle-btn,
-body.dark-mode .search-btn,
-body.dark-mode .zoom-in-btn,
-body.dark-mode .zoom-out-btn,
-body.dark-mode .location-btn,
-body.dark-mode .call-btn {
-    background-color: transparent !important;
-    background: transparent !important;
-    box-shadow: none !important;
-}
-
-/* قائمة التنقل nav-menu والقوائم المنسدلة */
 body.dark-mode .nav-menu,
-body.dark-mode .nav-menu *,
-body.dark-mode .nav-menu .menu-item,
-body.dark-mode .nav-menu .menu-item a,
-body.dark-mode .nav-menu .dropdown,
-body.dark-mode .nav-menu .dropdown-menu,
-body.dark-mode .nav-menu .dropdown-menu a,
-body.dark-mode .nav-menu .dropdown-hover-area,
-body.dark-mode.home-page .nav-menu,
-body.dark-mode.home-page .nav-menu *,
-body.dark-mode.home-page .nav-menu .menu-item,
-body.dark-mode.home-page .nav-menu .menu-item a,
-body.dark-mode.home-page .nav-menu .dropdown,
-body.dark-mode.home-page .nav-menu .dropdown-menu,
-body.dark-mode.home-page .nav-menu .dropdown-menu a,
-body.dark-mode.home-page .nav-menu .dropdown-hover-area {
-    color: white !important;
-    text-decoration-color: white !important;
-}
-
-/* قواعد إضافية للقوائم المنسدلة */
-body.dark-mode .nav-menu .dropdown-menu,
-body.dark-mode.home-page .nav-menu .dropdown-menu {
-    background-color: #2A2A2A !important;
-    border-color: #444 !important;
-}
-
-body.dark-mode .nav-menu .dropdown-menu a,
-body.dark-mode.home-page .nav-menu .dropdown-menu a {
-    color: white !important;
-}
-
-body.dark-mode .nav-menu .menu-item[style*="font-size"],
-body.dark-mode .nav-menu .menu-item a[style*="font-size"],
-body.dark-mode .nav-menu .dropdown[style*="font-size"],
-body.dark-mode .nav-menu .dropdown a[style*="font-size"],
-body.dark-mode .nav-menu .dropdown-menu[style*="font-size"],
-body.dark-mode .nav-menu .dropdown-menu a[style*="font-size"],
-body.dark-mode .nav-menu .dropdown-hover-area[style*="font-size"],
-body.dark-mode.home-page .nav-menu .menu-item[style*="font-size"],
-body.dark-mode.home-page .nav-menu .menu-item a[style*="font-size"],
-body.dark-mode.home-page .nav-menu .dropdown[style*="font-size"],
-body.dark-mode.home-page .nav-menu .dropdown a[style*="font-size"],
-body.dark-mode.home-page .nav-menu .dropdown-menu[style*="font-size"],
-body.dark-mode.home-page .nav-menu .dropdown-menu a[style*="font-size"],
-body.dark-mode.home-page .nav-menu .dropdown-hover-area[style*="font-size"] {
-    color: white !important;
-}
-
-/* لون عنوان الاتصال باللون الأسود عند تفعيل الوضع الداكن */
-.dark-mode .contact-title {
-    color: #2A2A2A !important;
-}
-
-/* التأكد من إعادة تعريف ألوان النص للعناصر المهمة */
-.dark-mode .services-section h2,
-.dark-mode .services-section h3,
-.dark-mode .services-section p,
-.dark-mode .services-section a,
-.dark-mode .services-section span,
-.dark-mode .services-section div,
-.dark-mode .service-title,
-.dark-mode .service-icon,
-.dark-mode .service-description,
-.dark-mode .service-card,
-.dark-mode .card-desc,
-.dark-mode .more-btn,
-.dark-mode .community-programs-section h3,
-.dark-mode .subscribe-section h2,
-.dark-mode .subscribe-section h3,
-.dark-mode .subscribe-section p,
-.dark-mode .subscribe-section a,
-.dark-mode .subscribe-section span,
-.dark-mode .subscribe-section div,
-.dark-mode .subscribe-title {
-    color: #2A2A2A !important;
-}
-
-/* تعيين !important على العناصر التي تحتوي على نمط مضمن */
-.dark-mode [data-original-font-size] {
-    color: #2A2A2A !important;
-}
-
-/* قواعد إضافية للتأكد من تطبيق الألوان على العناصر المضمنة */
-.dark-mode .services-section [style]:not(.sidebar-btn),
-.dark-mode .services-section [style*="color"]:not(.sidebar-btn),
-.dark-mode .services-section [style*="font"]:not(.sidebar-btn),
-.dark-mode .subscribe-section [style],
-.dark-mode .subscribe-section [style*="color"],
-.dark-mode .subscribe-section [style*="font"] {
-    color: #2A2A2A !important;
-}
-
-/* للتأكد من أن زر الشريط الجانبي يتجاوز الأنماط المضمنة */
-.dark-mode .sidebar-btn[style],
-.dark-mode .sidebar-btn[style*="background"],
-.dark-mode .sidebar-btn[style*="color"] {
-    background-color: #2A2A2A !important;
-    color: white !important;
-    border-color: #2A2A2A !important;
-}
-
-/* التأكد من أن section-title و tab-publish.active يتجاوزان الأنماط المضمنة */
-.dark-mode .section-title[style],
-.dark-mode .section-title[style*="color"],
-.dark-mode .section-title[style*="background"] {
-    color: red !important;
+body.dark-contrast .top-bar,
+body.dark-contrast .nav-menu {
+    background: transparent !important;
     background-color: transparent !important;
+    background-image: none !important;
 }
 
-.dark-mode .tab-publish.active[style],
-.dark-mode .tab-publish.active[style*="background"],
-.dark-mode .tab-publish.active[style*="color"] {
-    background-color: #2A2A2A !important;
-    color: white !important;
-    border-color: #2A2A2A !important;
+.top-bar *,
+.nav-menu *,
+.dark-mode .top-bar *,
+.dark-mode .nav-menu *,
+.dark-contrast .top-bar *,
+.dark-contrast .nav-menu *,
+[class*="dark"] .top-bar *,
+[class*="dark"] .nav-menu *,
+body.dark-mode .top-bar *,
+body.dark-mode .nav-menu *,
+body.dark-contrast .top-bar *,
+body.dark-contrast .nav-menu * {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
 }
 
-/* التأكد من أن عنوان الاشتراك وزر الاشتراك يتجاوزان الأنماط المضمنة */
-.dark-mode .subscribe-title[style],
-.dark-mode .subscribe-title[style*="color"] {
+/* تنسيق العناصر الأخرى */
+.dark-mode .main-content *:not(.top-bar):not(.top-bar *):not(.nav-menu):not(.nav-menu *) {
     color: #2A2A2A !important;
 }
 
-.dark-mode .subscribe-btn[style],
-.dark-mode .subscribe-btn[style*="background"],
-.dark-mode .subscribe-btn[style*="color"],
-.dark-mode .subscribe-button[style],
-.dark-mode .subscribe-button[style*="background"],
-.dark-mode .subscribe-button[style*="color"] {
-    background-color: #2A2A2A !important;
-    color: white !important;
-    border-color: #2A2A2A !important;
+/* Primary button in contrast/dark mode */
+body.contrast-mode .btn.primary-btn,
+body.dark-mode .btn.primary-btn {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+body.contrast-mode .btn.primary-btn:hover,
+body.dark-mode .btn.primary-btn:hover {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+/* Footer وقسم المشاركة الاجتماعية في حالة التباين الأسود */
+body.dark-contrast .footer-bottom,
+.dark-contrast .footer-bottom,
+body.dark-contrast .copyright,
+.dark-contrast .copyright,
+body.dark-contrast .main-footer,
+.dark-contrast .main-footer,
+body.dark-contrast footer,
+.dark-contrast footer,
+body.dark-contrast .social-share-section,
+.dark-contrast .social-share-section {
+    background-color: #090909 !important;
+    background: #090909 !important;
+}
+
+/* تطبيق اللون على كل عناصر الفوتر بقوة */
+body.dark-contrast footer *,
+body.dark-contrast .main-footer *,
+body.dark-contrast .footer-bottom *,
+body.dark-contrast .footer-bottom .container,
+body.dark-contrast .footer-bottom .container *,
+body.dark-contrast .copyright *,
+body.dark-contrast .copyright-text,
+body.dark-contrast .footer-bottom-links,
+body.dark-contrast .footer-bottom-links * {
+    background-color: #090909 !important;
+    background: #090909 !important;
+}
+
+/* التأكد من أن العناصر الداخلية في social-share-section تحافظ على خلفيتها */
+body.dark-contrast .social-share-section > div,
+.dark-contrast .social-share-section > div {
+    background-color: #f5f5f5 !important;
+    background: #f5f5f5 !important;
 }

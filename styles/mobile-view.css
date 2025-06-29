@@ -1,4 +1,4 @@
-/* أنماط العرض للهاتف المحمول */
+﻿/* أنماط العرض للهاتف المحمول */
 
 /* إخفاء عناصر معينة افتراضيًا في وضع سطح المكتب */
 /* العناصر التي تظهر فقط في نسخة الموبايل */
@@ -9,8 +9,21 @@
 .logo .search-btn,
 .logo .zoom-in-btn,
 .logo .zoom-out-btn,
-.logo .settings-menu {
-    display: none;
+.logo .settings-menu,
+#mobile-profile-btn,
+.profile-btn#mobile-profile-btn {
+    display: none !important;
+}
+
+/* قاعدة إضافية لضمان إخفاء زر الملف الشخصي في الديسكتوب */
+@media (min-width: 768px) {
+    #mobile-profile-btn,
+    .profile-btn#mobile-profile-btn,
+    button#mobile-profile-btn {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
 }
 
 /* افتراضيًا، نخفي بعض العناصر في نمط الهاتف المحمول */
@@ -22,7 +35,8 @@
     .logo .settings-toggle-btn,
     .logo .search-btn,
     .logo .zoom-in-btn,
-    .logo .zoom-out-btn {
+    .logo .zoom-out-btn,
+    #mobile-profile-btn {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -34,9 +48,9 @@
     
     /* تنسيق الشريط العلوي للجوال */
     .top-bar {
-        background-color: #000 !important;
+        background-color: transparent !important;
         padding: 0 !important;
-        position: fixed !important;
+        /* position: fixed !important; */
         top: 0;
         left: 0;
         right: 0;
@@ -90,7 +104,7 @@
         justify-content: space-between;
         position: relative;
         width: 100%;
-        padding: 0 15px;
+        padding: 0;
     }
     
     .logo {
@@ -98,12 +112,12 @@
         flex-wrap: nowrap; /* منع نزول العناصر لسطر جديد */
         align-items: center;
         position: relative;
-        padding: 5px 8px;
+        padding: 5px 0;
         width: 100%;
         max-height: 50px;
         min-height: 50px;
         gap: 8px;
-        background-color: #000;
+        /* background-color: #000; */
     }
     
     /* تنسيق ترتيب العناصر داخل اللوجو */
@@ -113,7 +127,7 @@
         margin: 0;
         z-index: 2;
         flex-shrink: 1;
-        margin-right: auto; /* يدفع اللوجو لليمين */
+        margin-right: 0;
     }
     
     /* 2. زر اشترك معنا بعد اللوجو */
@@ -142,20 +156,24 @@
     .hamburger-menu {
         z-index: 1000;
         cursor: pointer;
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         justify-content: space-between;
-        width: 24px;
-        height: 18px;
+        width: 22px;
+        height: 16px;
         margin-left: 8px;
+        opacity: 1;
+        visibility: visible;
     }
     
     .hamburger-menu span {
-        display: block;
+        display: block !important;
         width: 100%;
         height: 2px;
         background-color: #fff;
         transition: all 0.3s ease;
+        opacity: 1;
+        visibility: visible;
     }
     
     /* تجميع الأيقونات في منطقة واحدة */
@@ -166,27 +184,7 @@
         z-index: 2;
     }
     
-    /* زر اشترك معنا بعد اللوجو مباشرة */
-    .logo .mobile-subscribe-btn {
-        order: 2; /* بعد اللوجو مباشرة */
-        z-index: 2;
-        padding: 4px 8px !important;
-        font-size: 11px !important;
-        white-space: nowrap;
-        min-width: auto !important;
-        line-height: 1;
-        height: 26px;
-        background-color: #00a19a !important;
-        color: white !important;
-        border-radius: 4px;
-        text-decoration: none;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        border: none;
-        margin: 0 2px;
-    }
+    /* زر اشترك معنا بعد اللوجو مباشرة - يتم التحكم به من الأعلى */
     
     /* الأيقونات بعد زر اشترك معنا */
     .logo .icon-btn, 
@@ -216,6 +214,60 @@
         width: 16px !important;
         height: 16px !important;
         object-fit: contain;
+    }
+    
+    /* أيقونة الملف الشخصي - مخفية افتراضياً حتى تسجيل الدخول */
+    .logo .mobile-icons .profile-btn,
+    #mobile-profile-btn {
+        padding: 5px !important;
+        margin: 0 2px !important;
+        height: 28px !important;
+        width: 28px !important;
+        display: none !important; /* مخفية افتراضياً حتى تسجيل الدخول */
+        align-items: center;
+        justify-content: center;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 4px;
+    }
+    
+    .logo .mobile-icons .profile-btn:hover,
+    #mobile-profile-btn:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    .logo .mobile-icons .profile-btn img,
+    #mobile-profile-btn img {
+        width: 16px !important;
+        height: 16px !important;
+        object-fit: contain;
+        filter: brightness(1.2);
+    }
+    
+    /* عرض أيقونة الملف الشخصي عند تسجيل الدخول */
+    .user-logged-in .logo .mobile-icons .profile-btn,
+    body.user-logged-in .logo .mobile-icons .profile-btn,
+    .logo .mobile-icons .profile-btn.show,
+    .user-logged-in #mobile-profile-btn,
+    body.user-logged-in #mobile-profile-btn,
+    #mobile-profile-btn.show {
+        display: flex !important;
+    }
+    
+    /* إخفاء زر تسجيل الدخول من القائمة الجانبية عند تسجيل الدخول */
+    .user-logged-in .mobile-side-menu-buttons .login-btn,
+    body.user-logged-in .mobile-side-menu-buttons .login-btn,
+    .user-logged-in .mobile-menu .login-btn,
+    body.user-logged-in .mobile-menu .login-btn {
+        display: none !important;
+    }
+    
+    /* إعادة ترتيب الأيقونات عند ظهور أيقونة الملف الشخصي */
+    .user-logged-in .logo .mobile-icons,
+    body.user-logged-in .logo .mobile-icons {
+        gap: 3px;
     }
     
     /* تنسيق مجموعة التكبير/التصغير */
@@ -272,7 +324,7 @@
         text-align: right;
         white-space: pre;
         color: #fff;
-        font-size: 14px;
+        font-size: var(--font-sm);
         line-height: 1.2;
     }
     
@@ -283,7 +335,7 @@
         border: none !important;
         border-radius: 20px !important;
         padding: 8px 15px !important;
-        font-size: 14px !important;
+        font-size: var(--font-sm) !important;
         font-weight: bold !important;
         order: 2;
         min-width: auto !important;
@@ -300,16 +352,62 @@
         z-index: 2;
     }
     
-    /* زر اشترك معنا في شريط اللوجو */
-    .mobile-subscribe-btn {
-        display: flex !important; /* إظهار الزر في نمط الجوال */
-        white-space: nowrap;
-        position: relative;
-        margin: 0;
-        width: 111px !important; /* العرض المطلوب */
-        height: 40px !important; /* الارتفاع المطلوب */
-        align-items: center;
-        justify-content: center;
+    /* زر اشترك معنا للموبايل فقط - تنسيق مخصص */
+    .mobile-subscribe-btn,
+    a.mobile-subscribe-btn,
+    .logo .mobile-subscribe-btn,
+    .top-bar .mobile-subscribe-btn {
+        display: flex !important;
+        white-space: nowrap !important;
+        position: relative !important;
+        margin: 0 !important;
+        width: 64px !important;
+        height: 26px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 5px !important;
+        padding: 6px 10px !important;
+        gap: 10px !important;
+        border: none !important;
+        background: #F7F7F7 !important;
+        color: #333 !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
+        /* خصائص النص */
+        font-family: 'Droid Arabic Kufi', sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 11px !important;
+        line-height: 1 !important;
+        letter-spacing: 0% !important;
+        text-align: center !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        order: 2 !important;
+        z-index: 2 !important;
+        flex-shrink: 0 !important;
+        margin-right: 8px !important;
+    }
+    
+    /* قاعدة إضافية لضمان التطبيق في جميع الحالات */
+    @media (max-width: 767px) {
+        .mobile-subscribe-btn {
+            width: 64px !important;
+            height: 26px !important;
+            border-radius: 5px !important;
+            padding: 6px 10px !important;
+            gap: 10px !important;
+        border: none !important;
+            background: #F7F7F7 !important;
+            font-family: 'Droid Arabic Kufi', sans-serif !important;
+            font-weight: 400 !important;
+            font-size: 11px !important;
+            line-height: 1 !important;
+            letter-spacing: 0% !important;
+            text-align: center !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
     }
     
     /* زر تسجيل الدخول في شريط اللوجو */
@@ -325,7 +423,7 @@
         background-color: #00a59a !important;
         color: white !important;
         border-radius: 20px !important;
-        font-size: 14px !important;
+        font-size: var(--font-sm) !important;
         font-weight: bold !important;
         text-decoration: none !important;
     }
@@ -372,7 +470,7 @@
     
     /* تعديل تموضع العناصر */
     body {
-        padding-top: 64px; /* إضافة مساحة للشريط المثبت */
+        padding-top: 0; /* إزالة المساحة العلوية لأن الشريط لم يعد مثبتاً */
     }
     
     /* تنسيق أزرار الأيقونات */
@@ -388,4 +486,55 @@
         width: 24px !important;
         height: 24px !important;
     }
+    
+    /* إضافة قاعدة خاصة لزر اشترك معنا في navbar للموبايل فقط */
+    @media (max-width: 767px) {
+        /* تخصيص زر اشترك معنا في navbar فقط */
+        .top-bar .subscribe-btn,
+        .top-bar-content .subscribe-btn,
+        .top-actions .subscribe-btn {
+            width: 111px !important;
+            height: 40px !important;
+            border-radius: 8px !important;
+            padding: 8px 16px !important;
+            border: 1px solid #121212CC !important;
+            background: #F7F7F7 !important;
+            color: #333 !important;
+            text-decoration: none !important;
+            box-sizing: border-box !important;
+            /* خصائص النص المطلوبة */
+            font-family: 'Droid Arabic Kufi', sans-serif !important;
+            font-weight: 400 !important;
+            font-size: 16px !important;
+            line-height: 150% !important;
+            letter-spacing: 0% !important;
+            text-align: center !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            order: 2 !important;
+            z-index: 2 !important;
+            flex-shrink: 0 !important;
+            margin: 0 8px !important;
+        }
+        
+        /* منع التأثير على زر الاشتراك في القسم السفلي */
+        .subscribe-section .subscribe-btn,
+        .subscribe-form .subscribe-btn {
+            width: auto !important;
+            height: auto !important;
+            border: none !important;
+            background: #17a891 !important;
+            color: #fff !important;
+            font-size: 22px !important;
+            font-weight: 700 !important;
+            white-space: normal !important;
+            overflow: visible !important;
+            text-overflow: unset !important;
+        }
+    }
 }
+

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار قائمة التباين الفرعية</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/home/settings.css">
+    
+    <style>
+        body {
+            padding: 50px;
+            direction: rtl;
+        }
+        
+        .test-container {
+            max-width: 300px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .test-settings-btn {
+            background: #00a59a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Droid Arabic Kufi', sans-serif;
+        }
+        
+        .settings-menu {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 200px;
+            padding: 10px;
+            display: none;
+        }
+        
+        .settings-menu.show {
+            display: block;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>اختبار قائمة التباين الفرعية</h1>
+        
+        <button class="test-settings-btn settings-toggle-btn">الإعدادات</button>
+        
+        <div class="settings-menu">
+            <a href="#" class="settings-option contrast-option">
+                <span>تباين</span>
+                <i class="fas fa-eye-slash"></i>
+            </a>
+            <!-- قائمة خيارات التباين الفرعية -->
+            <div class="contrast-submenu">
+                <a href="#" class="settings-option contrast-light">
+                    <span>تباين فاتح</span>
+                    <i class="fas fa-eye-slash"></i>
+                </a>
+                <a href="#" class="settings-option contrast-dark">
+                    <span>تباين داكن</span>
+                    <i class="fas fa-eye-slash"></i>
+                </a>
+            </div>
+            <a href="#" class="settings-option stats-option">
+                <span>الاحصائيات</span>
+                <i class="fas fa-chart-line"></i>
+            </a>
+            <a href="#" class="settings-option logout-option">
+                <span>خروج</span>
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+        
+        <div class="status">
+            <h3>حالة الاختبار:</h3>
+            <p id="status-text">انقر على الإعدادات ثم على التباين لاختبار القائمة الفرعية</p>
+        </div>
+    </div>
+
+    <script src="scripts/settings.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusText = document.getElementById('status-text');
+            
+            // Test settings menu toggle
+            const settingsBtn = document.querySelector('.settings-toggle-btn');
+            const settingsMenu = document.querySelector('.settings-menu');
+            
+            settingsBtn.addEventListener('click', function() {
+                if (settingsMenu.classList.contains('show')) {
+                    statusText.textContent = 'تم إغلاق قائمة الإعدادات';
+                } else {
+                    statusText.textContent = 'تم فتح قائمة الإعدادات';
+                }
+            });
+            
+            // Test contrast submenu
+            const contrastOption = document.querySelector('.contrast-option');
+            const contrastSubmenu = document.querySelector('.contrast-submenu');
+            
+            contrastOption.addEventListener('click', function() {
+                if (contrastSubmenu.classList.contains('show')) {
+                    statusText.textContent = 'تم إغلاق القائمة الفرعية للتباين';
+                } else {
+                    statusText.textContent = 'تم فتح القائمة الفرعية للتباين - نجح الاختبار!';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

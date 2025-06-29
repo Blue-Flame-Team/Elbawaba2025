@@ -74,6 +74,18 @@ const AuthSystem = (function() {
         _elements.closeForgotModal = document.querySelector('.close-forgot-modal');
         _elements.mainIconsGroup = document.querySelector('.main-icons-group');
         _elements.profileIconBtn = document.querySelector('.profile-icon-btn');
+        
+        // تسجيل للتشخيص
+        console.log('Auth System - Elements found:');
+        console.log('- mainIconsGroup:', !!_elements.mainIconsGroup);
+        console.log('- profileIconBtn:', !!_elements.profileIconBtn);
+        console.log('- loginBtns count:', _elements.loginBtns.length);
+        
+        // تسجيل للتشخيص
+        console.log('Auth System - Elements found:');
+        console.log('- mainIconsGroup:', !!_elements.mainIconsGroup);
+        console.log('- profileIconBtn:', !!_elements.profileIconBtn);
+        console.log('- loginBtns count:', _elements.loginBtns.length);
     }
     
     /**
@@ -267,6 +279,10 @@ const AuthSystem = (function() {
             }
         } catch (error) {
             console.error('خطأ في تحميل بيانات المستخدم:', error);
+            // تنظيف البيانات المُفسدة من localStorage
+            console.log('تنظيف بيانات localStorage المُفسدة...');
+            localStorage.removeItem(LOCAL_STORAGE_KEY);
+            _currentUser = null;
         }
     }
     
@@ -296,10 +312,16 @@ const AuthSystem = (function() {
             });
         }
         
-        // إزالة أيقونة الملف الشخصي
+        // إخفاء أيقونة الملف الشخصي (بدلاً من حذفها)
         const profileBtn = document.querySelector('.profile-icon-btn');
+        const mobileProfileBtn = document.querySelector('#mobile-profile-btn');
+        
         if (profileBtn) {
-            profileBtn.remove();
+            profileBtn.style.display = 'none';
+        }
+        
+        if (mobileProfileBtn) {
+            mobileProfileBtn.style.display = 'none';
         }
     }
     
@@ -307,16 +329,40 @@ const AuthSystem = (function() {
      * إضافة أيقونة الملف الشخصي إلى شريط الأدوات
      */
     function _addProfileIcon() {
+        // البحث عن أيقونة البروفايل الموجودة في HTML
+        const existingProfileBtn = document.querySelector('.profile-icon-btn');
+        const mobileProfileBtn = document.querySelector('#mobile-profile-btn');
+        
+        if (existingProfileBtn) {
+            // إظهار أيقونة البروفايل الموجودة في الديسك توب
+            existingProfileBtn.style.display = 'block';
+            existingProfileBtn.addEventListener('click', _showUserDashboard);
+            _elements.profileIconBtn = existingProfileBtn;
+            console.log('تم إظهار أيقونة البروفايل في الديسك توب');
+        }
+        
+        if (mobileProfileBtn) {
+            // إظهار أيقونة البروفايل في الموبايل
+            mobileProfileBtn.style.display = 'block';
+            mobileProfileBtn.addEventListener('click', _showUserDashboard);
+            console.log('تم إظهار أيقونة البروفايل في الموبايل');
+        }
+        
+        // إذا لم توجد أيقونة في HTML، أنشئ واحدة جديدة
+        if (!existingProfileBtn && !mobileProfileBtn) {
+            console.log('لم يتم العثور على أيقونة البروفايل، سيتم إنشاؤها...');
+            _createNewProfileIcon();
+        }
+    }
+    
+    /**
+     * إنشاء أيقونة ملف شخصي جديدة (في حالة عدم وجودها في HTML)
+     */
+    function _createNewProfileIcon() {
         // التحقق من وجود عنصر mainIconsGroup
         if (!_elements.mainIconsGroup) {
             console.error('لم يتم العثور على مجموعة الأيقونات');
             return;
-        }
-        
-        // إزالة أي أيقونة ملف شخصي موجودة مسبقاً
-        const existingProfileBtn = document.querySelector('.profile-icon-btn');
-        if (existingProfileBtn) {
-            existingProfileBtn.remove();
         }
         
         // إنشاء زر الملف الشخصي
@@ -326,11 +372,7 @@ const AuthSystem = (function() {
         
         // إنشاء أيقونة الملف الشخصي
         const profileIcon = document.createElement('img');
-        profileIcon.src = '../assets/icons/profile-circle.png';
-        if (!fileExists(profileIcon.src)) {
-            // استخدام أيقونة بديلة إذا كانت الأيقونة المفضلة غير موجودة
-            profileIcon.src = '../assets/icons/Vector.png';
-        }
+        profileIcon.src = '../assets/icons/profile-circle.svg';
         profileIcon.alt = 'الملف الشخصي';
         
         // إضافة الأيقونة للزر
@@ -344,6 +386,8 @@ const AuthSystem = (function() {
         
         // تحديث مرجع أيقونة الملف الشخصي
         _elements.profileIconBtn = profileButton;
+        
+        console.log('تم إنشاء أيقونة البروفايل الجديدة');
     }
     
     /**

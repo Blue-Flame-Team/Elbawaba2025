@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -12,13 +12,38 @@
     
     <!-- أوراق الأنماط -->
     <link rel="stylesheet" href="../styles/normalize.css">
+    
     <link rel="stylesheet" href="../styles/main.css">
+    
     <link rel="stylesheet" href="../styles/nav.css">
+    
     <link rel="stylesheet" href="../styles/footer.css">
+    
     <link rel="stylesheet" href="../styles/breadcrumb.css">
+    
     <link rel="stylesheet" href="../styles/journal-profile.css">
+    
     <link rel="stylesheet" href="../styles/home/settings.css">
-</head>
+    
+    <link rel="stylesheet" href="../styles/social-share-section.css">
+    
+        <link rel="stylesheet" href="../styles/font-normalization.css">
+    <link rel="stylesheet" href="../styles/simple-zoom.css">
+<style>
+/* ?????????? ???? Droid Arabic Kufi ?????? ???????? ?????????????? */
+* {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+body, html {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td, th, select, option {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+.title, .text, .content, .description, .heading, .label, .item, .menu-item, .nav-item {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+</style></head>
 <body>
     <!-- شريط التنقل العلوي -->
     <div class="top-bar">
@@ -31,7 +56,7 @@
                 <a href="#" class="top-bar-item">أخبار القانون</a>
             </div>
             <div class="left-items">
-                <a href="#" class="login-btn">تسجيل دخول</a>
+                <a href="#" class="login-btn" data-original-font-size="16">تسجيل دخول</a>
                 <div class="main-icons-group">
                     <a href="#" class="main-icon">
                         <img src="../assets/icons/Bell.png" alt="إشعارات">
@@ -183,8 +208,9 @@
     </main>
 
     <!-- Footer -->
-       <!-- Footer Social - Redesigned to match image -->
-       <div style="display: flex; align-items: center; justify-content: space-between; background-color: #f5f5f5; border-radius: 30px; padding: 10px 20px; margin: 40px 0 20px;">
+       <!-- Footer Social Section - Separate from Footer -->
+    <section class="social-share-section">
+       <div style="display: flex; align-items: center; justify-content: space-between; background-color: rgb(245, 245, 245); border-radius: 143px; padding: 10px 20px; margin: 40px 0px 20px; width: 1200px; height: 91px; font-size: 12.8px;" data-original-font-size="16">
         <!-- Social Media Sharing - Left Side -->
             <!-- Last Update - Right Side -->
             <div style="display: flex; align-items: center; color: #666; font-size: 14px;">
@@ -223,9 +249,9 @@
             </a>
         </div>   
     </div>
-</div>
-
-<!-- Footer -->
+    </section>
+    
+    <!-- Footer -->
 <footer>
     <!-- Main Footer -->
     <div class="main-footer">
@@ -264,7 +290,6 @@
         </div>
     </div>
 
-   
     <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="container">
@@ -277,8 +302,7 @@
     </div>
 </footer>
 
-<script src="../scripts/main.js"></script>
-<script src="../scripts/settings.js"></script>
+
 
     <!-- النافذة المنبثقة لتسجيل الدخول -->
     <div class="modal" id="login-modal">
@@ -336,10 +360,42 @@
 
     <!-- JavaScript -->
     <script src="../scripts/auth-system.js"></script>
-    <script src="../scripts/main.js"></script>
 
-    <script src="../scripts/font-resize.js"></script>
+    
+    <script src="../scripts/main.js"></script>
+    
+
+<script src="../scripts/search-popup.js"></script>
+<script src="../scripts/settings.js"></script>
+<script src="../scripts/unified-navbar.js"></script>
+    <!-- Ø£ÙŠÙ‚ÙˆÙ†Ø© Ø§Ù„Ø¯Ø¹Ù… Ø§Ù„Ø«Ø§Ø¨ØªØ© -->
+    <div class="support-icon-fixed">
+        <img src="../assets/icons/support.svg" alt="Ø§Ù„Ø¯Ø¹Ù… ÙˆØ§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø©">
+    </div>
+    <!-- Search Popup Overlay -->
+    <div id="searchPopupOverlay" class="search-popup-overlay" style="display: flex;">
+        <div class="search-popup active">
+            <div class="search-buttons-container">
+                <button class="search-popup-button search">Ø¨Ø­Ø«</button>
+                <button class="search-popup-button engine">Ù…Ø­Ø±Ùƒ Ø§Ù„Ø¨Ø­Ø«</button>
+            </div>
+            <input type="text" class="search-popup-input" placeholder="Ø§Ø¨Ø­Ø« ÙÙŠ Ø§Ù„Ø§Ø­ÙƒØ§Ù… Ùˆ Ø§Ù„Ø§Ù†Ø¸Ù…Ù‡ ...">
+        </div>
+    </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1,4 +1,4 @@
-/* بداية تنسيقات شريط التنقل */
+﻿/* بداية تنسيقات شريط التنقل */
 .navbar {
     position: relative;
     width: 100%;
@@ -6,12 +6,23 @@
     background-color: transparent;
     padding: 10px 0;
     direction: rtl;
+    /* حماية من تأثير التكبير */
+    font-size: inherit !important;
+    transform: none !important;
+    margin: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
 }
 
 .navbar-content {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    /* حماية من تأثير التكبير */
+    font-size: inherit !important;
+    transform: none !important;
+    position: relative !important;
 }
 
 /* قائمة التنقل الرئيسية */
@@ -22,11 +33,17 @@
     margin: 0;
     padding-right: 15px;
     gap: 150px; /* المسافة بين عناصر القائمة */
+    /* حماية من تأثير التكبير */
+    font-size: inherit !important;
+    transform: none !important;
 }
 
 /* عناصر القائمة */
 .menu-item {
     position: relative;
+    /* حماية من تأثير التكبير */
+    font-size: inherit !important;
+    transform: none !important;
 }
 
 .menu-item a {
@@ -36,6 +53,9 @@
     display: flex;
     align-items: center;
     text-decoration: none;
+    /* حماية من تأثير التكبير */
+    font-size: inherit !important;
+    transform: none !important;
 }
 
 .menu-item a.active {
@@ -119,7 +139,7 @@
     }
     
     .menu-item a {
-        font-size: 14px;
+        font-size: var(--font-sm);
         padding: 6px 8px;
     }
 }
@@ -158,3 +178,4 @@
         padding: 10px 0;
     }
 }
+

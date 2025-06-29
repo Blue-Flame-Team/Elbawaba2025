@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -9,12 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="styles/font-normalization.css">
     <!-- Font Awesome لأيقونات التواصل الاجتماعي -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="styles/global.css">
-    
     <style>
         body {
             font-family: 'Cairo', sans-serif;
@@ -80,7 +78,22 @@
             font-weight: bold;
         }
     </style>
-</head>
+    <link rel="stylesheet" href="styles/simple-zoom.css">
+<style>
+/* ?????????? ???? Droid Arabic Kufi ?????? ???????? ?????????????? */
+* {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+body, html {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td, th, select, option {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+.title, .text, .content, .description, .heading, .label, .item, .menu-item, .nav-item {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+</style></head>
 <body>
     <div class="header">
         <h1>اختبار تغيير حجم النص</h1>
@@ -92,10 +105,10 @@
     </div>
     
     <div class="zoom-controls">
-        <button class="icon-btn zoom-in-btn" onclick="changeFontSize(10)" title="تكبير النص">
+        <button class="icon-btn zoom-in-btn" onclick="changeFontSize(10)" title="تكبير النص" data-original-font-size="16">
             <img src="assets/icons/search-zoom-in.png" alt="تكبير">
         </button>
-        <button class="icon-btn zoom-out-btn" onclick="changeFontSize(-10)" title="تصغير النص">
+        <button class="icon-btn zoom-out-btn" onclick="changeFontSize(-10)" title="تصغير النص" data-original-font-size="16">
             <img src="assets/icons/search-zoom-out.png" alt="تصغير">
         </button>
         <div style="margin-right: 10px;">اضغط على الأزرار لتغيير حجم النص</div>
@@ -135,7 +148,7 @@
     </div>
     
     <!-- إضافة النص البرمجي الخاص بتغيير حجم النص -->
-    <script src="scripts/font-resize.js"></script>
+    
     
     <!-- نص برمجي إضافي لتحديث عرض الحجم الحالي -->
     <script>
@@ -156,5 +169,22 @@
             updateSizeDisplay();
         };
     </script>
+    
+
+<script src="scripts/main.js"></script>
+<script src="scripts/search-popup.js"></script>
+<script src="scripts/unified-navbar.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

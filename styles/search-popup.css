@@ -1,4 +1,4 @@
-/* Search Popup Styling */
+﻿/* Search Popup Styling */
 .search-popup-overlay {
     position: fixed;
     top: 0;
@@ -29,7 +29,7 @@
     border: none;
     height: 60px;
     padding: 0 20px;
-    font-size: 18px;
+    font-size: var(--font-lg);
     color: #555;
     text-align: right;
     direction: rtl;
@@ -48,7 +48,7 @@
     height: 51px; /* u0637u0648u0644 u0645u0648u062du062f u0644u062cu0645u064au0639 u0627u0644u0623u0632u0631u0627u0631 */
     border: none;
     color: white;
-    font-size: 22px;
+    font-size: var(--font-xl);
     font-weight: bold;
     cursor: pointer;
     padding: 0;
@@ -107,10 +107,11 @@
     
     .search-popup-button {
         padding: 0 15px;
-        font-size: 18px;
+        font-size: var(--font-lg);
     }
     
     .search-buttons-container {
         flex-direction: row;
     }
 }
+

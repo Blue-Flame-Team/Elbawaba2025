@@ -1,4 +1,4 @@
-/* Footer Styles */
+﻿/* Footer Styles */
 
 :root {
     --primary-color: #00a19a;
@@ -13,7 +13,7 @@
 
 /* Social Share Section */
 .social-share-section {
-    background-color: var(--light-gray);
+    background-color: #FFFFFF;
     padding: 15px 0;
     border-bottom: 1px solid var(--border-color);
 }
@@ -108,7 +108,7 @@
 
 .update-text {
     color: #777;
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 
 /* Main Footer */
@@ -129,7 +129,7 @@
 }
 
 .footer-title {
-    font-size: 18px;
+    font-size: var(--font-lg);
     font-weight: 700;
     margin-bottom: 20px;
     color: var(--white);
@@ -221,19 +221,34 @@
 }
 
 .copyright-text {
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 
 .footer-bottom-links a {
     color: var(--white);
     text-decoration: none;
     margin: 0 5px;
-    font-size: 14px;
+    font-size: var(--font-sm);
     transition: opacity 0.3s;
 }
 
 .footer-bottom-links a:hover {
     opacity: 0.8;
+}
+
+/* Dark Contrast Mode Footer Fixes */
+body.dark-contrast .footer-bottom,
+body.dark-contrast .main-footer,
+body.dark-contrast .social-share-section {
+    background-color: #090909 !important;
+}
+
+body.dark-contrast .footer-bottom .container,
+body.dark-contrast .copyright-text,
+body.dark-contrast .footer-bottom-links,
+body.dark-contrast .footer-bottom-links a {
+    background-color: #090909 !important;
+    color: #ffffff !important;
 }
 
 /* Responsive Design */
@@ -264,3 +279,4 @@
         margin-bottom: 10px;
     }
 }
+

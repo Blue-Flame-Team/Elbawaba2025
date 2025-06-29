@@ -1,4 +1,4 @@
-/* Footer Styles */
+﻿/* Footer Styles */
 
 :root {
     --primary-color: #00a19a;
@@ -11,11 +11,19 @@
     --footer-bottom-bg: #005f59;
 }
 
+/* Ensure full width for footer */
+footer {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
 /* Social Share Section */
 .social-share-section {
-    background-color: var(--light-gray);
-    padding: 15px 0;
+    background-color: #FFFFFF;
+    padding: 15px 20px !important;
     border-bottom: 1px solid var(--border-color);
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .share-content {
@@ -26,6 +34,10 @@
     background-color: var(--white);
     border-radius: 40px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .social-share-wrap {
@@ -108,7 +120,7 @@
 
 .update-text {
     color: #777;
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 
 /* Main Footer */
@@ -116,6 +128,16 @@
     background-color: var(--footer-bg);
     color: var(--footer-text);
     padding: 40px 0;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.main-footer .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
 }
 
 .footer-content {
@@ -129,7 +151,7 @@
 }
 
 .footer-title {
-    font-size: 18px;
+    font-size: var(--font-lg);
     font-weight: 700;
     margin-bottom: 20px;
     color: var(--white);
@@ -212,23 +234,30 @@
     background-color: var(--footer-bottom-bg);
     color: var(--white);
     padding: 15px 0;
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .footer-bottom .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
 }
 
 .copyright-text {
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 
 .footer-bottom-links a {
     color: var(--white);
     text-decoration: none;
     margin: 0 5px;
-    font-size: 14px;
+    font-size: var(--font-sm);
     transition: opacity 0.3s;
 }
 
@@ -264,3 +293,4 @@
         margin-bottom: 10px;
     }
 }
+

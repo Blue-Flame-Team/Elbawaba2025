@@ -1,4 +1,4 @@
-
+﻿
 /* Header Styling for Terms Page */
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
 
@@ -89,8 +89,8 @@ ul {
 }
 
 .questions-text {
-    font-size: 14px;
-    margin-left: 5px;
+    font-size: var(--font-base);
+    margin-right: 5px;
 }
 
 .question-mark {
@@ -99,10 +99,12 @@ ul {
     justify-content: center;
     width: 22px;
     height: 22px;
-    background: #fff;
-    color: var(--primary-color);
-    border-radius: 50%;
-    font-weight: bold;
+}
+
+.question-mark img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
 }
 
 .icon-btn {
@@ -126,6 +128,10 @@ ul {
     gap: 10px;
 }
 
+.zoom-in-btn {
+    margin-left: 40px;
+}
+
 .top-actions {
     display: flex;
     gap: 10px;
@@ -135,7 +141,7 @@ ul {
     padding: 8px 15px;
     border-radius: 6px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: var(--font-sm);
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -144,12 +150,24 @@ ul {
     background-color: var(--white);
     color: var(--primary-color);
     border: none;
+    width: 163px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
 }
 
 .join-btn {
     background-color: transparent;
     border: 1px solid var(--white);
     color: var(--white);
+    border-radius: 12px;
+    width: 144px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Navbar styles */
@@ -243,7 +261,7 @@ ul {
     display: flex;
     align-items: center;
     color: var(--primary-color);
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 
 .breadcrumb li:not(:last-child):after {

@@ -229,44 +229,124 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Fix for the settings button in mobile
-    const mobileSettingsBtn = document.querySelector('.logo .mobile-icons .settings-toggle-btn');
-    const settingsMenu = document.querySelector('.settings-menu');
-    
-    if (mobileSettingsBtn && settingsMenu) {
-        // Clone the settings menu for mobile if it doesn't exist yet
-        let mobileSettingsMenu = document.querySelector('.mobile-settings-menu');
-        if (!mobileSettingsMenu) {
-            mobileSettingsMenu = settingsMenu.cloneNode(true);
-            mobileSettingsMenu.classList.add('mobile-settings-menu');
-            document.body.appendChild(mobileSettingsMenu);
-            
-            // Update event listeners for cloned menu
-            initializeSettingsMenuListeners(mobileSettingsMenu);
-        }
-        
+    // معالجة قائمة الإعدادات للموبايل
+    const mobileSettingsBtn = document.querySelector('.mobile-icons .settings-toggle-btn');
+    const mobileSettingsMenu = document.querySelector('.mobile-icons .settings-menu');
+    const mobileContrastOption = mobileSettingsMenu ? mobileSettingsMenu.querySelector('.contrast-option') : null;
+    const mobileContrastSubmenu = mobileSettingsMenu ? mobileSettingsMenu.querySelector('.contrast-submenu') : null;
+    const mobileContrastDark = mobileSettingsMenu ? mobileSettingsMenu.querySelector('.contrast-dark') : null;
+    const mobileContrastLight = mobileSettingsMenu ? mobileSettingsMenu.querySelector('.contrast-light') : null;
+
+    // التحقق من وجود العناصر
+    if (mobileSettingsBtn && mobileSettingsMenu) {
+        console.log('تم العثور على عناصر الموبايل');
+
+        // معالج النقر على زر الإعدادات
         mobileSettingsBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
             e.preventDefault();
+            e.stopPropagation();
+            console.log('تم النقر على زر إعدادات الموبايل');
+
+            // تبديل عرض القائمة
             mobileSettingsMenu.classList.toggle('show');
-            mobileSettingsBtn.classList.toggle('active');
             
-            // Close contrast submenu if open
-            const contrastSubmenu = mobileSettingsMenu.querySelector('.contrast-submenu');
-            if (contrastSubmenu) {
-                contrastSubmenu.classList.remove('show');
-            }
+            // تحديث موضع القائمة
+            const btnRect = mobileSettingsBtn.getBoundingClientRect();
+            mobileSettingsMenu.style.position = 'fixed';
+            mobileSettingsMenu.style.top = '60px';
+            mobileSettingsMenu.style.right = '10px';
+            mobileSettingsMenu.style.width = '200px';
+            mobileSettingsMenu.style.display = 'block';
+            mobileSettingsMenu.style.zIndex = '99999';
         });
-        
-        // Close menu when clicking outside
+
+        // معالج النقر على خيار التباين
+        if (mobileContrastOption && mobileContrastSubmenu) {
+            mobileContrastOption.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                mobileContrastSubmenu.classList.toggle('show');
+            });
+        }
+
+        // معالج النقر على التباين الداكن
+        if (mobileContrastDark) {
+            mobileContrastDark.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                applyDarkContrast();
+                closeMobileMenus();
+            });
+        }
+
+        // معالج النقر على التباين الفاتح
+        if (mobileContrastLight) {
+            mobileContrastLight.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                removeDarkContrast();
+                closeMobileMenus();
+            });
+        }
+
+        // إغلاق القائمة عند النقر خارجها
         document.addEventListener('click', function(e) {
-            if (!mobileSettingsBtn.contains(e.target) && !mobileSettingsMenu.contains(e.target)) {
-                mobileSettingsMenu.classList.remove('show');
-                mobileSettingsBtn.classList.remove('active');
+            if (!mobileSettingsMenu.contains(e.target) && !mobileSettingsBtn.contains(e.target)) {
+                closeMobileMenus();
             }
         });
     }
-    
+
+    // دالة إغلاق القوائم
+    function closeMobileMenus() {
+        if (mobileSettingsMenu) {
+            mobileSettingsMenu.classList.remove('show');
+            mobileSettingsMenu.style.display = 'none';
+        }
+        if (mobileContrastSubmenu) {
+            mobileContrastSubmenu.classList.remove('show');
+        }
+    }
+
+    // دوال التباين
+    function applyDarkContrast() {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+        
+        // تطبيق الفلتر على الصور
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.style.setProperty('filter', 'brightness(0)', 'important');
+            img.style.setProperty('-webkit-filter', 'brightness(0)', 'important');
+        });
+
+        // تطبيق الألوان على الأزرار
+        const buttons = document.querySelectorAll('.hover-overlay a, .btn-primary');
+        buttons.forEach(btn => {
+            btn.style.setProperty('background-color', '#000000', 'important');
+            btn.style.setProperty('color', '#ffffff', 'important');
+        });
+    }
+
+    function removeDarkContrast() {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+        
+        // إزالة الفلتر من الصور
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.style.removeProperty('filter');
+            img.style.removeProperty('-webkit-filter');
+        });
+
+        // إعادة الألوان الأصلية للأزرار
+        const buttons = document.querySelectorAll('.hover-overlay a, .btn-primary');
+        buttons.forEach(btn => {
+            btn.style.removeProperty('background-color');
+            btn.style.removeProperty('color');
+        });
+    }
+
     // Initialize event listeners for settings menu options
     function initializeSettingsMenuListeners(menu) {
         // Handle contrast option

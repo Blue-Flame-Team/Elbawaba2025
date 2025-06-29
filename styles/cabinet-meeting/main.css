@@ -1,4 +1,4 @@
-body {
+﻿body {
     background-color: #f5f5f5;
 }
 .main-content {
@@ -22,11 +22,11 @@ body {
 }
 .restricted-title {
     color: #00a59a;
-    font-size: 24px;
+    font-size: var(--font-2xl);
     margin-bottom: 20px;
 }
 .restricted-text {
-    font-size: 18px;
+    font-size: var(--font-lg);
     line-height: 1.8;
     color: #333;
     margin-bottom: 30px;
@@ -37,7 +37,7 @@ body {
     border: none;
     border-radius: 5px;
     padding: 12px 30px;
-    font-size: 16px;
+    font-size: var(--font-base);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -59,7 +59,7 @@ body {
     display: inline-flex;
     align-items: center;
     color: #666;
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 .breadcrumb li:not(:last-child)::after {
     content: '/';
@@ -84,7 +84,7 @@ body {
     display: flex;
     align-items: center;
     color: #666;
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 .social-stats .social-icons {
     display: flex;

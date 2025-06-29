@@ -1,4 +1,4 @@
-/* Contact Section Styles */
+﻿/* Contact Section Styles */
 .contact-section {
     padding: 50px 0 40px;
     background-color: #fff;
@@ -15,7 +15,7 @@
 }
 
 .contact-title {
-    font-size: 28px;
+    font-size: var(--font-2xl);
     font-weight: 700;
     color: #17a891;
     text-align: center;
@@ -23,14 +23,19 @@
     position: relative;
 }
 
-.contact-title::after {
+.contact-title::before {
     content: '';
     display: block;
     width: 40px;
     height: 3px;
     background-color: #f7913d;
-    margin: 8px auto 0;
+    margin: 0 auto 8px;
     border-radius: 1.5px;
+}
+
+/* إزالة الخط من تحت العنوان */
+.contact-title::after {
+    display: none;
 }
 
 .contact-content {
@@ -46,6 +51,33 @@
     position: relative;
 }
 
+.map-overlay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    z-index: 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.map-title {
+    font-family: "Droid Arabic Kufi", sans-serif;
+    font-size: var(--font-2xl);
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.map-directions {
+    font-family: "Droid Arabic Kufi", sans-serif;
+    font-size: var(--font-base);
+    color: #000;
+    text-decoration: underline;
+    display: block;
+}
+
 .map-container iframe {
     width: 100%;
     height: 100%;
@@ -53,94 +85,146 @@
 }
 
 .contact-info-card {
-    width: 95%;
+    width: 1000px !important;
+    height: 526px !important;
+    border-radius: 25px !important;
+    box-shadow: 2px 1px 8.6px 0px #00000042 !important;
     background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     display: flex;
     margin: -70px auto 0;
     position: relative;
     z-index: 2;
+    font-family: "Droid Arabic Kufi", sans-serif;
 }
 
-.info-right, .info-left {
+/* القسم الأيمن (معلومات العنوان) */
+.info-right {
     width: 50%;
-    padding: 35px 40px;
+    padding: 60px 60px 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* القسم الأيسر (معلومات الاتصال) */
+.info-left {
+    width: 50%;
+    padding: 60px 40px 60px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .info-section {
+    margin-bottom: 45px;
+    text-align: right;
+    width: 100%;
+}
+
+.info-title, .follow-us-title {
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 26px !important;
+    line-height: 150% !important;
+    letter-spacing: 0% !important;
+    text-align: right !important;
+    color: #333;
     margin-bottom: 25px;
 }
 
-.info-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 15px;
-    text-align: right;
+.info-text, .contact-email, .contact-phone, .contact-whatsapp {
+    font-size: var(--font-2xl);
+    font-weight: 400;
+    color: #000000;
+    font-family: "Droid Arabic Kufi", sans-serif;
 }
 
 .info-text {
-    font-size: 15px;
-    color: #666;
-    margin-bottom: 4px;
-    line-height: 1.4;
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    line-height: 150% !important;
+    letter-spacing: 0% !important;
+    text-align: right !important;
+}
+
+.email-info {
+    margin-bottom: 45px;
     text-align: right;
+    width: 100%;
 }
 
 .email-link, .phone-link, .whatsapp-link {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     gap: 8px;
-    color: #333;
+    color: #000000;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 15px;
-    margin-bottom: 10px;
+    font-size: var(--font-2xl);
+    font-weight: 400;
+    margin-bottom: 15px;
+    width: 100%;
+    justify-content: flex-start;
+    font-family: "Noto Kufi Arabic", sans-serif;
 }
 
-.email-link i, .phone-link i, .whatsapp-link i {
-    color: #666;
-    font-size: 16px;
-    opacity: 0.7;
+.email-link img, .whatsapp-link img {
+    width: 24px;
+    height: 24px;
+    order: 0;
 }
 
-.email-link:hover, .phone-link:hover, .whatsapp-link:hover {
-    color: #17a891;
+.phone-link img {
+    width: 20px;
+    height: 20px;
+    order: 0;
+}
+
+.contact-email, .contact-phone, .contact-whatsapp {
+    direction: ltr;
+    order: 1;
+    text-align: right;
+    display: inline-block;
+}
+
+/* إزالة التنسيقات المكررة */
+.contact-phone, .contact-whatsapp {
+    direction: ltr; 
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
 }
 
 .social-links {
     display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-    margin-top: 15px;
+    justify-content: flex-start;
+    gap: 25px;
+    margin-top: 0;
+    width: 100%;
 }
 
 .social-link {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background-color: #f8f8f8;
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #444;
     transition: all 0.3s ease;
-    font-size: 14px;
+}
+
+.social-link img {
+    width: 24px;
+    height: 24px;
 }
 
 .social-link:hover {
-    background-color: #17a891;
-    color: white;
-}
-
-.contact-footer {
-    height: 3px;
-    background-color: #f7913d;
-    width: 40px;
-    margin: 25px auto 0;
-    border-radius: 1.5px;
+    background-color: transparent;
+    color: #17a891;
 }
 
 /* تخصيص البريد الإلكتروني */
@@ -149,11 +233,12 @@
 }
 
 .contact-email {
-    font-size: 15px;
-    color: #333;
-    direction: ltr;
-    text-align: right;
-    font-weight: 500;
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    line-height: 150% !important;
+    letter-spacing: 0% !important;
+    text-align: right !important;
 }
 
 /* تخصيص معلومات الاتصال */
@@ -161,26 +246,23 @@
     margin-bottom: 25px;
 }
 
-.contact-phone, .contact-whatsapp {
-    direction: ltr; 
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-/* تخصيص تابعنا */
-.follow-us-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 12px;
-    text-align: right;
+/* تحديث المسافة بين آخر قسم والنهاية */
+.info-section:last-child {
+    margin-bottom: 0;
 }
 
 /* Responsive Styles */
+@media (max-width: 1024px) {
+    .contact-info-card {
+        width: 95%;
+        height: auto;
+    }
+    
+    .info-right, .info-left {
+        padding: 40px;
+    }
+}
+
 @media (max-width: 992px) {
     .contact-info-card {
         flex-direction: column;
@@ -189,51 +271,72 @@
     
     .info-right, .info-left {
         width: 100%;
-        padding: 20px;
+        padding: 30px;
     }
 }
 
 @media (max-width: 768px) {
-    .map-container {
-        height: 350px;
-    }
-    
-    .contact-title {
-        font-size: 28px;
-    }
-    
-    .info-title {
-        font-size: 20px;
-    }
-    
-    .info-text {
-        font-size: 15px;
-    }
-    
     .contact-info-card {
         margin-top: -30px;
+    }
+    
+    .info-right, .info-left {
+        padding: 25px;
+    }
+    
+    .info-title, .follow-us-title {
+        font-size: var(--font-xl);
+    }
+    
+    .info-text, .email-link, .phone-link, .whatsapp-link, .contact-email, .contact-phone, .contact-whatsapp {
+        font-size: var(--font-xl);
     }
 }
 
 @media (max-width: 576px) {
-    .map-container {
-        height: 300px;
-    }
-    
     .contact-info-card {
-        width: 95%;
         margin: -25px auto 0;
     }
     
     .info-right, .info-left {
-        padding: 15px;
+        padding: 20px;
     }
     
     .social-links {
-        gap: 12px;
+        gap: 20px;
     }
     
-    .info-title {
-        font-size: 18px;
+    .social-link {
+        width: 32px;
+        height: 32px;
+        font-size: var(--font-lg);
     }
 }
+
+@media (max-width: 480px) {
+    .contact-info-card {
+        width: 100% !important;
+        max-width: 100vw !important;
+        height: auto !important;
+        min-height: 0 !important;
+    }
+}
+
+.contact-phone {
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    line-height: 150% !important;
+    letter-spacing: 0% !important;
+    text-align: right !important;
+}
+
+.contact-whatsapp {
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    line-height: 150% !important;
+    letter-spacing: 0% !important;
+    text-align: right !important;
+}
+

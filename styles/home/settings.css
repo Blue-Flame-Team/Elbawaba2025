@@ -1,4 +1,4 @@
-/* تنسيقات قائمة الإعدادات والتباين */
+﻿/* تنسيقات قائمة الإعدادات والتباين */
 
 .settings-menu {
     position: absolute;
@@ -8,13 +8,12 @@
     padding: 10px;
     display: none;
     z-index: 1000;
-    top: 50px;
+    top: calc(100% + 10px);
     right: 0;
     width: 180px;
-    overflow: hidden;
 }
 
-.settings-menu.active {
+.settings-menu.show {
     display: block;
 }
 
@@ -78,19 +77,38 @@
 }
 
 .settings-toggle-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
     position: relative;
 }
 
 .settings-option {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     padding: 12px 15px;
     margin: 5px 0;
     border-radius: 10px;
     text-decoration: none;
-    color: white;
+    color: #333;
     transition: all 0.3s ease;
+}
+
+.settings-option:hover {
+    background-color: #f5f5f5;
+}
+
+.settings-option img {
+    width: 20px;
+    height: 20px;
+}
+
+.settings-option span {
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .contrast-option {
@@ -105,13 +123,8 @@
     background-color: #e05d44;
 }
 
-.settings-option span {
-    font-size: 16px;
-    font-weight: 500;
-}
-
 .settings-option i {
-    font-size: 18px;
+    font-size: var(--font-lg);
 }
 
 /* Estilos adicionales para la visualización del menú */
@@ -122,14 +135,12 @@
 /* Estilos para el submenú de contraste */
 .contrast-submenu {
     display: none;
-    flex-direction: column;
-    gap: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
 .contrast-submenu.show {
-    display: flex;
+    display: block;
 }
 
 .contrast-light {
@@ -180,10 +191,53 @@ body:not(.home-page).dark-mode [style*="rgb(13, 148, 136)"],
 body:not(.home-page).dark-mode [style*="teal"],
 body:not(.home-page).dark-mode [style*="green"] {
     color: #000000 !important;
-    background-color: #000000 !important;
+    /* background-color: #000000 !important; */
     border-color: #000000 !important;
 }
 
+body:not(.home-page).dark-mode .main-footer{
+    background-color: #121212 !important;
+
+}
+
+body:not(.home-page).dark-mode .footer-bottom{
+    background-color: #090909 !important;
+
+}
+
+
+body:not(.home-page).dark-mode .article-title,
+body:not(.home-page).dark-mode .content-title,
+body:not(.home-page).dark-mode .page-title,
+body:not(.home-page).dark-mode .section-title,
+body:not(.home-page).dark-mode .article-title,
+body:not(.home-page).dark-mode .content-title,
+body:not(.home-page).dark-mode .page-title,
+body:not(.home-page).dark-mode .section-title,
+body:not(.home-page).dark-mode .article-date,
+body:not(.home-page).dark-mode .article-full-date,
+body:not(.home-page).dark-mode .related-items p,
+body:not(.home-page).dark-mode desktop-similar-news h3,
+body:not(.home-page).dark-mode #about-site-title,
+body:not(.home-page).dark-mode .support-icon-fixed img,
+body:not(.home-page).dark-mode .terms-title,
+body:not(.home-page).dark-mode .analytics-title,
+body:not(.home-page).dark-mode .breadcrumb  .terms-title,
+body:not(.home-page).dark-mode .recent-title,
+body:not(.home-page).dark-mode .visits-header,
+body:not(.home-page).dark-mode .cabinet-header h1,h2,
+body:not(.home-page).dark-mode .news-date span,
+body:not(.home-page).dark-mode .faq-title,
+body:not(.home-page).dark-mode .installment-header h1,
+body:not(.home-page).dark-mode .mobile-similar-news h3,
+body:not(.home-page).dark-mode .recent-title,
+body:not(.home-page).dark-mode .recent-title,
+body:not(.home-page).dark-mode .recent-title,
+body:not(.home-page).dark-mode .recent-title {
+    background-color: none !important;
+    color: #000000 !important;
+
+}
 /* نمط اللون الأسود في CSS */
 body:not(.home-page).dark-mode .main-footer,
 body:not(.home-page).dark-mode .teal-color,
@@ -195,10 +249,13 @@ body:not(.home-page).dark-mode [class*="green"],
 body:not(.home-page).dark-mode .theme-color,
 body:not(.home-page).dark-mode .btn-primary,
 body:not(.home-page).dark-mode .main-heading,
-body:not(.home-page).dark-mode .section-title,
 body:not(.home-page).dark-mode .card-header,
 body:not(.home-page).dark-mode .nav-link.active,
-body:not(.home-page).dark-mode .theme-bg {
+body:not(.home-page).dark-mode .theme-bg,
+body:not(.home-page).dark-mode .view-all-btn,
+body:not(.home-page).dark-mode .terms-item button,
+body:not(.home-page).dark-mode .service-tab :active button,
+body:not(.home-page).dark-mode .search-button button {
     color: #FFFFFF !important;
     background-color: #000000 !important;
     border-color: #000000 !important;
@@ -209,10 +266,10 @@ body:not(.home-page).light-mode {
     --black: #17a891 !important;
 }
 
-body:not(.home-page).light-mode *[style*="black"],
-body:not(.home-page).light-mode *[style*="#000000"],
-body:not(.home-page).light-mode *[style*="rgb(0, 0, 0)"],
-body:not(.home-page).light-mode *[style*="rgb(0,0,0)"] {
+body:not(.home-page).light-mode *[style*="black"]:not(h5.terms-subtitle),
+body:not(.home-page).light-mode *[style*="#000000"]:not(h5.terms-subtitle),
+body:not(.home-page).light-mode *[style*="rgb(0, 0, 0)"]:not(h5.terms-subtitle),
+body:not(.home-page).light-mode *[style*="rgb(0,0,0)"]:not(h5.terms-subtitle) {
     color: rgb(0, 147, 123) !important;
     background-color: rgb(0, 147, 123) !important;
     border-color: rgb(0, 147, 123) !important;
@@ -229,3 +286,9 @@ body:not(.home-page).light-mode .black-text {
     background-color: rgb(0, 147, 123) !important;
     border-color: rgb(0, 147, 123) !important;
 }
+
+/* تنسيق حاوية زر الإعدادات */
+.main-icons-group {
+    position: relative;
+}
+

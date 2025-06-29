@@ -1,5 +1,4 @@
-
-/* Header Styling for Terms Page */
+﻿/* Header Styling for Terms Page */
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
 
 :root {
@@ -89,7 +88,7 @@ ul {
 }
 
 .questions-text {
-    font-size: 14px;
+    font-size: var(--font-sm);
     margin-left: 5px;
 }
 
@@ -135,7 +134,7 @@ ul {
     padding: 8px 15px;
     border-radius: 6px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: var(--font-sm);
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -243,7 +242,7 @@ ul {
     display: flex;
     align-items: center;
     color: var(--primary-color);
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 
 .breadcrumb li:not(:last-child):after {
@@ -289,4 +288,151 @@ ul {
         flex-wrap: wrap;
         gap: 10px;
     }
+}
+
+/* Mobile-only horizontal layout (keep all elements side by side) */
+@media (max-width: 480px) {
+    .top-bar {
+        background-color: #00a59a !important;
+        width: 100% !important;
+        height: 58px !important;
+        display: flex !important;
+        align-items: center !important;
+        position: static !important;
+    }
+    
+    .top-bar-content {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex-wrap: nowrap !important;
+        padding: 0 15px !important;
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+    }
+    
+    .logo {
+        order: 1 !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .logo-image {
+        max-height: 28px !important;
+        width: auto !important;
+        display: block !important;
+    }
+    
+    .top-actions {
+        order: 2 !important;
+        margin-top: 0 !important;
+        gap: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .join-btn {
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+        display: block !important;
+        background-color: white !important;
+        color: #00a59a !important;
+        border-radius: 8px !important;
+        border: none !important;
+        cursor: pointer !important;
+    }
+    
+    .login-btn {
+        display: none !important;
+    }
+    
+    .top-elements {
+        order: 3 !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .top-icons {
+        gap: 6px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    /* Show only 4 specific icons */
+    .zoom-out-btn,
+    .zoom-in-btn,
+    .search-btn,
+    .settings-toggle-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 24px !important;
+        height: 24px !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        cursor: pointer !important;
+    }
+    
+    /* Hide other icons */
+    .location-btn,
+    .call-btn {
+        display: none !important;
+    }
+    
+    .icon-btn img {
+        width: 18px !important;
+        height: 18px !important;
+        filter: brightness(0) invert(1) !important;
+    }
+    
+    .main-icons-group {
+        gap: 6px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .hamburger-menu {
+        display: block !important;
+        order: 4 !important;
+        font-size: 20px !important;
+        cursor: pointer !important;
+        padding: 5px !important;
+        color: #fff !important;
+        width: 30px !important;
+        height: 30px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .questions-text {
+        display: none !important;
+    }
+    
+    .question-mark {
+        display: none !important;
+    }
+    
+    .common-questions {
+        display: none !important;
+    }
+    
+    .common-questions-link {
+        display: none !important;
+    }
+    
+    /* Hide settings submenu on mobile */
+    .settings-menu {
+        display: none !important;
+    }
+}
+
+/* Hide hamburger menu on desktop */
+.hamburger-menu {
+    display: none;
 }

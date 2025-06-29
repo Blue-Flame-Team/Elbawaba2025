@@ -89,3 +89,47 @@ function main() {
 
 // Run the script
 main();
+
+// قائمة الملفات التي يجب تحديثها
+const pagesDir = path.join(__dirname, '..', 'pages');
+const files = fs.readdirSync(pagesDir).filter(file => file.endsWith('.html'));
+
+// التغييرات المطلوبة
+const cssToAdd = `
+    <!-- الملفات المشتركة للفوتر الموحد ونظام التباين الأسود -->
+    <link rel="stylesheet" href="../styles/shared/unified-footer.css">
+    <link rel="stylesheet" href="../styles/shared/dark-contrast-subpages.css">
+`;
+
+const jsToAdd = `
+    <!-- نظام التباين الأسود الموحد للصفحات الفرعية -->
+    <script src="../scripts/subpages-dark-contrast.js"></script>
+`;
+
+// تحديث كل ملف
+files.forEach(file => {
+    const filePath = path.join(pagesDir, file);
+    let content = fs.readFileSync(filePath, 'utf8');
+
+    // إضافة ملفات CSS إذا لم تكن موجودة
+    if (!content.includes('dark-contrast-subpages.css')) {
+        content = content.replace(
+            '</head>',
+            `${cssToAdd}\n</head>`
+        );
+    }
+
+    // إضافة ملف JavaScript إذا لم يكن موجوداً
+    if (!content.includes('dark-cons.js')) {
+        content = content.replace(
+            '<script src="../scripts/unified-navbar.js"></script>',
+            `<script src="../scripts/unified-navbar.js"></script>${jsToAdd}`
+        );
+    }
+
+    // حفظ التغييرات
+    fs.writeFileSync(filePath, content, 'utf8');
+    console.log(`✅ تم تحديث الملف: ${file}`);
+});
+
+console.log('✨ تم تحديث جميع الملفات بنجاح!');

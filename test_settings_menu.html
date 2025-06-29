@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار قائمة الإعدادات</title>
+    <link rel="stylesheet" href="styles/home/settings.css">
+    <style>
+        body {
+            font-family: 'Droid Arabic Kufi', Arial, sans-serif;
+            margin: 50px;
+            background-color: #f5f5f5;
+        }
+        
+        .test-container {
+            position: relative;
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .settings-toggle-btn {
+            background: #00a19a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .settings-toggle-btn:hover {
+            background: #008f89;
+        }
+        
+        .settings-toggle-btn img {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .settings-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 10px;
+            display: none;
+            z-index: 1000;
+            width: 200px;
+            min-width: 180px;
+        }
+        
+        .settings-menu.active {
+            display: block !important;
+        }
+        
+        .settings-option {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 5px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .contrast-option {
+            background-color: #00a59a;
+        }
+        
+        .stats-option {
+            background-color: #00bdb6;
+        }
+        
+        .logout-option {
+            background-color: #e05d44;
+        }
+        
+        .settings-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .settings-option span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .settings-option img {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .contrast-submenu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding-right: 15px;
+        }
+        
+        .contrast-submenu.show {
+            display: flex !important;
+        }
+        
+        .contrast-light {
+            background-color: #f0f9ff;
+            color: #0ea5e9;
+            border: 1px solid #0ea5e9;
+        }
+        
+        .contrast-dark {
+            background-color: #1f2937;
+            color: white;
+        }
+        
+        .test-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #00a19a;
+        }
+        
+        .test-info h3 {
+            margin-top: 0;
+            color: #00a19a;
+        }
+        
+        .test-info ul {
+            margin: 10px 0;
+            padding-right: 20px;
+        }
+        
+        .test-info li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>اختبار قائمة الإعدادات</h1>
+    
+    <div class="test-container">
+        <button class="settings-toggle-btn">
+            <img src="assets/icons/setting-2.png" alt="الإعدادات">
+            <span>الإعدادات</span>
+        </button>
+        
+        <div class="settings-menu">
+            <a href="#" class="settings-option contrast-option">
+                <span>تباين</span>
+                <img src="assets/icons/Eye off.svg" alt="تباين">
+            </a>
+            
+            <div class="contrast-submenu">
+                <a href="#" class="settings-option contrast-light">
+                    <span>تباين فاتح</span>
+                    <img src="assets/icons/Eye off.svg" alt="تباين فاتح">
+                </a>
+                <a href="#" class="settings-option contrast-dark">
+                    <span>تباين داكن</span>
+                    <img src="assets/icons/Eye off-dark.svg" alt="تباين داكن">
+                </a>
+            </div>
+            
+            <a href="./pages/analytics.html" class="settings-option stats-option">
+                <span>الاحصائيات</span>
+                <img src="assets/icons/status-up.svg" alt="الاحصائيات">
+            </a>
+            
+            <a href="javascript:void(0);" class="settings-option logout-option">
+                <span>خروج</span>
+                <img src="assets/icons/logout.svg" alt="تسجيل الخروج">
+            </a>
+        </div>
+    </div>
+    
+    <div class="test-info">
+        <h3>تعليمات الاختبار:</h3>
+        <ul>
+            <li>انقر على زر "الإعدادات" لفتح القائمة</li>
+            <li>انقر على "تباين" لفتح القائمة الفرعية</li>
+            <li>اختبر "تباين فاتح" و "تباين داكن"</li>
+            <li>انقر على "الاحصائيات" للانتقال للصفحة</li>
+            <li>انقر خارج القائمة لإغلاقها</li>
+        </ul>
+        <p><strong>ملاحظة:</strong> إذا عملت هنا وليس في الصفحة الأصلية، فهناك تضارب في ملفات JavaScript</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🧪 بدء اختبار قائمة الإعدادات');
+            
+            // البحث عن أزرار الإعدادات
+            const settingsToggleBtns = document.querySelectorAll('.settings-toggle-btn');
+            console.log('عدد أزرار الإعدادات:', settingsToggleBtns.length);
+            
+            settingsToggleBtns.forEach((btn, index) => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('✅ تم النقر على زر الإعدادات رقم:', index);
+                    
+                    const settingsMenu = btn.nextElementSibling;
+                    if (settingsMenu && settingsMenu.classList.contains('settings-menu')) {
+                        settingsMenu.classList.toggle('active');
+                        console.log('✅ تم تبديل قائمة الإعدادات');
+                        
+                        // إغلاق القوائم الأخرى
+                        document.querySelectorAll('.settings-menu').forEach(otherMenu => {
+                            if (otherMenu !== settingsMenu) {
+                                otherMenu.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // معالجة خيار التباين
+            const contrastOptions = document.querySelectorAll('.contrast-option');
+            contrastOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('✅ تم النقر على خيار التباين');
+                    
+                    const submenu = this.parentElement.querySelector('.contrast-submenu');
+                    if (submenu) {
+                        submenu.classList.toggle('show');
+                        console.log('✅ تم تبديل القائمة الفرعية');
+                    }
+                });
+            });
+            
+            // معالجة التباين الفاتح
+            const contrastLights = document.querySelectorAll('.contrast-light');
+            contrastLights.forEach(light => {
+                light.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('🌞 تم تفعيل التباين الفاتح');
+                    document.body.classList.remove('dark-mode');
+                    document.body.style.backgroundColor = '#ffffff';
+                    localStorage.setItem('theme', 'light');
+                    
+                    // إغلاق القوائم
+                    document.querySelectorAll('.settings-menu').forEach(menu => {
+                        menu.classList.remove('active');
+                    });
+                    document.querySelectorAll('.contrast-submenu').forEach(submenu => {
+                        submenu.classList.remove('show');
+                    });
+                });
+            });
+            
+            // معالجة التباين الداكن
+            const contrastDarks = document.querySelectorAll('.contrast-dark');
+            contrastDarks.forEach(dark => {
+                dark.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('🌙 تم تفعيل التباين الداكن');
+                    document.body.classList.add('dark-mode');
+                    document.body.style.backgroundColor = '#1a1a1a';
+                    document.body.style.color = '#ffffff';
+                    localStorage.setItem('theme', 'dark');
+                    
+                    // إغلاق القوائم
+                    document.querySelectorAll('.settings-menu').forEach(menu => {
+                        menu.classList.remove('active');
+                    });
+                    document.querySelectorAll('.contrast-submenu').forEach(submenu => {
+                        submenu.classList.remove('show');
+                    });
+                });
+            });
+            
+            // معالجة خيار الإحصائيات
+            const statsOptions = document.querySelectorAll('.stats-option');
+            statsOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('📊 الانتقال للإحصائيات');
+                    alert('سيتم الانتقال لصفحة الإحصائيات');
+                });
+            });
+            
+            // معالجة خيار الخروج
+            const logoutOptions = document.querySelectorAll('.logout-option');
+            logoutOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('🚪 تسجيل خروج');
+                    alert('تم تسجيل الخروج');
+                    
+                    // إغلاق القوائم
+                    document.querySelectorAll('.settings-menu').forEach(menu => {
+                        menu.classList.remove('active');
+                    });
+                });
+            });
+            
+            // إغلاق القوائم عند النقر خارجها
+            document.addEventListener('click', function(e) {
+                let clickedOnSettings = false;
+                
+                // التحقق من النقر على أزرار أو قوائم الإعدادات
+                settingsToggleBtns.forEach(btn => {
+                    if (btn.contains(e.target)) clickedOnSettings = true;
+                });
+                
+                document.querySelectorAll('.settings-menu').forEach(menu => {
+                    if (menu.contains(e.target)) clickedOnSettings = true;
+                });
+                
+                // إغلاق جميع القوائم إذا لم يكن النقر على الإعدادات
+                if (!clickedOnSettings) {
+                    document.querySelectorAll('.settings-menu').forEach(menu => {
+                        menu.classList.remove('active');
+                    });
+                    document.querySelectorAll('.contrast-submenu').forEach(submenu => {
+                        submenu.classList.remove('show');
+                    });
+                }
+            });
+            
+            console.log('✅ تم تحميل اختبار قائمة الإعدادات بنجاح');
+        });
+    </script>
+</body>
+</html> 

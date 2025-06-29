@@ -3,9 +3,20 @@
 // متغير للتحقق من مصدر تفعيل الوضع الداكن
 let darkModeActivatedByClick = false;
 
+// التحقق من وجود نظام التباين الأسود الجديد وعدم التدخل معه
+function isNewDarkContrastActive() {
+    return document.body.classList.contains('dark-contrast');
+}
+
 // مراقبة النقر على زر التباين الداكن
 document.addEventListener('click', function(e) {
     if (e.target && e.target.classList && e.target.classList.contains('contrast-dark')) {
+        // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
+        if (isNewDarkContrastActive()) {
+            console.log('نظام التباين الأسود الجديد نشط - لا يتم تطبيق الستايل القديم');
+            return;
+        }
+        
         darkModeActivatedByClick = true;
         setTimeout(function() {
             if (document.body.classList.contains('dark-mode')) {
@@ -19,8 +30,14 @@ document.addEventListener('click', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
     // التحقق مما إذا كان وضع التباين الداكن مفعلاً
     if (localStorage.getItem('theme') === 'dark') {
+        // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
+        if (isNewDarkContrastActive()) {
+            console.log('نظام التباين الأسود الجديد نشط - لا يتم تطبيق الستايل القديم عند التحميل');
+            return;
+        }
+        
         // تطبيق المظهر العام فقط عند تحميل الصفحة
-        setTimeout(applyServicesDarkMode, 100);
+        setTimeout(applySidebarButtonsDarkMode, 100);
         
         // تطبيق أنماط الصفحات الفرعية
         setTimeout(applySubpageStyles, 100);
@@ -33,6 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const bodyClasses = document.body.classList;
                 
                 if (bodyClasses.contains('dark-mode')) {
+                    // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
+                    if (isNewDarkContrastActive()) {
+                        console.log('نظام التباين الأسود الجديد نشط - لا يتم تطبيق الستايل القديم');
+                        return;
+                    }
+                    
                     console.log('تم تفعيل الوضع الداكن - يتم تطبيق الستايل');
                     // تطبيق اللون الأبيض على نصوص الفوتر وقائمة التنقل فوراً عند تفعيل الوضع الداكن
                     makeFooterTextWhite();
@@ -63,8 +86,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// دالة لإزالة جميع الأنماط المطبقة
+function removeAllStyles() {
+    // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
+    if (isNewDarkContrastActive()) {
+        return;
+    }
+    
+    console.log('إزالة جميع أنماط الوضع الداكن المطبقة');
+    
+    // إزالة الأنماط من جميع العناصر
+    const allElements = document.querySelectorAll('*[style]');
+    allElements.forEach(element => {
+        if (element.style.getPropertyValue('color') === 'white' ||
+            element.style.getPropertyValue('background-color') === 'rgb(42, 42, 42)' ||
+            element.style.getPropertyValue('background-color') === '#2A2A2A') {
+            element.style.removeProperty('color');
+            element.style.removeProperty('background-color');
+            element.style.removeProperty('border-color');
+            element.style.removeProperty('background');
+        }
+    });
+}
+
 // وظيفة خاصة بتطبيق اللون الأبيض على نصوص الفوتر
 function makeFooterTextWhite() {
+    // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
+    if (isNewDarkContrastActive()) {
+        return;
+    }
+    
     console.log('تطبيق اللون الأبيض على نصوص الفوتر');
     
     // تحديد جميع عناصر الفوتر
@@ -86,6 +137,11 @@ function makeFooterTextWhite() {
 
 // وظيفة لتطبيق اللون الأبيض على قائمة التنقل nav-menu
 function makeNavMenuTextWhite() {
+    // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
+    if (isNewDarkContrastActive()) {
+        return;
+    }
+    
     console.log('تطبيق اللون الأبيض على قائمة التنقل');
     
     // التحقق مما إذا كانت الصفحة الحالية هي الصفحة الرئيسية
@@ -107,7 +163,7 @@ function makeNavMenuTextWhite() {
         if (element) {
             // تطبيق لون النص الأبيض والخلفية الداكنة بشكل مباشر
             element.style.setProperty('color', 'white', 'important');
-            element.style.setProperty('background-color', '#2A2A2A', 'important');
+            // element.style.setProperty('background-color', '#2A2A2A', 'important');
             
             // إذا كان العنصر يحتوي على أسلوب مضمن
             if (element.hasAttribute('style')) {
@@ -127,7 +183,7 @@ function makeNavMenuTextWhite() {
     // معالجة خاصة للعناصر التي تحتوي على سمات نمط مضمنة
     document.querySelectorAll('.nav-menu .menu-item[style], .nav-menu .menu-item a[style], .nav-menu .dropdown[style], .nav-menu .dropdown a[style], .nav-menu .dropdown-menu[style], .nav-menu .dropdown-menu a[style], .menu-item[data-original-font-size], .menu-item a[data-original-font-size]').forEach(element => {
         element.style.setProperty('color', 'white', 'important');
-        element.style.setProperty('background-color', '#2A2A2A', 'important');
+        // element.style.setProperty('background-color', '#2A2A2A', 'important');
         
         // إذا كان العنصر يحتوي على أسلوب مضمن
         if (element.hasAttribute('style')) {
@@ -141,7 +197,7 @@ function makeNavMenuTextWhite() {
     // معالجة خاصة لعناصر قائمة التنقل بالتحديد
     document.querySelectorAll('ul.nav-menu li.menu-item, ul.nav-menu li.menu-item a, ul.nav-menu li.dropdown a, ul.nav-menu .dropdown-menu a').forEach(element => {
         element.style.setProperty('color', 'white', 'important');
-        element.style.setProperty('background-color', '#2A2A2A', 'important');
+        // element.style.setProperty('background-color', '#2A2A2A', 'important');
         
         // إذا كان العنصر يحتوي على أسلوب مضمن
         if (element.hasAttribute('style')) {
@@ -154,7 +210,7 @@ function makeNavMenuTextWhite() {
     
     // تطبيق خلفية داكنة للقوائم المنسدلة
     document.querySelectorAll('.nav-menu .dropdown-menu, .dropdown-menu').forEach(element => {
-        element.style.setProperty('background-color', '#2A2A2A', 'important');
+        // element.style.setProperty('background-color', '#2A2A2A', 'important');
         element.style.setProperty('border-color', '#444', 'important');
     });
     
@@ -193,6 +249,12 @@ function makeNavMenuTextWhite() {
 
 // وظيفة لتطبيق الستايل الداكن على الصفحة
 function applySidebarButtonsDarkMode() {
+    // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
+    if (isNewDarkContrastActive()) {
+        console.log('نظام التباين الأسود الجديد نشط - لا يتم تطبيق الستايل القديم');
+        return;
+    }
+    
     console.log('تطبيق الوضع الداكن على الأزرار والعناصر');
     
     // تطبيق اللون الأبيض على نصوص الفوتر وقائمة التنقل
@@ -207,9 +269,9 @@ function applySidebarButtonsDarkMode() {
     const sidebarButtons = servicesSection.querySelectorAll('.sidebar-btn');
     sidebarButtons.forEach(button => {
         // تطبيق خلفية سوداء ونص أبيض
-        button.style.setProperty('background-color', '#2A2A2A', 'important');
+        // button.style.setProperty('background-color', '#2A2A2A', 'important');
         button.style.setProperty('color', 'white', 'important');
-        button.style.setProperty('border-color', '#2A2A2A', 'important');
+        // button.style.setProperty('border-color', '#2A2A2A', 'important');
         
         // إضافة الأنماط كخاصية مضمنة
         if (button.hasAttribute('style')) {
@@ -237,9 +299,9 @@ function applySidebarButtonsDarkMode() {
     // تطبيق الخلفية السوداء والنص الأبيض على زر التبويب النشط
     const activeTabButtons = servicesSection.querySelectorAll('.tab-publish.active');
     activeTabButtons.forEach(tab => {
-        tab.style.setProperty('background-color', '#2A2A2A', 'important');
+        // tab.style.setProperty('background-color', '#2A2A2A', 'important');
         tab.style.setProperty('color', 'white', 'important');
-        tab.style.setProperty('border-color', '#2A2A2A', 'important');
+        // tab.style.setProperty('border-color', '#2A2A2A', 'important');
         
         if (tab.hasAttribute('style')) {
             const currentStyle = tab.getAttribute('style');
@@ -252,7 +314,7 @@ function applySidebarButtonsDarkMode() {
     // تغيير لون عنوان الاتصال إلى اللون الأسود
     const contactTitles = document.querySelectorAll('.contact-title');
     contactTitles.forEach(title => {
-        title.style.setProperty('color', '#2A2A2A', 'important');
+        // title.style.setProperty('color', '#2A2A2A', 'important');
         
         if (title.hasAttribute('style')) {
             const currentStyle = title.getAttribute('style');
@@ -265,7 +327,7 @@ function applySidebarButtonsDarkMode() {
     // تغيير لون عنوان الاشتراك إلى اللون الأسود
     const subscribeTitles = document.querySelectorAll('.subscribe-title');
     subscribeTitles.forEach(title => {
-        title.style.setProperty('color', '#2A2A2A', 'important');
+        // title.style.setProperty('color', '#2A2A2A', 'important');
         
         if (title.hasAttribute('style')) {
             const currentStyle = title.getAttribute('style');
@@ -278,9 +340,9 @@ function applySidebarButtonsDarkMode() {
     // تغيير أسلوب زر الاشتراك إلى خلفية سوداء ونص أبيض
     const subscribeButtons = document.querySelectorAll('.subscribe-btn, .subscribe-button');
     subscribeButtons.forEach(button => {
-        button.style.setProperty('background-color', '#2A2A2A', 'important');
+        // button.style.setProperty('background-color', '#2A2A2A', 'important');
         button.style.setProperty('color', 'white', 'important');
-        button.style.setProperty('border-color', '#2A2A2A', 'important');
+        // button.style.setProperty('border-color', '#2A2A2A', 'important');
         
         if (button.hasAttribute('style')) {
             const currentStyle = button.getAttribute('style');
@@ -293,7 +355,7 @@ function applySidebarButtonsDarkMode() {
     // تحويل لون قسم حقوق النشر إلى اللون الأسود والنص باللون الأبيض
     const copyrightElements = document.querySelectorAll('.copyright');
     copyrightElements.forEach(element => {
-        element.style.setProperty('background-color', '#2A2A2A', 'important');
+        // element.style.setProperty('background-color', '#2A2A2A', 'important');
         element.style.setProperty('color', 'white', 'important');
         
         if (element.hasAttribute('style')) {
@@ -307,8 +369,8 @@ function applySidebarButtonsDarkMode() {
     // تحويل جميع العناصر ذات الخلفية التي لونها #00665f إلى اللون الأسود
     const elementsWithGreenBg = document.querySelectorAll('[style*="background-color:#00665f"], [style*="background-color: #00665f"], [style*="background:#00665f"], [style*="background: #00665f"]');
     elementsWithGreenBg.forEach(element => {
-        element.style.setProperty('background-color', '#2A2A2A', 'important');
-        element.style.setProperty('background', '#2A2A2A', 'important');
+        // element.style.setProperty('background-color', '#2A2A2A', 'important');
+        // element.style.setProperty('background', '#2A2A2A', 'important');
         element.style.setProperty('color', 'white', 'important');
         
         if (element.hasAttribute('style')) {
@@ -341,6 +403,11 @@ function makeFooterTextWhite() {
 
 // وظيفة لتطبيق أنماط الصفحات الفرعية في وضع التباين الداكن
 function applySubpageStyles() {
+    // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
+    if (isNewDarkContrastActive()) {
+        return;
+    }
+    
     console.log('تطبيق أنماط الصفحات الفرعية في وضع التباين الداكن');
     
     // التحقق مما إذا كانت هذه صفحة فرعية وليست الصفحة الرئيسية
@@ -381,7 +448,7 @@ function applySubpageStyles() {
     // تطبيق اللون الداكن على التوب بار والناف بار والنصوص باللون الأبيض
     const navElements = document.querySelectorAll('.top-bar, .navbar, .topbar, .mobile-topbar, nav.navbar, .nav-container, header, header nav, .top-icons, .nav-links');
     navElements.forEach(element => {
-        element.style.setProperty('background-color', '#2A2A2A', 'important');
+        // element.style.setProperty('background-color', '#2A2A2A', 'important');
         element.style.setProperty('color', 'white', 'important');
         
         // تطبيق لون النص الأبيض على جميع العناصر في التوب بار والناف بار
@@ -400,7 +467,7 @@ function applySubpageStyles() {
     // تطبيق اللون الأبيض على نصوص الفوتر
     const footerElements = document.querySelectorAll('.footer, .footer-bottom, .main-footer, .footer-top, .footer-column, .footer-links, .footer-menu, .footer-info, .footer-copyright');
     footerElements.forEach(element => {
-        element.style.setProperty('background-color', '#2A2A2A', 'important');
+        // element.style.setProperty('background-color', '#2A2A2A', 'important');
         element.style.setProperty('color', 'white', 'important');
         
         // تطبيق لون النص الأبيض على جميع العناصر في الفوتر

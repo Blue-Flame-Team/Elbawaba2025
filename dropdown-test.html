@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -111,8 +111,24 @@
             color: white !important;
             border: none;
         }
-    </style>
-</head>
+    </style>    
+    <link rel="stylesheet" href="styles/font-normalization.css">
+    <link rel="stylesheet" href="styles/simple-zoom.css">
+<style>
+/* ?????????? ???? Droid Arabic Kufi ?????? ???????? ?????????????? */
+* {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+body, html {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td, th, select, option {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+.title, .text, .content, .description, .heading, .label, .item, .menu-item, .nav-item {
+    font-family: "Droid Arabic Kufi", sans-serif !important;
+}
+</style></head>
 <body>
     <h1 style="text-align: center; margin: 20px 0; color: #00a59a;">اختبار القائمة المنسدلة</h1>
     
@@ -147,19 +163,26 @@
         
         <div class="button-area">
             <a href="#" class="btn subscribe-btn">اشترك معنا</a>
-            <a href="#" class="btn login-btn">تسجيل الدخول</a>
+            <a href="#" class="btn login-btn" data-original-font-size="16">تسجيل الدخول</a>
         </div>
     </div>
     
-    <script>
-        function toggleDropdown() {
-            var dropdown = document.getElementById("aboutDropdown");
-            if (dropdown.style.display === "block") {
-                dropdown.style.display = "none";
-            } else {
-                dropdown.style.display = "block";
-            }
-        }
-    </script>
+    
+    
+
+<script src="scripts/main.js"></script>
+<script src="scripts/search-popup.js"></script>
+<script src="scripts/unified-navbar.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * أنماط نموذج طلب خدمة الأسانيد
  */
 
@@ -99,10 +99,11 @@
   top: 15px;
   left: 15px;
   color: #888;
-  font-size: 24px;
+  font-size: var(--font-2xl);
   cursor: pointer;
 }
 
 .asanid-form-close:hover {
   color: #555;
 }
+

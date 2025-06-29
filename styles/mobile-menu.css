@@ -1,4 +1,4 @@
-/* تنسيقات قائمة الهامبرغر المتنقلة */
+﻿/* تنسيقات قائمة الهامبرغر المتنقلة */
 
 .mobile-menu-overlay {
     position: fixed;
@@ -6,28 +6,39 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
     z-index: 999;
     display: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: auto;
+    pointer-events: auto;
 }
 
 .mobile-side-menu {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    right: -320px; /* خارج الشاشة افتراضيًا - زيادة العرض */
-    width: 280px; /* زيادة عرض القائمة */
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    width: 203px !important;
+    height: 484px !important;
     background-color: white;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    padding: 30px 20px; /* زيادة المساحة الداخلية */
-    border-radius: 20px;
+    padding: 32px !important;
+    border-radius: 12px !important;
     overflow-y: auto;
-    transition: right 0.3s ease-in-out;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    max-height: 80vh; /* تحديد أقصى ارتفاع */
+    justify-content: flex-start;
+    align-items: center;
+    -webkit-overflow-scrolling: touch;
+    visibility: visible;
+    box-sizing: border-box;
+    opacity: 1;
+    transform: none;
+    text-align: center;
 }
 
 .mobile-menu-overlay.show {
@@ -35,30 +46,43 @@
 }
 
 .mobile-side-menu.show {
-    right: 0;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* تنسيق روابط القائمة */
 .mobile-side-menu-links {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 24px !important;
+    width: 100%;
+    margin-bottom: 24px;
+    flex: 1;
+    text-align: center;
 }
 
 .mobile-side-menu-links a {
-    color: #333;
+    color: #2D3748;
     text-decoration: none;
-    font-size: 16px;
-    padding: 8px 0;
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 150%;
+    padding: 0;
     position: relative;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     transition: color 0.2s ease;
-    font-weight: 500;
+}
+
+.mobile-side-menu-links a.active {
+    color: var(--primary-color) !important;
 }
 
 .mobile-side-menu-links a:hover {
-    color: #00a59a;
+    color: #158885;
 }
 
 /* تنسيق أيقونة السهم في القائمة المنسدلة */
@@ -66,7 +90,7 @@
     content: "∨";
     display: inline-block;
     margin-right: 5px;
-    font-size: 12px;
+    font-size: var(--font-xs);
     transition: transform 0.3s ease;
     position: relative;
     top: -2px;
@@ -76,56 +100,66 @@
 .mobile-side-menu-buttons {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* زيادة المسافة بين الأزرار */
-    margin-top: 40px; /* زيادة المسافة من الأعلى */
-    margin-bottom: 20px;
-    padding: 10px 0; /* إضافة تباعد داخلي */
-    border-top: 1px solid #eee; /* إضافة خط فاصل */
+    gap: 24px !important;
+    margin-top: auto;
+    margin-bottom: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .mobile-side-menu-buttons .subscribe-btn {
     background-color: white;
-    color: #333;
-    border: 1px solid #555;
-    border-radius: 25px;
-    padding: 8px 15px;
+    color: #2D3748;
+    border: 1px solid #121212CC;
+    border-radius: 8px;
+    padding: 8px 16px;
     text-align: center;
-    font-weight: 500;
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-weight: 400;
+    font-size: 19px !important;
+    line-height: 150%;
     text-decoration: none;
-    margin: 0 auto 10px;
-    width: 111px; /* العرض المطلوب */
-    height: 40px; /* الارتفاع المطلوب */
+    margin: 0;
+    width: 111px;
+    height: 40px;
     display: flex !important;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
     box-shadow: none;
     transition: all 0.2s ease;
 }
 
 .mobile-side-menu-buttons .login-btn {
-    background-color: #00a59a;
-    color: white;
+    background: #158885;
+    color: #FFFFFF;
     border: none;
-    border-radius: 25px;
-    padding: 8px 15px;
+    border-radius: 9px;
+    padding-top: 8px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+    padding-left: 16px;
     text-align: center;
-    font-weight: 500;
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 150%;
     text-decoration: none;
-    margin: 0 auto;
-    width: 139px; /* العرض المطلوب */
-    height: 40px; /* الارتفاع المطلوب */
+    margin: 0;
+    width: 139px;
+    height: 40px;
     display: flex !important;
     align-items: center;
     justify-content: center;
     box-shadow: none;
-    font-size: 15px;
-    transition: none;
+    transition: all 0.2s ease;
 }
 
 /* تلوين روابط خاصة */
 .mobile-side-menu-links a.colored-link {
-    color: #00a59a;
+    color: #2D3748;
 }
 
 /* زر القائمة المنسدلة */
@@ -134,53 +168,107 @@
     text-align: center;
     background: none;
     border: none;
-    color: #333;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 8px 0;
-    margin-bottom: 5px;
+    color: #2D3748;
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 150%;
+    padding: 0;
+    margin-bottom: 0;
     cursor: pointer;
     position: relative;
-    font-family: inherit;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.dropdown-button.active {
+    color: var(--primary-color) !important;
 }
 
 .dropdown-button:focus {
     outline: none;
 }
 
+.dropdown-button .dropdown-arrow {
+    font-size: 12px;
+    color: #718096;
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+}
+
+.dropdown-button .dropdown-arrow-svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.dropdown-button.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-button.active .dropdown-arrow-svg {
+    transform: rotate(180deg);
+}
+
 /* القائمة الفرعية في قائمة الموبايل */
 .submenu-container {
     display: none;
-    border-radius: 15px;
-    background-color: white;
-    margin: 5px 15px 15px;
-    padding: 10px;
-    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #F7FAFC;
+    margin: 12px 0 0 0;
+    padding: 12px;
+    border: 1px solid #E2E8F0;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.submenu-container.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.submenu-container.open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .submenu-container a {
-    display: block;
-    padding: 10px;
-    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    color: #2D3748;
     text-decoration: none;
-    font-size: 14px;
-    text-align: right;
-    border-bottom: 1px solid #f5f5f5;
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    border-bottom: 1px solid #E2E8F0;
     transition: all 0.2s ease;
-    border-radius: 8px;
+    border-radius: 6px;
+    margin-bottom: 4px;
 }
 
 .submenu-container a:last-child {
     border-bottom: none;
+    margin-bottom: 0;
 }
 
 .submenu-container a:hover {
     background-color: #f0f0f0;
-    color: #00a59a;
+    color: #158885;
 }
 
 @keyframes fadeInSlideDown {
@@ -197,10 +285,13 @@
 .mobile-submenu .submenu-item {
     display: block;
     padding: 10px;
-    color: #333;
+    color: #2D3748;
     text-decoration: none;
-    font-size: 14px;
-    text-align: right;
+    font-family: 'Droid Arabic Kufi', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
     margin-bottom: 5px;
     transition: all 0.2s ease;
     border-radius: 8px;
@@ -208,33 +299,113 @@
 
 .mobile-submenu .submenu-item:hover {
     background-color: #f0f0f0;
-    color: #00a59a;
+    color: #158885;
 }
 
 /* الزر المنسدل للقائمة الفرعية */
 .dropdown-toggle.active {
-    color: #00a59a;
+    color: #158885;
 }
 
 .dropdown-toggle.active::after {
     transform: rotate(180deg);
 }
 
-/* إضافة خطوط رفيعة بين الروابط */
-.mobile-side-menu-links > a:not(.dropdown-toggle):not(:last-child) {
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 12px;
-}
-
-.mobile-side-menu-links .dropdown-toggle {
-    margin-bottom: 0;
+/* إزالة الخطوط من بين الروابط */
+.mobile-side-menu-links > a,
+.mobile-side-menu-links .dropdown-button {
     border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 /* تحسين ظهور القائمة على الجوال */
 @media (max-width: 767px) {
     .mobile-side-menu {
-        width: 80%;
-        max-width: 280px;
+        width: 203px !important;
+        height: 484px !important;
+        max-width: none;
+        padding: 32px !important;
+        border-radius: 12px !important;
+    }
+    
+    .mobile-side-menu-buttons .subscribe-btn {
+        width: 111px !important;
+        height: 40px !important;
+        border-radius: 8px !important;
+        padding: 8px 16px !important;
+        border: 1px solid #121212CC !important;
+        background-color: white !important;
+        color: #2D3748 !important;
+        justify-content: center !important;
+    }
+    
+    .mobile-side-menu-buttons .login-btn {
+        width: 139px !important;
+        height: 40px !important;
+        border-radius: 9px !important;
+        padding-top: 8px !important;
+        padding-right: 16px !important;
+        padding-bottom: 8px !important;
+        padding-left: 16px !important;
+        background: #158885 !important;
+        color: #FFFFFF !important;
+        border: none !important;
     }
 }
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .mobile-side-menu-buttons .subscribe-btn {
+        /* width: 111px !important;
+        height: 40px !important; */
+        border-radius: 8px !important;
+        padding: 8px 16px !important;
+        border: 1px solid #121212CC !important;
+        background-color: white !important;
+        color: #2D3748 !important;
+        justify-content: center !important;
+    }
+    
+    .mobile-side-menu-buttons .login-btn {
+        width: 139px !important;
+        height: 40px !important;
+        border-radius: 9px !important;
+        padding-top: 8px !important;
+        padding-right: 16px !important;
+        padding-bottom: 8px !important;
+        padding-left: 16px !important;
+        background: #158885 !important;
+        color: #FFFFFF !important;
+        border: none !important;
+    }
+}
+
+/* للشاشات المتوسطة */
+@media (max-width: 768px) and (min-width: 481px) {
+    .mobile-side-menu-buttons .subscribe-btn {
+        /* width: 111px !important;
+        height: 40px !important; */
+        border-radius: 8px !important;
+        padding: 8px 16px !important;
+        border: 1px solid #121212CC !important;
+        background-color: white !important;
+        color: #2D3748 !important;
+    }
+    
+    .mobile-side-menu-buttons .login-btn {
+        width: 139px !important;
+        height: 40px !important;
+        border-radius: 9px !important;
+        padding-top: 8px !important;
+        padding-right: 16px !important;
+        padding-bottom: 8px !important;
+        padding-left: 16px !important;
+        background: #158885 !important;
+        color: #FFFFFF !important;
+        border: none !important;
+    }
+}
+
+
+

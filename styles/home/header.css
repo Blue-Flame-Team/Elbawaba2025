@@ -1,4 +1,4 @@
-/* Header Styles */
+﻿/* Header Styles */
 
 .hero-section {
     position: relative;
@@ -11,6 +11,12 @@
     padding-top: 0; 
     margin-top: -150px; /* زيادة القيمة السالبة لضمان عدم وجود مساحة بيضاء */
     z-index: 0; /* ضبط z-index لضمان أن التوبار والنافبار فوق الهيدر */
+    font-size: inherit !important;
+    transform: none !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
 }
 
 /* Slider Styles */
@@ -22,12 +28,20 @@
     height: 100%;
     overflow: hidden;
     margin-top: 0; /* التأكد من عدم وجود هوامش إضافية */
+    font-size: inherit !important;
+    transform: none !important;
+    left: 0 !important;
+    bottom: 0 !important;
 }
 
 .slider-track {
     position: relative;
     width: 100%;
     height: 100%;
+    font-size: inherit !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 @keyframes slideRight {
@@ -70,6 +84,13 @@
     height: 100%;
     display: none;
     overflow: hidden;
+    /* حماية من تأثير التكبير */
+    font-size: inherit !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
 }
 
 .slide.active {
@@ -99,6 +120,13 @@
     object-fit: cover;
     object-position: center;
     z-index: 0;
+    /* حماية من تأثير التكبير */
+    font-size: inherit !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
 }
 
 .slide::before {
@@ -138,21 +166,27 @@
 }
 
 .hero-title {
-    font-size: 48px;
-    font-weight: 800;
-    margin-bottom: 20px;
-    line-height: 1.2;
-    text-align: center;
-    color: white; /* تأكيد لون النص أبيض */
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* إضافة ظل للنص */
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 48px !important;
+    line-height: 150% !important;
+    letter-spacing: 0% !important;
+    text-align: center !important;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 36px !important;
 }
 
 .hero-text {
-    font-size: 18px;
-    margin-bottom: 30px;
-    line-height: 1.6;
-    color: white; /* تأكيد لون النص أبيض */
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3); /* إضافة ظل للنص */
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    line-height: 150% !important;
+    letter-spacing: 0% !important;
+    text-align: center !important;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    margin-bottom: 120px !important;
 }
 
 .hero-buttons {
@@ -162,9 +196,24 @@
 }
 
 .primary-btn {
-    background-color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    color: var(--white);
+    /* width: 128px !important; */
+    /* height: 51px !important; */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    background: linear-gradient(83.41deg, #158885 0.86%, #00AFA9 136.38%) !important;
+    color: #fff !important;
+    font-family: 'Almarai', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    line-height: 150% !important;
+    letter-spacing: 0% !important;
+    text-align: center !important;
+    border: none !important;
+    box-shadow: none !important;
     transition: all 0.3s ease;
 }
 
@@ -174,10 +223,16 @@
 }
 
 .secondary-btn {
-    background-color: transparent;
-    border: 2px solid var(--white);
-    color: var(--white);
-    transition: all 0.3s ease;
+    width: 173;
+    height: 51;
+    gap: 6px;
+    border-radius: 8px;
+    padding-top: 12px;
+    padding-right: 24px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    border-width: 1px;
+    border: 1px solid #FFFFFF
 }
 
 .secondary-btn:hover {
@@ -229,7 +284,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: var(--font-lg);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -258,7 +313,7 @@
 
 .details-button span {
     color: var(--white);
-    font-size: 14px;
+    font-size: var(--font-sm);
 }
 
 .details-button img {
@@ -274,31 +329,45 @@
 /* Responsive Styles */
 @media (max-width: 992px) {
     .hero-title {
-        font-size: 36px;
+        font-size: var(--font-4xl);
         white-space: normal;
     }
     
     .hero-text {
-        font-size: 16px;
+        font-size: var(--font-base);
         white-space: normal;
     }
 }
 
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 28px;
-        white-space: normal;
+        font-family: 'Droid Arabic Kufi', sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 20px !important;
+        line-height: 150% !important;
+        letter-spacing: 0% !important;
+        text-align: center !important;
     }
     
     .hero-text {
-        font-size: 14px;
-        white-space: normal;
+        font-family: 'Droid Arabic Kufi', sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        line-height: 150% !important;
+        letter-spacing: 0% !important;
+        text-align: center !important;
     }
     
     .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+        width: 195px !important;
+        height: 30px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 18.63px !important;
+        margin: 0 auto 16px auto !important;
+        padding: 0 !important;
     }
     
     .btn {
@@ -314,16 +383,64 @@
     .hero-content {
         padding-top: 50px; /* تقليل المسافة في الشاشات الصغيرة */
     }
+
+    .primary-btn {
+        width: 75px !important;
+        height: 30px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 3.49px !important;
+        border-radius: 4.66px !important;
+        padding: 7px 14px !important;
+        background: linear-gradient(83.41deg, #158885 0.86%, #00AFA9 136.38%) !important;
+        color: #fff !important;
+        font-family: 'Droid Arabic Kufi', sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        border: none !important;
+        box-shadow: none !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        transition: background 0.2s;
+    }
+
+    .secondary-btn {
+        width: 101px !important;
+        height: 30px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 3.49px !important;
+        border-radius: 4.66px !important;
+        padding: 7px 14px !important;
+        background: transparent !important;
+        color: #fff !important;
+        font-family: 'Droid Arabic Kufi', sans-serif !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        border-width: 0.5px !important;
+        border-style: solid !important;
+        border-color: #fff !important;
+        box-shadow: none !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        transition: background 0.2s;
+    }
+
+    .primary-btn, .secondary-btn {
+        white-space: nowrap !important;
+    }
 }
 
 /* تحسينات إضافية للهواتف الصغيرة */
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 24px;
+        font-size: var(--font-2xl);
     }
     
     .hero-text {
-        font-size: 13px;
+        font-size: var(--font-sm);
     }
     
     .hero-section .slider-dots {
@@ -335,3 +452,19 @@
         left: 15px;
     }
 }
+
+.details-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 416px;
+    height: 86px;
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.details-icon:hover {
+    transform: scale(1.1);
+}
+

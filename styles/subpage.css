@@ -1,8 +1,7 @@
-/* تطبيق خلفية بيضاء على المحتوى الأساسي فقط بدون الناف بار والتوب بار */
+﻿/* تطبيق خلفية بيضاء على المحتوى الأساسي فقط بدون الناف بار والتوب بار */
 body:not(.home-page) main,
-body:not(.home-page) .terms-content,
-body:not(.home-page) .breadcrumb {
-    background-color: #ffffff !important;
+body:not(.home-page) .terms-content {
+    background-color: #FFFFFF;
 }
 
 /* المحافظة على خلفية بيضاء للمحتوى حتى في الوضع الداكن */
@@ -47,8 +46,15 @@ body:not(.home-page).dark-mode .top-icons {
 .terms-subtitle,
 .item-number,
 .subitem-number,
-.section-number {
-    color: var(--primary-color) !important;
+.section-number,
+/* .faq-title, */
+.faq-subtitle {
+    text-align: right;
+    color: #E66B2E ;
+    font-size: var(--font-2xl);
+    font-family: "Droid Arabic Kufi", sans-serif;
+    font-weight: bold;
+    /* color: var(--primary-color) !important; */
 }
 
 /* الحفاظ على لون النص الأسود في منطقة المحتوى حتى في الوضع الداكن */
@@ -58,3 +64,7 @@ body:not(.home-page).dark-mode .subitem-content p,
 body:not(.home-page).dark-mode .section-content p {
     color: #333333 !important;
 }
+.breadcrumb {
+    background-color: #F5FFFF;
+}
+

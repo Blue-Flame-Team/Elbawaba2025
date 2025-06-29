@@ -1,30 +1,39 @@
-/**
- * نظام تسجيل الدخول الموحد - ملف التوجيه
- * تم نقل جميع وظائف هذا الملف إلى auth-system.js
- * هذا الملف موجود فقط للحفاظ على التوافق مع الصفحات القديمة
- */
-
-// توجيه الوظائف إلى نظام المصادقة الجديد
+// ملف نافذة تسجيل الدخول - النسخة الأصلية
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تم تحديث نظام تسجيل الدخول. استخدم auth-system.js');
-    
-    // تحقق من وجود نظام المصادقة الجديد
-    if (typeof AuthSystem !== 'undefined') {
-        console.log('نظام المصادقة الجديد موجود وجاهز');
-    } else {
-        console.error('لم يتم العثور على نظام المصادقة الجديد. الرجاء إضافة auth-system.js');
-        
-        // إضافة النظام الجديد ديناميكياً إذا لم يكن موجوداً
-        const script = document.createElement('script');
-        script.src = '../scripts/auth-system.js';
-        script.async = true;
-        script.onload = function() {
-            console.log('تم تحميل نظام المصادقة الجديد ديناميكياً');
-            // تهيئة النظام بعد التحميل
-            if (typeof AuthSystem !== 'undefined') {
-                AuthSystem.init();
+    const loginBtns = document.querySelectorAll('.login-btn');
+    const loginModal = document.getElementById('login-modal');
+    const closeModal = document.querySelector('.close-modal');
+
+    // فتح نافذة تسجيل الدخول
+    loginBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (loginModal) {
+                loginModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
             }
-        };
-        document.head.appendChild(script);
+        });
+    });
+
+    // إغلاق نافذة تسجيل الدخول
+    if (closeModal) {
+        closeModal.addEventListener('click', function() {
+            if (loginModal) {
+                loginModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
     }
+    
+    // إغلاق النافذة عند النقر خارجها
+    if (loginModal) {
+        loginModal.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    console.log('تم تحميل نظام نافذة تسجيل الدخول');
 });

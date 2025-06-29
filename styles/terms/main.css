@@ -1,4 +1,4 @@
-/* Main Content Styling for Terms Page */
+﻿/* Main Content Styling for Terms Page */
 
 :root {
     --primary-color: #00a19a;
@@ -22,14 +22,14 @@
 .simple-text {
     margin-bottom: 15px;
     line-height: 1.7;
-    font-size: 16px;
+    font-size: var(--font-base);
     color: #000;
     text-align: right;
 }
 
 .terms-title {
     color: var(--primary-color);
-    font-size: 24px;
+    font-size: var(--font-2xl);
     margin-bottom: 30px;
     text-align: center;
     font-weight: 700;
@@ -37,7 +37,7 @@
 
 .terms-subtitle {
     color: #E66B2E;
-    font-size: 18px;
+    font-size: var(--font-lg);
     margin-bottom: 25px;
     text-align: right;
     font-weight: 600;
@@ -58,7 +58,7 @@
     display: inline-block;
     font-weight: bold;
     color: #000;
-    font-size: 16px;
+    font-size: var(--font-base);
     margin-left: 5px;
 }
 
@@ -69,7 +69,7 @@
 .item-content p {
     display: inline;
     line-height: 1.7;
-    font-size: 16px;
+    font-size: var(--font-base);
     text-align: right;
     color: #000;
     margin: 0;
@@ -86,7 +86,7 @@
     font-weight: bold;
     color: #000;
     margin-left: 10px;
-    font-size: 16px;
+    font-size: var(--font-base);
 }
 
 .subitem-content {
@@ -95,7 +95,7 @@
 
 .subitem-content p {
     line-height: 1.7;
-    font-size: 15px;
+    font-size: var(--font-sm);
     text-align: justify;
     margin-bottom: 10px;
 }
@@ -109,7 +109,7 @@
 .section-number {
     display: inline-block;
     font-weight: bold;
-    font-size: 18px;
+    font-size: var(--font-lg);
     color: #000;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -121,7 +121,7 @@
 
 .section-content p {
     line-height: 1.7;
-    font-size: 15px;
+    font-size: var(--font-sm);
     text-align: justify;
 }
 
@@ -138,7 +138,7 @@
     margin-bottom: 5px;
     text-align: right;
     line-height: 1.6;
-    font-size: 16px;
+    font-size: var(--font-base);
     color: #000;
 }
 
@@ -148,19 +148,19 @@
     right: 0;
     top: 0;
     color: #000;
-    font-size: 16px;
+    font-size: var(--font-base);
 }
 
 .term-number {
     font-weight: bold;
     color: #000;
     margin-left: 10px;
-    font-size: 16px;
+    font-size: var(--font-base);
 }
 
 .terms-list li p {
     line-height: 1.7;
-    font-size: 15px;
+    font-size: var(--font-sm);
     text-align: justify;
     flex: 1;
 }
@@ -176,11 +176,11 @@
 /* Responsive styles */
 @media (max-width: 768px) {
     .terms-title {
-        font-size: 20px;
+        font-size: var(--font-xl);
     }
     
     .terms-subtitle {
-        font-size: 16px;
+        font-size: var(--font-base);
     }
     
     .terms-item, 

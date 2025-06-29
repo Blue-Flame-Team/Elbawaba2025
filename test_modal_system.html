@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار نظام النوافذ المنبثقة</title>
+    <link rel="stylesheet" href="styles/login-modal.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .test-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .test-btn:hover {
+            background: #0056b3;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background: #e7f3ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>اختبار نظام النوافذ المنبثقة الجديد</h1>
+        
+        <h3>اختبار النوافذ:</h3>
+        <button class="test-btn" onclick="ModalManager.showModal('login-modal')">نافذة تسجيل الدخول</button>
+        <button class="test-btn" onclick="ModalManager.showModal('forgot-password-modal')">استرداد كلمة المرور</button>
+        <button class="test-btn" onclick="ModalManager.showModal('password-change-modal')">تعديل كلمة المرور</button>
+        <button class="test-btn" onclick="ModalManager.showModal('user-dashboard-modal')">قائمة الملف الشخصي</button>
+        
+        <h3>أدوات التحكم:</h3>
+        <button class="test-btn" onclick="testSystem()">فحص النظام</button>
+        <button class="test-btn" onclick="ModalManager.hideAllModals()">إغلاق جميع النوافذ</button>
+        
+        <div class="status" id="status">النظام جاهز للاختبار</div>
+    </div>
+
+    <script src="scripts/modal-manager.js"></script>
+    <script src="scripts/password-change-modal.js"></script>
+    
+    <script>
+        function testSystem() {
+            const status = document.getElementById('status');
+            let message = 'فحص النظام:\n';
+            
+            if (typeof ModalManager !== 'undefined') {
+                message += '✅ Modal Manager متوفر\n';
+                if (ModalManager.getLoadedModals) {
+                    const loaded = ModalManager.getLoadedModals();
+                    message += `📋 النوافذ المحملة: ${loaded.length}\n`;
+                }
+            } else {
+                message += '❌ Modal Manager غير متوفر\n';
+            }
+            
+            if (typeof PasswordChangeManager !== 'undefined') {
+                message += '✅ Password Manager متوفر\n';
+            } else {
+                message += '❌ Password Manager غير متوفر\n';
+            }
+            
+            status.innerHTML = message.replace(/\n/g, '<br>');
+        }
+    </script>
+</body>
+</html> 

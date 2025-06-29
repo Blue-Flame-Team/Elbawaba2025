@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار أيقونة البروفايل</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .profile-icon-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .login-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal.show {
+            display: block;
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+        }
+        
+        .dashboard-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
+        
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .user-name {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>اختبار أيقونة البروفايل</h1>
+        
+        <p>للاختبار:</p>
+        <ol>
+            <li>انقر على "تسجيل الدخول" لفتح نافذة تسجيل الدخول</li>
+            <li>استخدم اسم المستخدم: <code>test</code> وكلمة المرور: <code>123456</code></li>
+            <li>ستظهر أيقونة البروفايل بدلاً من زر تسجيل الدخول</li>
+            <li>انقر على أيقونة البروفايل لعرض قائمة الملف الشخصي</li>
+            <li>انقر على "تسجيل الخروج" للخروج</li>
+        </ol>
+        
+        <div class="buttons">
+            <button class="login-btn">تسجيل الدخول</button>
+            <button class="profile-icon-btn">أيقونة البروفايل</button>
+        </div>
+        
+        <div id="status">
+            <p><strong>الحالة الحالية:</strong> <span id="status-text">غير مسجل الدخول</span></p>
+        </div>
+    </div>
+    
+    <!-- تحميل الـ modals -->
+    <div id="modals-container"></div>
+    
+    <script src="scripts/modal-manager.js"></script>
+    <script src="scripts/auth-system.js"></script>
+    
+    <script>
+        // تحديث عرض الحالة
+        function updateStatus() {
+            const statusText = document.getElementById('status-text');
+            if (AuthSystem.isLoggedIn()) {
+                const user = AuthSystem.getCurrentUser();
+                statusText.textContent = `مسجل الدخول كـ: ${user.name}`;
+            } else {
+                statusText.textContent = 'غير مسجل الدخول';
+            }
+        }
+        
+        // تحديث الحالة كل ثانية
+        setInterval(updateStatus, 1000);
+        
+        // تحديث أولي
+        updateStatus();
+    </script>
+</body>
+</html> 
