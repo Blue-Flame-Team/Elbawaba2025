@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>البوابة القانونية السعودية الشاملة</title>
+    <title>الباوابة - بوابة الأنظمة والقوانين</title>
+    
+    <!-- رسالة تشخيص -->
+    <script>
+        console.log('📄 تم تحميل صفحة index.html - الإصدار 2.0 - ' + new Date().toLocaleTimeString());
+    </script>
+    
     <!-- الخطوط -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +21,7 @@
     <!-- Font Awesome لأيقونات التواصل الاجتماعي -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- أوراق الأنماط -->
-    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/global.css?v=2.0">
     <link rel="stylesheet" href="styles/home/topbar.css">
     <link rel="stylesheet" href="styles/home/navbar.css">
     <link rel="stylesheet" href="styles/home/header.css">
@@ -43,6 +49,10 @@
         <link rel="stylesheet" href="styles/simple-zoom.css">
     <!-- تنسيق نافذة تعديل كلمة المرور للموبايل -->
     <link rel="stylesheet" href="styles/password-change-mobile.css">
+    <script src="scripts/edit-profile-modal.js"></script>
+    <link rel="stylesheet" href="styles/shared/universal-settings-menu.css">
+    <link rel="stylesheet" href="styles/shared/zoom-styles.css">
+    <script src="scripts/font-zoom.js"></script>
 <style>
 /* ?????????? ???? Droid Arabic Kufi ?????? ???????? ?????????????? */
 * {
@@ -365,6 +375,24 @@ body.dark-contrast {
         margin-right: 10px !important;
     }
 }
+
+/* تنسيقات خاصة بقائمة الإعدادات في الصفحة الرئيسية */
+.settings-menu {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    transform: none !important;
+    margin-top: 5px !important;
+}
+
+/* تأكيد أن القائمة تظهر في المكان الصحيح في الصفحة الرئيسية */
+.main-icons-group {
+    position: relative !important;
+}
+
+.settings-toggle-btn {
+    position: relative !important;
+}
 </style></head>
 <body>
     <!-- القائمة الجانبية للموبايل -->
@@ -432,10 +460,10 @@ body.dark-contrast {
                         
                         <!-- أيقونات التكبير والتصغير -->
                         <div class="zoom-group">
-                            <button class="icon-btn zoom-out-btn" title="تصغير النص" data-original-font-size="16">
+                            <button class="icon-btn zoom-out-btn decrease-font-size" title="تصغير النص" data-original-font-size="16">
                                 <img src="assets/icons/search-zoom-out.png" alt="تصغير">
                             </button>
-                            <button class="icon-btn zoom-in-btn" title="تكبير النص" data-original-font-size="16">
+                            <button class="icon-btn zoom-in-btn increase-font-size" title="تكبير النص" data-original-font-size="16">
                                 <img src="assets/icons/search-zoom-in.png" alt="تكبير">
                             </button>
                         </div>
@@ -487,57 +515,60 @@ body.dark-contrast {
                 <div class="top-elements">           
                     <!-- Elementos originales para vista desktop -->
                     <div class="top-icons">
-                        <a href="faq.html" class="common-questions" data-original-font-size="16">
+                        <a href="pages/faq.html" class="common-questions" data-original-font-size="16">
                             <span class="question-mark">
-                                <img src="../assets/icons/question.svg" alt="الأسئلة الشائعة">
+                                <img src="assets/icons/question.svg" alt="الأسئلة الشائعة">
                             </span>
                             <span class="questions-text">الأسئلة الشائعة</span>
                         </a>
                         <div class="zoom-group">
-                            <button class="icon-btn zoom-out-btn" onclick="changeFontSize(-10)" title="تصغير النص" data-original-font-size="16">
-                                <img src="../assets/icons/search-zoom-out.svg" alt="تصغير">
+                            <button class="icon-btn zoom-out-btn decrease-font-size" title="تصغير النص" data-original-font-size="16">
+                                <img src="assets/icons/search-zoom-out.svg" alt="تصغير">
                             </button>
-                            <button class="icon-btn zoom-in-btn" onclick="changeFontSize(10)" title="تكبير النص" data-original-font-size="16">
-                                <img src="../assets/icons/search-zoom-in.svg" alt="تكبير">
+                            <button class="icon-btn zoom-in-btn increase-font-size" title="تكبير النص" data-original-font-size="16">
+                                <img src="assets/icons/search-zoom-in.svg" alt="تكبير">
                             </button>
                         </div>
                         
                         <div class="main-icons-group">
                             <button class="icon-btn search-btn" data-original-font-size="16">
-                                <img src="../assets/icons/search.png" alt="بحث">
+                                <img src="assets/icons/search.png" alt="بحث">
                             </button>
-                            <button class="icon-btn" onclick="window.location.href='../index.html#contact'" data-original-font-size="16">
-                                <img src="../assets/icons/location.png" alt="الموقع">
+                            <button class="icon-btn" onclick="window.location.href='#contact'" data-original-font-size="16">
+                                <img src="assets/icons/location.png" alt="الموقع">
                             </button>
                             <button class="icon-btn" data-original-font-size="16">
-                                <img src="../assets/icons/call.png" alt="اتصال">
+                                <img src="assets/icons/call.png" alt="اتصال">
+                            </button>
+                            <button class="icon-btn profile-btn profile-icon-btn" style="display: none;" data-original-font-size="16" data-profile-setup="true">
+                                <img src="assets/icons/profile-circle.svg" alt="الملف الشخصي">
                             </button>
                             <button class="icon-btn settings-toggle-btn" data-original-font-size="16">
-                                <img src="../assets/icons/setting-2.png" alt="الإعدادات">
+                                <img src="assets/icons/setting-2.png" alt="الإعدادات">
                             </button>
                             <div class="settings-menu">
                                 <a href="#" class="settings-option contrast-option" data-original-font-size="16">
                                     <span>تباين</span>
-                                    <img src="../assets/icons/Eye off.svg" alt="تباين">
+                                    <img src="assets/icons/Eye off.svg" alt="تباين">
                                 </a>
                                 <!-- قائمة خيارات التباين الفرعية -->
                                 <div class="contrast-submenu">
                                     <a href="#" class="settings-option contrast-light" data-original-font-size="16">
                                         <span>تباين فاتح</span>
-                                        <img src="../assets/icons/Eye off.svg" alt="تباين فاتح">
+                                        <img src="assets/icons/Eye off.svg" alt="تباين فاتح">
                                     </a>
                                     <a href="#" class="settings-option contrast-dark" data-original-font-size="16">
                                         <span>تباين داكن</span>
-                                        <img src="../assets/icons/Eye off-dark.svg" alt="تباين داكن">
+                                        <img src="assets/icons/Eye off-dark.svg" alt="تباين داكن">
                                     </a>
                                 </div>
-                                <a href="../pages/analytics.html" class="settings-option stats-option" data-original-font-size="16">
+                                <a href="./pages/analytics.html" class="settings-option stats-option" data-original-font-size="16">
                                     <span>الاحصائيات</span>
-                                    <img src="../assets/icons/status-up.svg" alt="الاحصائيات">
+                                    <img src="assets/icons/status-up.svg" alt="الاحصائيات">
                                 </a>
                                 <a href="javascript:void(0);" class="settings-option logout-option" data-original-font-size="16">
                                     <span>خروج</span>
-                                    <img src="../assets/icons/logout.svg" alt="تسجيل الخروج">
+                                    <img src="assets/icons/logout.svg" alt="تسجيل الخروج">
                                 </a>
                             </div>
                         </div>
@@ -1486,9 +1517,8 @@ body.dark-contrast {
                     <div class="phone-input-row">
                                             <div class="country-code-select">
                         <div class="country-flag">
-                            <img src="assets/icons/egypt-flag.svg" alt="مصر" class="flag-img">
+                            <img src="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="مصر" class="flag-img">
                         </div>
-                        <img src="assets/icons/call-arrow.svg" alt="Arrow" class="arrow-icon">
                         <span class="code">+20</span>
                     </div>
                         <div class="phone-field">
@@ -2076,10 +2106,15 @@ body.dark-contrast {
                             userDashboard.style.display = 'none';
                             userDashboard.classList.remove('show');
                             
-                            // إخفاء أيقونة الملف الشخصي
+                            // إخفاء أيقونة الملف الشخصي بدلاً من حذفها
                             const profileIcon = document.querySelector('.profile-icon-btn');
                             if (profileIcon) {
-                                profileIcon.remove();
+                                profileIcon.style.display = 'none';
+                            }
+                            
+                            const mobileProfileIcon = document.querySelector('#mobile-profile-btn');
+                            if (mobileProfileIcon) {
+                                mobileProfileIcon.style.display = 'none';
                             }
                             
                             // إظهار زر تسجيل الدخول
@@ -2354,6 +2389,99 @@ body.dark-contrast {
                 console.log('👤 إعداد أيقونة البروفايل...');
                 setupProfileIcon();
                 
+                // إضافة وظائف اختبار للمطور
+                window.testProfileIcon = function() {
+                    console.log('🧪 اختبار أيقونة البروفايل بقوة...');
+                    const desktopBtn = document.querySelector('.profile-icon-btn');
+                    const mobileBtn = document.getElementById('mobile-profile-btn');
+                    
+                    if (desktopBtn) {
+                        console.log('🔍 العثور على زر الديسكتوب:', desktopBtn);
+                        console.log('📊 الأنماط الحالية:', desktopBtn.style.cssText);
+                        
+                        // إزالة جميع الأنماط المحتملة
+                        ['display', 'visibility', 'opacity', 'position', 'left', 'right', 'top', 'bottom', 'transform', 'z-index'].forEach(prop => {
+                            desktopBtn.style.removeProperty(prop);
+                        });
+                        
+                        // تطبيق الإظهار بأقصى قوة
+                        desktopBtn.style.setProperty('display', 'inline-block', 'important');
+                        desktopBtn.style.setProperty('visibility', 'visible', 'important');
+                        desktopBtn.style.setProperty('opacity', '1', 'important');
+                        desktopBtn.style.setProperty('position', 'relative', 'important');
+                        desktopBtn.style.setProperty('pointer-events', 'auto', 'important');
+                        desktopBtn.style.setProperty('z-index', '1000', 'important');
+                        desktopBtn.style.setProperty('border', '3px solid red', 'important');
+                        desktopBtn.style.setProperty('background', 'yellow', 'important');
+                        desktopBtn.style.setProperty('width', '40px', 'important');
+                        desktopBtn.style.setProperty('height', '40px', 'important');
+                        
+                        // إزالة/إضافة الفئات
+                        desktopBtn.classList.remove('hidden', 'invisible');
+                        desktopBtn.classList.add('visible', 'force-show');
+                        
+                        console.log('✅ تم إظهار زر الديسكتوب بحدود حمراء وخلفية صفراء');
+                        console.log('📊 الأنماط الجديدة:', desktopBtn.style.cssText);
+                    } else {
+                        console.error('❌ لم يتم العثور على زر الديسكتوب');
+                    }
+                    
+                    if (mobileBtn) {
+                        mobileBtn.style.setProperty('display', 'block', 'important');
+                        mobileBtn.style.setProperty('border', '2px solid blue', 'important');
+                        console.log('✅ تم إظهار زر الموبايل بحدود زرقاء');
+                    }
+                    
+                    // فحص جميع العناصر المشابهة
+                    console.log('🔍 البحث عن جميع عناصر البروفايل:');
+                    const allProfileElements = document.querySelectorAll('[class*="profile"], [id*="profile"]');
+                    allProfileElements.forEach((el, index) => {
+                        console.log(`  ${index + 1}. ${el.tagName} - Class: ${el.className} - ID: ${el.id} - Display: ${getComputedStyle(el).display}`);
+                    });
+                };
+                
+                window.simulateLogin = function() {
+                    console.log('🎭 محاكاة تسجيل دخول...');
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        username: 'test-user',
+                        name: 'مستخدم تجريبي',
+                        isLoggedIn: true
+                    }));
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userLoggedIn', 'true');
+                    document.body.classList.add('user-logged-in');
+                    
+                    // إعادة إعداد الأيقونة
+                    setupProfileIcon();
+                    console.log('✅ تم محاكاة تسجيل الدخول');
+                };
+                
+                window.cleanCorruptedData = function() {
+                    console.log('🧹 تنظيف البيانات الفاسدة...');
+                    
+                    // مسح جميع البيانات التي قد تكون فاسدة
+                    const keysToClean = ['currentUser', 'userLoggedIn', 'isLoggedIn', 'userProfile', 'authToken'];
+                    keysToClean.forEach(key => {
+                        const value = localStorage.getItem(key);
+                        if (value) {
+                            try {
+                                // إذا كان يبدأ بـ { فجرب تحليله كـ JSON
+                                if (value.startsWith('{')) {
+                                    JSON.parse(value);
+                                }
+                                console.log(`✅ ${key} سليم`);
+                            } catch (e) {
+                                console.log(`🧹 مسح ${key} الفاسد:`, value);
+                                localStorage.removeItem(key);
+                            }
+                        }
+                    });
+                    
+                    // إعادة إعداد الأيقونة
+                    setupProfileIcon();
+                    console.log('✅ تم تنظيف البيانات');
+                };
+                
                 // إعداد إضافي لجميع أزرار تسجيل الخروج في الموقع
                 const allLogoutButtons = document.querySelectorAll('.logout-option, .logout-btn, a[href*="logout"], [onclick*="logout"]');
                 allLogoutButtons.forEach((logoutBtn, index) => {
@@ -2436,91 +2564,315 @@ body.dark-contrast {
                     }
                                  }
                  
-                 // دالة إعداد أيقونة البروفايل للعمل الفعلي
+                 // الحل النهائي والقاطع لمشكلة أيقونة البروفايل 
                  function setupProfileIcon() {
-                     console.log('👤 إعداد أيقونة البروفايل للعمل الفعلي...');
+                     console.log('🚀 تطبيق الحل النهائي لأيقونة البروفايل...');
                      
-                     // البحث عن أيقونة البروفايل للموبايل والديسكتوب
+                     // البحث عن الأيقونات
                      const mobileProfileBtn = document.getElementById('mobile-profile-btn');
                      const desktopProfileBtn = document.querySelector('.profile-icon-btn');
+                     
+                     if (!mobileProfileBtn && !desktopProfileBtn) {
+                         console.log('❌ لم يتم العثور على أيقونات البروفايل');
+                         return;
+                     }
                      
                      // التحقق من حالة تسجيل الدخول
                      const isLoggedIn = checkUserLoginStatus();
                      console.log('🔒 حالة تسجيل الدخول:', isLoggedIn);
                      
-                     // إعداد أيقونة الموبايل
-                     if (mobileProfileBtn) {
-                         if (isLoggedIn) {
-                             mobileProfileBtn.style.display = 'block';
-                             console.log('✅ تم إظهار أيقونة البروفايل للموبايل');
-                         } else {
-                             mobileProfileBtn.style.display = 'none';
-                         }
-                         
-                         // ربط وظيفة فتح النافذة
-                         if (!mobileProfileBtn.hasAttribute('data-profile-setup')) {
-                             mobileProfileBtn.addEventListener('click', function(e) {
-                                 e.preventDefault();
-                                 e.stopPropagation();
-                                 
-                                 console.log('📱 تم النقر على أيقونة البروفايل للموبايل');
-                                 openProfileModal();
-                             }, true);
-                             
-                             mobileProfileBtn.setAttribute('data-profile-setup', 'true');
-                         }
+                     if (!isLoggedIn) {
+                         console.log('❌ المستخدم غير مسجل دخول');
+                         return;
                      }
                      
-                     // إعداد أيقونة الديسكتوب
-                     if (desktopProfileBtn) {
-                         if (isLoggedIn) {
-                             desktopProfileBtn.style.display = 'inline-block';
-                             console.log('✅ تم إظهار أيقونة البروفايل للديسكتوب');
-                         } else {
-                             desktopProfileBtn.style.display = 'none';
+                     // إنشاء CSS قوي يتجاوز جميع القيود الخارجية
+                     const forceCSS = document.createElement('style');
+                     forceCSS.id = 'ultimate-profile-fix';
+                     forceCSS.textContent = `
+                         /* الحل النهائي - يتجاوز جميع CSS الخارجي */
+                         .profile-icon-btn[data-ultimate-fix="true"] {
+                             display: inline-block !important;
+                             visibility: visible !important;
+                             opacity: 0.8 !important;
+                             position: relative !important;
+                             left: auto !important;
+                             right: auto !important;
+                             top: auto !important;
+                             bottom: auto !important;
+                             pointer-events: auto !important;
+                             z-index: 999 !important;
+                             transform: none !important;
+                             
+                             /* نفس تنسيق الأزرار المجاورة */
+                             background: transparent !important;
+                             width: 24px !important;
+                             height: 24px !important;
+                             display: flex !important;
+                             align-items: center !important;
+                             justify-content: center !important;
+                             transition: opacity 0.3s ease !important;
+                             margin: 0 !important;
+                             border: none !important;
+                             cursor: pointer !important;
+                             padding: 0 !important;
                          }
                          
-                         // ربط وظيفة فتح النافذة
-                         if (!desktopProfileBtn.hasAttribute('data-profile-setup')) {
+                         /* تأثير hover مثل باقي الأزرار */
+                         .profile-icon-btn[data-ultimate-fix="true"]:hover {
+                             opacity: 1 !important;
+                         }
+                         
+                         /* تنسيق الصورة بداخل الزر */
+                         .profile-icon-btn[data-ultimate-fix="true"] img {
+                             width: 20px !important;
+                             height: 20px !important;
+                             object-fit: contain !important;
+                         }
+                         
+                         /* أيقونة الموبايل - إظهار على الموبايل فقط */
+                         #mobile-profile-btn[data-ultimate-fix="true"] {
+                             position: relative !important;
+                             left: auto !important;
+                             right: auto !important;
+                             top: auto !important;
+                             bottom: auto !important;
+                             pointer-events: auto !important;
+                             z-index: 999 !important;
+                             transform: none !important;
+                             visibility: visible !important;
+                             opacity: 1 !important;
+                         }
+                         
+                         /* إخفاء أيقونة الموبايل على الديسكتوب (شاشات أكبر من 768px) */
+                         @media (min-width: 769px) {
+                             #mobile-profile-btn,
+                             #mobile-profile-btn[data-ultimate-fix="true"],
+                             button#mobile-profile-btn,
+                             .icon-btn#mobile-profile-btn {
+                                 display: none !important;
+                                 visibility: hidden !important;
+                                 opacity: 0 !important;
+                                 position: absolute !important;
+                                 left: -9999px !important;
+                                 width: 0 !important;
+                                 height: 0 !important;
+                                 overflow: hidden !important;
+                                 pointer-events: none !important;
+                             }
+                         }
+                         
+                         /* إظهار أيقونة الموبايل على الشاشات الصغيرة فقط */
+                         @media (max-width: 768px) {
+                             #mobile-profile-btn[data-ultimate-fix="true"] {
+                                 display: block !important;
+                             }
+                             
+                             /* إخفاء أيقونة الديسكتوب على الموبايل */
+                             .profile-icon-btn[data-ultimate-fix="true"] {
+                                 display: none !important;
+                             }
+                         }
+                         
+                         /* منع التداخل مع CSS الخارجي للديسكتوب */
+                         @media (min-width: 769px) {
+                             .profile-icon-btn[data-ultimate-fix="true"]:not(.hide):not(.hidden) {
+                                 display: inline-block !important;
+                                 visibility: visible !important;
+                             }
+                         }
+                     `;
+                     
+                     // إزالة CSS القديم وإضافة الجديد
+                     const oldCSS = document.getElementById('ultimate-profile-fix');
+                     if (oldCSS) oldCSS.remove();
+                     document.head.appendChild(forceCSS);
+                                 
+                     console.log('✅ تم إضافة CSS النهائي');
+                     
+                     // معالجة أيقونة الديسكتوب
+                     if (desktopProfileBtn) {
+                         // إضافة الـ data attribute الخاص
+                         desktopProfileBtn.setAttribute('data-ultimate-fix', 'true');
+                         desktopProfileBtn.setAttribute('data-profile-setup', 'true');
+                         
+                         // إزالة أي كلاسات أو خصائص مخفية
+                         desktopProfileBtn.classList.remove('hide', 'hidden');
+                         
+                         // تطبيق الأنماط مباشرة أيضاً
+                         desktopProfileBtn.style.setProperty('display', 'inline-block', 'important');
+                         desktopProfileBtn.style.setProperty('visibility', 'visible', 'important');
+                         desktopProfileBtn.style.setProperty('opacity', '1', 'important');
+                         
+                         // ربط الحدث
+                         if (!desktopProfileBtn.hasAttribute('data-click-setup')) {
                              desktopProfileBtn.addEventListener('click', function(e) {
                                  e.preventDefault();
                                  e.stopPropagation();
-                                 
-                                 console.log('💻 تم النقر على أيقونة البروفايل للديسكتوب');
+                                 console.log('💻 نقر على أيقونة الديسكتوب');
                                  openProfileModal();
                              }, true);
+                             desktopProfileBtn.setAttribute('data-click-setup', 'true');
+                         }
+                         
+                         console.log('✅ تم إعداد أيقونة الديسكتوب بالحل النهائي');
+                     }
+                     
+                     // معالجة أيقونة الموبايل
+                     if (mobileProfileBtn) {
+                         // فحص إذا كان العرض أكبر من 768px (ديسكتوب)
+                         const isDesktop = window.innerWidth > 768;
+                         
+                         if (isDesktop) {
+                             // إخفاء تام على الديسكتوب
+                             mobileProfileBtn.style.setProperty('display', 'none', 'important');
+                             mobileProfileBtn.style.setProperty('visibility', 'hidden', 'important');
+                             mobileProfileBtn.style.setProperty('opacity', '0', 'important');
+                             mobileProfileBtn.style.setProperty('position', 'absolute', 'important');
+                             mobileProfileBtn.style.setProperty('left', '-9999px', 'important');
+                             mobileProfileBtn.style.setProperty('width', '0', 'important');
+                             mobileProfileBtn.style.setProperty('height', '0', 'important');
+                             mobileProfileBtn.style.setProperty('pointer-events', 'none', 'important');
                              
-                             desktopProfileBtn.setAttribute('data-profile-setup', 'true');
+                             console.log('💻 تم إخفاء أيقونة الموبايل تماماً على الديسكتوب');
+                         } else {
+                             // إظهار على الموبايل فقط
+                             mobileProfileBtn.setAttribute('data-ultimate-fix', 'true');
+                             mobileProfileBtn.setAttribute('data-profile-setup', 'true');
+                             
+                             mobileProfileBtn.classList.remove('hide', 'hidden');
+                             
+                             mobileProfileBtn.style.setProperty('display', 'block', 'important');
+                             mobileProfileBtn.style.setProperty('visibility', 'visible', 'important');
+                             mobileProfileBtn.style.setProperty('opacity', '1', 'important');
+                             
+                             if (!mobileProfileBtn.hasAttribute('data-click-setup')) {
+                                 mobileProfileBtn.addEventListener('click', function(e) {
+                                     e.preventDefault();
+                                     e.stopPropagation();
+                                     console.log('📱 نقر على أيقونة الموبايل');
+                                 openProfileModal();
+                             }, true);
+                                 mobileProfileBtn.setAttribute('data-click-setup', 'true');
+                             }
+                             
+                             console.log('✅ تم إعداد أيقونة الموبايل للشاشات الصغيرة');
                          }
                      }
                      
-                     // مراقبة تغييرات حالة تسجيل الدخول
-                     setupLoginStatusWatcher();
+                     // حماية دورية من التداخل مع CSS الخارجي
+                     const protectIcons = () => {
+                         if (desktopProfileBtn && desktopProfileBtn.hasAttribute('data-ultimate-fix')) {
+                             if (window.getComputedStyle(desktopProfileBtn).display === 'none' || 
+                                 window.getComputedStyle(desktopProfileBtn).visibility === 'hidden') {
+                                 
+                                 desktopProfileBtn.setAttribute('data-ultimate-fix', 'true');
+                                 desktopProfileBtn.style.setProperty('display', 'inline-block', 'important');
+                                 desktopProfileBtn.style.setProperty('visibility', 'visible', 'important');
+                                 console.log('🛡️ تم إعادة حماية أيقونة الديسكتوب');
+                             }
+                         }
+                         
+                         if (mobileProfileBtn && mobileProfileBtn.hasAttribute('data-ultimate-fix')) {
+                             if (window.getComputedStyle(mobileProfileBtn).display === 'none' || 
+                                 window.getComputedStyle(mobileProfileBtn).visibility === 'hidden') {
+                                 
+                                 mobileProfileBtn.setAttribute('data-ultimate-fix', 'true');
+                                 mobileProfileBtn.style.setProperty('display', 'block', 'important');
+                                 mobileProfileBtn.style.setProperty('visibility', 'visible', 'important');
+                                 console.log('🛡️ تم إعادة حماية أيقونة الموبايل');
+                         }
+                     }
+                     };
+                     
+                     // تشغيل الحماية كل 2 ثانية
+                     setInterval(protectIcons, 2000);
+                     
+                     // إضافة listener لتغيير حجم الشاشة لإخفاء/إظهار أيقونة الموبايل
+                     window.addEventListener('resize', function() {
+                         const mobileBtn = document.getElementById('mobile-profile-btn');
+                         if (mobileBtn) {
+                             const isDesktop = window.innerWidth > 768;
+                             
+                             if (isDesktop) {
+                                 // إخفاء على الديسكتوب
+                                 mobileBtn.style.setProperty('display', 'none', 'important');
+                                 mobileBtn.style.setProperty('visibility', 'hidden', 'important');
+                                 mobileBtn.style.setProperty('position', 'absolute', 'important');
+                                 mobileBtn.style.setProperty('left', '-9999px', 'important');
+                                 console.log('💻 تم إخفاء أيقونة الموبايل (resize)');
+                             } else {
+                                 // إظهار على الموبايل
+                                 mobileBtn.style.setProperty('display', 'block', 'important');
+                                 mobileBtn.style.setProperty('visibility', 'visible', 'important');
+                                 mobileBtn.style.setProperty('position', 'relative', 'important');
+                                 mobileBtn.style.setProperty('left', 'auto', 'important');
+                                 console.log('📱 تم إظهار أيقونة الموبايل (resize)');
+                             }
+                         }
+                     });
+                     
+                     console.log('🎯 اكتمل تطبيق الحل النهائي - الأيقونة محمية الآن من أي تداخل خارجي');
                  }
                  
                  // دالة التحقق من حالة تسجيل الدخول
                  function checkUserLoginStatus() {
-                     // التحقق من localStorage
-                     const userData = localStorage.getItem('currentUser');
-                     if (userData) {
+                     console.log('🔍 فحص حالة تسجيل الدخول...');
+                     
+                     // التحقق من localStorage بطرق متعددة
+                     const currentUser = localStorage.getItem('currentUser');
+                     const userLoggedIn = localStorage.getItem('userLoggedIn');
+                     const isLoggedIn = localStorage.getItem('isLoggedIn');
+                     
+                     console.log('📋 البيانات المحفوظة:');
+                     console.log('  - currentUser:', currentUser);
+                     console.log('  - userLoggedIn:', userLoggedIn);
+                     console.log('  - isLoggedIn:', isLoggedIn);
+                     
+                     // التحقق من currentUser
+                     if (currentUser) {
                          try {
-                             const user = JSON.parse(userData);
-                             return user && user.isLoggedIn === true;
+                             // إذا كان النص يبدأ بـ "{" فهو JSON، وإلا فهو نص عادي
+                             if (currentUser.startsWith('{')) {
+                                 const user = JSON.parse(currentUser);
+                                 if (user && (user.isLoggedIn === true || user.name || user.username)) {
+                                     console.log('✅ المستخدم مسجل دخول حسب currentUser (JSON)');
+                                     return true;
+                                 }
+                             } else {
+                                 // إذا كان نص عادي ويحتوي على "مسجل" فالمستخدم مسجل دخول
+                                 if (currentUser.includes('مسجل') || currentUser.includes('logged')) {
+                                     console.log('✅ المستخدم مسجل دخول حسب currentUser (نص)');
+                                     return true;
+                                 }
+                             }
                          } catch (e) {
-                             return false;
+                             console.warn('⚠️ خطأ في قراءة currentUser:', e);
+                             // تنظيف البيانات الفاسدة
+                             localStorage.removeItem('currentUser');
+                             console.log('🧹 تم مسح البيانات الفاسدة من currentUser');
                          }
                      }
                      
                      // التحقق من متغيرات أخرى
-                     if (localStorage.getItem('userLoggedIn') === 'true') {
+                     if (userLoggedIn === 'true' || isLoggedIn === 'true') {
+                         console.log('✅ المستخدم مسجل دخول حسب المتغيرات الأخرى');
                          return true;
                      }
                      
                      // التحقق من body class
                      if (document.body.classList.contains('user-logged-in')) {
+                         console.log('✅ المستخدم مسجل دخول حسب body class');
                          return true;
                      }
                      
+                     // التحقق من AuthSystem إذا كان متوفراً
+                     if (typeof AuthSystem !== 'undefined' && AuthSystem.isLoggedIn && AuthSystem.isLoggedIn()) {
+                         console.log('✅ المستخدم مسجل دخول حسب AuthSystem');
+                         return true;
+                     }
+                     
+                     console.log('❌ المستخدم غير مسجل دخول');
                      return false;
                  }
                  
@@ -3094,8 +3446,7 @@ body.dark-contrast {
                                              box-sizing: border-box;
                                              padding: 0 8px;
                                 ">
-                                           
-                                             <img src="assets/icons/call-arrow.svg" alt="Arrow" class="arrow-icon" style="width: 8px; height: 8px; opacity: 0.6;">
+                                             <img src="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="مصر" class="flag-img" style="width: 16px; height: 12px;">
                                              <span class="code" style="font-family: 'Droid Arabic Kufi'; font-size: 12px; color: #666; font-weight: 500;">+20</span>
                                 </div>
                             </div>
@@ -3786,11 +4137,247 @@ body.dark-contrast {
                      fixDesktopProfileButton();
                  }, 2000);
                  
+                 // دالة اختبار متقدمة للتشخيص النهائي
+                 function testProfileIcon() {
+                     console.log('🧪 بدء اختبار التشخيص النهائي...');
+                     
+                     const profileIcon = document.querySelector('.profile-icon-btn');
+                     const mobileProfileIcon = document.getElementById('mobile-profile-btn');
+                     
+                     console.log('🔍 فحص العناصر:');
+                     console.log('  - Desktop icon found:', !!profileIcon);
+                     console.log('  - Mobile icon found:', !!mobileProfileIcon);
+                     
+                     if (profileIcon) {
+                         console.log('💻 حالة أيقونة الديسكتوب الحالية:');
+                         console.log('  - Current display:', window.getComputedStyle(profileIcon).display);
+                         console.log('  - Current visibility:', window.getComputedStyle(profileIcon).visibility);
+                         console.log('  - Current opacity:', window.getComputedStyle(profileIcon).opacity);
+                         console.log('  - Has data-ultimate-fix:', profileIcon.hasAttribute('data-ultimate-fix'));
+                         
+                         // إجبار الإظهار مع تشخيص بصري واضح جداً
+                         profileIcon.setAttribute('data-ultimate-fix', 'true');
+                         profileIcon.style.setProperty('display', 'inline-block', 'important');
+                         profileIcon.style.setProperty('visibility', 'visible', 'important');
+                         profileIcon.style.setProperty('opacity', '1', 'important');
+                         profileIcon.style.setProperty('border', '5px solid red', 'important');
+                         profileIcon.style.setProperty('background-color', 'yellow', 'important');
+                         profileIcon.style.setProperty('position', 'relative', 'important');
+                         profileIcon.style.setProperty('z-index', '99999', 'important');
+                         profileIcon.style.setProperty('min-width', '50px', 'important');
+                         profileIcon.style.setProperty('min-height', '50px', 'important');
+                         profileIcon.style.setProperty('margin', '5px', 'important');
+                         profileIcon.style.setProperty('border-radius', '10px', 'important');
+                         
+                         console.log('✅ تم إجبار إظهار أيقونة الديسكتوب مع حدود حمراء سميكة');
+                     }
+                     
+                     if (mobileProfileIcon) {
+                         console.log('📱 حالة أيقونة الموبايل الحالية:');
+                         console.log('  - Current display:', window.getComputedStyle(mobileProfileIcon).display);
+                         console.log('  - Current visibility:', window.getComputedStyle(mobileProfileIcon).visibility);
+                         console.log('  - Current opacity:', window.getComputedStyle(mobileProfileIcon).opacity);
+                         console.log('  - Has data-ultimate-fix:', mobileProfileIcon.hasAttribute('data-ultimate-fix'));
+                         
+                         mobileProfileIcon.setAttribute('data-ultimate-fix', 'true');
+                         mobileProfileIcon.style.setProperty('display', 'block', 'important');
+                         mobileProfileIcon.style.setProperty('visibility', 'visible', 'important');
+                         mobileProfileIcon.style.setProperty('opacity', '1', 'important');
+                         mobileProfileIcon.style.setProperty('border', '5px solid red', 'important');
+                         mobileProfileIcon.style.setProperty('background-color', 'yellow', 'important');
+                         mobileProfileIcon.style.setProperty('position', 'relative', 'important');
+                         mobileProfileIcon.style.setProperty('z-index', '99999', 'important');
+                         mobileProfileIcon.style.setProperty('min-width', '50px', 'important');
+                         mobileProfileIcon.style.setProperty('min-height', '50px', 'important');
+                         mobileProfileIcon.style.setProperty('margin', '5px', 'important');
+                         mobileProfileIcon.style.setProperty('border-radius', '10px', 'important');
+                         
+                         console.log('✅ تم إجبار إظهار أيقونة الموبايل مع حدود حمراء سميكة');
+                     }
+                     
+                     // فحص تأثير الملفات الخارجية بعد 5 ثوان
+                     setTimeout(() => {
+                         console.log('⏱️ فحص الحالة بعد 5 ثوان:');
+                         if (profileIcon) {
+                             console.log('💻 Desktop بعد 5 ثوان:');
+                             console.log('  - Display:', window.getComputedStyle(profileIcon).display);
+                             console.log('  - Visibility:', window.getComputedStyle(profileIcon).visibility);
+                             console.log('  - Background:', window.getComputedStyle(profileIcon).backgroundColor);
+                         }
+                         if (mobileProfileIcon) {
+                             console.log('📱 Mobile بعد 5 ثوان:');
+                             console.log('  - Display:', window.getComputedStyle(mobileProfileIcon).display);
+                             console.log('  - Visibility:', window.getComputedStyle(mobileProfileIcon).visibility);
+                             console.log('  - Background:', window.getComputedStyle(mobileProfileIcon).backgroundColor);
+                         }
+                     }, 5000);
+                     
+                     console.log('🎯 ابحث عن مربعات صفراء كبيرة بحدود حمراء سميكة في شريط الأيقونات');
+                     console.log('📍 إذا لم تر الحدود الحمراء، فالمشكلة في CSS خارجي يتغلب على الحل');
+                 }
+                 
+                 // دالة إضافية لتنظيف البيانات الفاسدة نهائياً
+                 function cleanAllCorruptedData() {
+                     console.log('🧹 تنظيف شامل لجميع البيانات الفاسدة...');
+                     
+                     // مسح جميع المفاتيح المحتملة
+                     const keysToCheck = ['currentUser', 'userLoggedIn', 'isLoggedIn', 'userData', 'loginData'];
+                     keysToCheck.forEach(key => {
+                         const value = localStorage.getItem(key);
+                         if (value) {
+                             try {
+                                 if (value.startsWith('{')) {
+                                     JSON.parse(value);
+                                 }
+                                 console.log(`✅ ${key}: صالح`);
+                             } catch (e) {
+                                 console.log(`🗑️ حذف ${key}: فاسد`);
+                                 localStorage.removeItem(key);
+                             }
+                         }
+                     });
+                     
+                     console.log('✅ اكتمل التنظيف');
+                 }
+                 
+                 // إتاحة الدوال للاستخدام من الكونسول
+                 window.testProfileIcon = testProfileIcon;
+                 window.cleanAllCorruptedData = cleanAllCorruptedData;
+                 window.simulateLogin = simulateLogin;
+                 window.setupProfileIcon = setupProfileIcon;
 
                  
             }, 1000);
         });
     </script>
-    <script src="scripts/font-resize.js"></script>
+    <script src="scripts/edit-profile-modal.js"></script>
+    <script src="scripts/country-selector.js?v=1.1"></script>
+    
+    <!-- كود احتياطي للقائمة المنسدلة -->
+    <script>
+        console.log('🚀 بدء إعداد القائمة المنسدلة للدول');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // قائمة الدول
+            const countries = [
+                { name: 'مصر', code: '+20', flag: 'assets/icons/flag-for-flag-egypt-svgrepo-com 1.png' },
+                { name: 'المملكة العربية السعودية', code: '+966', flag: 'assets/icons/flag-for-flag-egypt-svgrepo-com 1.png' },
+                { name: 'الإمارات العربية المتحدة', code: '+971', flag: 'assets/icons/flag-for-flag-egypt-svgrepo-com 1.png' },
+                { name: 'الكويت', code: '+965', flag: 'assets/icons/flag-for-flag-egypt-svgrepo-com 1.png' },
+                { name: 'البحرين', code: '+973', flag: 'assets/icons/flag-for-flag-egypt-svgrepo-com 1.png' },
+                { name: 'قطر', code: '+974', flag: 'assets/icons/flag-for-flag-egypt-svgrepo-com 1.png' },
+                { name: 'عمان', code: '+968', flag: 'assets/icons/flag-for-flag-egypt-svgrepo-com 1.png' },
+                { name: 'الأردن', code: '+962', flag: 'assets/icons/flag-for-flag-egypt-svgrepo-com 1.png' }
+            ];
+            
+            // إنشاء القائمة المنسدلة
+            const dropdown = document.createElement('div');
+            dropdown.id = 'countryDropdown';
+            dropdown.style.cssText = `
+                position: fixed;
+                background: white;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 99999;
+                max-height: 250px;
+                overflow-y: auto;
+                min-width: 200px;
+                display: none;
+                direction: rtl;
+            `;
+            
+            // إضافة الدول للقائمة
+            countries.forEach(country => {
+                const item = document.createElement('div');
+                item.style.cssText = `
+                    display: flex;
+                    align-items: center;
+                    padding: 12px 15px;
+                    cursor: pointer;
+                    gap: 10px;
+                    border-bottom: 1px solid #f0f0f0;
+                    font-family: 'Droid Arabic Kufi', Arial, sans-serif;
+                `;
+                item.innerHTML = `
+                    <img src="${country.flag}" alt="${country.name}" style="width: 20px; height: 15px; border-radius: 3px;">
+                    <span style="flex: 1; font-size: 14px; color: #333;">${country.name}</span>
+                    <span style="font-size: 14px; color: #666; font-weight: 500;">${country.code}</span>
+                `;
+                
+                // تأثير hover
+                item.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#f8f9fa';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+                
+                // حدث النقر
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    console.log('اختيار دولة:', country.name);
+                    
+                    // تحديث العنصر النشط
+                    const activeSelector = document.querySelector('.country-code-select.active');
+                    if (activeSelector) {
+                        const flagImg = activeSelector.querySelector('.flag-img');
+                        const codeSpan = activeSelector.querySelector('.code');
+                        if (flagImg) flagImg.src = country.flag;
+                        if (codeSpan) codeSpan.textContent = country.code;
+                    }
+                    
+                    // إغلاق القائمة
+                    dropdown.style.display = 'none';
+                    document.querySelectorAll('.country-code-select').forEach(s => s.classList.remove('active'));
+                });
+                
+                dropdown.appendChild(item);
+            });
+            
+            document.body.appendChild(dropdown);
+            
+            // إضافة الأحداث لجميع عناصر اختيار الدولة
+            const selectors = document.querySelectorAll('.country-code-select');
+            console.log('عدد العناصر الموجودة:', selectors.length);
+            
+            selectors.forEach((selector, index) => {
+                console.log(`إعداد العنصر ${index + 1}`);
+                
+                selector.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('نقر على عنصر الدولة');
+                    
+                    // إغلاق جميع العناصر الأخرى
+                    document.querySelectorAll('.country-code-select').forEach(s => s.classList.remove('active'));
+                    
+                    // تحديد موقع القائمة
+                    const rect = this.getBoundingClientRect();
+                    dropdown.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+                    dropdown.style.left = (rect.left + window.scrollX) + 'px';
+                    dropdown.style.width = Math.max(rect.width, 200) + 'px';
+                    
+                    // فتح/إغلاق القائمة
+                    if (dropdown.style.display === 'block') {
+                        dropdown.style.display = 'none';
+                    } else {
+                        dropdown.style.display = 'block';
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // إغلاق عند النقر خارج القائمة
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.country-code-select') && !e.target.closest('#countryDropdown')) {
+                    dropdown.style.display = 'none';
+                    document.querySelectorAll('.country-code-select').forEach(s => s.classList.remove('active'));
+                }
+            });
+            
+            console.log('✅ تم إعداد القائمة المنسدلة بنجاح');
+        });
+    </script>
 </body>
 </html>
