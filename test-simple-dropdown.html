@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار بسيط للقائمة المنسدلة</title>
+    <style>
+        body {
+            padding: 50px;
+            font-family: Arial, sans-serif;
+            direction: rtl;
+        }
+        
+        .country-code-select {
+            width: 150px;
+            height: 40px;
+            border: 2px solid #00937B;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 10px;
+            background: white;
+            cursor: pointer;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .country-code-select::after {
+            content: "▼";
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .country-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .country-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            cursor: pointer;
+            gap: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .country-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .country-item:last-child {
+            border-bottom: none;
+        }
+        
+        .flag-img {
+            width: 20px;
+            height: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h2>اختبار القائمة المنسدلة</h2>
+    
+    <div class="country-code-select" id="countrySelector">
+        <img src="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="مصر" class="flag-img">
+        <span class="code">+20</span>
+        
+        <div class="country-dropdown" id="countryDropdown">
+            <div class="country-item" data-code="+20" data-flag="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png">
+                <img src="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="مصر" class="flag-img">
+                <span>مصر</span>
+                <span>+20</span>
+            </div>
+            <div class="country-item" data-code="+966" data-flag="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png">
+                <img src="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="السعودية" class="flag-img">
+                <span>المملكة العربية السعودية</span>
+                <span>+966</span>
+            </div>
+            <div class="country-item" data-code="+971" data-flag="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png">
+                <img src="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="الإمارات" class="flag-img">
+                <span>الإمارات العربية المتحدة</span>
+                <span>+971</span>
+            </div>
+            <div class="country-item" data-code="+965" data-flag="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png">
+                <img src="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="الكويت" class="flag-img">
+                <span>الكويت</span>
+                <span>+965</span>
+            </div>
+        </div>
+    </div>
+    
+    <p>انقر على المربع أعلاه لرؤية القائمة المنسدلة</p>
+
+    <script>
+        console.log('🚀 بدء تشغيل الاختبار البسيط');
+        
+        const selector = document.getElementById('countrySelector');
+        const dropdown = document.getElementById('countryDropdown');
+        const codeSpan = selector.querySelector('.code');
+        const flagImg = selector.querySelector('.flag-img');
+        
+        console.log('العناصر:', { selector, dropdown, codeSpan, flagImg });
+        
+        // فتح/إغلاق القائمة
+        selector.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('🖱️ تم النقر على العنصر');
+            
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+                console.log('📝 إغلاق القائمة');
+            } else {
+                dropdown.style.display = 'block';
+                console.log('📝 فتح القائمة');
+            }
+        });
+        
+        // اختيار دولة
+        dropdown.querySelectorAll('.country-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('🎯 تم اختيار دولة');
+                
+                const code = this.dataset.code;
+                const flag = this.dataset.flag;
+                
+                codeSpan.textContent = code;
+                flagImg.src = flag;
+                
+                dropdown.style.display = 'none';
+                console.log('✅ تم تحديث البيانات:', { code, flag });
+            });
+        });
+        
+        // إغلاق عند النقر خارج القائمة
+        document.addEventListener('click', function() {
+            dropdown.style.display = 'none';
+            console.log('📍 إغلاق بالنقر خارج القائمة');
+        });
+        
+        console.log('✅ تم إعداد جميع الأحداث');
+    </script>
+</body>
+</html> 

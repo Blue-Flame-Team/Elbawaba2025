@@ -9,21 +9,33 @@ const PasswordChangeManager = (function() {
      * فتح نافذة تعديل كلمة المرور
      */
     function showPasswordChangeModal() {
-        console.log('🔒 فتح نافذة تعديل كلمة المرور');
+        console.log('🔍 محاولة فتح نافذة تغيير كلمة المرور...');
         
-        // استخدام Modal Manager
-        if (typeof ModalManager !== 'undefined') {
-            ModalManager.showModal('password-change-modal');
+        // التحقق من وجود النافذة
+        let passwordModal = document.getElementById('password-change-modal');
+        
+        if (!passwordModal) {
+            console.log('⚠️ نافذة تغيير كلمة المرور غير موجودة، جاري التحميل...');
+            const modalPath = window.location.pathname.includes('/pages/') ? '../includes/password-change-modal.html' : 'includes/password-change-modal.html';
             
-            // تركيز على أول حقل بعد فتح النافذة
-            setTimeout(() => {
-                const firstInput = document.getElementById('currentPassword');
-                if (firstInput) {
-                    firstInput.focus();
-                }
-            }, 100);
+            fetch(modalPath)
+                .then(response => {
+                    console.log('✅ تم تحميل نافذة تغيير كلمة المرور:', response.status);
+                    return response.text();
+                })
+                .then(html => {
+                    document.body.insertAdjacentHTML('beforeend', html);
+                    passwordModal = document.getElementById('password-change-modal');
+                    setupPasswordModalEvents();
+                    showPasswordModal();
+                })
+                .catch(error => {
+                    console.error('❌ خطأ في تحميل نافذة تغيير كلمة المرور:', error);
+                    alert('حدث خطأ في تحميل نافذة تغيير كلمة المرور');
+                });
         } else {
-            console.error('❌ Modal Manager غير متوفر');
+            console.log('✅ نافذة تغيير كلمة المرور موجودة، جاري فتحها...');
+            showPasswordModal();
         }
     }
     
@@ -31,15 +43,12 @@ const PasswordChangeManager = (function() {
      * إغلاق نافذة تعديل كلمة المرور
      */
     function closePasswordModal() {
-        console.log('🔒 إغلاق نافذة تعديل كلمة المرور');
-        
-        // استخدام Modal Manager
-        if (typeof ModalManager !== 'undefined') {
-            ModalManager.hideModal('password-change-modal');
+        const modal = document.getElementById('password-change-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            console.log('✅ تم إغلاق نافذة تغيير كلمة المرور');
         }
-        
-        // مسح الحقول
-        clearPasswordFields();
     }
     
     /**
@@ -141,4 +150,52 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // جعل النظام متاحاً عالمياً
-window.PasswordChangeManager = PasswordChangeManager; 
+window.PasswordChangeManager = PasswordChangeManager;
+
+// دالة لإعداد أحداث نافذة تغيير كلمة المرور
+function setupPasswordModalEvents() {
+    const modal = document.getElementById('password-change-modal');
+    if (!modal) return;
+    
+    // إغلاق النافذة عند النقر خارجها
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closePasswordModal();
+        }
+    });
+    
+    // معالجة تقديم النموذج
+    window.handlePasswordSubmit = function(e) {
+        e.preventDefault();
+        
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        // التحقق من تطابق كلمات المرور
+        if (newPassword !== confirmPassword) {
+            alert('كلمة المرور الجديدة وتأكيدها غير متطابقين');
+            return;
+        }
+        
+        // التحقق من طول كلمة المرور
+        if (newPassword.length < 6) {
+            alert('يجب أن تكون كلمة المرور الجديدة 6 أحرف على الأقل');
+            return;
+        }
+        
+        // محاكاة تغيير كلمة المرور (يمكن تعديل هذا الجزء لاحقاً)
+        console.log('✅ تم تغيير كلمة المرور بنجاح');
+        alert('تم تغيير كلمة المرور بنجاح');
+        closePasswordModal();
+        
+        // إعادة تعيين النموذج
+        e.target.reset();
+    };
+}
+
+// تحميل الأحداث عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    // محاولة إعداد الأحداث إذا كانت النافذة موجودة
+    setupPasswordModalEvents();
+}); 

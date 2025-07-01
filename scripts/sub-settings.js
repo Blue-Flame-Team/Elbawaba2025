@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // تأكد من عدم تكرار التهيئة
+    if (window.profileInitialized) {
+        return;
+    }
+    window.profileInitialized = true;
+
     console.log('🔍 فحص أيقونة البروفايل...');
     
     // فحص بيانات تسجيل الدخول الموجودة بطرق متعددة
@@ -100,14 +106,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // إضافة event listeners للأيقونات
-    if (desktopProfileBtn) {
+    if (desktopProfileBtn && !desktopProfileBtn.hasAttribute('data-profile-initialized')) {
+        desktopProfileBtn.setAttribute('data-profile-initialized', 'true');
         desktopProfileBtn.addEventListener('click', function() {
             console.log('تم النقر على أيقونة البروفايل (ديسك توب)');
             // يمكن إضافة وظيفة فتح قائمة البروفايل هنا
         });
     }
     
-    if (mobileProfileBtn) {
+    if (mobileProfileBtn && !mobileProfileBtn.hasAttribute('data-profile-initialized')) {
+        mobileProfileBtn.setAttribute('data-profile-initialized', 'true');
         mobileProfileBtn.addEventListener('click', function() {
             console.log('تم النقر على أيقونة البروفايل (موبايل)');
             // يمكن إضافة وظيفة فتح قائمة البروفايل هنا
@@ -166,79 +174,35 @@ function forceShowProfileIcons() {
 }
 
 // مراقبة تغييرات localStorage لإظهار الأيقونة عند تسجيل الدخول
-const originalSetItem = localStorage.setItem;
-localStorage.setItem = function(key, value) {
-    originalSetItem.apply(this, arguments);
-    
-    if (key === 'isLoggedIn' && value === 'true') {
-        setTimeout(forceShowProfileIcons, 100);
-        console.log('🔍 تم رصد تسجيل دخول (isLoggedIn) - سيتم إظهار الأيقونات');
-    }
-    
-    if (key === 'currentUser') {
-        try {
-            const userData = JSON.parse(value);
-            if (userData && (userData.isLoggedIn === true || userData.name)) {
-                setTimeout(forceShowProfileIcons, 100);
-                console.log('🔍 تم رصد تسجيل دخول (currentUser) - سيتم إظهار الأيقونات');
+if (!window.localStorageOverrideInitialized) {
+    window.localStorageOverrideInitialized = true;
+    const originalSetItem = localStorage.setItem;
+    localStorage.setItem = function(key, value) {
+        originalSetItem.apply(this, arguments);
+        
+        if (key === 'isLoggedIn' && value === 'true') {
+            setTimeout(forceShowProfileIcons, 100);
+            console.log('🔍 تم رصد تسجيل دخول (isLoggedIn) - سيتم إظهار الأيقونات');
+        }
+        
+        if (key === 'currentUser') {
+            try {
+                const userData = JSON.parse(value);
+                if (userData && (userData.isLoggedIn === true || userData.name)) {
+                    setTimeout(forceShowProfileIcons, 100);
+                    console.log('🔍 تم رصد تسجيل دخول (currentUser) - سيتم إظهار الأيقونات');
+                }
+            } catch (e) {
+                // تجاهل الأخطاء
             }
-        } catch (e) {
-            // تجاهل الأخطاء
         }
-    }
-};
+    };
+}
 
-// فحص إضافي بعد 3 ثوان
-setTimeout(function() {
-    console.log('🔍 فحص إضافي للأيقونات...');
-    
-    const desktopProfileBtn = document.querySelector('.profile-icon-btn');
-    const mobileProfileBtn = document.querySelector('#mobile-profile-btn');
-    
-    if (desktopProfileBtn) {
-        const computedStyle = window.getComputedStyle(desktopProfileBtn);
-        console.log('Desktop Profile Button computed style:');
-        console.log('- display:', computedStyle.display);
-        console.log('- visibility:', computedStyle.visibility);
-        console.log('- opacity:', computedStyle.opacity);
-        console.log('- position:', computedStyle.position);
-        console.log('- z-index:', computedStyle.zIndex);
-        console.log('- width:', computedStyle.width);
-        console.log('- height:', computedStyle.height);
-        
-        // فحص حالة تسجيل الدخول وإظهار الأيقونة إذا لزم الأمر
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        if (isLoggedIn) {
-            desktopProfileBtn.classList.add('show');
-            console.log('✅ تم إظهار أيقونة البروفايل للديسك توب بنجاح');
-        } else {
-            console.log('🔒 أيقونة البروفايل مخفية - لم يتم تسجيل الدخول');
-        }
-    }
-    
-    if (mobileProfileBtn) {
-        const computedStyle = window.getComputedStyle(mobileProfileBtn);
-        console.log('Mobile Profile Button computed style:');
-        console.log('- display:', computedStyle.display);
-        console.log('- visibility:', computedStyle.visibility);
-        console.log('- opacity:', computedStyle.opacity);
-        console.log('- position:', computedStyle.position);
-        console.log('- z-index:', computedStyle.zIndex);
-        console.log('- width:', computedStyle.width);
-        console.log('- height:', computedStyle.height);
-        
-        // فحص حالة تسجيل الدخول وإظهار الأيقونة إذا لزم الأمر
-        const isLoggedInMobile = localStorage.getItem('isLoggedIn') === 'true';
-        if (isLoggedInMobile) {
-            mobileProfileBtn.classList.add('show');
-            console.log('✅ تم إظهار أيقونة البروفايل للموبايل بنجاح');
-        } else {
-            console.log('🔒 أيقونة البروفايل مخفية - لم يتم تسجيل الدخول');
-        }
-    }
-    
-    // إضافة CSS للتصميم الصحيح
+// إضافة CSS للتصميم الصحيح
+if (!document.querySelector('#profile-icons-style')) {
     const profileCSS = document.createElement('style');
+    profileCSS.id = 'profile-icons-style';
     profileCSS.textContent = `
         /* تصميم أيقونة البروفايل مثل باقي الأيقونات */
         .profile-icon-btn,
@@ -294,94 +258,15 @@ setTimeout(function() {
     `;
     document.head.appendChild(profileCSS);
     console.log('🎨 تم إضافة تصميم أيقونة البروفايل');
-    
-    // مراقبة مستمرة للأيقونات حسب حالة تسجيل الدخول
-    setInterval(function() {
-        const desktopBtn = document.querySelector('.profile-icon-btn');
-        const mobileBtn = document.querySelector('#mobile-profile-btn');
-        
-        // فحص حالة تسجيل الدخول بطرق متعددة
-        const isLoggedInFlag = localStorage.getItem('isLoggedIn') === 'true';
-        let isUserLoggedIn = false;
-        try {
-            const authSystemUser = localStorage.getItem('currentUser');
-            if (authSystemUser) {
-                const userData = JSON.parse(authSystemUser);
-                isUserLoggedIn = userData && (userData.isLoggedIn === true || userData.name);
-            }
-        } catch (e) {
-            // تجاهل الأخطاء
-        }
-        const isLoggedIn = isLoggedInFlag || isUserLoggedIn;
-        
-        if (isLoggedIn) {
-            // إظهار الأيقونات عند تسجيل الدخول
-            if (desktopBtn && !desktopBtn.classList.contains('show')) {
-                desktopBtn.classList.add('show');
-                desktopBtn.style.setProperty('display', 'block', 'important');
-                desktopBtn.style.setProperty('visibility', 'visible', 'important');
-                desktopBtn.style.setProperty('opacity', '1', 'important');
-                desktopBtn.style.setProperty('pointer-events', 'auto', 'important');
-                desktopBtn.style.setProperty('position', 'relative', 'important');
-                desktopBtn.style.setProperty('left', 'auto', 'important');
-                console.log('✅ تم إظهار أيقونة الديسك توب بعد تسجيل الدخول');
-            }
-            if (mobileBtn && !mobileBtn.classList.contains('show')) {
-                mobileBtn.classList.add('show');
-                mobileBtn.style.setProperty('display', 'block', 'important');
-                mobileBtn.style.setProperty('visibility', 'visible', 'important');
-                mobileBtn.style.setProperty('opacity', '1', 'important');
-                mobileBtn.style.setProperty('pointer-events', 'auto', 'important');
-                mobileBtn.style.setProperty('position', 'relative', 'important');
-                mobileBtn.style.setProperty('left', 'auto', 'important');
-                console.log('✅ تم إظهار أيقونة الموبايل بعد تسجيل الدخول');
-            }
-        } else {
-            // إخفاء الأيقونات عند عدم تسجيل الدخول
-            if (desktopBtn && desktopBtn.classList.contains('show')) {
-                desktopBtn.classList.remove('show');
-                desktopBtn.style.setProperty('display', 'none', 'important');
-                desktopBtn.style.setProperty('visibility', 'hidden', 'important');
-                desktopBtn.style.setProperty('opacity', '0', 'important');
-                console.log('🔒 تم إخفاء أيقونة الديسك توب بعد تسجيل الخروج');
-            }
-            if (mobileBtn && mobileBtn.classList.contains('show')) {
-                mobileBtn.classList.remove('show');
-                mobileBtn.style.setProperty('display', 'none', 'important');
-                mobileBtn.style.setProperty('visibility', 'hidden', 'important');
-                mobileBtn.style.setProperty('opacity', '0', 'important');
-                console.log('🔒 تم إخفاء أيقونة الموبايل بعد تسجيل الخروج');
-            }
-        }
-    }, 500); // فحص كل نصف ثانية
-    
-    // فحص جميع العناصر التي قد تخفي الأيقونة
-    const topBar = document.querySelector('.top-bar');
-    const iconsGroup = document.querySelector('.main-icons-group');
-    const mobileIcons = document.querySelector('.mobile-icons');
-    
-    console.log('Top Bar:', topBar);
-    console.log('Icons Group:', iconsGroup);
-    console.log('Mobile Icons:', mobileIcons);
-    
-    // فحص جميع أزرار البروفايل في الصفحة
-    const allProfileBtns = document.querySelectorAll('[class*="profile"], [id*="profile"]');
-    console.log('جميع عناصر البروفايل في الصفحة:', allProfileBtns);
-    
-    allProfileBtns.forEach((btn, index) => {
-        console.log(`عنصر ${index + 1}:`, btn);
-        console.log('- Classes:', btn.className);
-        console.log('- ID:', btn.id);
-        console.log('- Display:', window.getComputedStyle(btn).display);
-    });
-    
-}, 3000);
+}
 
 // تهيئة زر البروفايل للموبايل
 function initializeMobileProfileButton() {
     const mobileProfileBtn = document.getElementById('mobile-profile-btn');
     
-    if (mobileProfileBtn) {
+    if (mobileProfileBtn && !mobileProfileBtn.hasAttribute('data-mobile-profile-initialized')) {
+        mobileProfileBtn.setAttribute('data-mobile-profile-initialized', 'true');
+        
         // إزالة جميع الأنماط المخفية
         mobileProfileBtn.style.display = '';
         mobileProfileBtn.style.visibility = '';
@@ -400,11 +285,17 @@ function initializeMobileProfileButton() {
         updateProfileButtonVisibility();
         
         // تحديث حالة العرض عند تغيير حجم النافذة
-        window.addEventListener('resize', updateProfileButtonVisibility);
+        if (!window.profileResizeInitialized) {
+            window.profileResizeInitialized = true;
+            window.addEventListener('resize', updateProfileButtonVisibility);
+        }
     }
 }
 
 // استدعاء الدالة عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
-    initializeMobileProfileButton();
-});
+if (!window.profileButtonInitialized) {
+    window.profileButtonInitialized = true;
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeMobileProfileButton();
+    });
+}

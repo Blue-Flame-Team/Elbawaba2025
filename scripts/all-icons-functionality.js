@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 3. أي أيقونات بحث أخرى
-    const otherSearchBtns = document.querySelectorAll('.search-btn:not(.mobile-icons .search-btn)');
+    const otherSearchBtns = document.querySelectorAll('.search-btn:not(.zoom-in-btn):not(.zoom-out-btn), .icon-btn:not(.zoom-in-btn):not(.zoom-out-btn) img[src*="search.png"]');
     otherSearchBtns.forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             e.preventDefault();

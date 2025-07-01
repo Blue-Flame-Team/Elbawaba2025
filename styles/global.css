@@ -631,6 +631,7 @@ section, div, footer, header, main, article, aside {
 html, body, * {
     font-family: 'Droid Arabic Kufi', Arial, sans-serif !important;
     font-size: 16px !important;
+}
 
 :root {
     --font-primary: 'Droid Arabic Kufi', sans-serif;
@@ -649,7 +650,6 @@ body {
     font-size: var(--font-base, 16px) !important;
     line-height: 1.6;
     direction: rtl;
-}
 }
 
 /* أيقونة البروفايل للديسكتوب والموبايل */
@@ -821,5 +821,90 @@ body.user-logged-in #mobile-profile-btn,
         border-top: none !important;
         width: 100% !important;
         max-width: 100% !important;
+    }
 }
+
+/* تنسيقات عامة للنصوص */
+body {
+    font-size: 1rem;
+}
+
+p, span, div, a, button, input, textarea, label, li, td, th {
+    font-size: 1rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1.1rem; }
+
+/* Country Dropdown Styles - Global */
+.country-dropdown {
+    position: absolute !important;
+    background: white !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    z-index: 99999 !important;
+    max-height: 250px !important;
+    overflow-y: auto !important;
+    min-width: 200px !important;
+    display: none !important;
+}
+
+.country-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 12px 15px !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+    gap: 10px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.country-item:last-child {
+    border-bottom: none !important;
+}
+
+.country-item:hover {
+    background-color: #f8f9fa !important;
+}
+
+.country-item .flag-img {
+    width: 24px !important;
+    height: 18px !important;
+    object-fit: cover !important;
+    border-radius: 3px !important;
+    border: 1px solid #eee !important;
+}
+
+.country-item .country-name {
+    flex: 1 !important;
+    font-size: 14px !important;
+    color: #333 !important;
+    font-family: 'Droid Arabic Kufi', Arial, sans-serif !important;
+}
+
+.country-item .country-code {
+    font-size: 14px !important;
+    color: #666 !important;
+    font-weight: 500 !important;
+    font-family: 'Droid Arabic Kufi', Arial, sans-serif !important;
+}
+
+.country-code-select {
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    position: relative !important;
+}
+
+.country-code-select:hover {
+    background-color: rgba(0, 147, 123, 0.1) !important;
+}
+
+.country-code-select.active {
+    background-color: rgba(0, 147, 123, 0.15) !important;
+    border-color: #00937B !important;
 }
