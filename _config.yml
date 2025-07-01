@@ -1,0 +1,40 @@
+# GitHub Pages configuration
+# This ensures proper case sensitivity handling and UTF-8 encoding
+
+# Enable UTF-8 encoding for Arabic content
+encoding: utf-8
+
+# Set the source directory
+source: .
+
+# Enable case sensitivity warnings
+strict_front_matter: true
+
+# Include all necessary files
+include:
+  - assets/
+  - scripts/
+  - styles/
+  - pages/
+  - includes/
+  - templates/
+
+# Exclude unnecessary files
+exclude:
+  - "*.ps1"
+  - "*.md"
+  - ".git*"
+  - "test*"
+  - "*.bak"
+
+# Plugin settings
+plugins:
+  - jekyll-relative-links
+
+# Relative links settings
+relative_links:
+  enabled: true
+  collections: false
+
+# Set baseurl if repository name is not your username.github.io
+# baseurl: "/repository-name" 
