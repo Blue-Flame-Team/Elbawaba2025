@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modal) {
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
-            console.log('🔒 تم فتح نافذة تعديل كلمة المرور');
         }
     }
     
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const inputs = modal.querySelectorAll('.password-change-input');
             inputs.forEach(input => input.value = '');
             
-            console.log('🔒 تم إغلاق نافذة تعديل كلمة المرور');
         }
     }
     
@@ -289,11 +287,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.showPasswordChangeModal = showPasswordChangeModal;
     window.hidePasswordChangeModal = hidePasswordChangeModal;
     
-    console.log('🔒 نظام تعديل كلمة المرور جاهز للعمل على جميع الأجهزة');
     
     // كود إضافي شامل لضمان عمل زر تعديل كلمة المرور على PC
     setTimeout(function() {
-        console.log('🔍 البحث الشامل عن زر تعديل كلمة المرور للPC...');
         
         function findAndBindPasswordButtons() {
             // البحث في جميع الأماكن المحتملة
@@ -331,7 +327,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         element.tagName !== 'SCRIPT' &&
                         element.tagName !== 'STYLE') {
                         
-                        console.log('🎯 تم العثور على عنصر لكلمة المرور:', text.trim());
                         
                         // إزالة أي روابط أو أحداث موجودة
                         element.removeAttribute('href');
@@ -344,7 +339,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // إضافة event listener
                         newElement.addEventListener('click', function(e) {
-                            console.log('🔒 تم النقر على زر تعديل كلمة المرور من البحث الشامل');
                             
                             e.preventDefault();
                             e.stopPropagation();
@@ -363,7 +357,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         }, true);
                         
                         newElement.setAttribute('data-pc-password-bound', 'true');
-                        console.log('✅ تم ربط العنصر بنجاح');
                     }
                 });
             });
@@ -380,7 +373,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // توقيف البحث بعد 10 ثوانِ
         setTimeout(function() {
             clearInterval(searchInterval);
-            console.log('🔍 انتهى البحث الدوري');
         }, 10000);
         
         // مراقبة أي تغييرات في DOM
@@ -402,7 +394,6 @@ document.addEventListener('DOMContentLoaded', function() {
             subtree: true
         });
         
-        console.log('✅ نظام البحث الشامل للPC نشط');
         
     }, 1000);
 
@@ -424,7 +415,6 @@ document.addEventListener('DOMContentLoaded', function() {
             target.closest('#mobile-profile-btn') ||
             target.closest('.profile-icon-btn')) {
             
-            console.log('🔄 تم فتح نافذة الملف الشخصي، إعادة ربط الأزرار...');
             
             setTimeout(function() {
                 // البحث في النافذة الجديدة
@@ -434,7 +424,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     if ((btnText.includes('كلمة المرور') || btnText.includes('تعديل كلمة')) && 
                         !btn.hasAttribute('data-pc-password-bound')) {
                         
-                        console.log('🆕 ربط زر جديد في النافذة:', btnText.trim());
                         
                         btn.removeAttribute('href');
                         btn.removeAttribute('onclick');

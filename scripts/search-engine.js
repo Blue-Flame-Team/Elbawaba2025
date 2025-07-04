@@ -195,8 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // طباعة معلومات البحث في الأحكام السعودية
-            console.log('بيانات البحث في الأحكام السعودية:');
-            console.log(searchData);
             
             alert('جاري البحث في الأحكام السعودية...');
             return;
@@ -219,9 +217,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // طباعة معلومات البحث عن أرقام الوثائق
-            console.log('بيانات البحث عن رقم الوثيقة:');
-            console.log('- رقم الوثيقة:', documentNumber);
-            console.log('- نوع الوثيقة:', documentType);
             
             alert('جاري البحث عن ' + documentType + ' رقم: ' + documentNumber);
             return;
@@ -262,14 +257,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // طباعة معلومات البحث عن الملف الصحفي
-            console.log('بيانات البحث في الملف الصحفي:');
-            console.log('- نص البحث:', searchQuery);
-            console.log('- نوع البحث:', searchType);
-            console.log('- موقع البحث:', searchLocation);
             
             if (documentNumber) {
-                console.log('- رقم الوثيقة:', documentNumber);
-                console.log('- نوع الوثيقة:', documentType);
                 alert('جاري البحث عن ' + documentType + ' رقم: ' + documentNumber);
             } else {
                 alert('جاري البحث عن: ' + searchQuery);
@@ -300,18 +289,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // طباعة معلومات البحث في وحدة التحكم
-        console.log('بيانات البحث:');
-        console.log('- نص البحث:', searchQuery);
-        console.log('- التبويب النشط:', activeTab);
-        console.log('- نوع البحث:', searchType);
-        console.log('- موقع البحث:', searchLocation);
-        console.log('- مجالات البحث:', searchScopes);
         
         // عرض نتائج البحث
         // إظهار قسم نتائج البحث
         document.querySelector('.search-results-container').style.display = 'block';
         
         // يمكن هنا إضافة كود لتحميل نتائج البحث الفعلية من الخادم
-        console.log('تم إظهار نتائج البحث لـ: ' + searchQuery);
     }
 });

@@ -4,7 +4,6 @@ const path = require('path');
 
 // Root directory
 const rootDir = __dirname.replace('\\scripts', '');
-console.log('Root directory:', rootDir);
 
 // Find all HTML files
 function findHtmlFiles(dir, fileList = []) {
@@ -54,14 +53,11 @@ function addFontResizeScript(htmlFilePath) {
                 
                 // Write the updated content back to the file
                 fs.writeFileSync(htmlFilePath, updatedContent, 'utf8');
-                console.log(`✅ Updated: ${htmlFilePath}`);
                 return true;
             } else {
-                console.log(`❌ Could not find </body> tag in: ${htmlFilePath}`);
                 return false;
             }
         } else {
-            console.log(`⏭️ Script already exists in: ${htmlFilePath}`);
             return false;
         }
     } catch (error) {
@@ -72,9 +68,7 @@ function addFontResizeScript(htmlFilePath) {
 
 // Main function
 function main() {
-    console.log('Searching for HTML files...');
     const htmlFiles = findHtmlFiles(rootDir);
-    console.log(`Found ${htmlFiles.length} HTML files.`);
     
     let updatedCount = 0;
     
@@ -84,7 +78,6 @@ function main() {
         }
     });
     
-    console.log(`\nSummary: Updated ${updatedCount} out of ${htmlFiles.length} HTML files.`);
 }
 
 // Run the script
@@ -129,7 +122,5 @@ files.forEach(file => {
 
     // حفظ التغييرات
     fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`✅ تم تحديث الملف: ${file}`);
 });
 
-console.log('✨ تم تحديث جميع الملفات بنجاح!');

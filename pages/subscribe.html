@@ -83,7 +83,80 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td,
     font-family: "Droid Arabic Kufi", sans-serif !important;
 }
 
+                .country-select {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .country-select:hover {
+            background-color: #f8fbff;
+            border-color: #4dabf7;
+            box-shadow: 0 4px 12px rgba(77, 171, 247, 0.15);
+            transform: translateY(-1px);
+        }
 
+        .country-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .country-select .flag-img {
+            width: 24px;
+            height: 18px;
+            border-radius: 4px;
+            object-fit: cover;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .country-select .code {
+            font-family: 'Droid Arabic Kufi', sans-serif;
+            font-size: 15px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .country-select .dropdown-arrow {
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            opacity: 0.7;
+        }
+        
+        .country-select:hover .dropdown-arrow {
+            opacity: 1;
+            transform: translateY(1px) scale(1.1);
+        }
+        
+        .country-select.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+.form-group.country-code {
+    flex-shrink: 0;
+}
+
+.phone-row {
+    display: flex;
+    gap: 10px;
+}
+
+.phone-row .form-group {
+    flex: 1;
+}
+
+.phone-row .form-group.country-code {
+    flex: 0 0 auto;
+}
 
 </style></head>
 <body>
@@ -361,13 +434,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td,
                     
                     <div class="form-group country-code">
                         <div class="country-select">
-                            <div class="flag-circle">
-                                <img src="../assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="مصر" class="flag-img">
+                            <div class="country-info">
+                                <img src="../assets/icons/egypt-flag.svg" alt="مصر" class="flag-img">
+                                <span class="code">+20</span>
                             </div>
-                            <svg class="heart-icon" width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 17C9.71527 17 9.44077 16.9015 9.22684 16.7224C8.41888 16.0475 7.63992 15.4132 6.95267 14.8536L6.94916 14.8507C4.93423 13.2102 3.19427 11.7935 1.98364 10.3979C0.630341 8.83585 0 7.35939 0 5.74649C0 4.17958 0.563507 2.72422 1.58661 1.66195C2.62192 0.587903 4.04251 0 5.58716 0C6.74164 0 7.79892 0.328199 8.72955 0.975406C9.19922 1.3023 9.62494 1.69488 10 2.14286C10.3752 1.69488 10.8008 1.3023 11.2706 0.975406C12.2012 0.328199 13.2585 0 14.413 0C15.9575 0 17.3782 0.587903 18.4135 1.66195C19.4366 2.72422 20 4.17958 20 5.74649C20 7.35939 19.3698 8.83585 18.0165 10.3978C16.8059 11.7935 15.0661 13.2101 13.0515 14.8504C12.363 15.4132 11.5828 16.0487 10.773 16.7238C10.5592 16.9015 10.2846 17 10 17Z" fill="#657685"/>
+                            <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L6 6L11 1" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <span class="code">+20</span>
                         </div>
                     </div>
                     
@@ -603,6 +676,208 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td,
     <script src="../scripts/profile-icons-universal-fix.js"></script>
     <script src="../scripts/edit-profile-modal.js"></script>
     <script src="../scripts/password-change-modal.js"></script>
+    <script>
+        // قائمة الدول المدعومة مع أعلام محسّنة
+        const countries = [
+            { 
+                name: 'مصر', 
+                code: '+20', 
+                flag: '../assets/icons/egypt-flag.svg',
+                fallback: '../assets/icons/flag-for-flag-egypt-svgrepo-com 1.png'
+            },
+            { 
+                name: 'المملكة العربية السعودية', 
+                code: '+966', 
+                flag: '../assets/icons/saudi-flag.svg',
+                fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0MCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMDA2QzM1Ii8+Cjx0ZXh0IHg9IjIwIiB5PSIxNSIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPtiz2LnZiNiv2YrYqTwvdGV4dD4KPC9zdmc+'
+            },
+            { 
+                name: 'الإمارات العربية المتحدة', 
+                code: '+971', 
+                flag: '../assets/icons/uae-flag.svg',
+                fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0MCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjQzgxMDJFIi8+CjxyZWN0IHg9IjEwIiB5PSIwIiB3aWR0aD0iMzAiIGhlaWdodD0iMTAiIGZpbGw9IiMwMDg0M0QiLz4KPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMzAiIGhlaWdodD0iMTAiIGZpbGw9IiNGRkZGRkYiLz4KPHJlY3QgeD0iMTAiIHk9IjIwIiB3aWR0aD0iMzAiIGhlaWdodD0iMTAiIGZpbGw9IiMwMDAwMDAiLz4KPC9zdmc+'
+            },
+            { 
+                name: 'الكويت', 
+                code: '+965', 
+                flag: 'https://flagcdn.com/w40/kw.png',
+                fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0MCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMTAiIHk9IjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzAwN0EzRCIvPgo8cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0ZGRkZGRiIvPgo8cmVjdCB4PSIxMCIgeT0iMjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0NFMTEyNiIvPgo8cG9seWdvbiBwb2ludHM9IjAsMCAxMCwwIDEwLDMwIDAsMzAiIGZpbGw9IiMwMDAwMDAiLz4KPC9zdmc+'
+            },
+            { 
+                name: 'البحرين', 
+                code: '+973', 
+                flag: 'https://flagcdn.com/w40/bh.png',
+                fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0MCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjE1IiBoZWlnaHQ9IjMwIiBmaWxsPSIjQ0UxMTI2Ii8+CjxyZWN0IHg9IjE1IiB5PSIwIiB3aWR0aD0iMjUiIGhlaWdodD0iMzAiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+'
+            },
+            { 
+                name: 'قطر', 
+                code: '+974', 
+                flag: 'https://flagcdn.com/w40/qa.png',
+                fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0MCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjOEQxQjNEIi8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxNSIgaGVpZ2h0PSIzMCIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4='
+            },
+            { 
+                name: 'عمان', 
+                code: '+968', 
+                flag: 'https://flagcdn.com/w40/om.png',
+                fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0MCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMTAiIHk9IjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0ZGRkZGRiIvPgo8cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0VEMUMyNCIvPgo8cmVjdCB4PSIxMCIgeT0iMjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzAwQTE5QSIvPgo8cmVjdCB3aWR0aD0iMTAiIGhlaWdodD0iMzAiIGZpbGw9IiNFRDFDMjQiLz4KPC9zdmc+'
+            },
+            { 
+                name: 'الأردن', 
+                code: '+962', 
+                flag: 'https://flagcdn.com/w40/jo.png',
+                fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0MCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMTAiIHk9IjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzAwMDAwMCIvPgo8cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0ZGRkZGRiIvPgo8cmVjdCB4PSIxMCIgeT0iMjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzAwNzAzRCIvPgo8cG9seWdvbiBwb2ludHM9IjAsMCAxNSwxNSAwLDMwIiBmaWxsPSIjQ0UxMTI2Ii8+Cjwvc3ZnPg=='
+            },
+            { 
+                name: 'لبنان', 
+                code: '+961', 
+                flag: 'https://flagcdn.com/w40/lb.png',
+                fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0MCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRUQxQzI0Ii8+CjxyZWN0IHk9IjEwIiB3aWR0aD0iNDAiIGhlaWdodD0iMTAiIGZpbGw9IiNGRkZGRkYiLz4KPHJlY3QgeT0iMjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0VEMUM0Ii8+Cjwvc3ZnPg=='
+            },
+            { 
+                name: 'سوريا', 
+                code: '+963', 
+                flag: 'https://flagcdn.com/w40/sy.png',
+                fallback: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0MCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjQ0UxMTI2Ii8+CjxyZWN0IHk9IjEwIiB3aWR0aD0iNDAiIGhlaWdodD0iMTAiIGZpbGw9IiNGRkZGRkYiLz4KPHJlY3QgeT0iMjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzAwMDAwMCIvPgo8L3N2Zz4='
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const countrySelect = document.querySelector('.country-select');
+            
+            if (!countrySelect) {
+                console.log('عنصر اختيار الدولة غير موجود');
+                return;
+            }
+
+            // إنشاء القائمة المنسدلة
+            const dropdown = document.createElement('div');
+            dropdown.className = 'country-dropdown-custom';
+            dropdown.style.cssText = `
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                border: 1px solid #e0e0e0;
+                border-radius: 12px;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+                z-index: 9999;
+                max-height: 280px;
+                overflow-y: auto;
+                font-family: 'Droid Arabic Kufi', Arial, sans-serif;
+                direction: rtl;
+                margin-top: 8px;
+                min-width: 280px;
+                backdrop-filter: blur(10px);
+            `;
+
+            // إضافة رسالة تحميل
+            const loadingItem = document.createElement('div');
+            loadingItem.style.cssText = `
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                font-size: 14px;
+                color: #666;
+            `;
+            loadingItem.innerHTML = '⏳ جاري تحميل الدول...';
+            dropdown.appendChild(loadingItem);
+
+            // إضافة الدول للقائمة
+            setTimeout(() => {
+                dropdown.innerHTML = ''; // مسح رسالة التحميل
+                
+                countries.forEach((country, index) => {
+                    const item = document.createElement('div');
+                item.style.cssText = `
+                    display: flex;
+                    align-items: center;
+                    padding: 12px 18px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    gap: 12px;
+                    ${index < countries.length - 1 ? 'border-bottom: 1px solid #f5f5f5;' : ''}
+                `;
+                
+                item.innerHTML = `
+                    <img src="${country.flag}" alt="${country.name}" 
+                         style="width: 24px; height: 18px; border-radius: 3px; object-fit: cover; box-shadow: 0 1px 3px rgba(0,0,0,0.1);"
+                         onerror="this.src='${country.fallback || '../assets/icons/egypt-flag.svg'}'">
+                    <span style="flex: 1; font-size: 15px; color: #2c3e50; font-weight: 500; line-height: 1.4;">${country.name}</span>
+                    <span style="font-size: 13px; color: #7f8c8d; font-weight: 600; background: #f8f9fa; padding: 4px 8px; border-radius: 6px;">${country.code}</span>
+                `;
+                
+                // تأثير الهوفر
+                item.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#e8f4fd';
+                    this.style.transform = 'translateX(-2px)';
+                    this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = 'transparent';
+                    this.style.transform = 'translateX(0)';
+                    this.style.boxShadow = 'none';
+                });
+                
+                // عند النقر على دولة
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    const flagImg = countrySelect.querySelector('.flag-img');
+                    const codeSpan = countrySelect.querySelector('.code');
+                    
+                    if (flagImg && codeSpan) {
+                        flagImg.src = country.flag;
+                        flagImg.alt = country.name;
+                        flagImg.onerror = function() {
+                            this.src = country.fallback || '../assets/icons/egypt-flag.svg';
+                        };
+                        codeSpan.textContent = country.code;
+                    }
+                    
+                    dropdown.style.display = 'none';
+                    countrySelect.classList.remove('active');
+                });
+                
+                dropdown.appendChild(item);
+            });
+            }, 300); // إغلاق setTimeout
+
+            // إضافة القائمة بعد العنصر
+            const parentGroup = countrySelect.closest('.form-group');
+            if (parentGroup) {
+                parentGroup.style.position = 'relative';
+                parentGroup.appendChild(dropdown);
+            }
+
+            // عند النقر على عنصر اختيار الدولة
+            countrySelect.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // إغلاق/فتح القائمة
+                if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                    dropdown.style.display = 'block';
+                    countrySelect.classList.add('active');
+                } else {
+                    dropdown.style.display = 'none';
+                    countrySelect.classList.remove('active');
+                }
+            });
+
+            // إغلاق القائمة عند النقر في أي مكان آخر
+            document.addEventListener('click', function(e) {
+                if (!countrySelect.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.style.display = 'none';
+                    countrySelect.classList.remove('active');
+                }
+            });
+
+            console.log('تم تفعيل قائمة الدول بنجاح');
+        });
+    </script>
 </body>
 </html>
 

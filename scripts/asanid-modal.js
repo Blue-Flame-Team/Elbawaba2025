@@ -1,4 +1,6 @@
 // وظائف نافذة خدمة الأسانيد
+"use strict";
+
 let asanidModal;
 let closeAsanidModal;
 let asanidContactForm;
@@ -6,20 +8,15 @@ let submitAsanidForm;
 
 // دالة لفتح النافذة
 window.showAsanidModal = function() {
-    console.log('🔍 محاولة فتح نافذة خدمة الأسانيد...');
     
     // إذا لم تكن النافذة موجودة، نحاول تحميلها من الملف
     if (!asanidModal) {
-        console.log('⚠️ النافذة غير موجودة، جاري التحميل...');
         const modalPath = window.location.pathname.includes('/pages/') ? '../includes/user-dashboard-modal.html' : 'includes/user-dashboard-modal.html';
-        console.log('📂 Loading modal from:', modalPath);
         fetch(modalPath)
             .then(response => {
-                console.log('✅ Modal fetch response:', response.status);
                 return response.text();
             })
             .then(html => {
-                console.log('✅ Modal HTML loaded');
                 // إضافة النافذة للصفحة
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = html;
@@ -33,12 +30,6 @@ window.showAsanidModal = function() {
                     asanidContactForm = document.getElementById('asanidContactForm');
                     submitAsanidForm = document.getElementById('submitAsanidForm');
                     
-                    console.log('✅ Modal elements found:', {
-                        closeBtn: !!closeAsanidModal,
-                        form: !!asanidContactForm,
-                        submitBtn: !!submitAsanidForm
-                    });
-                    
                     // إعادة ربط الأحداث
                     bindEvents();
                     
@@ -46,17 +37,13 @@ window.showAsanidModal = function() {
                     showModal();
                 } else {
                     console.error('❌ لم يتم العثور على النافذة في الملف المحمل');
-                    console.log('🔍 HTML content:', html.substring(0, 200) + '...');
                 }
             })
             .catch(error => {
                 console.error('❌ خطأ في تحميل النافذة:', error);
-                console.log('📍 Current path:', window.location.pathname);
-                console.log('🔍 Attempted modal path:', modalPath);
                 alert('حدث خطأ في تحميل نافذة خدمة الأسانيد');
             });
     } else {
-        console.log('✅ النافذة موجودة، جاري فتحها...');
         showModal();
     }
 };
@@ -80,7 +67,6 @@ function showModal() {
             }
         }
         
-        console.log('✅ تم فتح النافذة بنجاح');
     }
 }
 
@@ -89,13 +75,11 @@ function closeModal() {
     if (asanidModal) {
         asanidModal.style.display = 'none';
         document.body.style.overflow = 'auto';
-        console.log('✅ تم إغلاق النافذة');
     }
 }
 
 // دالة لربط الأحداث
 function bindEvents() {
-    console.log('🔄 جاري ربط الأحداث...');
     
     // إضافة مستمع حدث للزر إغلاق
     if (closeAsanidModal) {
@@ -138,7 +122,6 @@ function bindEvents() {
             }
 
             // إرسال البيانات (يمكن تعديل هذا الجزء لإرسال البيانات إلى الخادم)
-            console.log('📤 إرسال البيانات:', formData);
             
             // إظهار رسالة نجاح وإغلاق النافذة
             alert('تم إرسال طلبك بنجاح. سنقوم بالرد عليك في أقرب وقت ممكن.');
@@ -146,7 +129,6 @@ function bindEvents() {
         });
     }
     
-    console.log('✅ تم ربط جميع الأحداث بنجاح');
 }
 
 // تحميل الأحداث عند تحميل الصفحة

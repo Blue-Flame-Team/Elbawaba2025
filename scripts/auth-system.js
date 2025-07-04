@@ -42,10 +42,26 @@ const AuthSystem = (function() {
      * تهيئة النظام عند تحميل الصفحة
      */
     function init() {
-        console.log('تهيئة نظام المصادقة...');
         
         // الحصول على كافة عناصر واجهة المستخدم
         _cacheElements();
+        
+        // إضافة سكريبت اختيار الدولة إذا لم يكن موجوداً
+        if (!document.querySelector('script[src*="login-modal-country-selector.js"]')) {
+            const script = document.createElement('script');
+            script.src = '../scripts/login-modal-country-selector.js';
+            script.onload = () => {
+                if (typeof initializeCountrySelectors === 'function') {
+                    setTimeout(initializeCountrySelectors, 100);
+                }
+            };
+            document.body.appendChild(script);
+        }
+        
+        // تهيئة القائمة المنسدلة للدول
+        if (typeof initializeCountryDropdown === 'function') {
+            initializeCountryDropdown();
+        }
         
         // تهيئة الأحداث لعناصر واجهة المستخدم
         _setupEventListeners();
@@ -76,16 +92,8 @@ const AuthSystem = (function() {
         _elements.profileIconBtn = document.querySelector('.profile-icon-btn');
         
         // تسجيل للتشخيص
-        console.log('Auth System - Elements found:');
-        console.log('- mainIconsGroup:', !!_elements.mainIconsGroup);
-        console.log('- profileIconBtn:', !!_elements.profileIconBtn);
-        console.log('- loginBtns count:', _elements.loginBtns.length);
         
         // تسجيل للتشخيص
-        console.log('Auth System - Elements found:');
-        console.log('- mainIconsGroup:', !!_elements.mainIconsGroup);
-        console.log('- profileIconBtn:', !!_elements.profileIconBtn);
-        console.log('- loginBtns count:', _elements.loginBtns.length);
     }
     
     /**
@@ -236,7 +244,6 @@ const AuthSystem = (function() {
             // إغلاق نافذة تسجيل الدخول
             _hideLoginModal();
             
-            console.log('تم تسجيل الدخول بنجاح:', user.name);
             return true;
         } else {
             // فشل تسجيل الدخول
@@ -259,7 +266,6 @@ const AuthSystem = (function() {
         // إغلاق أي نوافذ مفتوحة للمستخدم
         _hideUserDashboard();
         
-        console.log('تم تسجيل الخروج بنجاح');
     }
     
     /**
@@ -275,12 +281,10 @@ const AuthSystem = (function() {
             if (storedUser && storedUser.isLoggedIn) {
                 _currentUser = storedUser;
                 _updateUIAfterLogin();
-                console.log('المستخدم مسجل الدخول:', storedUser.name);
             }
         } catch (error) {
             console.error('خطأ في تحميل بيانات المستخدم:', error);
             // تنظيف البيانات المُفسدة من localStorage
-            console.log('تنظيف بيانات localStorage المُفسدة...');
             localStorage.removeItem(LOCAL_STORAGE_KEY);
             _currentUser = null;
         }
@@ -338,19 +342,16 @@ const AuthSystem = (function() {
             existingProfileBtn.style.display = 'block';
             existingProfileBtn.addEventListener('click', _showUserDashboard);
             _elements.profileIconBtn = existingProfileBtn;
-            console.log('تم إظهار أيقونة البروفايل في الديسك توب');
         }
         
         if (mobileProfileBtn) {
             // إظهار أيقونة البروفايل في الموبايل
             mobileProfileBtn.style.display = 'block';
             mobileProfileBtn.addEventListener('click', _showUserDashboard);
-            console.log('تم إظهار أيقونة البروفايل في الموبايل');
         }
         
         // إذا لم توجد أيقونة في HTML، أنشئ واحدة جديدة
         if (!existingProfileBtn && !mobileProfileBtn) {
-            console.log('لم يتم العثور على أيقونة البروفايل، سيتم إنشاؤها...');
             _createNewProfileIcon();
         }
     }
@@ -387,7 +388,6 @@ const AuthSystem = (function() {
         // تحديث مرجع أيقونة الملف الشخصي
         _elements.profileIconBtn = profileButton;
         
-        console.log('تم إنشاء أيقونة البروفايل الجديدة');
     }
     
     /**
@@ -863,7 +863,7 @@ const AuthSystem = (function() {
             }
         });
         
-        // إضافة أنماط CSS لنافذة الاشتراك
+        // إضافة أنماط CSS لنافذة طلب الاشتراك
         _loadSubscribeModalStyles();
     }
     

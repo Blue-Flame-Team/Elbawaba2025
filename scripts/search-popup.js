@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function performSearch() {
         const searchQuery = document.querySelector('.search-popup-input').value.trim();
         if (searchQuery) {
-            console.log('Performing search for:', searchQuery);
             // Implement actual search functionality here
             // For now, we'll just close the popup
             closePopup();

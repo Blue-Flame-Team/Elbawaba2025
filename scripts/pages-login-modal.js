@@ -6,11 +6,9 @@
 
 // توجيه الوظائف إلى نظام المصادقة الجديد
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تم تحديث نظام تسجيل الدخول للصفحات الفرعية. استخدم auth-system.js');
     
     // تحقق من وجود نظام المصادقة الجديد
     if (typeof AuthSystem !== 'undefined') {
-        console.log('نظام المصادقة الجديد موجود وجاهز للصفحات الفرعية');
     } else {
         console.error('لم يتم العثور على نظام المصادقة الجديد. الرجاء إضافة auth-system.js');
         
@@ -19,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         script.src = '../scripts/auth-system.js';
         script.async = true;
         script.onload = function() {
-            console.log('تم تحميل نظام المصادقة الجديد ديناميكياً');
             // تهيئة النظام بعد التحميل
             if (typeof AuthSystem !== 'undefined') {
                 AuthSystem.init();

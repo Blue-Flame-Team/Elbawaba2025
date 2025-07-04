@@ -4,7 +4,6 @@
 
 // تهيئة نظام تسجيل الدخول عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تهيئة نظام تسجيل الدخول التجريبي');
     
     // بيانات المستخدمين للتجربة
     var testUsers = [
@@ -181,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // إضافة أيقونة الملف الشخصي
                 addProfileIcon();
                 
-                console.log('المستخدم مسجل الدخول: ' + currentUser.name);
             }
         } catch (error) {
             console.error('خطأ في تحميل بيانات المستخدم:', error);

@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // إذا تم التحقق من كل شيء، يمكن إرسال النموذج
         if (isValid) {
-            console.log('تم التحقق من النموذج بنجاح، جاري الإرسال...');
             // هنا يمكن إرسال النموذج فعليًا
             // subscriptionForm.submit();
             
@@ -146,4 +145,41 @@ document.addEventListener('DOMContentLoaded', function() {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
+
+    const countrySelect = document.querySelector('.country-select');
+    const countryDropdown = countrySelect.querySelector('.country-dropdown');
+    const flagCircle = countrySelect.querySelector('.flag-circle');
+    const currentFlag = flagCircle.querySelector('.flag-img');
+    const currentCode = countrySelect.querySelector('.code');
+    const countryOptions = countryDropdown.querySelectorAll('.country-option');
+
+    // فتح وإغلاق القائمة المنسدلة
+    flagCircle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        countrySelect.classList.toggle('active');
+    });
+
+    // اختيار دولة
+    countryOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const newFlag = this.getAttribute('data-flag');
+            const newCode = this.getAttribute('data-code');
+            const countryName = this.querySelector('.country-name').textContent;
+
+            // تحديث العلم ورمز الدولة
+            currentFlag.src = newFlag;
+            currentFlag.alt = countryName;
+            currentCode.textContent = newCode;
+
+            // إغلاق القائمة
+            countrySelect.classList.remove('active');
+        });
+    });
+
+    // إغلاق القائمة عند النقر خارجها
+    document.addEventListener('click', function(e) {
+        if (!countrySelect.contains(e.target)) {
+            countrySelect.classList.remove('active');
+        }
+    });
 });

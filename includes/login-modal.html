@@ -1,54 +1,54 @@
-<!-- نافذة تسجيل الدخول المنبثقة -->
-<div class="login-modal" id="login-modal" style="display: none;">
-    <div class="login-modal-content">
-        <div class="login-modal-header">
-            <span class="close-modal">&times;</span>
-        </div>
-        <div class="login-modal-body">
-            <h2 class="login-title">الوصول السريع</h2>
-            
-            <div class="phone-login-section">
-                <div class="phone-input-row">
-                    <div class="country-code-select">
-                        <div class="country-flag">
-                            <img src="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="مصر" class="flag-img">
+<!-- تحديث نموذج تسجيل الدخول مع محدد الدولة الجديد -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">تسجيل الدخول</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="login-form">
+                    <div class="form-group position-relative">
+                        <div class="country-code-select" id="country-selector">
+                            <div class="selected-country">
+                                <img src="/assets/icons/egypt-flag.svg" alt="مصر" class="flag-img" style="width: 24px; height: 18px; object-fit: cover; margin-left: 10px;">
+                                <span class="code">+20</span>
+                                <span class="dropdown-arrow">▼</span>
+                            </div>
+                            <div class="country-dropdown">
+                                <div class="country-item" data-code="+20" data-flag="/assets/icons/egypt-flag.svg">
+                                    <img src="/assets/icons/egypt-flag.svg" alt="مصر">
+                                    <span>مصر</span>
+                                    <span class="country-code">+20</span>
+                                </div>
+                                <div class="country-item" data-code="+966" data-flag="/assets/icons/saudi-flag.svg">
+                                    <img src="/assets/icons/saudi-flag.svg" alt="السعودية">
+                                    <span>السعودية</span>
+                                    <span class="country-code">+966</span>
+                                </div>
+                                <div class="country-item" data-code="+971" data-flag="/assets/icons/uae-flag.svg">
+                                    <img src="/assets/icons/uae-flag.svg" alt="الإمارات">
+                                    <span>الإمارات</span>
+                                    <span class="country-code">+971</span>
+                                </div>
+                            </div>
                         </div>
-                        <span class="code">+20</span>
+                        <input type="tel" class="form-control" placeholder="رقم الهاتف" required>
                     </div>
-                    <div class="phone-field">
-                        <input type="tel" placeholder="رقم الهاتف" class="login-input">
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="كلمة المرور" required>
                     </div>
-                </div>
-                
-                <button class="send-code-btn">ارسل رمز التحقق</button>
-                <p class="error-msg">يجب إدخال رقم الهاتف</p>
-            </div>
-            
-            <div class="separator">
-                <span>أو يمكنك تسجيل الدخول باسم المستخدم وكلمة المرور</span>
-            </div>
-            
-            <div class="credentials-login-section">
-                <input type="text" placeholder="اسم المستخدم" class="login-input">
-                <div class="password-field">
-                    <input type="password" placeholder="كلمة المرور" class="login-input">
-                    <button class="toggle-password">
-                        <img src="assets/icons/eye.png" alt="إظهار" class="eye-icon">
-                    </button>
-                </div>
-                <button class="login-submit-btn">دخول</button>
-                <a href="#" class="forgot-password">هل نسيت كلمة السر؟</a>
-            </div>
-            
-            <div class="help-section">
-                <a href="#" class="help-btn customer-service">
-                    <span>خدمة العملاء</span>
-                    <img src="assets/icons/support.png" alt="خدمة" class="help-icon">
-                </a>
-                <a href="#" class="help-btn self-help">
-                    <span>المساعدة الذاتية</span>
-                    <img src="assets/icons/message-search.png" alt="مساعدة" class="help-icon">
-                </a>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="remember-me">
+                        <label class="form-check-label" for="remember-me">تذكرني</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+                    <div class="text-center mt-3">
+                        <a href="#" data-toggle="modal" data-target="#forgot-password-modal">نسيت كلمة المرور؟</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

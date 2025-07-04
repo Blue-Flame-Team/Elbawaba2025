@@ -1,7 +1,5 @@
 // ملف شريط التنقل الموحد - وظائف التكبير والتصغير فقط
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تفعيل وظائف التكبير والتصغير فقط');
-    
     // 1. وظائف القائمة المتنقلة
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
@@ -70,6 +68,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
-    console.log('تم تفعيل الوظائف الأساسية للتنقل (بدون أيقونات)');
 }); 

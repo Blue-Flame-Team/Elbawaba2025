@@ -1,6 +1,5 @@
 // كود بسيط لتكبير النص في الموقع
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تفعيل وظيفة تكبير النص البسيطة');
     
     // المتغيرات الأساسية
     let fontSize = 100;
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         fontSize = size;
         localStorage.setItem('simple-font-size', size);
         document.body.style.fontSize = size + '%';
-        console.log('تم تغيير حجم الخط إلى: ' + size + '%');
     }
     
     // وظيفة زيادة حجم الخط
@@ -48,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
             increaseFont();
-            console.log('تم النقر على زر التكبير');
         });
     });
     
@@ -58,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
             decreaseFont();
-            console.log('تم النقر على زر التصغير');
         });
     });
 });

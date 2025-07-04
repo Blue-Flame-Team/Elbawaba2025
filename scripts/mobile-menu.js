@@ -1,7 +1,6 @@
 // ملف جافاسكريبت للقائمة المتنقلة في الموبايل
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تم تحميل ملف القائمة المتنقلة');
     
     // عناصر القائمة المتنقلة
     const hamburgerMenu = document.querySelector('.hamburger-menu');
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // فتح القائمة عند النقر على زر الهامبرغر
     hamburgerMenu.addEventListener('click', function(e) {
-        console.log('تم النقر على زر القائمة');
         e.preventDefault();
         mobileMenuOverlay.classList.add('show');
         mobileSideMenu.classList.add('show');

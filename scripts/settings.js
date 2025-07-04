@@ -3,7 +3,6 @@
 
 /*
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🔧 بدء اختبار وظيفة قائمة الإعدادات...');
     
     // انتظار حتى يتم تحميل unified-icons.js
     setTimeout(function() {
@@ -11,18 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const settingsButtons = document.querySelectorAll('.settings-toggle-btn');
         const settingsMenus = document.querySelectorAll('.settings-menu');
         
-        console.log('تم العثور على أزرار الإعدادات:', settingsButtons.length);
-        console.log('تم العثور على قوائم الإعدادات:', settingsMenus.length);
         
         // إضافة وظيفة مباشرة لكل زر إعدادات
         settingsButtons.forEach(function(btn, index) {
-            console.log('إعداد زر الإعدادات رقم:', index + 1);
             
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                console.log('تم النقر على زر الإعدادات رقم:', index + 1);
                 
                 // البحث عن القائمة المناسبة
                 let targetMenu = null;
@@ -39,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 if (targetMenu) {
-                    console.log('سيتم فتح/إغلاق القائمة');
                     
                     // إغلاق جميع القوائم الأخرى
                     settingsMenus.forEach(menu => {
@@ -70,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     e.preventDefault();
                     e.stopPropagation();
                     contrastSubmenu.classList.toggle('show');
-                    console.log('تم النقر على خيار التباين');
                 };
             }
             
@@ -82,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.body.classList.remove('dark-mode');
                     localStorage.setItem('theme', 'light');
                     menu.classList.remove('show');
-                    console.log('تم تطبيق التباين الفاتح');
                 };
             }
             
@@ -94,7 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.body.classList.add('dark-mode');
                     localStorage.setItem('theme', 'dark');
                     menu.classList.remove('show');
-                    console.log('تم تطبيق التباين الداكن');
                 };
             }
             
@@ -114,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    console.log('تم النقر على زر تسجيل الخروج من قائمة الإعدادات');
                     
                     // تأكيد تسجيل الخروج
                     if (confirm('هل أنت متأكد من رغبتك في تسجيل الخروج؟')) {
@@ -125,21 +115,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         const mobileProfileBtn = document.getElementById('mobile-profile-btn');
                         if (mobileProfileBtn) {
                             mobileProfileBtn.style.display = 'none';
-                            console.log('تم إخفاء أيقونة الملف الشخصي في الموبايل');
                         }
                         
                         // إخفاء أيقونة الملف الشخصي في الديسكتوب
                         const desktopProfileBtn = document.querySelector('.profile-icon-btn');
                         if (desktopProfileBtn) {
                             desktopProfileBtn.style.display = 'none';
-                            console.log('تم إخفاء أيقونة الملف الشخصي في الديسكتوب');
                         }
                         
                         // إظهار أزرار تسجيل الدخول
                         const loginButtons = document.querySelectorAll('.login-btn');
                         loginButtons.forEach(btn => {
                             btn.style.display = 'block';
-                            console.log('تم إظهار زر تسجيل الدخول');
                         });
                         
                         // إزالة class المستخدم المُسجل من body
@@ -166,9 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             alert('تم تسجيل خروجك بنجاح. شكراً لاستخدام موقع البوابة!');
                         }, 100);
                         
-                        console.log('✅ تم تسجيل الخروج بنجاح وإعادة تعيين حالة الموقع');
                     } else {
-                        console.log('تم إلغاء عملية تسجيل الخروج');
                         menu.classList.remove('show');
                     }
                 };
@@ -193,16 +178,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        console.log('✅ تم إعداد وظائف قائمة الإعدادات بنجاح');
         
         // إعداد أيقونة البروفايل للعمل الفعلي
-        console.log('👤 إعداد أيقونة البروفايل...');
         setupProfileIcon();
         
         // إعداد إضافي لجميع أزرار تسجيل الخروج في الموقع
         const allLogoutButtons = document.querySelectorAll('.logout-option, .logout-btn, a[href*="logout"], [onclick*="logout"]');
         allLogoutButtons.forEach((logoutBtn, index) => {
-            console.log('إعداد زر تسجيل خروج إضافي رقم:', index + 1);
             
             // إزالة الأحداث القديمة
             const newLogoutBtn = logoutBtn.cloneNode(true);
@@ -216,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.stopPropagation();
                 e.stopImmediatePropagation();
                 
-                console.log('تم النقر على زر تسجيل خروج شامل رقم:', index + 1);
                 performLogout();
                 
                 return false;
@@ -225,7 +206,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // دالة تسجيل الخروج الموحدة
         function performLogout() {
-            console.log('🚪 بدء عملية تسجيل الخروج الشاملة...');
             
             // تأكيد تسجيل الخروج
             if (confirm('هل أنت متأكد من رغبتك في تسجيل الخروج؟')) {
@@ -269,7 +249,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('تم تسجيل خروجك بنجاح. شكراً لاستخدام موقع البوابة!');
                 }, 100);
                 
-                console.log('✅ تم تسجيل الخروج بنجاح');
                 
                 // إعادة تحميل الصفحة بعد 2 ثانية (اختياري)
                 // setTimeout(() => {
@@ -277,13 +256,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 // }, 2000);
                 
             } else {
-                console.log('تم إلغاء عملية تسجيل الخروج');
             }
                          }
          
          // دالة إعداد أيقونة البروفايل للعمل الفعلي
          function setupProfileIcon() {
-             console.log('👤 إعداد أيقونة البروفايل للعمل الفعلي...');
              
              // البحث عن أيقونة البروفايل للموبايل والديسكتوب
              const mobileProfileBtn = document.getElementById('mobile-profile-btn');
@@ -291,13 +268,11 @@ document.addEventListener('DOMContentLoaded', function() {
              
              // التحقق من حالة تسجيل الدخول
              const isLoggedIn = checkUserLoginStatus();
-             console.log('🔒 حالة تسجيل الدخول:', isLoggedIn);
              
              // إعداد أيقونة الموبايل
              if (mobileProfileBtn) {
                  if (isLoggedIn) {
                      mobileProfileBtn.style.display = 'block';
-                     console.log('✅ تم إظهار أيقونة البروفايل للموبايل');
                  } else {
                      mobileProfileBtn.style.display = 'none';
                  }
@@ -308,7 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
                          e.preventDefault();
                          e.stopPropagation();
                          
-                         console.log('📱 تم النقر على أيقونة البروفايل للموبايل');
                          openProfileModal();
                      }, true);
                      
@@ -320,7 +294,6 @@ document.addEventListener('DOMContentLoaded', function() {
              if (desktopProfileBtn) {
                  if (isLoggedIn) {
                      desktopProfileBtn.style.display = 'inline-block';
-                     console.log('✅ تم إظهار أيقونة البروفايل للديسكتوب');
                  } else {
                      desktopProfileBtn.style.display = 'none';
                  }
@@ -331,7 +304,6 @@ document.addEventListener('DOMContentLoaded', function() {
                          e.preventDefault();
                          e.stopPropagation();
                          
-                         console.log('💻 تم النقر على أيقونة البروفايل للديسكتوب');
                          openProfileModal();
                      }, true);
                      
@@ -371,11 +343,9 @@ document.addEventListener('DOMContentLoaded', function() {
          
          // دالة فتح نافذة الملف الشخصي
          function openProfileModal() {
-             console.log('🔓 فتح نافذة الملف الشخصي...');
              
              // محاولة استخدام ProfileButtonManager إذا كان متوفراً
              if (typeof ProfileButtonManager !== 'undefined' && ProfileButtonManager.showModal) {
-                 console.log('🎯 استخدام ProfileButtonManager...');
                  ProfileButtonManager.showModal();
                  return;
              }
@@ -384,7 +354,6 @@ document.addEventListener('DOMContentLoaded', function() {
              let profileModal = document.getElementById('user-dashboard-modal');
              
              if (profileModal) {
-                 console.log('✅ تم العثور على النافذة، جاري الفتح...');
                  
                  // إخفاء جميع النوافذ الأخرى
                  const allModals = document.querySelectorAll('.modal, [id*="modal"], [class*="modal"]');
@@ -413,7 +382,6 @@ document.addEventListener('DOMContentLoaded', function() {
                  // تحديث اسم المستخدم
                  updateProfileModalContent(profileModal);
                  
-                 console.log('✅ تم فتح نافذة الملف الشخصي بنجاح');
                  
              } else {
                  console.warn('⚠️ لم يتم العثور على نافذة الملف الشخصي');
@@ -455,7 +423,6 @@ document.addEventListener('DOMContentLoaded', function() {
          
          // دالة إنشاء نافذة الملف الشخصي الجديدة
          function createNewProfileModal() {
-             console.log('🆕 إنشاء نافذة ملف شخصي جديدة...');
              
              // إزالة أي نافذة موجودة مسبقاً
              const existingModal = document.getElementById('new-profile-modal');
@@ -697,7 +664,6 @@ document.addEventListener('DOMContentLoaded', function() {
              // إعداد وظائف النافذة
              setupNewProfileModalEvents();
              
-             console.log('✅ تم إنشاء نافذة الملف الشخصي الجديدة بنجاح');
          }
          
          // دالة إعداد أحداث النافذة الجديدة
@@ -730,7 +696,6 @@ document.addEventListener('DOMContentLoaded', function() {
                      
                      switch(action) {
                          case 'asanid-service':
-                             console.log('فتح خدمة الأسانيد من النافذة الجديدة');
                              closeModal();
                              // فتح نافذة الأسانيد
                              if (typeof showAsanidServicePopup === 'function') {
@@ -741,25 +706,21 @@ document.addEventListener('DOMContentLoaded', function() {
                              break;
                              
                          case 'edit-profile':
-                             console.log('فتح تعديل البيانات من النافذة الجديدة');
                              closeModal();
                              showEditProfileModal();
                              break;
                              
                          case 'self-help':
-                             console.log('فتح المساعدة الذاتية من النافذة الجديدة');
                              closeModal();
                              window.location.href = './pages/self-help.html';
                              break;
                              
                          case 'customer-service':
-                             console.log('فتح خدمة العملاء من النافذة الجديدة');
                              closeModal();
                              window.location.href = './pages/customer-service.html';
                              break;
                              
                          case 'logout':
-                             console.log('تسجيل الخروج من النافذة الجديدة');
                              closeModal();
                              performLogout();
                              break;
@@ -783,7 +744,6 @@ document.addEventListener('DOMContentLoaded', function() {
              setInterval(function() {
                  const currentLoginStatus = checkUserLoginStatus();
                  if (currentLoginStatus !== lastLoginStatus) {
-                     console.log('🔄 تغييرت حالة تسجيل الدخول من', lastLoginStatus, 'إلى', currentLoginStatus);
                      
                      // تحديث إظهار/إخفاء الأيقونات
                      const mobileProfileBtn = document.getElementById('mobile-profile-btn');
@@ -791,12 +751,10 @@ document.addEventListener('DOMContentLoaded', function() {
                      
                      if (mobileProfileBtn) {
                          mobileProfileBtn.style.display = currentLoginStatus ? 'block' : 'none';
-                         console.log('📱 تحديث زر البروفايل للموبايل:', currentLoginStatus ? 'إظهار' : 'إخفاء');
                      }
                      
                      if (desktopProfileBtn) {
                          desktopProfileBtn.style.display = currentLoginStatus ? 'inline-block' : 'none';
-                         console.log('💻 تحديث زر البروفايل للديسكتوب:', currentLoginStatus ? 'إظهار' : 'إخفاء');
                      }
                      
                      lastLoginStatus = currentLoginStatus;
@@ -806,7 +764,6 @@ document.addEventListener('DOMContentLoaded', function() {
          
          // دالة إنشاء نافذة طلب خدمة الأسانيد
 function showAsanidServicePopup() {
-             console.log('🔖 فتح نافذة طلب خدمة الأسانيد...');
              
     // إزالة أي نافذة موجودة سابقاً
     const existingModal = document.getElementById('asanid-mobile-modal');
@@ -1066,12 +1023,10 @@ function showAsanidServicePopup() {
              // منع التمرير في الخلفية
              document.body.style.overflow = 'hidden';
              
-             console.log('✅ تم إنشاء نافذة خدمة الأسانيد بنجاح');
          }
          
          // دالة إنشاء نافذة تعديل البيانات
          function showEditProfileModal() {
-             console.log('✏️ فتح نافذة تعديل البيانات...');
              
     // إزالة أي نافذة موجودة سابقاً
              const existingModal = document.getElementById('edit-profile-modal');
@@ -1427,7 +1382,6 @@ function showAsanidServicePopup() {
 
              // زر تعديل كلمة المرور
              changePasswordBtn.addEventListener('click', function() {
-                 console.log('🔒 النقر على زر تعديل كلمة المرور');
                  
                  // إغلاق نافذة تعديل البيانات أولاً
                  closeModal();
@@ -1493,12 +1447,10 @@ function showAsanidServicePopup() {
              // منع التمرير في الخلفية
              document.body.style.overflow = 'hidden';
              
-             console.log('✅ تم إنشاء نافذة تعديل البيانات بالتصميم الجديد');
          }
          
          // دالة إظهار نافذة تعديل كلمة المرور
 function showPasswordChangeModal() {
-    console.log('🔒 فتح نافذة تعديل كلمة المرور');
     const modal = document.getElementById('password-change-modal');
     if (modal) {
         modal.style.display = 'block';
@@ -1518,7 +1470,6 @@ function showPasswordChangeModal() {
 
 // دالة إغلاق نافذة تعديل كلمة المرور
 function closePasswordModal() {
-    console.log('🔒 إغلاق نافذة تعديل كلمة المرور');
     const modal = document.getElementById('password-change-modal');
     if (modal) {
         modal.style.display = 'none';
@@ -1543,7 +1494,6 @@ function handlePasswordSubmit(event) {
              const newPassword = document.getElementById('newPassword')?.value;
              const confirmPassword = document.getElementById('confirmPassword')?.value;
     
-    console.log('🔒 محاولة تعديل كلمة المرور');
     
     // التحقق من ملء جميع الحقول
     if (!currentPassword || !newPassword || !confirmPassword) {

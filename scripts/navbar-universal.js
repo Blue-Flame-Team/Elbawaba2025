@@ -5,7 +5,6 @@
 
 // 1. إنشاء النوافذ المنبثقة عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 تحميل مكتبة الناف بار الموحدة');
     createAllModals();
     initializeNavbarFunctions();
 });
@@ -36,7 +35,7 @@ function createLoginModal() {
                     <div class="phone-input-row">
                         <div class="country-code-select">
                             <div class="country-flag">
-                                <img src="assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="مصر" class="flag-img">
+                                <img src="../assets/icons/flag-for-flag-egypt-svgrepo-com 1.png" alt="مصر" class="flag-img">
                             </div>
                             <span class="code">+20</span>
                         </div>
@@ -58,7 +57,7 @@ function createLoginModal() {
                     <div class="password-field">
                         <input type="password" placeholder="كلمة المرور" class="login-input">
                         <button class="toggle-password">
-                            <img src="assets/icons/eye.png" alt="إظهار" class="eye-icon">
+                            <img src="../assets/icons/eye.png" alt="إظهار" class="eye-icon">
                         </button>
                     </div>
                     <button class="login-submit-btn">دخول</button>
@@ -68,11 +67,11 @@ function createLoginModal() {
                 <div class="help-section">
                     <a href="#" class="help-btn customer-service">
                         <span>خدمة العملاء</span>
-                        <img src="assets/icons/support.png" alt="خدمة" class="help-icon">
+                        <img src="../assets/icons/support.png" alt="خدمة" class="help-icon">
                     </a>
                     <a href="#" class="help-btn self-help">
                         <span>المساعدة الذاتية</span>
-                        <img src="assets/icons/message-search.png" alt="مساعدة" class="help-icon">
+                        <img src="../assets/icons/message-search.png" alt="مساعدة" class="help-icon">
                     </a>
                 </div>
             </div>
@@ -80,7 +79,20 @@ function createLoginModal() {
     </div>`;
     
     document.body.insertAdjacentHTML('beforeend', modalHTML);
-    console.log('✅ تم إنشاء نافذة تسجيل الدخول');
+
+    // إضافة سكريبت اختيار الدولة إذا لم يكن موجوداً
+    if (!document.querySelector('script[src*="login-modal-country-selector.js"]')) {
+        const script = document.createElement('script');
+        script.src = '../scripts/login-modal-country-selector.js';
+        script.onload = () => {
+            if (typeof initializeCountrySelectors === 'function') {
+                setTimeout(initializeCountrySelectors, 100);
+            }
+        };
+        document.body.appendChild(script);
+    } else if (typeof initializeCountrySelectors === 'function') {
+        setTimeout(initializeCountrySelectors, 100);
+    }
 }
 
 // ============================================
@@ -115,7 +127,6 @@ function createSearchPopup() {
     </div>`;
     
     document.body.insertAdjacentHTML('beforeend', searchHTML);
-    console.log('✅ تم إنشاء نافذة البحث');
 }
 
 // ============================================
@@ -140,7 +151,6 @@ function createForgotPasswordModal() {
     </div>`;
     
     document.body.insertAdjacentHTML('beforeend', forgotHTML);
-    console.log('✅ تم إنشاء نافذة استرداد كلمة المرور');
 }
 
 // ============================================
@@ -247,7 +257,6 @@ function createPasswordChangeModal() {
     </div>`;
     
     document.body.insertAdjacentHTML('beforeend', passwordHTML);
-    console.log('✅ تم إنشاء نافذة تعديل كلمة المرور');
 }
 
 // ============================================
@@ -278,14 +287,12 @@ function createUserDashboardModal() {
     </div>`;
     
     document.body.insertAdjacentHTML('beforeend', dashboardHTML);
-    console.log('✅ تم إنشاء نافذة لوحة المستخدم');
 }
 
 // ============================================
 // تفعيل جميع دوال الناف بار
 // ============================================
 function initializeNavbarFunctions() {
-    console.log('⚙️ تفعيل دوال الناف بار...');
     
     // تفعيل أزرار تسجيل الدخول
     setupLoginButtons();
@@ -307,7 +314,6 @@ function initializeNavbarFunctions() {
     
     correctAssetPaths();
     
-    console.log('✅ تم تفعيل جميع دوال الناف بار');
 }
 
 // ============================================
@@ -484,7 +490,6 @@ function changeFontSize(change) {
         }
     });
     
-    console.log(`تم تغيير حجم الخط بـ ${change}px`);
 }
 
 // ============================================
@@ -639,4 +644,3 @@ function correctAssetPaths() {
     }
 }
 
-console.log('🎯 مكتبة الناف بار الموحدة جاهزة للاستخدام!'); 

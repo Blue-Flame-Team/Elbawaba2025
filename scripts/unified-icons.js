@@ -1,282 +1,98 @@
 // ملف جافاسكريبت موحد لوظائف الأيقونات في جميع النسخ (الموبايل والكمبيوتر)
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('تهيئة وظائف الأيقونات...');
-
-    // ---- التهيئة الأساسية ----
-    // تهيئة نافذة البحث إذا لم تكن موجودة
-    let searchPopupOverlay = document.getElementById('searchPopupOverlay');
-    if (!searchPopupOverlay) {
-        initializeSearchPopup();
-        searchPopupOverlay = document.getElementById('searchPopupOverlay');
-    }
+(function() {
+    'use strict';
     
-    // ---- وظائف أيقونة البحث ----
-    // تحديد زر البحث في نسخة سطح المكتب - استهداف مباشر
-    const desktopSearchBtn = document.querySelector('.main-icons-group .icon-btn.search-btn, .main-icons-group .icon-btn:nth-child(1)');
-    if (desktopSearchBtn) {
-        console.log('تم العثور على زر البحث في نسخة سطح المكتب');
-        desktopSearchBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (searchPopupOverlay) {
-                searchPopupOverlay.style.display = 'flex';
-                setTimeout(() => {
-                    const searchPopup = document.querySelector('.search-popup');
-                    if (searchPopup) {
-                        searchPopup.classList.add('active');
-                        const searchInput = document.querySelector('.search-popup-input');
-                        if (searchInput) searchInput.focus();
-                    }
-                }, 10);
-            }
-        });
-    }
+    // تهيئة وظائف الأيقونات
     
-    // تحديد جميع أزرار البحث الأخرى (للموبايل والكمبيوتر)
-    const allSearchButtons = document.querySelectorAll('.search-btn, .icon-btn img[src*="search.png"]');
-    console.log('تم العثور على أزرار البحث:', allSearchButtons.length);
-    
-    // إضافة مستمع الحدث لجميع أزرار البحث
-    allSearchButtons.forEach(function(searchBtn) {
-        searchBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            searchPopupOverlay = document.getElementById('searchPopupOverlay');
-            if (searchPopupOverlay) {
-                searchPopupOverlay.style.display = 'flex';
-                setTimeout(() => {
-                    const searchPopup = document.querySelector('.search-popup');
-                    if (searchPopup) {
-                        searchPopup.classList.add('active');
-                        const searchInput = document.querySelector('.search-popup-input');
-                        if (searchInput) searchInput.focus();
-                    }
-                }, 10);
-            }
-        });
-    });
-    
-    // ---- وظائف أيقونة الإعدادات ----
-    const settingsBtn = document.querySelector('.settings-toggle-btn');
-    const settingsMenu = document.querySelector('.settings-menu');
-    
-    if (settingsBtn && settingsMenu) {
-        console.log('تم العثور على عناصر القائمة');
-        
-        // تهيئة حالة التباين المحفوظة
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-            document.documentElement.style.setProperty('--primary-color', '#000000');
-            document.documentElement.style.setProperty('--secondary-color', '#000000');
+    // وظيفة البحث للسطح المكتبي
+    function setupDesktopSearch() {
+        const searchButton = document.getElementById('search-icon');
+        if (searchButton) {
+            // تم العثور على زر البحث في نسخة سطح المكتب
+            setupSearchPopup();
         }
+    }
+    
+    // وظيفة البحث للجوال
+    function setupMobileSearch() {
+        const mobileSearchButtons = document.querySelectorAll('.mobile-search-icon, [id*="mobile-search"], .search-icon-mobile');
         
-        // معالج النقر على زر الإعدادات
-        settingsBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('تم النقر على زر الإعدادات');
-            
-            // تحديد موضع الزر
-            const btnRect = settingsBtn.getBoundingClientRect();
-            console.log('موضع الزر:', btnRect);
-            
-            // تبديل حالة العرض
-            const isVisible = settingsMenu.classList.contains('show');
-            
-            if (!isVisible) {
-                // إظهار القائمة
-                settingsMenu.style.cssText = `
-                    position: fixed !important;
-                    top: ${btnRect.bottom}px !important;
-                    right: ${btnRect.left}px !important;
-                    width: 200px !important;
-                    background: #fff !important;
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
-                    display: block !important;
-                    visibility: visible !important;
-                    opacity: 1 !important;
-                    z-index: 99999 !important;
-                    border-radius: 8px !important;
-                    padding: 10px !important;
-                `;
-                settingsMenu.classList.add('show');
-            } else {
-                // إخفاء القائمة
-                settingsMenu.style.cssText = '';
-                settingsMenu.classList.remove('show');
-            }
-            
-            console.log('حالة القائمة بعد التحديث:', {
-                classes: settingsMenu.className,
-                cssText: settingsMenu.style.cssText,
-                computedDisplay: getComputedStyle(settingsMenu).display,
-                computedVisibility: getComputedStyle(settingsMenu).visibility,
-                computedOpacity: getComputedStyle(settingsMenu).opacity
+        if (mobileSearchButtons.length > 0) {
+            // تم العثور على أزرار البحث
+            mobileSearchButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // فتح نافذة البحث
+                    if (typeof showSearchPopup === 'function') {
+                        showSearchPopup();
+                    }
+                });
             });
-        });
+        }
+    }
+    
+    // إعداد نافذة البحث المنبثقة
+    function setupSearchPopup() {
+        // البحث عن عناصر النافذة المنبثقة
+        const popup = document.getElementById('search-popup');
+        const overlay = document.getElementById('search-overlay');
         
-        // إغلاق القائمة عند النقر خارجها
-        document.addEventListener('click', function(e) {
-            if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
-                settingsMenu.style.cssText = '';
-                settingsMenu.classList.remove('show');
-                
-                // إغلاق القائمة الفرعية للتباين
-                const contrastSubmenu = settingsMenu.querySelector('.contrast-submenu');
-                if (contrastSubmenu) {
-                    contrastSubmenu.classList.remove('show');
+        if (popup && overlay) {
+            // إعداد الأحداث
+            document.addEventListener('click', function(e) {
+                if (e.target.id === 'search-icon' || e.target.closest('#search-icon')) {
+                    e.preventDefault();
+                    popup.style.display = 'block';
+                    overlay.style.display = 'block';
                 }
-            }
-        });
-        
-        // تهيئة أحداث القائمة
-        initializeSettingsMenuListeners(settingsMenu);
-    }
-    
-    // ---- وظائف زر الهامبرغر ----
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-    const mobileSideMenu = document.querySelector('.mobile-side-menu');
-    
-    if (hamburgerMenu && mobileMenuOverlay && mobileSideMenu) {
-        // فتح/إغلاق القائمة الجانبية
-        hamburgerMenu.addEventListener('click', function(e) {
-            e.preventDefault();
-            mobileMenuOverlay.classList.add('show');
-            mobileSideMenu.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        // إغلاق القائمة الجانبية عند النقر خارجها
-        mobileMenuOverlay.addEventListener('click', function(e) {
-            if (e.target === mobileMenuOverlay) {
-                closeMenu();
-            }
-        });
-        
-        // روابط القائمة الجانبية
-        const sideMenuLinks = document.querySelectorAll('.mobile-side-menu-links a:not(.has-dropdown)');
-        sideMenuLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
-                setTimeout(closeMenu, 100);
+                
+                if (e.target === overlay || e.target.closest('.close-search')) {
+                    popup.style.display = 'none';
+                    overlay.style.display = 'none';
+                }
             });
-        });
-        
-        // القوائم المنسدلة
-        const dropdownLinks = document.querySelectorAll('.mobile-side-menu-links a.has-dropdown');
-        dropdownLinks.forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                this.classList.toggle('open');
-            });
-        });
-    }
-    
-    // ---- الدوال المساعدة ----
-    // دالة إغلاق القائمة الجانبية
-    function closeMenu() {
-        mobileMenuOverlay.classList.remove('show');
-        mobileSideMenu.classList.remove('show');
-        document.body.style.overflow = '';
-    }
-    
-    // دالة تهيئة نافذة البحث المنبثقة
-    function initializeSearchPopup() {
-        // إنشاء غلاف النافذة المنبثقة
-        searchPopupOverlay = document.createElement('div');
-        searchPopupOverlay.id = 'searchPopupOverlay';
-        searchPopupOverlay.className = 'search-popup-overlay';
-        
-        // إنشاء حاوية النافذة المنبثقة
-        const searchPopup = document.createElement('div');
-        searchPopup.className = 'search-popup';
-        
-        // إنشاء حاوية للأزرار
-        const buttonsContainer = document.createElement('div');
-        buttonsContainer.className = 'search-buttons-container';
-        searchPopup.appendChild(buttonsContainer);
-        
-        // إنشاء حقل الإدخال
-        const searchInput = document.createElement('input');
-        searchInput.type = 'text';
-        searchInput.className = 'search-popup-input';
-        searchInput.placeholder = 'ابحث في الاحكام و الانظمه ...';
-        searchPopup.appendChild(searchInput);
-        
-        // إضافة النافذة المنبثقة إلى الغلاف
-        searchPopupOverlay.appendChild(searchPopup);
-        
-        // إضافة الغلاف إلى الجسم
-        document.body.appendChild(searchPopupOverlay);
-        
-        // إنشاء زر البحث (الأخضر)
-        const searchButton = document.createElement('button');
-        searchButton.className = 'search-popup-button search';
-        searchButton.textContent = 'بحث';
-        buttonsContainer.appendChild(searchButton);
-        
-        // إنشاء زر محرك البحث (البرتقالي)
-        const engineBtn = document.createElement('button');
-        engineBtn.className = 'search-popup-button engine';
-        engineBtn.textContent = 'محرك البحث';
-        buttonsContainer.appendChild(engineBtn);
-        
-        // إضافة مستمعات الأحداث
-        // إغلاق النافذة المنبثقة عند النقر على الغلاف
-        searchPopupOverlay.addEventListener('click', function(e) {
-            if (e.target === searchPopupOverlay) {
-                closeSearchPopup();
-            }
-        });
-        
-        // معالجة نموذج البحث
-        searchButton.addEventListener('click', function() {
-            performSearch();
-        });
-        
-        // معالجة زر محرك البحث
-        engineBtn.addEventListener('click', function() {
-            if (window.location.pathname.includes('/pages/')) {
-                window.location.href = '../pages/general-search-engine.html';
-            } else {
-                window.location.href = './pages/general-search-engine.html';
-            }
-        });
-        
-        // معالجة مفتاح Enter في حقل الإدخال
-        searchInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-    }
-    
-    // دالة إغلاق نافذة البحث المنبثقة
-    function closeSearchPopup() {
-        const searchPopup = document.querySelector('.search-popup');
-        if (searchPopup) {
-            searchPopup.classList.remove('active');
-            setTimeout(() => {
-                if (searchPopupOverlay) searchPopupOverlay.style.display = 'none';
-            }, 300);
         }
     }
     
-    // دالة البحث
-    function performSearch() {
-        const searchInput = document.querySelector('.search-popup-input');
-        if (searchInput) {
-            const searchQuery = searchInput.value.trim();
-            if (searchQuery) {
-                console.log('إجراء البحث عن:', searchQuery);
-                // تنفيذ وظيفة البحث الفعلية هنا
-                // حالياً، نقوم فقط بإغلاق النافذة المنبثقة
-                closeSearchPopup();
-            }
+    // إعداد وظائف القوائم
+    function setupMenuFunctions() {
+        const menuElements = document.querySelectorAll('.menu-icon, .hamburger-menu, .mobile-menu-toggle');
+        
+        if (menuElements.length > 0) {
+            // تم العثور على عناصر القائمة
+            menuElements.forEach(element => {
+                element.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // تبديل حالة القائمة
+                    const menu = document.querySelector('.mobile-side-menu, .sidebar-menu');
+                    if (menu) {
+                        menu.classList.toggle('active');
+                    }
+                });
+            });
         }
     }
-});
+    
+    // تهيئة عامة
+    function init() {
+        setupDesktopSearch();
+        setupMobileSearch();
+        setupMenuFunctions();
+    }
+    
+    // تشغيل عند تحميل الصفحة
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    
+})();
 
 // تهيئة قائمة الإعدادات الموحدة
 document.addEventListener('DOMContentLoaded', function() {
@@ -373,12 +189,24 @@ function initializeSettingsMenuListeners(menu) {
     if (contrastLight) {
         contrastLight.addEventListener('click', function(e) {
             e.preventDefault();
+            
+            // إزالة dark-mode
             document.body.classList.remove('dark-mode');
+            
+            // حفظ في localStorage
             localStorage.setItem('theme', 'light');
+            
+            // تحديث CSS variables
             document.documentElement.style.setProperty('--primary-color', '#17a891');
             document.documentElement.style.setProperty('--secondary-color', '#24516c');
+            
+            // إغلاق القائمة
             menu.classList.remove('show');
             contrastSubmenu?.classList.remove('show');
+            
+            // فرض إعادة تحديث الصفحة للتأكد
+            setTimeout(() => {
+            }, 100);
         });
     }
     

@@ -5,13 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.profileInitialized = true;
 
-    console.log('🔍 فحص أيقونة البروفايل...');
     
     // فحص بيانات تسجيل الدخول الموجودة بطرق متعددة
     const currentLoginStatus = localStorage.getItem('isLoggedIn');
     const authSystemUser = localStorage.getItem('currentUser');
-    console.log('📊 حالة تسجيل الدخول الحالية:', currentLoginStatus);
-    console.log('📊 بيانات المستخدم:', authSystemUser);
     
     // فحص إضافي للمستخدم المسجل من auth-system
     let isUserLoggedIn = false;
@@ -19,10 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (authSystemUser) {
             const userData = JSON.parse(authSystemUser);
             isUserLoggedIn = userData && (userData.isLoggedIn === true || userData.name);
-            console.log('📊 المستخدم مسجل دخول حسب auth-system:', isUserLoggedIn);
         }
     } catch (e) {
-        console.log('⚠️ خطأ في قراءة بيانات المستخدم:', e);
     }
     
     // تنظيف localStorage من أي بيانات قديمة أو مُفسدة
@@ -30,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const isLoggedIn = localStorage.getItem('isLoggedIn');
         if (isLoggedIn && isLoggedIn !== 'true' && isLoggedIn !== 'false') {
             localStorage.removeItem('isLoggedIn');
-            console.log('🧹 تم تنظيف بيانات تسجيل الدخول المُفسدة');
         }
         
         // إزالة أي تسجيل دخول تجريبي متبقي
@@ -41,25 +35,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (user && user.username === 'test') {
                     localStorage.removeItem('isLoggedIn');
                     localStorage.removeItem('currentUser');
-                    console.log('🧹 تم إزالة تسجيل الدخول التجريبي');
                 }
             } catch (e) {
                 // إذا كان هناك خطأ في البيانات، احذفها
                 localStorage.removeItem('isLoggedIn');
                 localStorage.removeItem('currentUser');
-                console.log('🧹 تم تنظيف بيانات مُفسدة');
             }
         }
     } catch (e) {
-        console.log('⚠️ خطأ في قراءة localStorage:', e);
     }
     
     // البحث عن أيقونات البروفايل
     const desktopProfileBtn = document.querySelector('.profile-icon-btn');
     const mobileProfileBtn = document.querySelector('#mobile-profile-btn');
     
-    console.log('Desktop Profile Button:', desktopProfileBtn);
-    console.log('Mobile Profile Button:', mobileProfileBtn);
     
     // إجبار إخفاء الأيقونات بقوة
     if (desktopProfileBtn) {
@@ -76,32 +65,26 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileProfileBtn.style.setProperty('opacity', '0', 'important');
         mobileProfileBtn.removeAttribute('data-profile-setup');
     }
-    console.log('🔒 تم إخفاء أيقونات البروفايل بقوة');
     
     // فحص حالة تسجيل الدخول بطرق متعددة
     const isLoggedInFlag = localStorage.getItem('isLoggedIn') === 'true';
     const isLoggedIn = isLoggedInFlag || isUserLoggedIn;
-    console.log('حالة تسجيل الدخول:', isLoggedIn);
     
     // إظهار الأيقونات إذا كان المستخدم مسجل دخول
     if (isLoggedIn) {
         if (desktopProfileBtn) {
             desktopProfileBtn.classList.add('show');
-            console.log('✅ تم إظهار أيقونة البروفايل في الديسك توب');
         }
         if (mobileProfileBtn) {
             mobileProfileBtn.classList.add('show');
-            console.log('✅ تم إظهار أيقونة البروفايل في الموبايل');
         }
     } else {
         // إخفاء الأيقونات إذا لم يكن مسجل دخول
         if (desktopProfileBtn) {
             desktopProfileBtn.classList.remove('show');
-            console.log('🔒 تم إخفاء أيقونة البروفايل في الديسك توب');
         }
         if (mobileProfileBtn) {
             mobileProfileBtn.classList.remove('show');
-            console.log('🔒 تم إخفاء أيقونة البروفايل في الموبايل');
         }
     }
     
@@ -109,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (desktopProfileBtn && !desktopProfileBtn.hasAttribute('data-profile-initialized')) {
         desktopProfileBtn.setAttribute('data-profile-initialized', 'true');
         desktopProfileBtn.addEventListener('click', function() {
-            console.log('تم النقر على أيقونة البروفايل (ديسك توب)');
             // يمكن إضافة وظيفة فتح قائمة البروفايل هنا
         });
     }
@@ -117,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileProfileBtn && !mobileProfileBtn.hasAttribute('data-profile-initialized')) {
         mobileProfileBtn.setAttribute('data-profile-initialized', 'true');
         mobileProfileBtn.addEventListener('click', function() {
-            console.log('تم النقر على أيقونة البروفايل (موبايل)');
             // يمكن إضافة وظيفة فتح قائمة البروفايل هنا
         });
     }
@@ -130,14 +111,12 @@ function testLoginNow() {
         username: 'test',
         email: 'test@example.com'
     }));
-    console.log('✅ تم تسجيل دخول اختباري - ستظهر الأيقونات خلال نصف ثانية');
 }
 
 // دالة اختبار تسجيل الخروج (يمكن استدعاؤها من الكونسول)
 function testLogoutNow() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('currentUser');
-    console.log('🔓 تم تسجيل خروج اختباري - ستختفي الأيقونات خلال نصف ثانية');
 }
 
 // إتاحة الدوال للاستخدام من الكونسول
@@ -158,7 +137,6 @@ function forceShowProfileIcons() {
         desktopBtn.style.setProperty('pointer-events', 'auto', 'important');
         desktopBtn.style.setProperty('position', 'relative', 'important');
         desktopBtn.style.setProperty('left', 'auto', 'important');
-        console.log('💪 تم إجبار إظهار أيقونة الديسك توب');
     }
     
     if (mobileBtn) {
@@ -169,7 +147,6 @@ function forceShowProfileIcons() {
         mobileBtn.style.setProperty('pointer-events', 'auto', 'important');
         mobileBtn.style.setProperty('position', 'relative', 'important');
         mobileBtn.style.setProperty('left', 'auto', 'important');
-        console.log('💪 تم إجبار إظهار أيقونة الموبايل');
     }
 }
 
@@ -182,7 +159,6 @@ if (!window.localStorageOverrideInitialized) {
         
         if (key === 'isLoggedIn' && value === 'true') {
             setTimeout(forceShowProfileIcons, 100);
-            console.log('🔍 تم رصد تسجيل دخول (isLoggedIn) - سيتم إظهار الأيقونات');
         }
         
         if (key === 'currentUser') {
@@ -190,7 +166,6 @@ if (!window.localStorageOverrideInitialized) {
                 const userData = JSON.parse(value);
                 if (userData && (userData.isLoggedIn === true || userData.name)) {
                     setTimeout(forceShowProfileIcons, 100);
-                    console.log('🔍 تم رصد تسجيل دخول (currentUser) - سيتم إظهار الأيقونات');
                 }
             } catch (e) {
                 // تجاهل الأخطاء
@@ -257,7 +232,6 @@ if (!document.querySelector('#profile-icons-style')) {
         }
     `;
     document.head.appendChild(profileCSS);
-    console.log('🎨 تم إضافة تصميم أيقونة البروفايل');
 }
 
 // تهيئة زر البروفايل للموبايل

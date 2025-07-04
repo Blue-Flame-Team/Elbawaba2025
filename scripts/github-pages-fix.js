@@ -6,19 +6,18 @@
 (function() {
     'use strict';
     
-    console.log('🚀 بدء فحص GitHub Pages...');
+
     
     // 1. فحص تحميل الخطوط
     function checkFonts() {
         const fontLinks = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
-        console.log('📝 عدد روابط الخطوط:', fontLinks.length);
         
         fontLinks.forEach((link, index) => {
             link.addEventListener('load', () => {
-                console.log(`✅ تم تحميل الخط ${index + 1}`);
+                // Font loaded successfully
             });
             link.addEventListener('error', () => {
-                console.error(`❌ فشل تحميل الخط ${index + 1}:`, link.href);
+                console.error(`Font load failed: ${link.href}`);
             });
         });
     }
@@ -26,121 +25,100 @@
     // 2. فحص تحميل CSS
     function checkCSS() {
         const cssLinks = document.querySelectorAll('link[rel="stylesheet"]:not([href*="googleapis.com"])');
-        console.log('🎨 عدد ملفات CSS:', cssLinks.length);
         
         cssLinks.forEach((link, index) => {
-            if (link.sheet) {
-                console.log(`✅ CSS ${index + 1}: ${link.href}`);
-            } else {
-                console.error(`❌ فشل CSS ${index + 1}: ${link.href}`);
+            if (!link.sheet) {
+                console.error(`CSS load failed: ${link.href}`);
             }
         });
     }
     
-    // 3. فحص تحميل الصور
-    function checkImages() {
-        const images = document.querySelectorAll('img');
-        let loadedImages = 0;
-        let failedImages = 0;
-        
-        images.forEach((img, index) => {
-            if (img.complete && img.naturalWidth > 0) {
-                loadedImages++;
-            } else {
-                img.addEventListener('load', () => {
-                    loadedImages++;
-                    console.log(`✅ صورة ${index + 1}: ${img.src}`);
-                });
-                img.addEventListener('error', () => {
-                    failedImages++;
-                    console.error(`❌ فشل صورة ${index + 1}: ${img.src}`);
-                });
-            }
-        });
-        
-        console.log(`🖼️ الصور: ${images.length} إجمالي`);
-        setTimeout(() => {
-            console.log(`📊 النتائج: ${loadedImages} محملة، ${failedImages} فاشلة`);
-        }, 3000);
-    }
-    
-    // 4. فحص تحميل JavaScript
-    function checkScripts() {
+    // 3. فحص تحميل JavaScript
+    function checkJS() {
         const scripts = document.querySelectorAll('script[src]');
-        console.log('📜 عدد ملفات JavaScript:', scripts.length);
         
         scripts.forEach((script, index) => {
-            script.addEventListener('load', () => {
-                console.log(`✅ JS ${index + 1}: ${script.src}`);
-            });
             script.addEventListener('error', () => {
-                console.error(`❌ فشل JS ${index + 1}: ${script.src}`);
+                console.error(`JS load failed: ${script.src}`);
             });
         });
     }
     
-    // 5. فحص الاتصال بالإنترنت
-    function checkConnection() {
-        if (navigator.onLine) {
-            console.log('🌐 متصل بالإنترنت');
-        } else {
-            console.warn('⚠️ غير متصل بالإنترنت');
+    // 4. فحص الصور
+    function checkImages() {
+        const images = document.querySelectorAll('img');
+        let loadedCount = 0;
+        let errorCount = 0;
+        
+        images.forEach((img, index) => {
+            if (img.complete) {
+                if (img.naturalWidth === 0) {
+                    errorCount++;
+                    console.error(`Image failed: ${img.src}`);
+                } else {
+                    loadedCount++;
+                }
+            } else {
+                img.addEventListener('load', () => {
+                    loadedCount++;
+                });
+                img.addEventListener('error', () => {
+                    errorCount++;
+                    console.error(`Image failed: ${img.src}`);
+                });
+            }
+        });
+    }
+    
+    // 5. فحص معلومات الصفحة
+    function checkPageInfo() {
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const protocol = window.location.protocol;
+        const isHTTPS = protocol === 'https:';
+        
+        if (isGitHubPages && !isHTTPS) {
+            console.warn('Warning: Not using HTTPS on GitHub Pages');
         }
     }
     
-    // 6. تشغيل جميع الفحوصات
-    function runAllChecks() {
-        console.log('🔍 بدء الفحص الشامل...');
-        checkConnection();
-        checkFonts();
-        checkCSS();
-        checkImages();
-        checkScripts();
-        
-        // فحص إضافي بعد 5 ثوان
-        setTimeout(() => {
-            console.log('🔄 فحص إضافي بعد 5 ثوان...');
-            const missingElements = [];
-            
-            // فحص عناصر مهمة
-            const importantSelectors = [
-                '.header',
-                '.navbar', 
-                '.hero-section',
-                '.services-section',
-                '.footer'
-            ];
-            
-            importantSelectors.forEach(selector => {
-                const element = document.querySelector(selector);
-                if (!element) {
-                    missingElements.push(selector);
-                }
+    // 6. فحص أخطاء JavaScript
+    function setupErrorHandling() {
+        window.addEventListener('error', (event) => {
+            console.error('JavaScript Error:', {
+                message: event.message,
+                source: event.filename,
+                line: event.lineno,
+                column: event.colno
             });
-            
-            if (missingElements.length > 0) {
-                console.error('❌ عناصر مفقودة:', missingElements);
-            } else {
-                console.log('✅ جميع العناصر المهمة موجودة');
-            }
-        }, 5000);
+        });
+        
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('Unhandled Promise Rejection:', event.reason);
+        });
     }
     
-    // 7. بدء التشغيل عند تحميل الصفحة
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', runAllChecks);
-    } else {
-        runAllChecks();
+    // تشغيل الفحوصات
+    function runAllChecks() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                checkFonts();
+                checkCSS();
+                checkJS();
+                checkImages();
+                checkPageInfo();
+                setupErrorHandling();
+            });
+        } else {
+            checkFonts();
+            checkCSS();
+            checkJS();
+            checkImages();
+            checkPageInfo();
+            setupErrorHandling();
+        }
     }
     
-    // 8. إضافة معلومات للنافذة العامة للتشخيص
-    window.GitHubPagesDiagnostics = {
-        checkFonts,
-        checkCSS,
-        checkImages,
-        checkScripts,
-        checkConnection,
-        runAllChecks
-    };
+    // بدء التشغيل
+    runAllChecks();
     
 })(); 

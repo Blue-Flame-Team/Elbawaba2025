@@ -149,7 +149,6 @@
     <script src="scripts/auth-system.js"></script>
     
     <script>
-        const originalConsoleLog = console.log;
         const originalConsoleError = console.error;
         
         function logToPage(message, type = 'log') {
@@ -162,7 +161,6 @@
             logDiv.scrollTop = logDiv.scrollHeight;
         }
         
-        console.log = function(...args) {
             originalConsoleLog.apply(console, args);
             logToPage(args.join(' '));
         };

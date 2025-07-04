@@ -1,6 +1,5 @@
 // وظائف تكبير وتصغير النص في الموقع
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🔍 تهيئة نظام تكبير النصوص...');
     
     // المتغيرات الأساسية
     let currentSize = parseInt(localStorage.getItem('textSize')) || 100;
@@ -55,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // تحديث حالة الأزرار
         updateButtonStates();
         
-        console.log('📏 تم تغيير حجم النص إلى:', size + '%');
     }
     
     // دالة تحديث حالة الأزرار
@@ -93,5 +91,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    console.log('✅ تم تهيئة نظام تكبير النصوص بنجاح');
 }); 

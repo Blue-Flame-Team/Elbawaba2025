@@ -1,352 +1,522 @@
-// نظام التباين الأسود للصفحات الفرعية - JavaScript موحد
+// نظام التباين الأسود للصفحات الفرعية - متوافق مع unified-icons.js
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎨 إعداد نظام التباين الأسود للصفحات الفرعية');
     
-    // دالة تطبيق التباين الأسود
-    function applyDarkContrast() {
-        console.log('⚫ تطبيق التباين الأسود للصفحة الفرعية');
-        document.body.classList.add('dark-contrast');
-        localStorage.setItem('darkContrast', 'true');
+    // متغير لمنع التداخل مع unified-icons.js
+    let isProcessingThemeChange = false;
+    
+    // دالة تطبيق تأثيرات الأيقونات المتقدمة
+    function applyIconContrastEffects() {
         
-        // تطبيق تأثيرات إضافية للنصوص والأيقونات
-        applyTextContrastEffects();
-        applyIconContrastEffects();
-        applyFooterContrastEffects();
+        // خريطة الأيقونات وما يقابلها من النسخة السوداء
+        const iconMappings = {
+            // ملفات PNG
+            'timer.png': 'timer-black.svg',
+            'close-square.png': 'close-square-black.svg', 
+            'book.png': 'book-black.svg',
+            'bank.png': 'bank-black.svg',
+            'mosq.png': 'mosq-black.svg',
+            'Mask group.png': 'Mask group-black.svg',
+            'support.png': 'support-black.svg',
+            'tick-square.png': 'tick-square-black.svg',
+            'minus-square.png': 'minus-square-black.svg',
+            'canceld.png': 'canceld-black.svg',
+            'message-question.png': 'message-question-black.png',
+            
+            // ملفات SVG - الأهم!
+            'support.svg': 'support-black.svg',
+            'tick-square.svg': 'tick-square-black.svg',
+            'minus-square.svg': 'minus-square-black.svg',
+            'canceld.svg': 'canceld-black.svg',
+            'close-square.svg': 'close-square-black.svg',
+            'timer.svg': 'timer-black.svg',
+            'book.svg': 'book-black.svg',
+            'bank.svg': 'bank-black.svg',
+            'mosq.svg': 'mosq-black.svg',
+            'Mask group.svg': 'Mask group-black.svg'
+        };
+
+        // البحث عن جميع الصور في الصفحة
+        const images = document.querySelectorAll('img');
+        let changedCount = 0;
+
+        images.forEach(img => {
+            const currentSrc = img.src;
+            const fileName = currentSrc.split('/').pop();
+            
+            
+            // التحقق من وجود الأيقونة في الخريطة
+            if (iconMappings[fileName]) {
+                
+                // حفظ المسار الأصلي
+                if (!img.dataset.originalSrc) {
+                    img.dataset.originalSrc = currentSrc;
+                }
+                
+                // إنشاء المسار الجديد
+                let newSrc;
+                if (currentSrc.includes('/our-services/')) {
+                    // للأيقونات في مجلد our-services - نقلها للمجلد الرئيسي
+                    newSrc = currentSrc.replace('/our-services/' + fileName, '/' + iconMappings[fileName]);
+                } else {
+                    // للأيقونات في المجلد الرئيسي
+                    newSrc = currentSrc.replace(fileName, iconMappings[fileName]);
+                }
+                
+                img.src = newSrc;
+                changedCount++;
+            } else {
+            }
+        });
+
     }
-    
-    // دالة إزالة التباين الأسود
-    function removeDarkContrast() {
-        console.log('⚪ إزالة التباين الأسود للصفحة الفرعية');
-        document.body.classList.remove('dark-contrast');
-        localStorage.setItem('darkContrast', 'false');
+
+    // دالة إزالة تأثيرات الأيقونات
+    function removeIconContrastEffects() {
         
-        // إزالة التأثيرات الإضافية
-        removeTextContrastEffects();
-        removeIconContrastEffects();
-        removeFooterContrastEffects();
+        const images = document.querySelectorAll('img[data-original-src]');
+        let restoredCount = 0;
+
+        images.forEach(img => {
+            if (img.dataset.originalSrc) {
+                img.src = img.dataset.originalSrc;
+                delete img.dataset.originalSrc;
+                restoredCount++;
+            }
+        });
+
     }
     
     // دالة تطبيق تأثيرات النصوص
     function applyTextContrastEffects() {
-        console.log('📝 تطبيق تأثيرات النصوص للتباين الأسود');
         
-        // تطبيق اللون الأسود على جميع النصوص
-        // const textElements = document.querySelectorAll(`
-        //     p, span, div, a, h1, h2, h3, h4, h5, h6,
-        //     .simple-text, .content-text, .article-text,
-        //     .section-text, .description-text
-        // `);
+        // تحسين النصوص للتباين العالي
+        const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, li, td, th');
+        textElements.forEach(element => {
+            const computedStyle = window.getComputedStyle(element);
+            if (computedStyle.color === 'rgb(255, 255, 255)' || 
+                computedStyle.color === 'white' || 
+                computedStyle.color === '#ffffff' ||
+                computedStyle.color === '#fff') {
+                element.style.fontWeight = 'bold';
+                element.style.textShadow = '1px 1px 2px rgba(0,0,0,0.8)';
+            }
+        });
         
-        // textElements.forEach(element => {
-        //     element.style.setProperty('color', '#000000', 'important');
-        //     element.style.setProperty('background', 'none', 'important');
-        //     element.style.setProperty('background-color', 'transparent', 'important');
-        // });
+        // إصلاح هوفر القوائم المنسدلة
+        applyDropdownHoverFix();
+        
+        // إصلاح هوفر الكروت
+        applyCardHoverFix();
+        
+        // إصلاح زر "كل الخدمات"
+        applyServiceTabFix();
     }
     
+    // دالة إصلاح هوفر القوائم المنسدلة
+    function applyDropdownHoverFix() {
+        
+        const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+        dropdownLinks.forEach(link => {
+            // حفظ الألوان الأصلية
+            if (!link.dataset.originalColor) {
+                link.dataset.originalColor = link.style.color || '';
+                link.dataset.originalBg = link.style.backgroundColor || '';
+            }
+            
+            // إضافة أحداث الهوفر
+            link.addEventListener('mouseenter', function() {
+                if (document.body.classList.contains('dark-mode')) {
+                    this.style.backgroundColor = '#28a745';
+                    this.style.color = '#ffffff';
+                    this.style.fontWeight = 'bold';
+                }
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                if (document.body.classList.contains('dark-mode')) {
+                    this.style.backgroundColor = 'transparent';
+                    this.style.color = '#333333';
+                    this.style.fontWeight = 'normal';
+                }
+            });
+        });
+    }
+    
+    // دالة إصلاح هوفر الكروت
+    function applyCardHoverFix() {
+        
+        // البحث عن جميع الكروت التي تحتوي على hover-overlay
+        const serviceCards = document.querySelectorAll('div[style*="background-color: white"]');
+        let cardCount = 0;
+        
+        serviceCards.forEach(card => {
+            const hoverOverlay = card.querySelector('.hover-overlay');
+            if (hoverOverlay) {
+                cardCount++;
+                
+                // حفظ الأحداث الأصلية
+                if (!card.dataset.originalMouseover) {
+                    card.dataset.originalMouseover = card.getAttribute('onmouseover') || '';
+                    card.dataset.originalMouseout = card.getAttribute('onmouseout') || '';
+                }
+                
+                // إعادة تعريف الأحداث لتشمل اللون الأخضر في التباين الأسود
+                const originalOverHandler = card.getAttribute('onmouseover');
+                const originalOutHandler = card.getAttribute('onmouseout');
+                
+                // تعديل onmouseover
+                card.setAttribute('onmouseover', `
+                    ${originalOverHandler}
+                    if (document.body.classList.contains('dark-mode')) {
+                        this.querySelector('.hover-overlay').style.backgroundColor = '#000000';
+                    }
+                `);
+                
+                // تعديل onmouseout  
+                card.setAttribute('onmouseout', `
+                    ${originalOutHandler}
+                    if (document.body.classList.contains('dark-mode')) {
+                        this.querySelector('.hover-overlay').style.backgroundColor = '#000000';
+                    }
+                `);
+                
+                // تطبيق فوري للألوان على hover-overlay
+                hoverOverlay.style.setProperty('background-color', '#000000', 'important');
+                
+                // إصلاح ألوان النصوص للتباين الأسود
+                const overlayTexts = hoverOverlay.querySelectorAll('h3, p');
+                overlayTexts.forEach(text => {
+                    text.style.setProperty('color', '#ffffff', 'important');
+                    // ظل أبيض فاتح للتباين الأسود
+                    text.style.setProperty('text-shadow', '1px 1px 2px rgba(255,255,255,0.3)', 'important');
+                });
+                
+                const overlayButtons = hoverOverlay.querySelectorAll('a');
+                overlayButtons.forEach(button => {
+                    button.style.setProperty('background-color', '#ff6b35', 'important');
+                    button.style.setProperty('color', '#ffffff', 'important');
+                });
+            }
+        });
+        
+    }
+    
+    // دالة إصلاح زر "كل الخدمات"
+    function applyServiceTabFix() {
+        
+        const serviceTabs = document.querySelectorAll('.service-tab.active, button.service-tab.active');
+        serviceTabs.forEach(tab => {
+            // حفظ الألوان الأصلية من computed styles أو القيم الافتراضية
+            if (!tab.dataset.originalBg) {
+                const computedStyle = window.getComputedStyle(tab);
+                // حفظ القيم الأصلية الصحيحة للتباين الفاتح
+                tab.dataset.originalBg = '#00a19a'; // اللون الأخضر الأصلي
+                tab.dataset.originalColor = 'white'; // النص الأبيض الأصلي
+                tab.dataset.originalBorder = 'none'; // بدون حدود في الأصل
+                
+            }
+            
+            // تطبيق التنسيق الأسود
+            tab.style.setProperty('background-color', '#000000', 'important');
+            tab.style.setProperty('color', '#ffffff', 'important');
+            tab.style.setProperty('border', '2px solid #ffffff', 'important');
+        });
+        
+    }
+
     // دالة إزالة تأثيرات النصوص
     function removeTextContrastEffects() {
-        console.log('📝 إزالة تأثيرات النصوص للتباين الأسود');
         
-        const textElements = document.querySelectorAll(`
-            p, span, div, a, h1, h2, h3, h4, h5, h6,
-            .simple-text, .content-text, .article-text,
-            .section-text, .description-text
-        `);
-        
+        const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, li, td, th');
         textElements.forEach(element => {
-            element.style.removeProperty('color');
-            element.style.removeProperty('background');
-            element.style.removeProperty('background-color');
+            element.style.fontWeight = '';
+            element.style.textShadow = '';
+        });
+        
+        // إزالة إصلاح هوفر القوائم المنسدلة
+        removeDropdownHoverFix();
+        
+        // إزالة إصلاح هوفر الكروت
+        removeCardHoverFix();
+        
+        // إزالة إصلاح زر "كل الخدمات"
+        removeServiceTabFix();
+    }
+    
+    // دالة إزالة إصلاح هوفر القوائم المنسدلة
+    function removeDropdownHoverFix() {
+        
+        const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+        dropdownLinks.forEach(link => {
+            // استعادة الألوان الأصلية
+            if (link.dataset.originalColor !== undefined) {
+                link.style.color = link.dataset.originalColor;
+                link.style.backgroundColor = link.dataset.originalBg;
+                link.style.fontWeight = '';
+                
+                delete link.dataset.originalColor;
+                delete link.dataset.originalBg;
+            }
         });
     }
     
-    // دالة تطبيق تأثيرات الفوتر
-    // function applyFooterContrastEffects() {
-    //     console.log('🦶 تطبيق تأثيرات الفوتر للتباين الأسود');
+    // دالة إزالة إصلاح هوفر الكروت
+    function removeCardHoverFix() {
         
-    //     // تغيير متغيرات CSS
-    //     document.documentElement.style.setProperty('--footer-bottom-bg', '#090909', 'important');
-    //     document.documentElement.style.setProperty('--footer-bg', '#090909', 'important');
+        const serviceCards = document.querySelectorAll('div[style*="background-color: white"]');
+        let cardCount = 0;
         
-    //     // العناصر التي يجب أن تصبح بلون #090909
-    //     const footerElements = document.querySelectorAll(`
-    //         footer,
-    //         .main-footer,
-    //         .footer-bottom,
-    //         .footer-bottom .container,
-    //         .footer-bottom .copyright-text,
-    //         .footer-bottom .footer-bottom-links,
-    //         .social-share-section
-    //     `);
+        serviceCards.forEach(card => {
+            const hoverOverlay = card.querySelector('.hover-overlay');
+            if (hoverOverlay) {
+                cardCount++;
+                
+                // استعادة الأحداث الأصلية
+                if (card.dataset.originalMouseover !== undefined) {
+                    card.setAttribute('onmouseover', card.dataset.originalMouseover);
+                    card.setAttribute('onmouseout', card.dataset.originalMouseout);
+                    
+                    delete card.dataset.originalMouseover;
+                    delete card.dataset.originalMouseout;
+                }
+                
+                // إعادة تعيين لون hover-overlay للون الأخضر الأصلي
+                hoverOverlay.style.backgroundColor = '#00a19a'; // اللون الأخضر الأصلي
+                
+                // إعادة النصوص للوضع الفاتح (بيضاء مع ظل أسود)
+                const overlayTexts = hoverOverlay.querySelectorAll('h3, p');
+                overlayTexts.forEach(text => {
+                    text.style.setProperty('color', '#ffffff', 'important');
+                    // ظل أسود للوضع الفاتح (الأصلي)
+                    text.style.setProperty('text-shadow', '1px 1px 2px rgba(0,0,0,0.8)', 'important');
+                });
+                
+                // إزالة التنسيقات من الأزرار
+                const overlayButtons = hoverOverlay.querySelectorAll('a');
+                overlayButtons.forEach(button => {
+                    button.style.removeProperty('background-color');
+                    button.style.removeProperty('color');
+                });
+            }
+        });
         
-    //     footerElements.forEach(element => {
-    //         element.style.setProperty('background-color', '#090909', 'important');
-    //         element.style.setProperty('background', '#090909', 'important');
-    //         element.style.setProperty('background-image', 'none', 'important');
-    //     });
-        
-    //     // تطبيق اللون على العناصر الفرعية أيضاً
-    //     const footerChildren = document.querySelectorAll(`
-    //         footer *,
-    //         .main-footer *,
-    //         .footer-bottom *,
-    //         .footer-bottom .container *,
-    //         .copyright-text,
-    //         .footer-bottom-links,
-    //         .footer-bottom-links *,
-    //         .footer-bottom-links a
-    //     `);
-        
-    //     footerChildren.forEach(element => {
-    //         // تجنب تطبيق اللون على العناصر الداخلية في social-share-section
-    //         if (!element.closest('.social-share-section > div')) {
-    //             element.style.setProperty('background-color', '#090909', 'important');
-    //             element.style.setProperty('background', '#090909', 'important');
-    //             element.style.setProperty('background-image', 'none', 'important');
-    //         }
-    //     });
-        
-    //     // استهداف مباشر للعناصر المحددة
-    //     const specificElements = [
-    //         'div.footer-bottom',
-    //         'div.footer-bottom div.container', 
-    //         'div.copyright-text',
-    //         'div.footer-bottom-links'
-    //     ];
-        
-    //     specificElements.forEach(selector => {
-    //         const elements = document.querySelectorAll(selector);
-    //         elements.forEach(element => {
-    //             element.style.setProperty('background-color', '#090909', 'important');
-    //             element.style.setProperty('background', '#090909', 'important');
-    //             element.style.setProperty('background-image', 'none', 'important');
-    //         });
-    //     });
-        
-    //     // حماية العناصر الداخلية في social-share-section
-    //     const socialShareInner = document.querySelectorAll('.social-share-section > div');
-    //     socialShareInner.forEach(element => {
-    //         element.style.setProperty('background-color', '#f5f5f5', 'important');
-    //         element.style.setProperty('background', '#f5f5f5', 'important');
-    //     });
-        
-    //     // إضافة CSS مباشر للتأكد المطلق
-    //     const forceCSS = document.createElement('style');
-    //     forceCSS.id = 'force-footer-contrast';
-    //     forceCSS.innerHTML = `
-    //         body.dark-contrast .footer-bottom,
-    //         body.dark-contrast .footer-bottom .container,
-    //         body.dark-contrast .footer-bottom .copyright-text,
-    //         body.dark-contrast .footer-bottom .footer-bottom-links {
-    //             background-color: #090909 !important;
-    //             background: #090909 !important;
-    //             background-image: none !important;
-    //         }
-    //     `;
-        
-    //     // إزالة CSS القديم إذا وجد
-    //     const oldCSS = document.getElementById('force-footer-contrast');
-    //     if (oldCSS) {
-    //         oldCSS.remove();
-    //     }
-        
-    //     document.head.appendChild(forceCSS);
-    // }
+    }
     
+    // دالة إزالة إصلاح زر "كل الخدمات"
+    function removeServiceTabFix() {
+        
+        const serviceTabs = document.querySelectorAll('.service-tab.active, button.service-tab.active');
+        serviceTabs.forEach(tab => {
+            // إزالة جميع inline styles بطريقة شاملة
+            tab.removeAttribute('style');
+            
+            // بديل: إزالة خصائص محددة إذا لم تعمل removeAttribute
+            tab.style.removeProperty('background-color');
+            tab.style.removeProperty('color'); 
+            tab.style.removeProperty('border');
+            
+            // إعادة تطبيق class CSS الأصلي بالقوة
+            tab.classList.remove('active');
+            tab.classList.add('active');
+            
+            // تنظيف البيانات المحفوظة
+            if (tab.dataset.originalBg !== undefined) {
+                delete tab.dataset.originalBg;
+                delete tab.dataset.originalColor;
+                delete tab.dataset.originalBorder;
+            }
+            
+        });
+        
+        // فرض إعادة رسم العناصر
+        document.body.classList.remove('force-refresh');
+        document.body.offsetHeight; // trigger reflow
+        document.body.classList.add('force-refresh');
+        
+        
+        // فرض إعادة تعيين كامل لجميع service tabs
+        forceResetServiceTabs();
+    }
+    
+    // دالة فرض إعادة تعيين service tabs بالكامل
+    function forceResetServiceTabs() {
+        
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        serviceTabs.forEach(tab => {
+            // إزالة جميع inline styles والمعرفات
+            tab.removeAttribute('style');
+            tab.removeAttribute('data-original-bg');
+            tab.removeAttribute('data-original-color');
+            tab.removeAttribute('data-original-border');
+            
+            // فرض إعادة تطبيق CSS
+            if (tab.classList.contains('active')) {
+                const originalHTML = tab.outerHTML;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = originalHTML.replace(/style="[^"]*"/g, '');
+                const newTab = tempDiv.firstChild;
+                tab.parentNode.replaceChild(newTab, tab);
+            }
+        });
+    }
+
+    // دالة تطبيق تأثيرات الفوتر
+    function applyFooterContrastEffects() {
+        
+        const footer = document.querySelector('footer');
+        if (footer) {
+            footer.style.borderTop = '3px solid #ffffff';
+            footer.style.boxShadow = '0 -5px 15px rgba(255,255,255,0.1)';
+        }
+
+        // تحسين روابط الفوتر
+        const footerLinks = document.querySelectorAll('footer a');
+        footerLinks.forEach(link => {
+            link.style.fontWeight = 'bold';
+            link.style.textDecoration = 'underline';
+        });
+    }
+
     // دالة إزالة تأثيرات الفوتر
     function removeFooterContrastEffects() {
-        console.log('🦶 إزالة تأثيرات الفوتر للتباين الأسود');
         
-        // إعادة تعيين متغيرات CSS
-        document.documentElement.style.removeProperty('--footer-bottom-bg');
-        document.documentElement.style.removeProperty('--footer-bg');
-        
-        const footerElements = document.querySelectorAll(`
-            footer, footer *,
-            .main-footer, .main-footer *,
-            .footer-bottom, .footer-bottom *,
-            .social-share-section, .social-share-section *
-        `);
-        
-        footerElements.forEach(element => {
-            element.style.removeProperty('background-color');
-            element.style.removeProperty('background');
-            element.style.removeProperty('background-image');
-        });
-        
-        // إزالة CSS المُضاف
-        const forceCSS = document.getElementById('force-footer-contrast');
-        if (forceCSS) {
-            forceCSS.remove();
+        const footer = document.querySelector('footer');
+        if (footer) {
+            footer.style.borderTop = '';
+            footer.style.boxShadow = '';
         }
-    }
-    
-    // دالة تطبيق تأثيرات الأيقونات
-    function applyIconContrastEffects() {
-        console.log('🎨 تطبيق تأثيرات الأيقونات للتباين الأسود');
-        
-        // تبديل أيقونة الدعم للنسخة السوداء
-        const supportIcons = document.querySelectorAll('.support-icon-fixed img[src*="support.svg"]');
-        supportIcons.forEach(icon => {
-            if (icon.src && icon.src.includes('support.svg')) {
-                icon.setAttribute('data-original-src', icon.src);
-                icon.src = icon.src.replace('support.svg', 'support-black.svg');
-            }
-        });
-        
-        // الأيقونات التي يجب أن تصبح سوداء
-        const darkIcons = document.querySelectorAll(`
-            img[src*="ln1.png"],
-            img[src*="x2.png"], 
-            img[src*="in2.png"],
-            img[src*="f3.png"],
-            img[src*="linkedin"],
-            img[src*="twitter"],
-            img[src*="instagram"],
-            img[src*="facebook"],
-            .social-share-section img:not([src*="clock"]):not([src*="star"])
-        `);
-        
-        darkIcons.forEach(icon => {
-            if (!icon.src.includes('clock') && !icon.src.includes('star')) {
-                icon.style.setProperty('filter', 'brightness(0)', 'important');
-                icon.style.setProperty('background', 'none', 'important');
-                icon.style.setProperty('background-color', 'transparent', 'important');
-            }
-        });
-        
-        // حماية أيقونات التوب بار
-        const protectedIcons = document.querySelectorAll(`
-            .top-bar img,
-            .top-icons img,
-            .zoom-group img,
-            .main-icons-group img,
-            .mobile-icons img,
-            .icon-btn img,
-            img[src*="question.svg"],
-            img[src*="search-zoom-out.svg"],
-            img[src*="search-zoom-in.svg"],
-            img[src*="search.png"],
-            img[src*="location.png"],
-            img[src*="call.png"],
-            img[src*="setting-2.png"],
-            img[src*="profile-circle.svg"],
-            img[src*="logo.png"],
-            .footer-content img,
-            .social-icons img,
-            .contact-btn img
-        `);
-        
-        protectedIcons.forEach(icon => {
-            icon.style.setProperty('filter', 'none', 'important');
-            icon.style.setProperty('opacity', '1', 'important');
-            icon.style.setProperty('brightness', '1', 'important');
+
+        const footerLinks = document.querySelectorAll('footer a');
+        footerLinks.forEach(link => {
+            link.style.fontWeight = '';
+            link.style.textDecoration = '';
         });
     }
-    
-    // دالة إزالة تأثيرات الأيقونات
-    function removeIconContrastEffects() {
-        console.log('🎨 إزالة تأثيرات الأيقونات للتباين الأسود');
+
+    // دالة تطبيق التباين الكامل
+    function applyDarkContrast() {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
         
-        // إعادة أيقونة الدعم للنسخة العادية
-        const supportIcons = document.querySelectorAll('.support-icon-fixed img[src*="support-black.svg"]');
-        supportIcons.forEach(icon => {
-            const originalSrc = icon.getAttribute('data-original-src');
-            if (originalSrc) {
-                icon.src = originalSrc;
-            }
-        });
+        // تطبيق جميع التأثيرات
+        applyTextContrastEffects();
+        applyIconContrastEffects();
+        applyFooterContrastEffects();
+        applyCardHoverFix();
+        applyServiceTabFix();
+    }
+
+    // دالة إزالة التباين الكامل
+    function removeDarkContrast() {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
         
-        const allIcons = document.querySelectorAll('img');
-        allIcons.forEach(icon => {
-            icon.style.removeProperty('filter');
-            icon.style.removeProperty('background');
-            icon.style.removeProperty('background-color');
-            icon.style.removeProperty('opacity');
-            icon.style.removeProperty('brightness');
-        });
+        // إزالة جميع التأثيرات
+        removeTextContrastEffects();
+        removeIconContrastEffects();
+        removeFooterContrastEffects();
+        removeCardHoverFix();
+        removeServiceTabFix();
     }
-    
-    // استرداد الحالة المحفوظة
-    if (localStorage.getItem('darkContrast') === 'true') {
-        applyDarkContrast();
-    }
-    
-    // ربط الأزرار
-    function setupContrastButtons() {
-        // زر التباين الداكن
-        const darkContrastBtns = document.querySelectorAll('.contrast-dark');
-        darkContrastBtns.forEach(btn => {
-            if (!btn.hasAttribute('data-contrast-setup')) {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('🎨 تم النقر على زر التباين الداكن في الصفحة الفرعية');
-                    applyDarkContrast();
-                });
-                btn.setAttribute('data-contrast-setup', 'true');
-            }
-        });
-        
-        // زر التباين الفاتح
-        const lightContrastBtns = document.querySelectorAll('.contrast-light');
-        lightContrastBtns.forEach(btn => {
-            if (!btn.hasAttribute('data-contrast-setup')) {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('🎨 تم النقر على زر التباين الفاتح في الصفحة الفرعية');
-                    removeDarkContrast();
-                });
-                btn.setAttribute('data-contrast-setup', 'true');
-            }
-        });
-    }
-    
-    // دالة مراقبة التغييرات في DOM
-    function observePageChanges() {
+
+    // مراقبة تغييرات التباين مع منع التداخل
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
-                // إعادة تطبيق التباين عند إضافة عناصر جديدة
-                if (document.body.classList.contains('dark-contrast')) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                // تجنب التداخل إذا كان النظام يعالج تغيير الثيم
+                if (isProcessingThemeChange) {
+                    return;
+                }
+                
+                isProcessingThemeChange = true;
+                
+                // تأخير قصير لتجنب التداخل مع unified-icons.js
                     setTimeout(() => {
+                    const currentTheme = localStorage.getItem('theme');
+                    const hasDarkMode = document.body.classList.contains('dark-mode');
+                    
+                    
+                    // التأكد من أن الحالة متناسقة
+                    if (currentTheme === 'light' && hasDarkMode) {
+                        document.body.classList.remove('dark-mode');
+                        return;
+                    }
+                    
+                    if (hasDarkMode) {
                         applyTextContrastEffects();
                         applyIconContrastEffects();
                         applyFooterContrastEffects();
-                    }, 100);
-                }
-                
-                // إعادة ربط الأزرار الجديدة
-                setupContrastButtons();
-            });
+                        applyCardHoverFix();
+                        applyServiceTabFix();
+                    } else {
+                        removeTextContrastEffects();
+                        removeIconContrastEffects();
+                        removeFooterContrastEffects();
+                        removeCardHoverFix();
+                        removeServiceTabFix();
+                    }
+                    
+                    isProcessingThemeChange = false;
+                }, 50); // تأخير 50ms لضمان عدم التداخل
+            }
         });
-        
+    });
+
+    // بدء مراقبة التغييرات
         observer.observe(document.body, {
-            childList: true,
-            subtree: true
+        attributes: true,
+        attributeFilter: ['class']
+    });
+
+    // مراقبة تغييرات localStorage
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'theme') {
+            setTimeout(() => {
+                if (e.newValue === 'dark') {
+                    document.body.classList.add('dark-mode');
+                } else if (e.newValue === 'light') {
+                    document.body.classList.remove('dark-mode');
+                }
+            }, 10);
+        }
+    });
+
+    // التحقق من الحالة المحفوظة عند التحميل مع تأخير لتجنب التداخل
+    setTimeout(() => {
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        } else if (savedTheme === 'light') {
+            document.body.classList.remove('dark-mode');
+        }
+        
+        // تطبيق التأثيرات حسب الحالة النهائية
+        if (document.body.classList.contains('dark-mode')) {
+            applyTextContrastEffects();
+            applyIconContrastEffects();
+            applyFooterContrastEffects();
+            applyCardHoverFix();
+            applyServiceTabFix();
+        }
+    }, 100); // تأخير 100ms للسماح لجميع scripts بالتحميل
+
+    // دالة debugging لمساعدة المستخدم
+    function debugThemeStatus() {
+        
+        const serviceTabs = document.querySelectorAll('.service-tab.active');
+        serviceTabs.forEach((tab, index) => {
+            const computedStyle = window.getComputedStyle(tab);
         });
     }
-    
-    // تشغيل الإعداد
-    setTimeout(setupContrastButtons, 500);
-    setTimeout(observePageChanges, 1000);
-    
-    // إعادة إعداد الأزرار عند الحاجة
-    let retryCount = 0;
-    const retryInterval = setInterval(() => {
-        setupContrastButtons();
-        retryCount++;
-        
-        if (retryCount >= 5) {
-            clearInterval(retryInterval);
-        }
-    }, 1000);
-    
-    // تصدير الدوال للاستخدام الخارجي
-    window.SubpagesDarkContrast = {
+
+    // إتاحة الدوال عبر النافذة للاستخدام الخارجي
+    window.subpagesContrast = {
         apply: applyDarkContrast,
         remove: removeDarkContrast,
-        setupButtons: setupContrastButtons
+        applyIcons: applyIconContrastEffects,
+        removeIcons: removeIconContrastEffects,
+        debug: debugThemeStatus
     };
     
-    console.log('✅ تم إعداد نظام التباين الأسود للصفحات الفرعية بنجاح');
 }); 

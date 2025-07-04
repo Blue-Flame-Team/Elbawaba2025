@@ -103,26 +103,21 @@
     <p>انقر على المربع أعلاه لرؤية القائمة المنسدلة</p>
 
     <script>
-        console.log('🚀 بدء تشغيل الاختبار البسيط');
         
         const selector = document.getElementById('countrySelector');
         const dropdown = document.getElementById('countryDropdown');
         const codeSpan = selector.querySelector('.code');
         const flagImg = selector.querySelector('.flag-img');
         
-        console.log('العناصر:', { selector, dropdown, codeSpan, flagImg });
         
         // فتح/إغلاق القائمة
         selector.addEventListener('click', function(e) {
             e.stopPropagation();
-            console.log('🖱️ تم النقر على العنصر');
             
             if (dropdown.style.display === 'block') {
                 dropdown.style.display = 'none';
-                console.log('📝 إغلاق القائمة');
             } else {
                 dropdown.style.display = 'block';
-                console.log('📝 فتح القائمة');
             }
         });
         
@@ -130,7 +125,6 @@
         dropdown.querySelectorAll('.country-item').forEach(item => {
             item.addEventListener('click', function(e) {
                 e.stopPropagation();
-                console.log('🎯 تم اختيار دولة');
                 
                 const code = this.dataset.code;
                 const flag = this.dataset.flag;
@@ -139,17 +133,14 @@
                 flagImg.src = flag;
                 
                 dropdown.style.display = 'none';
-                console.log('✅ تم تحديث البيانات:', { code, flag });
             });
         });
         
         // إغلاق عند النقر خارج القائمة
         document.addEventListener('click', function() {
             dropdown.style.display = 'none';
-            console.log('📍 إغلاق بالنقر خارج القائمة');
         });
         
-        console.log('✅ تم إعداد جميع الأحداث');
     </script>
 </body>
 </html> 

@@ -13,7 +13,6 @@ document.addEventListener('click', function(e) {
     if (e.target && e.target.classList && e.target.classList.contains('contrast-dark')) {
         // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
         if (isNewDarkContrastActive()) {
-            console.log('نظام التباين الأسود الجديد نشط - لا يتم تطبيق الستايل القديم');
             return;
         }
         
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('theme') === 'dark') {
         // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
         if (isNewDarkContrastActive()) {
-            console.log('نظام التباين الأسود الجديد نشط - لا يتم تطبيق الستايل القديم عند التحميل');
             return;
         }
         
@@ -52,11 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (bodyClasses.contains('dark-mode')) {
                     // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
                     if (isNewDarkContrastActive()) {
-                        console.log('نظام التباين الأسود الجديد نشط - لا يتم تطبيق الستايل القديم');
                         return;
                     }
                     
-                    console.log('تم تفعيل الوضع الداكن - يتم تطبيق الستايل');
                     // تطبيق اللون الأبيض على نصوص الفوتر وقائمة التنقل فوراً عند تفعيل الوضع الداكن
                     makeFooterTextWhite();
                     makeNavMenuTextWhite();
@@ -69,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         makeNavMenuTextWhite();
                     }, 200);
                 } else {
-                    console.log('تم إلغاء الوضع الداكن - يتم إزالة الستايل');
                     removeAllStyles();
                     darkModeActivatedByClick = false;
                 }
@@ -93,7 +88,6 @@ function removeAllStyles() {
         return;
     }
     
-    console.log('إزالة جميع أنماط الوضع الداكن المطبقة');
     
     // إزالة الأنماط من جميع العناصر
     const allElements = document.querySelectorAll('*[style]');
@@ -116,7 +110,6 @@ function makeFooterTextWhite() {
         return;
     }
     
-    console.log('تطبيق اللون الأبيض على نصوص الفوتر');
     
     // تحديد جميع عناصر الفوتر
     const allFooterElements = document.querySelectorAll('.footer, .footer *, .main-footer, .main-footer *, .footer-bottom, .footer-bottom *, .footer-top, .footer-top *, .footer-column, .footer-column *, .footer-links, .footer-links *, .footer-menu, .footer-menu *, .footer-info, .footer-info *, .footer-copyright, .footer-copyright *');
@@ -142,18 +135,15 @@ function makeNavMenuTextWhite() {
         return;
     }
     
-    console.log('تطبيق اللون الأبيض على قائمة التنقل');
     
     // التحقق مما إذا كانت الصفحة الحالية هي الصفحة الرئيسية
     const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html') || window.location.pathname === '/index.html';
     
     // إذا كانت هذه هي الصفحة الرئيسية، فلا نقوم بتطبيق طراز موحد على الناف بار
     if (isHomePage) {
-        console.log('الصفحة الرئيسية: لا يتم توحيد مظهر الناف بار');
         return; // الخروج من الوظيفة إذا كانت الصفحة الرئيسية
     }
     
-    console.log('صفحة فرعية: توحيد مظهر الناف بار');
     
     // تحديد جميع عناصر قائمة التنقل
     const navMenuElements = document.querySelectorAll('nav, .navbar, .nav-menu, .top-bar, .menu-item, .dropdown-menu, header nav, .nav-container, .navigation, nav *, .navbar *, .nav-menu *, .top-bar *, .menu-item *, .dropdown-menu *, header nav *, .nav-container *, .navigation *');
@@ -251,11 +241,9 @@ function makeNavMenuTextWhite() {
 function applySidebarButtonsDarkMode() {
     // إذا كان نظام التباين الأسود الجديد نشط، لا نتدخل
     if (isNewDarkContrastActive()) {
-        console.log('نظام التباين الأسود الجديد نشط - لا يتم تطبيق الستايل القديم');
         return;
     }
     
-    console.log('تطبيق الوضع الداكن على الأزرار والعناصر');
     
     // تطبيق اللون الأبيض على نصوص الفوتر وقائمة التنقل
     makeFooterTextWhite();
@@ -408,7 +396,6 @@ function applySubpageStyles() {
         return;
     }
     
-    console.log('تطبيق أنماط الصفحات الفرعية في وضع التباين الداكن');
     
     // التحقق مما إذا كانت هذه صفحة فرعية وليست الصفحة الرئيسية
     const isHomePage = document.body.classList.contains('home-page');

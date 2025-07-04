@@ -4,11 +4,9 @@
 (function() {
     'use strict';
     
-    console.log('🚀 تحميل إصلاح زر طلب خدمة الأسانيد');
     
     // تعطيل دالة auth-system.js فوراً
     window._showAsanidServiceForm = function() {
-        console.log('✅ تم تجاوز _showAsanidServiceForm من auth-system.js');
         
         // إزالة أي نوافذ خاطئة فوراً
         const wrongModals = document.querySelectorAll('#asanid-form-modal, .asanid-form-modal, #subscribe-modal, .profile-edit-modal');
@@ -34,7 +32,6 @@
         
         const text = element.textContent || element.innerText || '';
         if (text.includes('طلب خدمة الأسانيد')) {
-            console.log('🔧 إصلاح زر طلب خدمة الأسانيد:', element);
             
             // إزالة جميع الأحداث الموجودة
             const newElement = element.cloneNode(true);
@@ -53,7 +50,6 @@
                 e.stopPropagation();
                 e.stopImmediatePropagation();
                 
-                console.log('🎯 تم النقر على زر طلب خدمة الأسانيد - فتح النافذة الصحيحة');
                 
                 // إزالة أي نوافذ خاطئة
                 document.querySelectorAll('#asanid-form-modal, .asanid-form-modal, #subscribe-modal, .profile-edit-modal, .modal').forEach(modal => {
@@ -73,12 +69,10 @@
                         // محاولة البحث عن الدالة
                         for (let prop in window) {
                             if (typeof window[prop] === 'function' && prop.toLowerCase().includes('asanid')) {
-                                console.log('🔍 محاولة استخدام:', prop);
                                 try {
                                     window[prop]();
                                     break;
                                 } catch (e) {
-                                    console.log('❌ فشل في:', prop);
                                 }
                             }
                         }
@@ -94,7 +88,6 @@
     
     // دالة إصلاح جميع الأزرار
     function fixAllAsanidButtons() {
-        console.log('🔍 البحث عن أزرار طلب خدمة الأسانيد');
         
         // البحث في جميع العناصر
         const allElements = document.querySelectorAll('*');
@@ -110,7 +103,6 @@
             try {
                 document.querySelectorAll(selector).forEach(fixAsanidButton);
             } catch (e) {
-                console.log('خطأ في selector:', selector);
             }
         });
     }
@@ -174,5 +166,4 @@
     // إصلاح دوري كل 3 ثوان
     setInterval(fixAllAsanidButtons, 3000);
     
-    console.log('✅ تم تحميل إصلاح زر طلب خدمة الأسانيد بنجاح');
 })(); 

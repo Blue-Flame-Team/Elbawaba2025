@@ -1,5 +1,4 @@
 ﻿(function() {
-    console.log('🔄 تفعيل نظام تسجيل الدخول المستمر...');
     
     function checkLoginStatus() {
         try {
@@ -44,16 +43,13 @@
     function updateUI() {
         const isLoggedIn = checkLoginStatus();
         if (isLoggedIn) {
-            console.log('👤 المستخدم مسجل دخول - إظهار أيقونات البروفايل');
             forceShowProfileIcons();
         }
     }
     
     function init() {
-        console.log('🚀 بدء تهيئة نظام تسجيل الدخول المستمر...');
         setTimeout(updateUI, 500);
         setInterval(updateUI, 5000);
-        console.log('✅ نظام تسجيل الدخول المستمر جاهز للعمل');
     }
     
     if (document.readyState === 'loading') {

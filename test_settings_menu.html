@@ -201,23 +201,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🧪 بدء اختبار قائمة الإعدادات');
             
             // البحث عن أزرار الإعدادات
             const settingsToggleBtns = document.querySelectorAll('.settings-toggle-btn');
-            console.log('عدد أزرار الإعدادات:', settingsToggleBtns.length);
             
             settingsToggleBtns.forEach((btn, index) => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    console.log('✅ تم النقر على زر الإعدادات رقم:', index);
                     
                     const settingsMenu = btn.nextElementSibling;
                     if (settingsMenu && settingsMenu.classList.contains('settings-menu')) {
                         settingsMenu.classList.toggle('active');
-                        console.log('✅ تم تبديل قائمة الإعدادات');
                         
                         // إغلاق القوائم الأخرى
                         document.querySelectorAll('.settings-menu').forEach(otherMenu => {
@@ -235,12 +231,10 @@
                 option.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log('✅ تم النقر على خيار التباين');
                     
                     const submenu = this.parentElement.querySelector('.contrast-submenu');
                     if (submenu) {
                         submenu.classList.toggle('show');
-                        console.log('✅ تم تبديل القائمة الفرعية');
                     }
                 });
             });
@@ -250,7 +244,6 @@
             contrastLights.forEach(light => {
                 light.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('🌞 تم تفعيل التباين الفاتح');
                     document.body.classList.remove('dark-mode');
                     document.body.style.backgroundColor = '#ffffff';
                     localStorage.setItem('theme', 'light');
@@ -270,7 +263,6 @@
             contrastDarks.forEach(dark => {
                 dark.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('🌙 تم تفعيل التباين الداكن');
                     document.body.classList.add('dark-mode');
                     document.body.style.backgroundColor = '#1a1a1a';
                     document.body.style.color = '#ffffff';
@@ -291,7 +283,6 @@
             statsOptions.forEach(option => {
                 option.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('📊 الانتقال للإحصائيات');
                     alert('سيتم الانتقال لصفحة الإحصائيات');
                 });
             });
@@ -301,7 +292,6 @@
             logoutOptions.forEach(option => {
                 option.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('🚪 تسجيل خروج');
                     alert('تم تسجيل الخروج');
                     
                     // إغلاق القوائم
@@ -335,7 +325,6 @@
                 }
             });
             
-            console.log('✅ تم تحميل اختبار قائمة الإعدادات بنجاح');
         });
     </script>
 </body>

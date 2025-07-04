@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // التحقق من وجود العناصر
     if (settingsBtn && settingsMenu) {
-        console.log('تم العثور على عناصر القائمة');
 
         // تهيئة حالة التباين المحفوظة
         const savedTheme = localStorage.getItem('theme');
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         settingsBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('تم النقر على زر الإعدادات');
             
             // تبديل عرض القائمة
             settingsMenu.classList.toggle('show');
@@ -31,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // تحديث موضع القائمة في نسخة الموبايل
             if (window.innerWidth <= 768) {
                 const btnRect = settingsBtn.getBoundingClientRect();
-                console.log('موضع الزر:', btnRect);
                 
                 settingsMenu.style.position = 'fixed';
                 settingsMenu.style.top = (btnRect.bottom + window.scrollY) + 'px';
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
             contrastOption.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('تم النقر على خيار التباين');
                 contrastSubmenu.classList.toggle('show');
             });
         }
@@ -57,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
             contrastDark.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('تم النقر على التباين الداكن');
                 applyDarkContrast();
                 closeMenus();
             });
@@ -68,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
             contrastLight.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('تم النقر على التباين الفاتح');
                 removeDarkContrast();
                 closeMenus();
             });
@@ -84,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // دالة تطبيق التباين الداكن
     function applyDarkContrast() {
-        console.log('جاري تطبيق التباين الداكن');
         document.body.classList.add('dark-mode');
         localStorage.setItem('theme', 'dark');
         
@@ -109,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // دالة إزالة التباين الداكن
     function removeDarkContrast() {
-        console.log('جاري إزالة التباين الداكن');
         document.body.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light');
         

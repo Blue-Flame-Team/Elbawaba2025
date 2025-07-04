@@ -42,7 +42,6 @@ const AuthSystem = (function() {
      * تهيئة النظام عند تحميل الصفحة
      */
     function init() {
-        console.log('تهيئة نظام المصادقة...');
         
         // الحصول على كافة عناصر واجهة المستخدم
         _cacheElements();
@@ -224,7 +223,6 @@ const AuthSystem = (function() {
             // إغلاق نافذة تسجيل الدخول
             _hideLoginModal();
             
-            console.log('تم تسجيل الدخول بنجاح:', user.name);
             return true;
         } else {
             // فشل تسجيل الدخول
@@ -247,7 +245,6 @@ const AuthSystem = (function() {
         // إغلاق أي نوافذ مفتوحة للمستخدم
         _hideUserDashboard();
         
-        console.log('تم تسجيل الخروج بنجاح');
     }
     
     /**
@@ -263,7 +260,6 @@ const AuthSystem = (function() {
             if (storedUser && storedUser.isLoggedIn) {
                 _currentUser = storedUser;
                 _updateUIAfterLogin();
-                console.log('المستخدم مسجل الدخول:', storedUser.name);
             }
         } catch (error) {
             console.error('خطأ في تحميل بيانات المستخدم:', error);

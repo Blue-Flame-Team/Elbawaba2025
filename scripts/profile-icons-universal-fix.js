@@ -4,7 +4,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Universal Profile Icons Fix - Loading...');
     
     // إعداد زر تغيير كلمة المرور
     setupPasswordChangeButton();
@@ -156,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         document.head.appendChild(css);
-        console.log('✅ Universal CSS applied');
     }
     
     // Setup profile icons
@@ -165,13 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const desktopBtn = document.querySelector('.profile-icon-btn');
         const isLoggedIn = checkUserLoginStatus();
         
-        console.log('🔍 Found Elements:');
-        console.log('  - Mobile Button:', !!mobileBtn);
-        console.log('  - Desktop Button:', !!desktopBtn);
-        console.log('  - User Logged In:', isLoggedIn);
         
         if (!isLoggedIn) {
-            console.log('❌ User not logged in - hiding icons');
             if (mobileBtn) mobileBtn.style.display = 'none';
             if (desktopBtn) desktopBtn.style.display = 'none';
             return;
@@ -195,7 +188,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 desktopBtn.setAttribute('data-click-setup', 'true');
             }
             
-            console.log('✅ Desktop icon configured');
         }
         
         // Setup mobile icon
@@ -208,7 +200,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 mobileBtn.style.setProperty('visibility', 'hidden', 'important');
                 mobileBtn.style.setProperty('position', 'absolute', 'important');
                 mobileBtn.style.setProperty('left', '-9999px', 'important');
-                console.log('💻 Mobile icon hidden on desktop');
             } else {
                 // Show on mobile
                 mobileBtn.setAttribute('data-universal-fix', 'true');
@@ -224,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     mobileBtn.setAttribute('data-click-setup', 'true');
                 }
                 
-                console.log('✅ Mobile icon configured');
             }
         }
         
@@ -273,17 +263,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load user dashboard modal if not exists
     function loadUserDashboardModal() {
         if (document.getElementById('user-dashboard-modal')) {
-            console.log('✅ User dashboard modal already exists');
             return Promise.resolve();
         }
         
-        console.log('📥 Loading user dashboard modal...');
         
         return fetch('../includes/user-dashboard-modal.html')
             .then(response => response.text())
             .then(html => {
                 document.body.insertAdjacentHTML('beforeend', html);
-                console.log('✅ User dashboard modal loaded successfully');
                 
                 // Setup modal close functionality
                 setupModalCloseFunctionality();
@@ -520,12 +507,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.body.insertAdjacentHTML('beforeend', modalHTML);
         setupModalCloseFunctionality();
-        console.log('✅ Fallback modal created');
     }
     
     // Open profile modal function
     function openProfileModal() {
-        console.log('🔓 Opening profile modal...');
         
         // First ensure modal is loaded
         loadUserDashboardModal().then(() => {
@@ -537,7 +522,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 modal.style.display = 'flex';
                 modal.style.zIndex = '99999';
                 document.body.style.overflow = 'hidden';
-                console.log('✅ Profile modal opened');
 
                 // Add click handler for edit profile button
                 const editProfileBtn = modal.querySelector('[data-action="edit-profile"]');
@@ -549,19 +533,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         closeProfileModal();
                         // Show the edit profile modal
                         if (window.showEditProfileModal) {
-                            console.log('✅ showEditProfileModal function found, calling it...');
                             window.showEditProfileModal();
                         } else {
-                            console.log('⚠️ showEditProfileModal function not found, trying to load script...');
                             // Try to load the edit profile modal script
                             const script = document.createElement('script');
                             const scriptPath = window.location.pathname.includes('/pages/') ? '../scripts/edit-profile-modal.js' : 'scripts/edit-profile-modal.js';
-                            console.log('📂 Loading script from:', scriptPath);
                             script.src = scriptPath;
                             script.onload = function() {
-                                console.log('✅ Script loaded successfully');
                                 if (window.showEditProfileModal) {
-                                    console.log('✅ showEditProfileModal function found after loading script');
                                     window.showEditProfileModal();
                                 } else {
                                     console.error('❌ showEditProfileModal function still not found after loading script');
@@ -569,8 +548,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             };
                             script.onerror = function(error) {
                                 console.error('❌ Failed to load edit-profile-modal.js:', error);
-                                console.log('📍 Current path:', window.location.pathname);
-                                console.log('🔍 Attempted script path:', scriptPath);
                             };
                             document.head.appendChild(script);
                         }
@@ -589,7 +566,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
-            console.log('✅ Profile modal closed');
         }
     }
     
@@ -617,7 +593,6 @@ document.addEventListener('DOMContentLoaded', function() {
             welcomeElement.textContent = `مرحبا ${userName}`;
         }
         
-        console.log('✅ Updated modal user info:', userName);
     }
     
     // Handle logout function
@@ -664,7 +639,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mobile.style.setProperty('background', 'yellow', 'important');
         }
         
-        console.log('🎯 Look for yellow boxes with red borders');
     };
     
     window.simulateLogin = function() {
@@ -674,12 +648,10 @@ document.addEventListener('DOMContentLoaded', function() {
             isLoggedIn: true
         }));
         setupProfileIcons();
-        console.log('✅ Login simulated');
     };
     
     // Initialize
     setupProfileIcons();
-    console.log('🎯 Universal Profile Icons Fix - Complete');
 
     // مراقبة إضافة زر تغيير كلمة المرور بشكل ديناميكي
     const observer = new MutationObserver(function(mutations) {
@@ -964,15 +936,12 @@ function setupPasswordChangeButton() {
         changePasswordBtn.onclick = function() {
             showPasswordChangeModal();
         };
-            console.log('✅ تم ربط زر تغيير كلمة المرور');
     } else {
-        console.log('⚠️ لم يتم العثور على زر تغيير كلمة المرور');
     }
 }
 
 // دالة لفتح نافذة تغيير كلمة المرور
 window.showPasswordChangeModal = function() {
-    console.log('🔍 جاري فتح نافذة تغيير كلمة المرور...');
 
     // إغلاق أي نوافذ مفتوحة
     const openModals = document.querySelectorAll('.modal, #user-dashboard-modal, #edit-profile-modal');

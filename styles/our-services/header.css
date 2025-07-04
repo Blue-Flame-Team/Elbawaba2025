@@ -1,5 +1,4 @@
-﻿
-/* Header Styling for Terms Page */
+﻿/* Header Styling for Terms Page */
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
 
 :root {
@@ -289,4 +288,78 @@ ul {
         flex-wrap: wrap;
         gap: 10px;
     }
+}
+
+/* Dark Mode / High Contrast Styles */
+body.dark-mode .dropdown:hover .dropdown-menu a:hover,
+body.dark-mode .dropdown-menu a:hover {
+    background-color: #28a745 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+body.dark-mode .dropdown-menu a {
+    color: #ffffff !important;
+    background-color: transparent !important;
+}
+
+body.dark-mode .dropdown-menu {
+    background-color: #000000 !important;
+    border: 3px solid #28a745 !important;
+    box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3) !important;
+}
+
+/* إصلاح هوفر الكروت في التباين الأسود - خلفية سوداء */
+body.dark-mode .hover-overlay,
+body.dark-mode div .hover-overlay,
+body.dark-mode div:hover .hover-overlay {
+    background-color: #000000 !important;
+    background: #000000 !important;
+}
+
+body.dark-mode .service-card:hover .hover-overlay,
+body.dark-mode div[style*="background-color: white"]:hover .hover-overlay {
+    background-color: #000000 !important;
+    background: #000000 !important;
+}
+
+/* النصوص في التباين الأسود - بيضاء مع ظل أبيض فاتح */
+body.dark-mode .hover-overlay h3,
+body.dark-mode .hover-overlay p,
+body.dark-mode div .hover-overlay h3,
+body.dark-mode div .hover-overlay p {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.3) !important;
+}
+
+/* النصوص في الوضع الفاتح - بيضاء مع ظل أسود (الحالة الأصلية) */
+body:not(.dark-mode) .hover-overlay h3,
+body:not(.dark-mode) .hover-overlay p,
+body:not(.dark-mode) div .hover-overlay h3,
+body:not(.dark-mode) div .hover-overlay p {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8) !important;
+}
+
+/* الأزرار تبقى برتقالية للتباين */
+body.dark-mode .hover-overlay a,
+body.dark-mode div .hover-overlay a {
+    background-color: #ff6b35 !important;
+    background: #ff6b35 !important;
+    color: #ffffff !important;
+}
+
+/* CSS مباشر للتغلب على inline styles - خلفية سوداء */
+body.dark-mode div[style*="background-color: white"] .hover-overlay[style*="background-color"] {
+    background-color: #000000 !important;
+    background: #000000 !important;
+}
+
+/* زر "كل الخدمات" في التباين الأسود */
+body.dark-mode .service-tab.active,
+body.dark-mode button.service-tab.active {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
 }

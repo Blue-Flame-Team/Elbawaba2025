@@ -117,13 +117,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to search within current file
     function searchInCurrentFile(query) {
         // Implement file-specific search here
-        console.log('Searching in current file:', query);
     }
     
     // Function to search services
     function searchServices(query) {
         // Implement services search here
-        console.log('Searching services:', query);
     }
     
     // Close popup function

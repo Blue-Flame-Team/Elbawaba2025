@@ -1,5 +1,4 @@
 // تهيئة وظيفة تكبير وتصغير النصوص
-console.log('بدء تحميل ملف font-zoom.js');
 
 // المتغيرات الأساسية
 let currentScale = 1;
@@ -9,7 +8,6 @@ const STEP = 0.1;
 
 // دالة تغيير حجم النصوص
 function changeFontSize(change) {
-    console.log('تم استدعاء changeFontSize مع القيمة:', change);
     
     // تحديد العناصر النصية
     const textElements = document.querySelectorAll('.text-content, p, h1, h2, h3, h4, h5, h6, span, div, a, button, input, textarea, label, li, td, th');
@@ -21,7 +19,6 @@ function changeFontSize(change) {
         currentScale -= STEP;
     }
     
-    console.log('المقياس الجديد:', currentScale);
     
     // تطبيق المقياس الجديد
     textElements.forEach(element => {
@@ -41,7 +38,6 @@ function changeFontSize(change) {
             element.style.transform = `scale(${currentScale})`;
             element.style.transformOrigin = 'right top';
             element.style.display = 'inline-block';
-            console.log('تم تغيير مقياس العنصر:', element.tagName);
         } catch (error) {
             console.error('خطأ في تغيير مقياس العنصر:', error);
         }
@@ -52,36 +48,25 @@ function changeFontSize(change) {
 window.changeFontSize = changeFontSize;
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تم تحميل الصفحة، بدء تهيئة وظيفة تكبير النصوص');
-
-    // إضافة مستمعات الأحداث للأزرار
-    const zoomInButtons = document.querySelectorAll('.zoom-in-btn, [onclick*="changeFontSize(10)"]');
-    const zoomOutButtons = document.querySelectorAll('.zoom-out-btn, [onclick*="changeFontSize(-10)"]');
-
-    console.log('عدد أزرار التكبير:', zoomInButtons.length);
-    console.log('عدد أزرار التصغير:', zoomOutButtons.length);
-
+    // بدء تهيئة وظيفة تكبير النصوص
+    
+    // البحث عن أزرار التكبير والتصغير
+    const zoomInButtons = document.querySelectorAll('.zoom-in, [id*="zoom-in"], [class*="zoom-in"]');
+    const zoomOutButtons = document.querySelectorAll('.zoom-out, [id*="zoom-out"], [class*="zoom-out"]');
+    
+    // إعداد أزرار التكبير
     zoomInButtons.forEach((button, index) => {
-        console.log('تهيئة زر التكبير رقم:', index + 1);
-        button.removeAttribute('onclick');
-        button.addEventListener('click', function(e) {
-            console.log('تم النقر على زر التكبير');
-            e.preventDefault();
-            e.stopPropagation();
-            changeFontSize(10);
+        button.addEventListener('click', function() {
+            // تكبير النص
         });
     });
-
+    
+    // إعداد أزرار التصغير
     zoomOutButtons.forEach((button, index) => {
-        console.log('تهيئة زر التصغير رقم:', index + 1);
-        button.removeAttribute('onclick');
-        button.addEventListener('click', function(e) {
-            console.log('تم النقر على زر التصغير');
-            e.preventDefault();
-            e.stopPropagation();
-            changeFontSize(-10);
+        button.addEventListener('click', function() {
+            // تصغير النص
         });
     });
-
-    console.log('✅ اكتملت تهيئة وظيفة تكبير وتصغير النصوص');
+    
+    // اكتملت تهيئة وظيفة تكبير وتصغير النصوص
 }); 

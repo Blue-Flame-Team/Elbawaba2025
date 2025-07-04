@@ -1,6 +1,5 @@
 // زيادة أو تصغير حجم النص في الموقع
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تهيئة وظيفة تكبير النصوص المحسنة...');
     
     // المتغيرات والثوابت
     let textSize = 100; // القيمة الابتدائية للنص (النسبة المئوية)
@@ -95,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // معالج حدث التكبير
     function zoomInHandler(e) {
         e.preventDefault();
-        console.log('تكبير النص');
         if (textSize < maxSize) {
             applyTextSize(textSize + sizeStep);
         }
@@ -104,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // معالج حدث التصغير
     function zoomOutHandler(e) {
         e.preventDefault();
-        console.log('تصغير النص');
         if (textSize > minSize) {
             applyTextSize(textSize - sizeStep);
         }

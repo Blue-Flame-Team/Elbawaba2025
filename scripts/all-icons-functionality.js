@@ -4,7 +4,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تهيئة وظائف الأيقونات لجميع الأجهزة...');
 
     // ---- تهيئة نافذة البحث ----
     let searchPopupOverlay = document.getElementById('searchPopupOverlay');
@@ -16,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 1. أيقونة البحث في نسخة سطح المكتب
     const desktopSearchBtn = document.querySelector('.main-icons-group .icon-btn:nth-child(1)');
     if (desktopSearchBtn) {
-        console.log('تم العثور على أيقونة البحث في سطح المكتب');
         desktopSearchBtn.addEventListener('click', function(e) {
             e.preventDefault();
             openSearchPopup();
@@ -26,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2. أيقونة البحث في الموبايل
     const mobileSearchBtn = document.querySelector('.mobile-icons .search-btn');
     if (mobileSearchBtn) {
-        console.log('تم العثور على أيقونة البحث في الموبايل');
         mobileSearchBtn.addEventListener('click', function(e) {
             e.preventDefault();
             openSearchPopup();
@@ -48,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const desktopSettingsMenu = document.querySelector('.main-icons-group .settings-menu');
     
     if (desktopSettingsBtn && desktopSettingsMenu) {
-        console.log('تم العثور على أيقونة الإعدادات في سطح المكتب');
         
         // تهيئة قائمة الإعدادات لسطح المكتب
         initializeSettingsMenuListeners(desktopSettingsMenu);
@@ -57,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
         desktopSettingsBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('تم النقر على أيقونة الإعدادات في سطح المكتب');
             
             // إظهار/إخفاء القائمة
             desktopSettingsMenu.classList.toggle('show');
@@ -77,13 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (mobileSettingsBtn && mobileSettingsMenu) {
-        console.log('تم العثور على أيقونة الإعدادات في الموبايل');
         
         // فتح/إغلاق قائمة الإعدادات عند النقر على الأيقونة
         mobileSettingsBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('تم النقر على أيقونة الإعدادات في الموبايل');
             
             // إظهار/إخفاء القائمة
             mobileSettingsMenu.classList.toggle('show');
@@ -262,7 +255,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (searchInput) {
             const searchQuery = searchInput.value.trim();
             if (searchQuery) {
-                console.log('إجراء البحث عن:', searchQuery);
                 // تنفيذ وظيفة البحث الفعلية هنا
                 closeSearchPopup();
             }

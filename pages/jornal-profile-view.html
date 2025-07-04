@@ -190,6 +190,16 @@ html * {
 body.loaded *, .dynamic-content *, [data-loaded="true"] * {
     font-family: "Droid Arabic Kufi", sans-serif !important;
 }
+
+#star-rating .star-icon {
+    transition: transform 0.2s ease;
+}
+#star-rating .star-icon:hover {
+    transform: scale(1.1);
+}
+#star-rating .star-icon.active {
+    filter: drop-shadow(0 0 5px rgba(21, 136, 133, 0.5));
+}
 </style>
 </head>
 <body class="loaded">
@@ -462,15 +472,7 @@ body.loaded *, .dynamic-content *, [data-loaded="true"] * {
                     <p>ويأتي هذا الدعم استمرارًا لنهج القيادة الحكيمة -أيدها الله- في رعاية الفئات المستحقة، وامتدادًا لما توليه حكومة خادم الحرمين الشريفين وسمو ولي العهد -حفظهما الله- من اهتمام بالغ بتحسين جودة الحياة، وتعزيز مستوى المعيشة لمستفيدي الضمان الاجتماعي، لا سيما في هذا الشهر الفضيل.</p>
                     <p>ورفع معالي وزير الموارد البشرية والتنمية الاجتماعية، المهندس أحمد بن سليمان الراجحي، الشكر والتقدير لخادم الحرمين الشريفين وسمو ولي العهد -حفظهما الله- على هذه المكرمة الكريمة، التي تُجسد نهج القيادة في دعم المواطنين، وتوفير سبل العيش الكريم لهم، داعيًا الله -عز وجل- أن يحفظ القيادة الحكيمة وأن يجزيها خير الجزاء، ويديم على بلادنا نعمة الأمن والرخاء.</p>
                         
-                    <!-- Footer النص -->
-                        <div class="article-footer">جدة - واس</div>
-                    <h3 class="related-title">ذات صلة</h3>
-                    <div class="related-items">
-                        <p>النظام وفقاً لآخر تعديل - مرسوم رقم م/ 45 بتاريخ 7/7/1427 هـ بالموافقة على نظام الضمان الاجتماعي</p>
-                        <p>قرار وزير الموارد البشرية والتنمية الاجتماعية رقم (192891) وتاريخ 25/ 10 /1442هـ بشأن اللائحة التنفيذية لنظام الضمان الاجتماعي الصادر بالمرسوم الملكي رقم (32 /) وتاريخ 4/ 4 /1442هـ</p>
-                    </div>
-                </div>
-            </div>
+                   
             
             <div class="article-divider"></div>
             
@@ -536,6 +538,9 @@ body.loaded *, .dynamic-content *, [data-loaded="true"] * {
                     </div>
                 </div>
             </div>
+
+
+            
         </div>
     </main>
     
@@ -553,32 +558,32 @@ body.loaded *, .dynamic-content *, [data-loaded="true"] * {
              <div style="display: flex; align-items: center; gap: 8px;">
                  <div style="display: flex; align-items: center; gap: 3px;">
                      <span style="font-family: 'Droid Arabic Kufi', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0%; text-align: right; color: #158885;">تقييم المحتوى</span>
-                     <div style="display: flex; gap: 2px;">
-                         <img src="../assets/icons/star.png" alt="نجمة غير مفعلة" width="16" height="16">
-                         <img src="../assets/icons/star.png" alt="نجمة غير مفعلة" width="16" height="16">
-                         <img src="../assets/icons/star.png" alt="نجمة غير مفعلة" width="16" height="16">
-                         <img src="../assets/icons/star2.png" alt="نجمة مفعلة" width="16" height="16">
-                         <img src="../assets/icons/star2.png" alt="نجمة مفعلة" width="16" height="16">
+                     <div id="star-rating" style="display: flex; gap: 2px; cursor: pointer;">
+                         <img src="../assets/icons/star.png" data-rating="1" width="24" height="24" class="star-icon">
+                         <img src="../assets/icons/star.png" data-rating="2" width="24" height="24" class="star-icon">
+                         <img src="../assets/icons/star.png" data-rating="3" width="24" height="24" class="star-icon">
+                         <img src="../assets/icons/star.png" data-rating="4" width="24" height="24" class="star-icon">
+                         <img src="../assets/icons/star.png" data-rating="5" width="24" height="24" class="star-icon">
                      </div>
                  </div>
                  <!-- Followers Count - Middle -->
                  <div style="display: flex; align-items: center; gap: 3px;">
                      <span style="font-family: 'Droid Arabic Kufi', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0%; text-align: right; color: #158885;">عدد الأصوات:</span>
-                     <span style="font-family: 'Droid Arabic Kufi', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0%; text-align: right; color: #158885;">9130</span>
+                     <span id="vote-count" style="font-family: 'Droid Arabic Kufi', sans-serif; font-weight: 400; font-size: 16px; line-height: 100%; letter-spacing: 0%; text-align: right; color: #158885;">٩,١٣٠</span>
                  </div>
              </div>
              <div style="display: flex; align-items: center; gap: 5px;">
                  <span style="margin-right: 5px; font-size: 14px; color: #00a19a;">شارك على</span>
-                 <a href="https://linkedin.com/company/mohamoon-ksa" style="color: #00a19a;">
+                 <a href="#" style="color: #00a19a;">
                      <img src="../assets/icons/ln1.png" alt="لينكد إن" width="26" height="26">
                  </a>
-                 <a href="https://twitter.com/mohamoon_ksa" style="color: #00a19a;">
+                 <a href="#" style="color: #00a19a;">
                      <img src="../assets/icons/x2.png" alt="تويتر" width="26" height="26">
                  </a>
-                 <a href="https://instagram.com/mohamoon_ksa" style="color: #00a19a;">
+                 <a href="#" style="color: #00a19a;">
                      <img src="../assets/icons/in2.png" alt="انستغرام" width="26" height="26">
                  </a>
-                 <a href="https://facebook.com/mohamoon.ksa" style="color: #00a19a;">                
+                 <a href="#" style="color: #00a19a;">                
                      <img src="../assets/icons/f3.png" alt="فيسبوك" width="26" height="26">
                  </a>
              </div>   
@@ -771,12 +776,138 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.text())
                 .then(html => {
                     document.body.insertAdjacentHTML('beforeend', html);
-                    console.log('✅ تم تحميل نافذة تغيير كلمة المرور');
                 })
                 .catch(error => {
                     console.error('❌ خطأ في تحميل نافذة تغيير كلمة المرور:', error);
                 });
         });
+    </script>
+
+    <!-- إضافة سكريبت التصويت -->
+    <script src="../scripts/rating-system.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ratingContainers = document.querySelectorAll('.interactive-rating');
+        });
+    </script>
+
+    <!-- إضافة السكريبت مباشرة في الصفحة -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const starRatingContainer = document.getElementById('star-rating');
+            const voteCountElement = document.getElementById('vote-count');
+            const stars = Array.from(starRatingContainer.querySelectorAll('.star-icon'));
+            
+            let votesCount = parseInt(voteCountElement.textContent.replace(/[^\d]/g, ''));
+            let selectedRating = 0;
+
+            // دالة تحديث حالة النجوم
+            function updateStars(rating) {
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.src = '../assets/icons/star2.png';
+                    } else {
+                        star.src = '../assets/icons/star.png';
+                    }
+                });
+            }
+
+            // معالج الماوس للتمرير
+            stars.forEach((star) => {
+                star.addEventListener('mouseenter', function() {
+                    const hoverRating = parseInt(this.getAttribute('data-rating'));
+                    updateStars(hoverRating);
+                });
+
+                star.addEventListener('mouseleave', function() {
+                    // إعادة تفعيل النجوم للتقييم المحدد مسبقًا
+                    updateStars(selectedRating);
+                });
+
+                star.addEventListener('click', function() {
+                    // تحديد التقييم الحالي
+                    selectedRating = parseInt(this.getAttribute('data-rating'));
+                    
+                    // زيادة عدد الأصوات
+                    votesCount++;
+                    voteCountElement.textContent = votesCount.toLocaleString('ar-EG', {
+                        useGrouping: true,
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0
+                    });
+                    
+                    // تحديث حالة النجوم
+                    updateStars(selectedRating);
+                    
+                    // رسالة شكر
+                    alert('شكرًا لتقييمك!');
+                });
+            });
+        });
+    </script>
+
+    <!-- نظام التصويت بالنجوم -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const starRatingContainer = document.getElementById('star-rating');
+        const voteCountElement = document.getElementById('vote-count');
+        const stars = starRatingContainer.querySelectorAll('img');
+        
+        let votesCount = parseInt(voteCountElement.textContent.replace(/[^\d]/g, ''));
+        let currentRating = 0;
+
+        // دالة تحديث حالة النجوم
+        function updateStars(rating) {
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.src = '../assets/icons/star2.png';
+                    star.classList.add('active');
+                } else {
+                    star.src = '../assets/icons/star.png';
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // إضافة معالج النقر لكل نجمة
+        stars.forEach((star) => {
+            star.addEventListener('mouseenter', function() {
+                const hoverRating = parseInt(this.getAttribute('data-rating'));
+                updateStars(hoverRating);
+            });
+
+            star.addEventListener('mouseleave', function() {
+                // إعادة تفعيل النجوم للتقييم الحالي عند مغادرة الماوس
+                if (currentRating > 0) {
+                    updateStars(currentRating);
+                } else {
+                    stars.forEach(s => {
+                        s.src = '../assets/icons/star.png';
+                        s.classList.remove('active');
+                    });
+                }
+            });
+
+            star.addEventListener('click', () => {
+                // تحديد التقييم الحالي
+                currentRating = parseInt(star.getAttribute('data-rating'));
+                
+                // زيادة عدد الأصوات
+                votesCount++;
+                voteCountElement.textContent = votesCount.toLocaleString('ar-EG', {
+                    useGrouping: true,
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                });
+                
+                // تحديث حالة النجوم
+                updateStars(currentRating);
+                
+                // رسالة شكر
+                alert('شكرًا لتقييمك!');
+            });
+        });
+    });
     </script>
 </body>
 </html>

@@ -11,12 +11,10 @@ let saveEditProfile;
 function setupPasswordButton() {
     const btn = document.getElementById('changePasswordBtn');
     if (btn) {
-        console.log('✅ تم العثور على زر تغيير كلمة المرور');
         btn.onclick = function(e) {
             e.preventDefault();
             e.stopPropagation();
             
-            console.log('🔍 تم النقر على زر تغيير كلمة المرور');
             
             // إخفاء نافذة تعديل البيانات
             if (editProfileModal) {
@@ -39,28 +37,21 @@ function setupPasswordButton() {
                 document.head.appendChild(script);
             }
         };
-        console.log('✅ تم ربط حدث النقر بزر تغيير كلمة المرور');
     } else {
-        console.log('⚠️ لم يتم العثور على زر تغيير كلمة المرور');
     }
 }
 
 // تعريف الدالة في النطاق العام
 window.showEditProfileModal = function() {
-    console.log('🔍 محاولة فتح نافذة تعديل البيانات...');
     
     // إذا لم تكن النافذة موجودة، نحاول تحميلها من الملف
     if (!editProfileModal) {
-        console.log('⚠️ النافذة غير موجودة، جاري التحميل...');
         const modalPath = window.location.pathname.includes('/pages/') ? '../includes/user-dashboard-modal.html' : 'includes/user-dashboard-modal.html';
-        console.log('📂 Loading modal from:', modalPath);
         fetch(modalPath)
             .then(response => {
-                console.log('✅ Modal fetch response:', response.status);
                 return response.text();
             })
             .then(html => {
-                console.log('✅ Modal HTML loaded');
                 // إضافة النافذة للصفحة
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = html;
@@ -70,17 +61,7 @@ window.showEditProfileModal = function() {
                     editProfileModal = newModal;
                     
                     // تحديث المراجع
-                    closeEditProfileModal = document.getElementById('closeEditProfileModal');
-                    editProfileForm = document.getElementById('editProfileForm');
-                    changePasswordBtn = document.getElementById('changePasswordBtn');
-                    saveEditProfile = document.getElementById('saveEditProfile');
-                    
-                    console.log('✅ Modal elements found:', {
-                        closeBtn: !!closeEditProfileModal,
-                        form: !!editProfileForm,
-                        changePasswordBtn: !!changePasswordBtn,
-                        saveBtn: !!saveEditProfile
-                    });
+                    updateReferences();
                     
                     // إعادة ربط الأحداث
                     bindEvents();
@@ -89,17 +70,13 @@ window.showEditProfileModal = function() {
                     showModal();
                 } else {
                     console.error('❌ لم يتم العثور على النافذة في الملف المحمل');
-                    console.log('🔍 HTML content:', html.substring(0, 200) + '...');
                 }
             })
             .catch(error => {
                 console.error('❌ خطأ في تحميل النافذة:', error);
-                console.log('📍 Current path:', window.location.pathname);
-                console.log('🔍 Attempted modal path:', modalPath);
                 alert('حدث خطأ في تحميل نافذة تعديل البيانات');
             });
     } else {
-        console.log('✅ النافذة موجودة، جاري فتحها...');
         showModal();
     }
 };
@@ -110,7 +87,6 @@ function showModal() {
         editProfileModal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         loadUserData();
-        console.log('✅ تم فتح النافذة بنجاح');
     }
 }
 
@@ -119,13 +95,11 @@ function closeModal() {
     if (editProfileModal) {
         editProfileModal.style.display = 'none';
         document.body.style.overflow = 'auto';
-        console.log('✅ تم إغلاق النافذة');
     }
 }
 
 // دالة لربط الأحداث
 function bindEvents() {
-    console.log('🔄 جاري ربط الأحداث...');
     
     // إضافة مستمع حدث للزر إغلاق
     if (closeEditProfileModal) {
@@ -184,12 +158,10 @@ function bindEvents() {
         });
     }
     
-    console.log('✅ تم ربط جميع الأحداث بنجاح');
 }
 
 // تحميل بيانات المستخدم
 function loadUserData() {
-    console.log('📥 جاري تحميل بيانات المستخدم...');
     
     // محاولة استرجاع بيانات المستخدم من localStorage
     const userData = localStorage.getItem('currentUser');
@@ -208,30 +180,47 @@ function loadUserData() {
             document.getElementById('poBox').value = user.poBox || '';
             document.getElementById('postalCode').value = user.postalCode || '';
             
-            console.log('✅ تم تحميل البيانات بنجاح');
         } catch (error) {
             console.error('❌ خطأ في تحميل بيانات المستخدم:', error);
         }
     } else {
-        console.log('ℹ️ لا توجد بيانات مستخدم محفوظة');
     }
 }
 
 // تحميل الأحداث عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     // تحديث المراجع
-    editProfileModal = document.getElementById('edit-profile-modal');
-    closeEditProfileModal = document.getElementById('closeEditProfileModal');
-    editProfileForm = document.getElementById('editProfileForm');
-    changePasswordBtn = document.getElementById('changePasswordBtn');
-    saveEditProfile = document.getElementById('saveEditProfile');
-    
-    // ربط الأحداث
-    bindEvents();
+    updateReferences();
     
     // إعداد زر تغيير كلمة المرور
     setupPasswordButton();
     
     // محاولة ثانية بعد تأخير قصير
     setTimeout(setupPasswordButton, 1000);
-}); 
+});
+
+// تحديث المراجع
+function updateReferences() {
+    try {
+        editProfileModal = document.getElementById('edit-profile-modal');
+        closeEditProfileModal = document.getElementById('closeEditProfileModal');
+        editProfileForm = document.getElementById('editProfileForm');
+        changePasswordBtn = document.getElementById('changePasswordBtn');
+        saveEditProfile = document.getElementById('saveEditProfile');
+
+        // التحقق من وجود العناصر
+        const references = {
+            modal: !!editProfileModal,
+            closeBtn: !!closeEditProfileModal,
+            form: !!editProfileForm,
+            changePasswordBtn: !!changePasswordBtn,
+            saveBtn: !!saveEditProfile
+        };
+
+        console.log('تحديث المراجع:', references);
+        return references;
+    } catch (error) {
+        console.error('❌ خطأ في تحديث المراجع:', error);
+        return {};
+    }
+} 

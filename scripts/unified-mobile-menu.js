@@ -1,7 +1,6 @@
 // ملف جافاسكريبت موحد لإضافة وتفعيل قائمة الموبايل في جميع صفحات الموقع
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('تم تحميل ملف القائمة المتنقلة الموحدة');
     
     // التحقق من وجود قائمة الموبايل أولاً
     if (!document.querySelector('.mobile-menu-overlay')) {

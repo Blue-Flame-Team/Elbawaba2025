@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ---- وظائف الزوم لتكبير وتصغير النصوص ----
-    console.log('تهيئة وظائف الزوم...');
     
     // تهيئة المتغيرات والقيم الافتراضية
     let textSize = 100;
@@ -123,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // إضافة تأثير بصري لتنبيه المستخدم بالتغيير
         addVisualFeedback();
 
-        console.log('تم تغيير حجم النص إلى:', size + '%');
     }
     
     // إضافة تأثير بصري عند تغيير حجم الخط
@@ -138,17 +136,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // للعثور على أزرار الزوم
-    console.log('تفقد أزرار التكبير والتصغير...');
     const zoomInBtns = document.querySelectorAll('.zoom-in-btn');
     const zoomOutBtns = document.querySelectorAll('.zoom-out-btn');
     
     // إذا كانت وظيفة changeFontSize موجودة بالفعل (معرفة في النافذة)
     if (typeof window.changeFontSize === 'function') {
-        console.log('تم العثور على وظيفة changeFontSize، سيتم استخدامها بدلاً من الوظيفة الداخلية');
         
         // لا نقوم بأي إجراء هنا لأن الأزرار تم تعيينها مع وظيفة onclick
     } else {
-        console.log('لم يتم العثور على وظيفة changeFontSize، سيتم استخدام الوظيفة الداخلية');
         
         // تعريف وظيفة تغيير حجم الخط للنافذة
         window.changeFontSize = function(change) {
@@ -175,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // إنشاء أزرار الزوم إذا لم تكن موجودة
     if (zoomInBtns.length === 0 || zoomOutBtns.length === 0) {
-        console.log('إنشاء أزرار الزوم...');
         const mainIconsGroup = document.querySelector('.main-icons-group');
         if (mainIconsGroup) {
             // إنشاء حاوية الزوم
@@ -420,7 +414,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function performSearch() {
         const searchQuery = document.querySelector('.search-popup-input').value.trim();
         if (searchQuery) {
-            console.log('Performing search for:', searchQuery);
             // Implement actual search functionality here
             // For now, just close the popup
             closePopup();

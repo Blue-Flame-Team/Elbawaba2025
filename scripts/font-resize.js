@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // حفظ الإعداد
             localStorage.setItem('textSizeValue', currentTextSize);
             
-            console.log('تم تغيير حجم النص إلى: ' + currentTextSize + '%');
         }
     };
 });
