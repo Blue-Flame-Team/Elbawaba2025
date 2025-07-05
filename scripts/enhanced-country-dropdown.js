@@ -13,74 +13,92 @@
         { 
             name: 'مصر', 
             code: '+20', 
-            flag: 'assets/icons/egypt-flag.svg',
+            flag: '../assets/icons/egypt-flag.svg',
+            flagLocal: '../assets/icons/flag-for-flag-egypt-svgrepo-com 1.svg',
             flagEmoji: '🇪🇬',
-            colors: ['#FF0000', '#FFFFFF', '#000000'] // أحمر، أبيض، أسود
+            colors: ['#FF0000', '#FFFFFF', '#000000'], // أحمر، أبيض، أسود
+            fullName: 'جمهورية مصر العربية'
         },
         { 
-            name: 'المملكة العربية السعودية', 
+            name: 'السعودية', 
             code: '+966', 
-            flag: 'https://flagcdn.com/w20/sa.png',
-            flagLocal: 'assets/icons/saudi-flag.svg',
+            flag: '../assets/icons/saudi-flag.svg',
+            flagLocal: '../assets/icons/saudi-flag.svg',
             flagEmoji: '🇸🇦',
-            colors: ['#006C35', '#FFFFFF'] // أخضر، أبيض
+            colors: ['#006C35', '#FFFFFF'], // أخضر، أبيض
+            fullName: 'المملكة العربية السعودية'
         },
         { 
-            name: 'الإمارات العربية المتحدة', 
+            name: 'الإمارات', 
             code: '+971', 
-            flag: 'https://flagcdn.com/w20/ae.png',
-            flagLocal: 'assets/icons/uae-flag.svg',
+            flag: '../assets/icons/uae-flag.svg',
+            flagLocal: '../assets/icons/uae-flag.svg',
             flagEmoji: '🇦🇪',
-            colors: ['#FF0000', '#00FF00', '#FFFFFF', '#000000'] // أحمر، أخضر، أبيض، أسود
+            colors: ['#FF0000', '#00FF00', '#FFFFFF', '#000000'], // أحمر، أخضر، أبيض، أسود
+            fullName: 'دولة الإمارات العربية المتحدة'
         },
         { 
             name: 'الكويت', 
             code: '+965', 
-            flag: 'https://flagcdn.com/w20/kw.png',
+            flag: '../assets/icons/kuwait-flag.svg',
+            flagLocal: '../assets/icons/kuwait-flag.svg',
             flagEmoji: '🇰🇼',
-            colors: ['#007A3D', '#FFFFFF', '#CE1126', '#000000'] // أخضر، أبيض، أحمر، أسود
+            colors: ['#007A3D', '#FFFFFF', '#CE1126', '#000000'], // أخضر، أبيض، أحمر، أسود
+            fullName: 'دولة الكويت'
         },
         { 
             name: 'البحرين', 
             code: '+973', 
-            flag: 'https://flagcdn.com/w20/bh.png',
+            flag: '../assets/icons/bahrain-flag.svg',
+            flagLocal: '../assets/icons/bahrain-flag.svg',
             flagEmoji: '🇧🇭',
-            colors: ['#CE1126', '#FFFFFF'] // أحمر، أبيض
+            colors: ['#CE1126', '#FFFFFF'], // أحمر، أبيض
+            fullName: 'مملكة البحرين'
         },
         { 
             name: 'قطر', 
             code: '+974', 
-            flag: 'https://flagcdn.com/w20/qa.png',
+            flag: '../assets/icons/qatar-flag.svg',
+            flagLocal: '../assets/icons/qatar-flag.svg',
             flagEmoji: '🇶🇦',
-            colors: ['#8D1B3D', '#FFFFFF'] // خمري، أبيض
+            colors: ['#8D1B3D', '#FFFFFF'], // خمري، أبيض
+            fullName: 'دولة قطر'
         },
         { 
-            name: 'عمان', 
+            name: 'عُمان', 
             code: '+968', 
-            flag: 'https://flagcdn.com/w20/om.png',
+            flag: '../assets/icons/oman-flag.svg',
+            flagLocal: '../assets/icons/oman-flag.svg',
             flagEmoji: '🇴🇲',
-            colors: ['#FF0000', '#FFFFFF', '#008000'] // أحمر، أبيض، أخضر
+            colors: ['#FF0000', '#FFFFFF', '#008000'], // أحمر، أبيض، أخضر
+            fullName: 'سلطنة عُمان'
         },
         { 
             name: 'الأردن', 
             code: '+962', 
-            flag: 'https://flagcdn.com/w20/jo.png',
+            flag: '../assets/icons/jordan-flag.svg',
+            flagLocal: '../assets/icons/jordan-flag.svg',
             flagEmoji: '🇯🇴',
-            colors: ['#000000', '#FFFFFF', '#007A3D', '#CE1126'] // أسود، أبيض، أخضر، أحمر
+            colors: ['#000000', '#FFFFFF', '#007A3D', '#CE1126'], // أسود، أبيض، أخضر، أحمر
+            fullName: 'المملكة الأردنية الهاشمية'
         },
         { 
             name: 'لبنان', 
             code: '+961', 
-            flag: 'https://flagcdn.com/w20/lb.png',
+            flag: '../assets/icons/lebanon-flag.svg',
+            flagLocal: '../assets/icons/lebanon-flag.svg',
             flagEmoji: '🇱🇧',
-            colors: ['#ED1C24', '#FFFFFF', '#00A651'] // أحمر، أبيض، أخضر
+            colors: ['#ED1C24', '#FFFFFF', '#00A651'], // أحمر، أبيض، أخضر
+            fullName: 'الجمهورية اللبنانية'
         },
         { 
             name: 'سوريا', 
             code: '+963', 
-            flag: 'https://flagcdn.com/w20/sy.png',
+            flag: '../assets/icons/syria-flag.svg',
+            flagLocal: '../assets/icons/syria-flag.svg',
             flagEmoji: '🇸🇾',
-            colors: ['#CE1126', '#FFFFFF', '#000000', '#007A3D'] // أحمر، أبيض، أسود، أخضر
+            colors: ['#CE1126', '#FFFFFF', '#000000', '#007A3D'], // أحمر، أبيض، أسود، أخضر
+            fullName: 'الجمهورية العربية السورية'
         }
     ];
     
@@ -135,11 +153,31 @@
             
             // Fallback chain: CDN → Local SVG → Emoji
             flagImg.onerror = function() {
+                console.warn(`❌ فشل تحميل العلم: ${this.src}`);
+                
+                // محاولة المسار البديل
                 if (country.flagLocal && this.src !== country.flagLocal) {
+                    console.log(`📍 محاولة تحميل المسار البديل: ${country.flagLocal}`);
                     this.src = country.flagLocal;
-                } else {
-                    flagContainer.innerHTML = `<span style="font-size: 18px;">${country.flagEmoji}</span>`;
+                    return;
                 }
+                
+                // إخفاء الصورة وعرض الرمز التعبيري
+                this.style.display = 'none';
+                const emojiSpan = document.createElement('span');
+                emojiSpan.textContent = country.flagEmoji;
+                emojiSpan.style.cssText = `
+                    font-size: 18px; 
+                    width: 24px; 
+                    height: 18px;
+                    text-align: center; 
+                    display: inline-flex; 
+                    align-items: center; 
+                    justify-content: center;
+                    border-radius: 3px;
+                    background-color: #f0f0f0;
+                `;
+                this.parentNode.insertBefore(emojiSpan, this.nextSibling);
             };
             
             flagContainer.appendChild(flagImg);

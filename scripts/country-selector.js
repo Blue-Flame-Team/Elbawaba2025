@@ -1,48 +1,66 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // قائمة الدول المدعومة
+    console.log('🚀 تم تحميل ملف country-selector.js');
+
+    // قائمة الدول المدعومة مع تحديث المسارات
     const COUNTRIES = [
-        { name: 'مصر', code: '+20', flag: 'assets/icons/egypt-flag.svg' },
-        { name: 'السعودية', code: '+966', flag: 'assets/icons/saudi-flag.svg' },
-        { name: 'الإمارات', code: '+971', flag: 'assets/icons/uae-flag.svg' }
+        { name: 'مصر', code: '+20', flag: '../assets/icons/flag-for-flag-egypt-svgrepo-com 1.png' },
+        { name: 'السعودية', code: '+966', flag: '../assets/icons/saudi-flag.svg' },
+        { name: 'الإمارات', code: '+971', flag: '../assets/icons/uae-flag.svg' }
     ];
+
+    // تصحيح مسارات الصور بناءً على الموقع الحالي
+    function fixImagePath(path) {
+        if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+            return path.replace('../', '');
+        }
+        return path;
+    }
 
     // دالة إنشاء وإعداد محدد الدولة
     function setupCountryDropdown(container) {
-        // التأكد من وجود العناصر الأساسية
-        const flagImg = container.querySelector('.flag-img');
-        const codeSpan = container.querySelector('.code');
-        
-        if (!flagImg || !codeSpan) return;
-
-        // إنشاء القائمة المنسدلة
-        let dropdown = container.querySelector('.country-dropdown');
-        if (!dropdown) {
-            dropdown = document.createElement('div');
-            dropdown.className = 'country-dropdown';
-            dropdown.style.cssText = `
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: calc(100% - 20px);
-                background: white;
-                border: 1px solid #ddd;
-                border-radius: 12px;
-                z-index: 1000;
-                max-height: 200px;
-                overflow-y: auto;
-                margin: 10px;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            `;
-            container.appendChild(dropdown);
+        // تجاهل القوائم التي ليست في نافذة تسجيل الدخول
+        if (!container.closest('.login-modal') || container.getAttribute('data-initialized') === 'true') {
+            return;
         }
 
-        // مسح المحتوى الحالي للقائمة
+        console.log('🔍 بدء إعداد محدد الدولة للحاوية:', container);
+
+        const flagImg = container.querySelector('.flag-img') || 
+                       container.querySelector('.country-flag img');
+        const codeSpan = container.querySelector('.code');
+        
+        if (!flagImg || !codeSpan) {
+            console.warn('⚠️ عناصر محدد الدولة غير مكتملة', container);
+            return;
+        }
+
+        // let dropdown = container.querySelector('.country-dropdown');
+        // if (!dropdown) {
+        //     dropdown = document.createElement('div');
+        //     dropdown.className = 'country-dropdown';
+        //     dropdown.style.cssText = `
+        //         display: none;
+        //         position: absolute;
+        //         top: 100%;
+        //         left: 0;
+        //         width: 100%;
+        //         background: white;
+        //         border: 1px solid #ddd;
+        //         border-radius: 8px;
+        //         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        //         z-index: 1100;
+        //         max-height: 200px;
+        //         overflow-y: auto;
+        //         direction: rtl;
+        //     `;
+        //     container.appendChild(dropdown);
+        // }
+
         dropdown.innerHTML = '';
 
-        // إضافة عناصر الدول للقائمة
         COUNTRIES.forEach(country => {
             const countryItem = document.createElement('div');
+            countryItem.className = 'country-item';
             countryItem.style.cssText = `
                 display: flex;
                 align-items: center;
@@ -51,23 +69,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 transition: background-color 0.3s ease;
             `;
 
+            const imgPath = fixImagePath(country.flag);
             countryItem.innerHTML = `
-                <img src="${country.flag}" alt="${country.name}" style="width: 24px; height: 18px; margin-left: 10px; object-fit: cover;">
+                <img src="${imgPath}" alt="${country.name}" style="width: 24px; height: 18px; margin-left: 10px; object-fit: cover;">
                 <span style="flex-grow: 1;">${country.name}</span>
-                <span>${country.code}</span>
+                <span class="country-code">${country.code}</span>
             `;
 
-            // معالجة اختيار الدولة
             countryItem.addEventListener('click', (e) => {
                 e.stopPropagation();
-                flagImg.src = country.flag;
+                flagImg.src = imgPath;
                 flagImg.alt = country.name;
                 codeSpan.textContent = country.code;
-    dropdown.style.display = 'none';
-                container.classList.remove('dropdown-open');
+                dropdown.style.display = 'none';
+                container.classList.remove('active');
             });
 
-            // تأثيرات التحويم
             countryItem.addEventListener('mouseenter', () => {
                 countryItem.style.backgroundColor = '#f0f0f0';
             });
@@ -79,54 +96,44 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // تأكيد الموضع النسبي للحاوية
-        container.style.position = 'relative';
+        if (window.getComputedStyle(container).position === 'static') {
+            container.style.position = 'relative';
+        }
 
-        // دالة تبديل ظهور القائمة
-        const toggleDropdown = (e) => {
+        function toggleDropdown(e) {
             e.stopPropagation();
             
             // إغلاق جميع القوائم الأخرى
             document.querySelectorAll('.country-dropdown').forEach(dd => {
                 if (dd !== dropdown) {
                     dd.style.display = 'none';
-                    dd.closest('.country-code-select').classList.remove('dropdown-open');
+                    dd.closest('.country-code-select').classList.remove('active');
                 }
             });
 
-            // فتح/إغلاق القائمة الحالية
-            if (dropdown.style.display === 'none') {
-                dropdown.style.display = 'block';
-                container.classList.add('dropdown-open');
-            } else {
-                dropdown.style.display = 'none';
-                container.classList.remove('dropdown-open');
-            }
-        };
+            const isCurrentlyHidden = dropdown.style.display === 'none';
+            dropdown.style.display = isCurrentlyHidden ? 'block' : 'none';
+            container.classList.toggle('active', isCurrentlyHidden);
+        }
 
-        // إزالة المستمعين السابقين لتجنب التكرار
-        container.removeEventListener('click', toggleDropdown);
-        
-        // إضافة معالج للنقر على الحاوية
         container.addEventListener('click', toggleDropdown);
 
-        // إغلاق القائمة عند النقر خارجها
-        const closeDropdownHandler = (e) => {
+        document.addEventListener('click', (e) => {
             if (!container.contains(e.target)) {
-        dropdown.style.display = 'none';
-                container.classList.remove('dropdown-open');
+                dropdown.style.display = 'none';
+                container.classList.remove('active');
             }
-        };
+        });
 
-        // إزالة المستمع السابق
-        document.removeEventListener('click', closeDropdownHandler);
-        
-        // إضافة مستمع جديد
-        document.addEventListener('click', closeDropdownHandler);
+        container.setAttribute('data-initialized', 'true');
     }
 
-    // تهيئة جميع محددات الدول
+    // تهيئة محددات الدول في نافذة تسجيل الدخول
     function initializeCountrySelectors() {
-        const countrySelectors = document.querySelectorAll('.country-code-select');
+        const loginModal = document.querySelector('.login-modal');
+        if (!loginModal) return;
+
+        const countrySelectors = loginModal.querySelectorAll('.country-code-select');
         countrySelectors.forEach(setupCountryDropdown);
     }
 
@@ -134,32 +141,22 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCountrySelectors();
 
     // إعادة التهيئة عند فتح النوافذ المنبثقة
-    const loginTriggers = [
-        '[href="#login-modal"]', 
-        '.login-btn', 
-        '#mobile-login-btn', 
-        '.login-modal-trigger'
-    ];
-
     document.addEventListener('click', function(e) {
-        loginTriggers.forEach(trigger => {
-            if (e.target.matches(trigger)) {
-                setTimeout(initializeCountrySelectors, 300);
-            }
-        });
+        if (e.target.matches('.login-btn, .login-modal-trigger')) {
+            setTimeout(initializeCountrySelectors, 300);
+        }
     });
 
-    // دعم إعادة التهيئة للعناصر المضافة ديناميكيًا
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.addedNodes.length) {
-                initializeCountrySelectors();
-            }
-        });
+    // مراقبة التغييرات في DOM
+    const observer = new MutationObserver(() => {
+        setTimeout(initializeCountrySelectors, 100);
     });
 
     observer.observe(document.body, {
         childList: true,
         subtree: true
     });
+
+    // إعادة التهيئة عند تحميل الصفحة بالكامل
+    window.addEventListener('load', initializeCountrySelectors);
 }); 
