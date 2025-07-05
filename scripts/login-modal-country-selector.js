@@ -172,13 +172,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         countryDropdown.innerHTML = ''; // مسح القائمة الحالية
 
-        COUNTRIES.forEach(country => {
+            COUNTRIES.forEach(country => {
             const countryItem = document.createElement('div');
             countryItem.style.cssText = `
-                display: flex; 
-                align-items: center; 
+                    display: flex;
+                    align-items: center;
                 padding: 10px 15px; 
-                cursor: pointer; 
+                    cursor: pointer;
                 gap: 10px; 
                 border-bottom: 1px solid rgb(240, 240, 240); 
                 font-size: 14px; 
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // معالج حدث النقر
             countryItem.addEventListener('click', function(e) {
-                e.stopPropagation();
+                    e.stopPropagation();
                 updateCountrySelection(country);
             });
 
@@ -229,9 +229,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // تبديل ظهور/إخفاء القائمة
         function toggleDropdown(e) {
-            e.stopPropagation();
-            
-            // إغلاق جميع القوائم الأخرى
+                e.stopPropagation();
+                
+                // إغلاق جميع القوائم الأخرى
             document.querySelectorAll('.country-dropdown').forEach(dropdown => {
                 if (dropdown !== countryDropdown) {
                     dropdown.style.display = 'none';
@@ -387,7 +387,7 @@ style.textContent = `
 }
 `;
 
-document.head.appendChild(style);
+document.head.appendChild(style); 
 
 // في نهاية الملف، بعد الأنماط
 document.addEventListener('DOMContentLoaded', function() {
