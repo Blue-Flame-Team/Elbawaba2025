@@ -79,6 +79,71 @@ document.addEventListener('DOMContentLoaded', function() {
         makeFooterTextWhite();
         makeNavMenuTextWhite();
     }
+
+    // اختيار جميع الأيقونات التي تدعم وضع التباين الأسود
+    const darkModeIcons = document.querySelectorAll('.dark-mode-icon');
+    
+    // دالة تحديث الأيقونات
+    function updateDarkModeIcons() {
+        // التحقق من وجود الفئة dark-mode
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        
+        console.log('%c🌙 تحديث الأيقونات 🌙', 'color: #00a19a; font-weight: bold;');
+        console.log(`حالة الوضع الأسود: ${isDarkMode}`);
+        console.log(`عدد الأيقونات: ${darkModeIcons.length}`);
+        
+        darkModeIcons.forEach((icon, index) => {
+            const darkSrc = icon.getAttribute('data-dark-src');
+            const defaultSrc = icon.getAttribute('src');
+            const iconType = icon.getAttribute('data-icon-type') || 'غير محدد';
+            
+            console.group(`الأيقونة ${index + 1}: ${iconType}`);
+            console.log(`المصدر الافتراضي: ${defaultSrc}`);
+            console.log(`مصدر الوضع الأسود: ${darkSrc}`);
+            
+            if (isDarkMode && darkSrc) {
+                icon.setAttribute('src', darkSrc);
+                console.log('%cتم التبديل للوضع الأسود ✅', 'color: green;');
+            } else {
+                icon.setAttribute('src', defaultSrc);
+                console.log('%cتم إعادة الوضع الأصلي ❌', 'color: red;');
+            }
+            
+            console.groupEnd();
+        });
+    }
+    
+    // إضافة مستمع للتغيرات في وضع التباين
+    const darkModeToggles = document.querySelectorAll('.dark-mode-toggle, .contrast-toggle, .contrast-dark, .contrast-light');
+    darkModeToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            // تأخير بسيط للتأكد من تطبيق الفئة
+            setTimeout(updateDarkModeIcons, 50);
+        });
+    });
+    
+    // تحديث الأيقونات عند التحميل
+    updateDarkModeIcons();
+
+    // إضافة دعم للأيقونات الأخرى في صفحة الخدمات
+    const servicesIcons = [
+        { selector: 'img[src="../assets/icons/book2.svg"]', darkSrc: '../assets/icons/book2-black.svg', type: 'services-book' },
+        { selector: 'img[src="../assets/icons/our-services/bank.png"]', darkSrc: '../assets/icons/bank-black.svg', type: 'services-bank' },
+        { selector: 'img[src="../assets/icons/our-services/mosq.png"]', darkSrc: '../assets/icons/mosq-black.svg', type: 'services-mosq' }
+    ];
+
+    servicesIcons.forEach(iconConfig => {
+        const icons = document.querySelectorAll(iconConfig.selector);
+        icons.forEach(icon => {
+            icon.classList.add('dark-mode-icon');
+            icon.setAttribute('data-dark-src', iconConfig.darkSrc);
+            icon.setAttribute('data-icon-type', iconConfig.type);
+        });
+    });
+
+    // طباعة معلومات التصحيح
+    console.log('%c🌙 نظام التباين الأسود جاهز 🌙', 'color: #00a19a; font-weight: bold;');
+    console.log(`عدد الأيقونات القابلة للتبديل: ${darkModeIcons.length}`);
 });
 
 // دالة لإزالة جميع الأنماط المطبقة
@@ -204,7 +269,7 @@ function makeNavMenuTextWhite() {
         element.style.setProperty('border-color', '#444', 'important');
     });
     
-    // معالجة متخصصة للصور والأيقونات
+    // معالجة خاصة للصور والأيقونات
     document.querySelectorAll('.nav-menu img.dropdown-arrow, .dropdown img.dropdown-arrow, img, svg, i[class*="fa-"], i[class*="icon"], .icon, .dropdown-arrow, .nav-icon, button img, a img, .button img').forEach(element => {
         // جعل خلفية الأيقونات شفافة بدون خلفية
         element.style.setProperty('background-color', 'transparent', 'important');

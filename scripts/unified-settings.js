@@ -81,11 +81,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('dark-mode');
         localStorage.setItem('theme', 'dark');
         
-        // تطبيق الفلتر على جميع الصور
-        const images = document.querySelectorAll('img');
+        // تطبيق الفلتر على الصور باستثناء الأيقونات التي تدعم التبديل
+        const images = document.querySelectorAll('img:not(.dark-mode-icon)');
         images.forEach(img => {
             img.style.setProperty('filter', 'brightness(0)', 'important');
             img.style.setProperty('-webkit-filter', 'brightness(0)', 'important');
+        });
+
+        // تحديث الأيقونات التي تدعم التبديل
+        const darkModeIcons = document.querySelectorAll('.dark-mode-icon');
+        darkModeIcons.forEach(icon => {
+            const darkSrc = icon.getAttribute('data-dark-src');
+            if (darkSrc) {
+                icon.setAttribute('src', darkSrc);
+            }
         });
 
         // تطبيق الخلفية السوداء على الأزرار
@@ -105,11 +114,21 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light');
         
-        // إزالة الفلتر من جميع الصور
-        const images = document.querySelectorAll('img');
+        // إزالة الفلتر من جميع الصور باستثناء الأيقونات التي تدعم التبديل
+        const images = document.querySelectorAll('img:not(.dark-mode-icon)');
         images.forEach(img => {
             img.style.removeProperty('filter');
             img.style.removeProperty('-webkit-filter');
+        });
+
+        // إعادة الأيقونات إلى مصدرها الأصلي
+        const darkModeIcons = document.querySelectorAll('.dark-mode-icon');
+        darkModeIcons.forEach(icon => {
+            const defaultSrc = icon.getAttribute('src');
+            const darkSrc = icon.getAttribute('data-dark-src');
+            if (darkSrc && defaultSrc !== darkSrc) {
+                icon.setAttribute('src', defaultSrc.replace(darkSrc, '').replace(/-black/g, ''));
+            }
         });
 
         // إعادة الألوان الأصلية للأزرار

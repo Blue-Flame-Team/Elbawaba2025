@@ -56,10 +56,10 @@ body.dark-contrast .footer-bottom .footer-bottom-links {
     
     /* الأيقونات تصبح سوداء بدون خلفية */
     .social-share-section img:not([src*="clock"]):not([src*="star"]),
-    img[src*="ln1.png"],
-    img[src*="x2.png"], 
-    img[src*="in2.png"],
-    img[src*="f3.png"],
+    img[src*="ln-soc.svg"],
+    img[src*="x-soc.svg"], 
+    img[src*="in-sco.svg"],
+    img[src*="fb-soc.svg"],
     img[src*="linkedin"],
     img[src*="twitter"],
     img[src*="instagram"],
@@ -393,4 +393,136 @@ body.dark-contrast .services-container img[src*="mosq"],
 body.dark-contrast .services-container img[src*="book"] {
     filter: brightness(0) !important;
     -webkit-filter: brightness(0) !important;
+}
+
+/* أنماط التباين الأسود للصفحات الفرعية */
+
+/* تغيير لون النصوص المحددة إلى الأسود في وضع التباين الأسود */
+.dark-mode span[style*="color: #158885"] {
+    color: #000000 !important;
+}
+
+/* تحديد النصوص المحددة بدقة أكثر */
+.dark-mode span[style*="color: #158885;"]:contains("تقييم المحتوى") {
+    color: #000000 !important;
+}
+
+.dark-mode span[style*="color: #158885;"]:contains("آخر تعديل") {
+    color: #000000 !important;
+}
+
+.dark-mode span[style*="color: #158885;"]:contains("عدد الأصوات") {
+    color: #000000 !important;
+}
+
+/* عنوان طلب الاشتراك */
+.dark-mode .subscribe-title {
+    color: #000000 !important;
+}
+
+.dark-mode h1.subscribe-title {
+    color: #000000 !important;
+}
+
+.dark-mode .subscription-request-title {
+    color: #000000 !important;
+}
+
+.dark-mode h1.subscription-request-title {
+    color: #000000 !important;
+}
+
+.dark-mode h2[style*="color: #00a19a"]:contains("طلب الاشتراك") {
+    color: #000000 !important;
+}
+
+/* أي عنصر يحتوي على النصوص المطلوبة */
+.dark-mode [style*="color: #158885"] {
+    color: #000000 !important;
+}
+
+/* استهداف أكثر دقة باستخدام سمات البيانات أو الفئات */
+.dark-mode .rating-text,
+.dark-mode .modification-date,
+.dark-mode .votes-count,
+.dark-mode .subscription-title {
+    color: #000000 !important;
+}
+
+/* استهداف النصوص باستخدام محددات أكثر تحديداً */
+.dark-mode span[style*="font-family: 'Droid Arabic Kufi'"][style*="color: #158885"] {
+    color: #000000 !important;
+}
+
+/* استهداف العناصر التي تحتوي على النصوص المحددة */
+.dark-mode *:contains("تقييم المحتوى") {
+    color: #000000 !important;
+}
+
+.dark-mode *:contains("آخر تعديل 19 ذو القعدة 1444") {
+    color: #000000 !important;
+}
+
+.dark-mode *:contains("عدد الأصوات:") {
+    color: #000000 !important;
+}
+
+.dark-mode *:contains("طلب الاشتراك") {
+    color: #000000 !important;
+}
+
+/* حل بديل باستخدام JavaScript selector */
+.dark-mode .content-rating-text {
+    color: #000000 !important;
+}
+
+.dark-mode .last-modified-text {
+    color: #000000 !important;
+}
+
+.dark-mode .votes-count-text {
+    color: #000000 !important;
+}
+
+.dark-mode .subscription-request-title {
+    color: #000000 !important;
+}
+
+/* زر التسجيل في وضع التباين الأسود */
+.dark-mode .submit-btn {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #000000 !important;
+}
+
+.dark-mode .submit-btn:hover {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+}
+
+/* القائمة المنسدلة في وضع التباين الأسود */
+.dark-mode .menu-item.dropdown .dropdown-menu {
+    background-color: #ffffff !important;
+}
+
+.dark-mode .menu-item.dropdown .dropdown-menu a {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+.dark-mode .menu-item.dropdown .dropdown-menu a:hover {
+    background-color: #f5f5f5 !important;
+}
+
+.dark-mode .menu-item.dropdown .dropdown-menu a.active {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+/* تأكيد تجاوز الأنماط الافتراضية */
+.dark-mode .menu-item.dropdown .dropdown-menu a[style*="color"],
+.dark-mode .menu-item.dropdown .dropdown-menu a[style*="background-color"] {
+    color: #000000 !important;
+    background-color: #ffffff !important;
 } 

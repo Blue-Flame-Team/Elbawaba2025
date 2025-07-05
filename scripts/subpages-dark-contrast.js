@@ -32,6 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
             'book.svg': 'book-black.svg',
             'bank.svg': 'bank-black.svg',
             'mosq.svg': 'mosq-black.svg',
+            'book2.svg': 'book2-black.svg',
+            'fb-soc.svg': 'fb-soc-black.svg',
+            'in-sco.svg': 'in-sco-black.svg',
+            'ln-soc.svg': 'ln-soc-black.svg',
+            'x-soc.svg': 'x-soc-black.svg',
             'Mask group.svg': 'Mask group-black.svg'
         };
 
@@ -519,4 +524,82 @@ document.addEventListener('DOMContentLoaded', function() {
         debug: debugThemeStatus
     };
     
+    // دالة لإضافة فئات CSS للنصوص المحددة
+    function addDarkModeClasses() {
+        // البحث عن النصوص وإضافة فئات مناسبة
+        const elementsToClassify = [
+            { text: 'تقييم المحتوى', className: 'content-rating-text' },
+            { text: 'آخر تعديل 19 ذو القعدة 1444', className: 'last-modified-text' },
+            { text: 'عدد الأصوات:', className: 'votes-count-text' },
+            { text: 'طلب الاشتراك', className: 'subscription-request-title' }
+        ];
+
+        elementsToClassify.forEach(item => {
+            // البحث عن العناصر التي تحتوي على النص المحدد
+            const elements = document.querySelectorAll('span, h1, h2');
+            elements.forEach(element => {
+                if (element.textContent.includes(item.text)) {
+                    element.classList.add(item.className);
+                    console.log(`تم إضافة فئة ${item.className} للنص: ${item.text}`);
+                }
+            });
+        });
+    }
+
+    // دالة لتطبيق التباين الأسود على النصوص المحددة
+    function applyDarkModeToSpecificTexts() {
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        
+        if (isDarkMode) {
+            // استهداف النصوص بلون #158885 وتغييرها للأسود
+            const coloredElements = document.querySelectorAll('[style*="color: #158885"], [style*="color:#158885"]');
+            coloredElements.forEach(element => {
+                element.style.setProperty('color', '#000000', 'important');
+                console.log('تم تغيير لون النص إلى الأسود:', element.textContent.trim());
+            });
+
+            // استهداف عناوين الاشتراك
+            const subscriptionTitles = document.querySelectorAll('.subscribe-title, h1:contains("طلب الاشتراك"), h2:contains("طلب الاشتراك")');
+            subscriptionTitles.forEach(title => {
+                title.style.setProperty('color', '#000000', 'important');
+                console.log('تم تغيير لون عنوان الاشتراك إلى الأسود');
+            });
+        } else {
+            // إعادة الألوان الأصلية
+            const coloredElements = document.querySelectorAll('.content-rating-text, .last-modified-text, .votes-count-text, .subscription-request-title');
+            coloredElements.forEach(element => {
+                element.style.removeProperty('color');
+            });
+        }
+    }
+
+    // تشغيل الدوال عند التحميل
+    addDarkModeClasses();
+    applyDarkModeToSpecificTexts();
+
+    // مراقبة تغييرات وضع التباين
+    const darkModeObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                if (mutation.target === document.body) {
+                    applyDarkModeToSpecificTexts();
+                }
+            }
+        });
+    });
+
+    darkModeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+
+    // إضافة مستمعين لأزرار التباين
+    const contrastButtons = document.querySelectorAll('.contrast-dark, .contrast-light, .dark-mode-toggle, .contrast-toggle');
+    contrastButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            setTimeout(applyDarkModeToSpecificTexts, 100);
+        });
+    });
+
+    console.log('🌙 نظام التباين الأسود للصفحات الفرعية جاهز');
 }); 

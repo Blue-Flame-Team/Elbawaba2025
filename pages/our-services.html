@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="../styles/social-share-section.css">
     <link rel="stylesheet" href="../styles/simple-zoom.css">
     <!-- ملف التباين الأسود للصفحات الفرعية -->
-    <!-- <link rel="stylesheet" href="../styles/shared/dark-contrast-subpages.css"> -->
+    <link rel="stylesheet" href="../styles/shared/dark-contrast-subpages.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .services-header {
@@ -855,7 +855,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td,
             <!-- Service Card 4 -->
             <div style="background-color: white; border-radius: 18px; padding: 31.5px 30px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.05); width: 285px; height: 225px; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.1)'; this.querySelector('.hover-overlay').style.transform='translateY(0)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 16px rgba(0,0,0,0.05)'; this.querySelector('.hover-overlay').style.transform='translateY(100%)'">
                 <div style="display: flex; align-items: center; justify-content: center; height: 130px; margin-bottom: 12px;">
-                    <img src="../assets/icons/Mask group.svg" alt="أنظمة صدرت ولم تنشر بعد بالجريدة الرسمية" width="80" height="80">
+                    <img src="../assets/icons/book2.svg" alt="أنظمة صدرت ولم تنشر بعد بالجريدة الرسمية" width="80" height="80" class="dark-mode-icon" data-dark-src="../assets/icons/book2-black.svg">
                 </div>
                 <h3 style="font-family: 'Droid Arabic Kufi', sans-serif !important; font-weight: 700 !important; font-size: 18px !important; line-height: 150% !important; letter-spacing: 0% !important; text-align: center !important; margin: 0; color: #333;">أنظمة صدرت ولم تنشر بعد بالجريدة الرسمية</h3>
                 <!-- Hover Overlay -->
@@ -941,16 +941,16 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td,
                      <div style="display: flex; align-items: center; gap: 5px;">
                          <span style="margin-right: 5px; font-size: 14px; color: #00a19a;">شارك على</span>
                          <a href="#" style="color: #00a19a;">
-                             <img src="../assets/icons/ln1.png" alt="لينكد إن" width="26" height="26">
+                             <img src="../assets/icons/ln-soc.svg" alt="لينكد إن" width="26" height="26">
                          </a>
                          <a href="#" style="color: #00a19a;">
-                             <img src="../assets/icons/x2.png" alt="تويتر" width="26" height="26">
+                             <img src="../assets/icons/x-soc.svg" alt="تويتر" width="26" height="26">
                          </a>
                          <a href="#" style="color: #00a19a;">
-                             <img src="../assets/icons/in2.png" alt="انستغرام" width="26" height="26">
+                             <img src="../assets/icons/in-sco.svg" alt="انستغرام" width="26" height="26">
                          </a>
                          <a href="#" style="color: #00a19a;">                
-                             <img src="../assets/icons/f3.png" alt="فيسبوك" width="26" height="26">
+                             <img src="../assets/icons/fb-soc.svg" alt="فيسبوك" width="26" height="26">
                          </a>
                      </div>   
                  </div>
@@ -1115,8 +1115,27 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td,
 <script src="../scripts/profile-icons-universal-fix.js"></script>
 <script src="../scripts/edit-profile-modal.js"></script>
 <script src="../scripts/password-change-modal.js"></script>
-<script src="../scripts/enhanced-country-dropdown.js"></script>
-<script src="../scripts/star-rating.js"></script>
+  <script src="../scripts/enhanced-country-dropdown.js"></script>
+  <script src="../scripts/star-rating.js"></script>
+  <script src="../scripts/subpages-dark-contrast.js"></script>
+
+<!-- تعديل أيقونات الخدمات للوضع الأسود -->
+<!-- <div class="services-icons">
+    <img src="../assets/icons/book2.svg" 
+         class="dark-mode-icon" 
+         data-dark-src="../assets/icons/book2-black.svg" 
+         data-icon-type="services-book">
+    
+    <img src="../assets/icons/our-services/bank.png" 
+         class="dark-mode-icon" 
+         data-dark-src="../assets/icons/bank-black.svg" 
+         data-icon-type="services-bank">
+    
+    <img src="../assets/icons/our-services/mosq.png" 
+         class="dark-mode-icon" 
+         data-dark-src="../assets/icons/mosq-black.svg" 
+         data-icon-type="services-mosq">
+</div> -->
 
 </body>
 </html>
