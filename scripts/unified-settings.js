@@ -47,6 +47,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // دالة تحديد موضع قائمة الإعدادات
+    function positionSettingsMenu(triggerBtn, settingsMenu) {
+        if (!triggerBtn || !settingsMenu) return;
+
+        // التحقق من عرض الشاشة
+        const screenWidth = window.innerWidth;
+        
+        // إعداد الموضع الأساسي
+        settingsMenu.style.position = 'absolute';
+        settingsMenu.style.zIndex = '9999';
+        
+        // تحديد الموضع العمودي والأفقي
+        const btnRect = triggerBtn.getBoundingClientRect();
+        const topPosition = btnRect.bottom + window.scrollY;
+        
+        // للشاشات الكبيرة (سطح المكتب)
+        if (screenWidth > 768) {
+            settingsMenu.style.top = `${topPosition}px`;
+            settingsMenu.style.left = `${btnRect.left}px`;
+            settingsMenu.style.right = 'auto';
+            settingsMenu.style.transform = 'none';
+            settingsMenu.style.width = '250px';
+            settingsMenu.style.padding = '10px';
+            settingsMenu.style.fontSize = '16px';
+            settingsMenu.style.maxWidth = 'none';
+            settingsMenu.style.borderRadius = '8px';
+            settingsMenu.style.textAlign = 'center';
+        } else {
+            // للشاشات الصغيرة (الموبايل)
+            settingsMenu.style.top = '60px';
+            settingsMenu.style.right = '20px';
+            settingsMenu.style.left = 'auto';
+            settingsMenu.style.transform = 'none';
+        }
+    }
+
     // دالة فتح/إغلاق قائمة الإعدادات
     function toggleSettingsMenu(event) {
         // منع الانتشار الافتراضي للحدث
@@ -92,30 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
             hideSettingsMenu();
             document.removeEventListener('click', closeSettingsMenuOutside);
         }
-    }
-
-    // دالة تحديد موضع قائمة الإعدادات
-    function positionSettingsMenu(triggerBtn, settingsMenu) {
-        if (!triggerBtn || !settingsMenu) return;
-
-        // إعداد الموضع الأساسي
-        settingsMenu.style.position = 'fixed';
-        settingsMenu.style.zIndex = '9999';
-        settingsMenu.style.left = 'auto';
-        settingsMenu.style.right = '20px';
-        
-        // تحديد الموضع العمودي
-        const btnRect = triggerBtn.getBoundingClientRect();
-        const topPosition = btnRect.bottom + window.scrollY + 10;
-        
-        settingsMenu.style.top = `${topPosition}px`;
-        settingsMenu.style.width = '250px';
-        settingsMenu.style.transform = 'none';
-        settingsMenu.style.padding = '10px';
-        settingsMenu.style.fontSize = '16px';
-        settingsMenu.style.maxWidth = 'none';
-        settingsMenu.style.borderRadius = '8px';
-        settingsMenu.style.textAlign = 'center';
     }
 
     function closeSettingsMenuOutside(event) {
@@ -214,11 +226,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // إضافة استماع للتغيرات في حجم الشاشة
     window.addEventListener('resize', function() {
-        const settingsMenu = document.querySelector('.settings-menu');
+        const visibleSettingsMenu = document.querySelector('.settings-menu.show');
         const triggerBtn = document.querySelector('.settings-toggle-btn.active');
         
-        if (settingsMenu && triggerBtn && settingsMenu.classList.contains('show')) {
-            positionSettingsMenu(triggerBtn, settingsMenu);
+        if (visibleSettingsMenu && triggerBtn) {
+            positionSettingsMenu(triggerBtn, visibleSettingsMenu);
         }
     });
 
