@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>الباوابة - بوابة الأنظمة والقوانين</title> 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,8 +26,7 @@
     <link rel="stylesheet" href="styles/home/subscribe.css">
     <link rel="stylesheet" href="styles/home/partners.css">
     <link rel="stylesheet" href="styles/home/footer.css">
-    <link rel="stylesheet" href="styles/home/settings.css">
-    <link rel="stylesheet" href="styles/home/mobile-settings.css">
+    
     <link rel="stylesheet" href="styles/search-popup.css">
     <link rel="stylesheet" href="styles/mobile-navbar.css">
     <link rel="stylesheet" href="styles/mobile-view.css">
@@ -43,6 +42,8 @@
     <link rel="stylesheet" href="styles/shared/universal-settings-menu.css">
     <link rel="stylesheet" href="styles/shared/zoom-styles.css">
     <script src="scripts/font-zoom.js"></script>
+    <link rel="stylesheet" href="styles/responsive-index.css">
+ 
 <style>
 * {
     font-family: "Droid Arabic Kufi", sans-serif !important;
@@ -285,11 +286,11 @@ body.dark-contrast {
     }
 }
 .settings-menu {
-    position: absolute !important;
-    top: 100% !important;
-    right: 0 !important;
+    /* position: absolute !important; */
+    /* top: 100% !important; */
+    /* right: 0 !important;
     transform: none !important;
-    margin-top: 5px !important;
+    margin-top: 5px !important; */
 }
 .main-icons-group {
     position: relative !important;
@@ -298,7 +299,9 @@ body.dark-contrast {
 .settings-toggle-btn {
     position: relative !important;
 }
-</style></head>
+</style>
+<script src="scripts/mobile-search-functionality.js"></script>
+</head>
 <body>
     <div class="mobile-menu-overlay">
         <div class="mobile-side-menu">
@@ -385,18 +388,18 @@ body.dark-contrast {
                     </div>
                     
                     <!-- قائمة الإعدادات -->
-                    <div class="settings-menu">
-                        <a href="#" class="settings-option contrast-option" data-original-font-size="16">
+                    <div class="settings-menu show" style="width: 250px; left: auto; transform: none; top: 60px; padding: 10px; font-size: 16px; max-width: none; border-radius: 8px; z-index: 9999; text-align: center; position: fixed; right: 20px; display: none;">
+                        <a href="index.html" class="settings-option contrast-option" data-original-font-size="16">
                             <span>تباين</span>
                             <img src="assets/icons/Eye off.svg" alt="تباين">
                         </a>
                         <!-- قائمة خيارات التباين الفرعية -->
-                        <div class="contrast-submenu">
-                            <a href="#" class="settings-option contrast-light" data-original-font-size="16">
+                        <div class="contrast-submenu show">
+                            <a href="index.html" class="settings-option contrast-light" data-original-font-size="16" data-contrast-setup="true">
                                 <span>تباين فاتح</span>
                                 <img src="assets/icons/Eye off.svg" alt="تباين فاتح">
                             </a>
-                            <a href="#" class="settings-option contrast-dark" data-original-font-size="16">
+                            <a href="index.html" class="settings-option contrast-dark" data-original-font-size="16" data-contrast-setup="true">
                                 <span>تباين داكن</span>
                                 <img src="assets/icons/Eye off-dark.svg" alt="تباين داكن">
                             </a>
@@ -446,31 +449,6 @@ body.dark-contrast {
                             <button class="icon-btn settings-toggle-btn" data-original-font-size="16">
                                 <img src="assets/icons/setting-2.png" alt="الإعدادات">
                             </button>
-                            <div class="settings-menu">
-                                <a href="#" class="settings-option contrast-option" data-original-font-size="16">
-                                    <span>تباين</span>
-                                    <img src="assets/icons/Eye off.svg" alt="تباين">
-                                </a>
-                                <!-- قائمة خيارات التباين الفرعية -->
-                                <div class="contrast-submenu">
-                                    <a href="#" class="settings-option contrast-light" data-original-font-size="16">
-                                        <span>تباين فاتح</span>
-                                        <img src="assets/icons/Eye off.svg" alt="تباين فاتح">
-                                    </a>
-                                    <a href="#" class="settings-option contrast-dark" data-original-font-size="16">
-                                        <span>تباين داكن</span>
-                                        <img src="assets/icons/Eye off-dark.svg" alt="تباين داكن">
-                                    </a>
-                                </div>
-                                <a href="./pages/analytics.html" class="settings-option stats-option" data-original-font-size="16">
-                                    <span>الاحصائيات</span>
-                                    <img src="assets/icons/status-up.svg" alt="الاحصائيات">
-                                </a>
-                                <a href="javascript:void(0);" class="settings-option logout-option" data-original-font-size="16">
-                                    <span>خروج</span>
-                                    <img src="assets/icons/logout.svg" alt="تسجيل الخروج">
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -676,7 +654,8 @@ body.dark-contrast {
                 
             </section>
         </div>
-        
+        <script src="../scripts/unified-settings.js"></script>
+
         <section class="latest-updates-section">
             <div class="container">
                 <div class="updates-header">
@@ -3997,6 +3976,8 @@ body.dark-contrast {
     <script src="scripts/country-selector.js?v=1.1"></script>
     
     <!-- نظام قائمة الدول المحسن للعمل على GitHub Pages -->
+     <!-- auth system -->
+     <script src="scripts/auth-system.js"></script>
     <script src="scripts/enhanced-country-dropdown.js"></script>
 </body>
 </html>

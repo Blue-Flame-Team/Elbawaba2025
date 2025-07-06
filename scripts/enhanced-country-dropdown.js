@@ -157,7 +157,7 @@
                 
                 // محاولة المسار البديل
                 if (country.flagLocal && this.src !== country.flagLocal) {
-                    console.log(`📍 محاولة تحميل المسار البديل: ${country.flagLocal}`);
+                    
                     this.src = country.flagLocal;
                     return;
                 }

@@ -393,7 +393,7 @@ body.dark-contrast .services-container img[src*="mosq"],
 body.dark-contrast .services-container img[src*="book"] {
     filter: brightness(0) !important;
     -webkit-filter: brightness(0) !important;
-}
+} 
 
 /* أنماط التباين الأسود للصفحات الفرعية */
 

@@ -1,6 +1,6 @@
 // ملف نافذة تسجيل الدخول - النسخة الأصلية
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🔓 Login Modal Script Loaded');
+    
 
     const loginBtns = document.querySelectorAll('.login-btn');
     const loginModal = document.getElementById('login-modal');
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // فتح نافذة تسجيل الدخول
     loginBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
-            console.log('🖱️ Login Modal Trigger Clicked');
+            
             e.preventDefault();
             if (loginModal) {
                 loginModal.classList.add('show');
@@ -130,7 +130,7 @@ function openLoginModal() {
     if (modal) {
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
-        console.log('فتح النافذة');
+        
         
         // إعادة تهيئة محددي الدول
         if (typeof initializeCountrySelectors === 'function') {
@@ -143,21 +143,21 @@ function openLoginModal() {
 const loginTriggers = document.querySelectorAll('[href="#login-modal"], .login-btn, #mobile-login-btn');
 loginTriggers.forEach(trigger => {
     trigger.addEventListener('click', function(e) {
-        console.log('🖱️ Login Modal Trigger Clicked');
+        
         
         // محاولة العثور على النافذة المنبثقة
         const loginModal = document.getElementById('login-modal') || 
                            document.querySelector('.login-modal');
         
         if (loginModal) {
-            console.log('✅ Login Modal Found');
+            
             
             // محاولة تهيئة محدد الدولة
             const countrySelectors = loginModal.querySelectorAll('.country-code-select');
-            console.log(`🌍 Country Selectors in Modal: ${countrySelectors.length}`);
+            
             
             countrySelectors.forEach((selector, index) => {
-                console.log(`🔢 Examining Selector ${index + 1}`);
+                
                 console.log('Selector Details:', {
                     initialized: selector.dataset.initialized,
                     children: selector.children.length,

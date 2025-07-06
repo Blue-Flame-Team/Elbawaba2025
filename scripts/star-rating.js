@@ -1,6 +1,6 @@
 // نظام التقييم بالنجوم
 (function() {
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
         // اختيار قسم التقييم
         const ratingSection = document.querySelector('section.social-share-section');
         if (!ratingSection) return;
@@ -17,11 +17,11 @@
         if (starElements.length === 0 || !votesCountElement) return;
 
         // متغيرات التقييم
-        let currentRating = 0;
+    let currentRating = 0;
         let votesCount = parseInt(votesCountElement.textContent) || 0;
 
         // دالة تحديث النجوم
-        function updateStars(rating) {
+    function updateStars(rating) {
             starElements.forEach((star, index) => {
                 // تبديل مسارات الصور بين المفعلة وغير المفعلة
                 star.src = index < rating ? '../assets/icons/star.png' : '../assets/icons/star2.png';
@@ -38,7 +38,7 @@
                     s.src = i <= index ? '../assets/icons/star.png' : '../assets/icons/star2.png';
                     s.alt = i <= index ? 'نجمة غير مفعلة' : 'نجمة مفعلة';
                 });
-            });
+        });
 
             // مغادرة منطقة النجوم
             star.addEventListener('mouseleave', () => {
@@ -46,7 +46,7 @@
             });
 
             // النقر على النجمة
-            star.addEventListener('click', () => {
+        star.addEventListener('click', () => {
                 // تحديث التقييم الحالي
                 currentRating = index + 1;
                 
@@ -67,28 +67,28 @@
                     font-size: 14px;
                 `;
                 starContainer.appendChild(thankYouMessage);
-
+                
                 // إزالة رسالة الشكر بعد 3 ثوانٍ
                 setTimeout(() => {
                     starContainer.removeChild(thankYouMessage);
                 }, 3000);
-
+                
                 // طباعة معلومات التقييم بشكل واضح
-                console.log('%c🌟 نظام التقييم 🌟', 'color: #00a19a; font-weight: bold;');
-                console.log(`%cتقييمك: ${currentRating} من 5 نجوم ⭐`, 'color: #ffc107;');
-                console.log(`%cعدد الأصوات الكلي: ${votesCount}`, 'color: #158885;');
+                
+                
+                
                 
                 // طباعة حالة كل نجمة
-                console.log('%cحالة النجوم:', 'color: #333;');
+                
                 starElements.forEach((s, i) => {
                     const starStatus = i < currentRating ? '❌ غير مفعلة' : '✅ مفعلة';
-                    console.log(`النجمة ${i + 1}: ${starStatus}`);
+                    
                 });
             });
         });
 
         // طباعة معلومات أولية
-        console.log('%c🌟 نظام التقييم مستعد 🌟', 'color: #00a19a; font-weight: bold;');
-        console.log(`عدد النجوم: ${starElements.length}`);
+        
+        
     });
 })(); 

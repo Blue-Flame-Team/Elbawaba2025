@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.forEach(element => {
                 if (element.textContent.includes(item.text)) {
                     element.classList.add(item.className);
-                    console.log(`تم إضافة فئة ${item.className} للنص: ${item.text}`);
+                    
                 }
             });
         });
@@ -555,14 +555,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const coloredElements = document.querySelectorAll('[style*="color: #158885"], [style*="color:#158885"]');
             coloredElements.forEach(element => {
                 element.style.setProperty('color', '#000000', 'important');
-                console.log('تم تغيير لون النص إلى الأسود:', element.textContent.trim());
+                
             });
 
             // استهداف عناوين الاشتراك
             const subscriptionTitles = document.querySelectorAll('.subscribe-title, h1:contains("طلب الاشتراك"), h2:contains("طلب الاشتراك")');
             subscriptionTitles.forEach(title => {
                 title.style.setProperty('color', '#000000', 'important');
-                console.log('تم تغيير لون عنوان الاشتراك إلى الأسود');
+                
             });
         } else {
             // إعادة الألوان الأصلية
@@ -601,5 +601,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    console.log('🌙 نظام التباين الأسود للصفحات الفرعية جاهز');
+    
 }); 

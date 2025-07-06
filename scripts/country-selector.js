@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 تم تحميل ملف country-selector.js');
+    
 
     // قائمة الدول المدعومة مع تحديث المسارات
     const COUNTRIES = [
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        console.log('🔍 بدء إعداد محدد الدولة للحاوية:', container);
+        
 
         const flagImg = container.querySelector('.flag-img') || 
                        container.querySelector('.country-flag img');

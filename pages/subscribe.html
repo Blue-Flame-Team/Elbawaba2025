@@ -69,8 +69,7 @@
     <link rel="stylesheet" href="../styles/social-share-section.css">
         <link rel="stylesheet" href="../styles/simple-zoom.css">
     <!-- ملف التباين الأسود للصفحات الفرعية -->
-    <link rel="stylesheet" href="../styles/shared/dark-contrast-subpages.css">
-<style>
+    <link rel="stylesheet" href="../styles/shared/universal-settings-menu.css"><style>
 /* تطبيق خط Droid Arabic Kufi على جميع العناصر */
 * {
     font-family: "Droid Arabic Kufi", sans-serif !important;
@@ -747,7 +746,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td,
             const countrySelect = document.querySelector('.country-select');
             
             if (!countrySelect) {
-                console.log('عنصر اختيار الدولة غير موجود');
+                
                 return;
             }
 
@@ -877,12 +876,14 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label, li, td,
                 }
             });
 
-            console.log('تم تفعيل قائمة الدول بنجاح');
+            
         });
     </script>
         <script src="../scripts/enhanced-country-dropdown.js"></script>
         <script src="../scripts/star-rating.js"></script>
         <script src="../scripts/subpages-dark-contrast.js"></script>
+    <script src="../scripts/contrast-submenu-fix.js"></script>
+    <script src="../scripts/unified-settings.js"></script>
 
 </body>
 </html>

@@ -687,7 +687,7 @@
     }
     
     .service-card:hover {
-        height: 170px;
+        height: 155px;
         padding: 20px 18px 0px;
     }
     
@@ -799,7 +799,7 @@
     }
     
     .service-card:hover {
-        height: 190px;
+        height: 155px;
         padding: 20px 18px 0px;
     }
     
@@ -972,14 +972,14 @@
     .service-card {
         width: 200px;
         min-width: 200px;
-        height: 185px;
+        height: 155px;
         padding: 21px 20px;
         margin-bottom: 0;
         gap: 0;
     }
     
     .service-card:hover {
-        height: 185px;
+        height: 155px;
         padding: 20px 18px 0px;
     }
     

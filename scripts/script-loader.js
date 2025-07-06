@@ -17,7 +17,7 @@ const ScriptLoader = {
 
             // معالجة نجاح التحميل
             script.onload = () => {
-                console.log(`تم تحميل الملف البرمجي: ${src}`);
+                
                 resolve();
             };
 
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ScriptLoader.loadScripts(requiredScripts)
         .then(() => {
-            console.log('تم تحميل جميع الملفات البرمجية بنجاح');
+            
         })
         .catch(error => {
             console.error('حدث خطأ أثناء تحميل الملفات البرمجية:', error);

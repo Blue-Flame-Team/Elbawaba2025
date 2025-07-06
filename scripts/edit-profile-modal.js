@@ -217,7 +217,7 @@ function updateReferences() {
             saveBtn: !!saveEditProfile
         };
 
-        console.log('تحديث المراجع:', references);
+        
         return references;
     } catch (error) {
         console.error('❌ خطأ في تحديث المراجع:', error);

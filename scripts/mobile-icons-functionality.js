@@ -20,6 +20,46 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Add search button functionality
+    const searchBtn = document.querySelector('.search-btn');
+    if (searchBtn) {
+        searchBtn.addEventListener('click', function() {
+            const searchPopup = document.querySelector('.search-popup');
+            const searchPopupOverlay = document.querySelector('.search-popup-overlay');
+            
+            if (searchPopup && searchPopupOverlay) {
+                // Toggle active class
+                searchPopupOverlay.classList.toggle('active');
+                searchPopup.classList.toggle('active');
+                
+                // Position popup relative to search button
+                const btnRect = this.getBoundingClientRect();
+                searchPopupOverlay.style.position = 'absolute';
+                searchPopupOverlay.style.top = `${btnRect.bottom}px`;
+                searchPopupOverlay.style.left = `${btnRect.left}px`;
+                
+                const searchInput = searchPopup.querySelector('.search-popup-input');
+                if (searchInput) {
+                    searchInput.focus();
+                }
+            }
+        });
+
+        // Close popup when clicking outside
+        document.addEventListener('click', function(e) {
+            const searchPopup = document.querySelector('.search-popup');
+            const searchPopupOverlay = document.querySelector('.search-popup-overlay');
+            const searchBtn = document.querySelector('.search-btn');
+            
+            if (searchPopup && searchPopupOverlay && 
+                !searchPopup.contains(e.target) && 
+                !searchBtn.contains(e.target)) {
+                searchPopupOverlay.classList.remove('active');
+                searchPopup.classList.remove('active');
+            }
+        });
+    }
+    
     // ---- وظائف سطح المكتب ----
     // Add support for desktop search button
     const desktopSearchBtn = document.querySelector('.main-icons-group .icon-btn:nth-child(1)');
