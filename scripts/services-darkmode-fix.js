@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const defaultSrc = icon.getAttribute('src');
                 const iconType = icon.getAttribute('data-icon-type') || 'غير محدد';
                 
-                console.group(`الأيقونة ${index + 1}: ${iconType}`);
+
                 
                 
                 
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                 }
                 
-                console.groupEnd();
+
             });
         }
         
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // طباعة معلومات التصحيح
         
         
-    })();
+    });
 
 // دالة لإزالة جميع الأنماط المطبقة
 function removeAllStyles() {

@@ -81,7 +81,7 @@ function initMobileMenu() {
     
     // التحقق من وجود العناصر
     if (!hamburgerMenu || !mobileMenuOverlay || !mobileSideMenu) {
-        console.error('لم يتم العثور على عناصر القائمة المتنقلة');
+
         return;
     }
     

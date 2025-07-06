@@ -1387,7 +1387,7 @@ body.dark-contrast {
                         <span class="code">+20</span>
                     </div>
                         <div class="phone-field">
-                            <input type="tel" placeholder="رقم الهاتف" class="login-input">
+                            <input type="tel" placeholder="رقم الهاتف" class="login-input" autocomplete="tel">
                         </div>
                 </div>
                     
@@ -1399,10 +1399,11 @@ body.dark-contrast {
                     <span>أو يمكنك تسجيل الدخول باسم المستخدم وكلمة المرور</span>
                 </div>
                 
+                <form onsubmit="handleLogin(event)">
                 <div class="credentials-login-section">
-                    <input type="text" placeholder="اسم المستخدم" class="login-input">
+                    <input type="text" placeholder="اسم المستخدم" class="login-input" autocomplete="username">
                     <div class="password-field">
-                        <input type="password" placeholder="كلمة المرور" class="login-input">
+                        <input type="password" placeholder="كلمة المرور" class="login-input" autocomplete="current-password">
                         <button class="toggle-password">
                             <img src="assets/icons/eye.png" alt="إظهار" class="eye-icon">
                         </button>
@@ -1410,7 +1411,8 @@ body.dark-contrast {
                     <button class="login-submit-btn">دخول</button>
                     <a href="#" class="forgot-password">هل نسيت كلمة السر؟</a>
                 </div>
-                
+            </form>
+
                 <div class="help-section">
                     <a href="#" class="help-btn customer-service">
                         <span>خدمة العملاء</span>
@@ -1481,6 +1483,8 @@ body.dark-contrast {
                 flex-direction: column;
                 gap: 10px;
             ">
+              <input type="text" name="username" autocomplete="username" style="display: none;">
+
                 <!-- كلمة المرور الحالية -->
                 <div style="padding: 0; margin: 0 0 10px 0;">
                     <input type="password" id="currentPassword" placeholder="كلمة المرور الحالية" style="
@@ -1495,7 +1499,7 @@ body.dark-contrast {
                         box-sizing: border-box;
                         background-color: #f8f9fa;
                         margin: 0;
-                    " required>
+                    " required autocomplete="current-password">
                 </div>
                 
                 <!-- كلمة المرور الجديدة -->
@@ -1512,7 +1516,7 @@ body.dark-contrast {
                         box-sizing: border-box;
                         background-color: #f8f9fa;
                         margin: 0;
-                    " required>
+                    " required autocomplete="current-password">
                 </div>
                 
                 <!-- تأكيد كلمة المرور الجديدة -->
@@ -1529,7 +1533,7 @@ body.dark-contrast {
                         box-sizing: border-box;
                         background-color: #f8f9fa;
                         margin: 0;
-                    " required>
+                    " required autocomplete="new-password">
                 </div>
                 
                 <!-- زر الإرسال -->
@@ -1590,7 +1594,7 @@ body.dark-contrast {
                     }, 100);
                     
                 } else {
-                    console.error('❌ لم يتم العثور على نافذة استرداد كلمة المرور');
+
                 }
             }
             
@@ -1768,7 +1772,7 @@ body.dark-contrast {
                     }, 100);
                     
                 } else {
-                    console.error('❌ لم يتم العثور على نافذة استرداد كلمة المرور');
+
                 }
             }
             
@@ -1923,7 +1927,7 @@ body.dark-contrast {
                                 if (typeof AuthSystem !== 'undefined' && AuthSystem.showProfileEditModal) {
                                     AuthSystem.showProfileEditModal();
                                 } else {
-                                    console.error('لم يتم العثور على نظام المصادقة أو دالة تعديل البيانات');
+
                                 }
                             } else if (buttonName.includes('خدمة العملاء')) {
                             } else {
@@ -2076,7 +2080,7 @@ body.dark-contrast {
                             // إضافة وظائف للخيارات
                             setupMenuOptions(targetMenu);
                         } else {
-                            console.error('لم يتم العثور على قائمة إعدادات للزر');
+
                         }
                     });
                 });
@@ -2239,7 +2243,7 @@ body.dark-contrast {
                         desktopBtn.classList.add('visible', 'force-show');
                         
                     } else {
-                        console.error('❌ لم يتم العثور على زر الديسكتوب');
+
                     }
                     
                     if (mobileBtn) {
@@ -2627,7 +2631,7 @@ body.dark-contrast {
                                  }
                              }
                          } catch (e) {
-                             console.warn('⚠️ خطأ في قراءة currentUser:', e);
+
                              // تنظيف البيانات الفاسدة
                              localStorage.removeItem('currentUser');
                          }
@@ -2694,7 +2698,7 @@ body.dark-contrast {
                          
                          
                      } else {
-                         console.warn('⚠️ لم يتم العثور على نافذة الملف الشخصي');
+
                          // إنشاء نافذة ملف شخصي جديدة
                          createNewProfileModal();
                      }
@@ -3191,7 +3195,7 @@ body.dark-contrast {
                                     box-sizing: border-box;
                                     background-color: #f8f9fa;
                                     margin: 0 !important;
-                                ">
+                                " autocomplete="tel">
                                          <div class="country-code-select" style="
                                     width: 80px;
                                     height: 45px;
@@ -3523,7 +3527,7 @@ body.dark-contrast {
                                     background-color: #f8f9fa;
                                          color: #999;
                                          box-sizing: border-box;
-                                     ">
+                                     " autocomplete="tel">
                                      
                                      <!-- رقم الهاتف والجوال في صف واحد -->
                                      <div style="display: flex; gap: 10px;">
@@ -3540,7 +3544,7 @@ body.dark-contrast {
                                              background-color: #f8f9fa;
                                              color: #999;
                                              box-sizing: border-box;
-                                         ">
+                                         " autocomplete="tel">
                                          <div style="
                                              width: 80px;
                                              height: 40px;
@@ -3574,7 +3578,7 @@ body.dark-contrast {
                                          background-color: #f8f9fa;
                                          color: #999;
                                          box-sizing: border-box;
-                                     ">
+                                     " autocomplete="tel">
                                      
                                      <!-- صندوق البريد -->
                                      <input type="text" id="poBox" placeholder="صندوق البريد" style="
@@ -3701,7 +3705,7 @@ body.dark-contrast {
                          } else if (typeof showPasswordChangeModal !== 'undefined') {
                              showPasswordChangeModal();
                          } else {
-                             console.error('❌ نظام تعديل كلمة المرور غير متوفر');
+
                              alert('عذراً، نافذة تعديل كلمة المرور غير متوفرة حالياً');
                          }
                      });
@@ -3773,7 +3777,7 @@ body.dark-contrast {
                     }
                 }, 100);
             } else {
-                console.error('❌ لم يتم العثور على نافذة تعديل كلمة المرور');
+
             }
         }
         

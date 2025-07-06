@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let scrollLeft = 0;
     
     // Mouse events for desktop
-    partnersLogos.addEventListener('mousedown', startDrag);
-    partnersLogos.addEventListener('mousemove', drag);
-    partnersLogos.addEventListener('mouseup', endDrag);
-    partnersLogos.addEventListener('mouseleave', endDrag);
+    // partnersLogos.addEventListener('mousedown', startDrag);
+    // partnersLogos.addEventListener('mousemove', drag);
+    // partnersLogos.addEventListener('mouseup', endDrag);
+    // partnersLogos.addEventListener('mouseleave', endDrag);
     
-    // Touch events for mobile
-    partnersLogos.addEventListener('touchstart', startDrag, { passive: false });
-    partnersLogos.addEventListener('touchmove', drag, { passive: false });
-    partnersLogos.addEventListener('touchend', endDrag);
+    // // Touch events for mobile
+    // partnersLogos.addEventListener('touchstart', startDrag, { passive: false });
+    // partnersLogos.addEventListener('touchmove', drag, { passive: false });
+    // partnersLogos.addEventListener('touchend', endDrag);
     
     function startDrag(e) {
         isScrolling = true;
@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     // أوقف الحركة عند تمرير المستخدم باليد
-    partnersLogos.addEventListener('touchstart', stopAutoScroll);
-    partnersLogos.addEventListener('mousedown', stopAutoScroll);
-    // أعد تشغيلها عند انتهاء التمرير
-    partnersLogos.addEventListener('touchend', startAutoScroll);
-    partnersLogos.addEventListener('mouseup', startAutoScroll);
+    // partnersLogos.addEventListener('touchstart', stopAutoScroll);
+    // partnersLogos.addEventListener('mousedown', stopAutoScroll);
+    // // أعد تشغيلها عند انتهاء التمرير
+    // partnersLogos.addEventListener('touchend', startAutoScroll);
+    // partnersLogos.addEventListener('mouseup', startAutoScroll);
     // شغل الحركة التلقائية عند التحميل
     if (window.innerWidth <= 768) {
         startAutoScroll();

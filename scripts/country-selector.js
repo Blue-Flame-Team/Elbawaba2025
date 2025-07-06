@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const codeSpan = container.querySelector('.code');
         
         if (!flagImg || !codeSpan) {
-            console.warn('⚠️ عناصر محدد الدولة غير مكتملة', container);
+
             return;
         }
 
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
         //     container.appendChild(dropdown);
         // }
 
-        dropdown.innerHTML = '';
+        // dropdown.innerHTML = '';
 
         COUNTRIES.forEach(country => {
             const countryItem = document.createElement('div');
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 countryItem.style.backgroundColor = 'transparent';
             });
 
-            dropdown.appendChild(countryItem);
+            // dropdown.appendChild(countryItem);
         });
 
         // تأكيد الموضع النسبي للحاوية

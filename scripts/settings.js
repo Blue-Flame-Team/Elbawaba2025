@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // إضافة وظائف للخيارات
                     setupMenuOptions(targetMenu);
                 } else {
-                    console.error('لم يتم العثور على قائمة إعدادات للزر');
+
                 }
             });
         });
@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
                  
                  
              } else {
-                 console.warn('⚠️ لم يتم العثور على نافذة الملف الشخصي');
+
                  // إنشاء نافذة ملف شخصي جديدة
                  createNewProfileModal();
              }
@@ -1392,7 +1392,7 @@ function showAsanidServicePopup() {
                  } else if (typeof showPasswordChangeModal !== 'undefined') {
                      showPasswordChangeModal();
                  } else {
-                     console.error('❌ نظام تعديل كلمة المرور غير متوفر');
+
                      alert('عذراً، نافذة تعديل كلمة المرور غير متوفرة حالياً');
                  }
              });
@@ -1464,7 +1464,7 @@ function showPasswordChangeModal() {
             }
         }, 100);
     } else {
-        console.error('❌ لم يتم العثور على نافذة تعديل كلمة المرور');
+
     }
 }
 

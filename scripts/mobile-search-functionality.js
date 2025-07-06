@@ -134,6 +134,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Fallback: If no search buttons found, log a warning
     if (searchButtons.length === 0) {
-        console.warn('No search buttons found on the page. Search functionality may not work.');
+
     }
 }); 

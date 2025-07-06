@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const codeSpan = selectedCountry.querySelector('.code');
 
         if (!selectedCountry || !countryDropdown || !codeSpan) {
-            console.error('أحد عناصر محدد الدولة مفقود');
+
             return;
         }
 

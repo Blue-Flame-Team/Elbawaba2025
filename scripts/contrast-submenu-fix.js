@@ -15,7 +15,7 @@
             } else if (Date.now() - startTime < maxWait) {
                 setTimeout(checkElements, 100);
             } else {
-                console.warn(`⚠️ لم يتم العثور على العناصر: ${selector}`);
+
             }
         }
         
@@ -212,7 +212,7 @@
                             submenu.style.visibility = 'visible';
                         }
                     } else {
-                        console.error('❌ لم يتم العثور على قائمة فرعية');
+
                         
                         // تشخيص إضافي
                         

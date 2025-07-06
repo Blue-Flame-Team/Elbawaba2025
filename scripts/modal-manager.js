@@ -35,10 +35,10 @@ const ModalManager = {
                     
                     // Modal loaded successfully
                 } else {
-                    console.error(`Failed to load modal: ${config.file}`);
+
                 }
             } catch (error) {
-                console.error(`Error loading modal ${config.id}:`, error);
+
             }
         }
         

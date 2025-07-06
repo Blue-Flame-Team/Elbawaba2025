@@ -36,11 +36,11 @@ window.showAsanidModal = function() {
                     // فتح النافذة
                     showModal();
                 } else {
-                    console.error('❌ لم يتم العثور على النافذة في الملف المحمل');
+
                 }
             })
             .catch(error => {
-                console.error('❌ خطأ في تحميل النافذة:', error);
+
                 alert('حدث خطأ في تحميل نافذة خدمة الأسانيد');
             });
     } else {
@@ -63,7 +63,7 @@ function showModal() {
                 document.getElementById('email').value = user.email || '';
                 document.getElementById('phone').value = user.phone || '';
             } catch (error) {
-                console.error('❌ خطأ في تحميل بيانات المستخدم:', error);
+
             }
         }
         

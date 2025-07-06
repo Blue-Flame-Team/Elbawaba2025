@@ -283,7 +283,7 @@ const AuthSystem = (function() {
                 _updateUIAfterLogin();
             }
         } catch (error) {
-            console.error('خطأ في تحميل بيانات المستخدم:', error);
+
             // تنظيف البيانات المُفسدة من localStorage
             localStorage.removeItem(LOCAL_STORAGE_KEY);
             _currentUser = null;
@@ -362,7 +362,7 @@ const AuthSystem = (function() {
     function _createNewProfileIcon() {
         // التحقق من وجود عنصر mainIconsGroup
         if (!_elements.mainIconsGroup) {
-            console.error('لم يتم العثور على مجموعة الأيقونات');
+
             return;
         }
         

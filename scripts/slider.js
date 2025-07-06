@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (img) {
             // التحقق من أن الصورة قابلة للتحميل
             img.onerror = function() {
-                console.error(`خطأ في تحميل الصورة ${index}: ${img.src}`);
+
             };
         }
     });
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // إضافة معالج لحدث انتهاء الانتقال
-        slides[currentSlide].addEventListener('animationend', onAnimationEnd);
+        // slides[currentSlide].addEventListener('animationend', onAnimationEnd);
         
         // إظهار وتنشيط الشريحة الحالية مع تأثير الانتقال المناسب
         slides[currentSlide].style.display = 'block';
@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
         sliderContainer.addEventListener('mouseout', resumeSlideShow);
         
         // إضافة دعم للشاشات اللمسية
-        sliderContainer.addEventListener('touchstart', pauseSlideShow);
-        sliderContainer.addEventListener('touchend', resumeSlideShow);
+        // sliderContainer.addEventListener('touchstart', pauseSlideShow);
+        // sliderContainer.addEventListener('touchend', resumeSlideShow);
     }
     
     // بدء عرض الشريحة الأولى

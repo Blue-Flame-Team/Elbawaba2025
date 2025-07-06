@@ -43,7 +43,7 @@ htmlFiles.forEach(file => {
             
         }
     } catch (error) {
-        console.error(`❌ خطأ في معالجة ${file}:`, error.message);
+
     }
 });
 

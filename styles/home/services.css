@@ -884,7 +884,7 @@
         top: 0;
         width: 38px;
         height: 38px;
-        background: #158885 url('../assets/icons/support.svg') no-repeat center/60%;
+        background: #158885 url('../../assets/icons/support.svg') no-repeat center/60%;
         border-radius: 50%;
         z-index: 2;
         transform: translateY(-50%);

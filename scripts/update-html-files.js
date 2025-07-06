@@ -61,7 +61,7 @@ function addFontResizeScript(htmlFilePath) {
             return false;
         }
     } catch (error) {
-        console.error(`❌ Error processing ${htmlFilePath}:`, error.message);
+
         return false;
     }
 }

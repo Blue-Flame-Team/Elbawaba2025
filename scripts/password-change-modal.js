@@ -25,7 +25,7 @@ const PasswordChangeManager = (function() {
             // ربط الأحداث
             bindEvents();
         } catch (error) {
-            console.error('❌ خطأ في تهيئة نظام تغيير كلمة المرور:', error);
+
         }
     }
 
@@ -64,7 +64,7 @@ const PasswordChangeManager = (function() {
             hidePasswordChangeModal();
             alert('تم تغيير كلمة المرور بنجاح');
         } catch (error) {
-            console.error('❌ خطأ في تغيير كلمة المرور:', error);
+
             alert('حدث خطأ أثناء تغيير كلمة المرور');
         }
     }

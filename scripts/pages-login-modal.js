@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // تحقق من وجود نظام المصادقة الجديد
     if (typeof AuthSystem !== 'undefined') {
     } else {
-        console.error('لم يتم العثور على نظام المصادقة الجديد. الرجاء إضافة auth-system.js');
+
         
         // إضافة النظام الجديد ديناميكياً إذا لم يكن موجوداً
         const script = document.createElement('script');

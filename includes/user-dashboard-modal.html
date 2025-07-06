@@ -1331,6 +1331,8 @@ body.dark-mode .activity-item {
             flex-direction: column;
             gap: 10px;
         " data-password-bound="true">
+          <input type="text" name="username" autocomplete="username" style="display: none;">
+
             <!-- كلمة المرور الحالية -->
             <div style="padding: 0; margin: 0 0 10px 0;">
                 <input type="password" id="currentPassword" placeholder="كلمة المرور الحالية" style="
@@ -1345,7 +1347,7 @@ body.dark-mode .activity-item {
                     box-sizing: border-box;
                     background-color: #f8f9fa;
                     margin: 0;
-                " required>
+                " required autocomplete="current-password">
             </div>
             
             <!-- كلمة المرور الجديدة -->
@@ -1362,7 +1364,7 @@ body.dark-mode .activity-item {
                     box-sizing: border-box;
                     background-color: #f8f9fa;
                     margin: 0;
-                " required>
+                " required autocomplete="new-password">
             </div>
             
             <!-- تأكيد كلمة المرور الجديدة -->
@@ -1379,7 +1381,7 @@ body.dark-mode .activity-item {
                     box-sizing: border-box;
                     background-color: #f8f9fa;
                     margin: 0;
-                " required>
+                " required autocomplete="new-password">
             </div>
             
             <!-- زر الإرسال -->

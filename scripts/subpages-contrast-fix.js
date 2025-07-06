@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                     }
                 } else {
-                    console.warn('⚠️ لم يتم العثور على القائمة الفرعية للتباين');
+
                     // محاولة إضافية للبحث في الصفحة كاملة
                     const allSubmenus = document.querySelectorAll('.contrast-submenu');
                     

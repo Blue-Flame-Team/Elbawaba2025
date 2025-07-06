@@ -1,5 +1,33 @@
 // Main JavaScript File
 
+// Suppress specific DOM input warnings
+(function() {
+    const originalWarn = console.warn;
+    const originalError = console.error;
+
+    console.warn = function() {
+        const args = Array.from(arguments);
+        if (!args.some(arg => 
+            typeof arg === 'string' && 
+            (arg.includes('[DOM] Input elements should have autocomplete') || 
+             arg.includes('Password field is not contained in a form'))
+        )) {
+            originalWarn.apply(console, arguments);
+        }
+    };
+
+    console.error = function() {
+        const args = Array.from(arguments);
+        if (!args.some(arg => 
+            typeof arg === 'string' && 
+            (arg.includes('[DOM] Input elements should have autocomplete') || 
+             arg.includes('Password field is not contained in a form'))
+        )) {
+            originalError.apply(console, arguments);
+        }
+    };
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');

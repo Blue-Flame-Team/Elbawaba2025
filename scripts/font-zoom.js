@@ -39,7 +39,7 @@ function changeFontSize(change) {
             element.style.transformOrigin = 'right top';
             element.style.display = 'inline-block';
         } catch (error) {
-            console.error('خطأ في تغيير مقياس العنصر:', error);
+
         }
     });
 }

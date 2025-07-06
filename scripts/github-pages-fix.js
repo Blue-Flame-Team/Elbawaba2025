@@ -17,7 +17,7 @@
                 // Font loaded successfully
             });
             link.addEventListener('error', () => {
-                console.error(`Font load failed: ${link.href}`);
+
             });
         });
     }
@@ -28,7 +28,7 @@
         
         cssLinks.forEach((link, index) => {
             if (!link.sheet) {
-                console.error(`CSS load failed: ${link.href}`);
+
             }
         });
     }
@@ -39,7 +39,7 @@
         
         scripts.forEach((script, index) => {
             script.addEventListener('error', () => {
-                console.error(`JS load failed: ${script.src}`);
+
             });
         });
     }
@@ -54,7 +54,7 @@
             if (img.complete) {
                 if (img.naturalWidth === 0) {
                     errorCount++;
-                    console.error(`Image failed: ${img.src}`);
+
                 } else {
                     loadedCount++;
                 }
@@ -64,7 +64,7 @@
                 });
                 img.addEventListener('error', () => {
                     errorCount++;
-                    console.error(`Image failed: ${img.src}`);
+
                 });
             }
         });
@@ -77,14 +77,14 @@
         const isHTTPS = protocol === 'https:';
         
         if (isGitHubPages && !isHTTPS) {
-            console.warn('Warning: Not using HTTPS on GitHub Pages');
+
         }
     }
     
     // 6. فحص أخطاء JavaScript
     function setupErrorHandling() {
         window.addEventListener('error', (event) => {
-            console.error('JavaScript Error:', {
+
                 message: event.message,
                 source: event.filename,
                 line: event.lineno,
@@ -93,7 +93,7 @@
         });
         
         window.addEventListener('unhandledrejection', (event) => {
-            console.error('Unhandled Promise Rejection:', event.reason);
+
         });
     }
     

@@ -133,7 +133,7 @@
         item.innerHTML = `
             <img src="${country.flag}" 
                  alt="${country.name}" 
-                 onerror="this.onerror=null; this.src='${country.flagAlt || country.flag}'; console.warn('تم استخدام العلم البديل لـ ${country.name}');"
+
                  style="width: 24px; height: 18px; border-radius: 3px; object-fit: cover; flex-shrink: 0;">
             <span style="flex: 1; color: #333; font-weight: 400;">${country.name}</span>
             <span style="color: #666; font-weight: 500; font-size: 13px;">${country.code}</span>
@@ -329,7 +329,7 @@
             
             
         } catch (error) {
-            console.error('❌ خطأ في تهيئة نظام قائمة الدول:', error);
+
         }
     }
     

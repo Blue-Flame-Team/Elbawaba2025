@@ -1,11 +1,11 @@
 // وظائف نافذة تعديل الملف الشخصي
 
 // تعريف المتغيرات في النطاق العام
-let editProfileModal;
-let closeEditProfileModal;
-let editProfileForm;
-let changePasswordBtn;
-let saveEditProfile;
+// let editProfileModal;
+// let closeEditProfileModal;
+// let editProfileForm;
+// let changePasswordBtn;
+// let saveEditProfile;
 
 // دالة إعداد زر تغيير كلمة المرور
 function setupPasswordButton() {
@@ -25,7 +25,7 @@ function setupPasswordButton() {
             if (typeof window.showPasswordChangeModal === 'function') {
                 window.showPasswordChangeModal();
             } else {
-                console.error('❌ دالة showPasswordChangeModal غير معرفة');
+
                 // محاولة تحميل الملف
                 const script = document.createElement('script');
                 script.src = window.location.pathname.includes('/pages/') ? '../scripts/profile-icons-universal-fix.js' : 'scripts/profile-icons-universal-fix.js';
@@ -69,11 +69,11 @@ window.showEditProfileModal = function() {
                     // فتح النافذة
                     showModal();
                 } else {
-                    console.error('❌ لم يتم العثور على النافذة في الملف المحمل');
+
                 }
             })
             .catch(error => {
-                console.error('❌ خطأ في تحميل النافذة:', error);
+
                 alert('حدث خطأ في تحميل نافذة تعديل البيانات');
             });
     } else {
@@ -152,7 +152,7 @@ function bindEvents() {
                 closeModal();
                 alert('تم تحديث البيانات بنجاح');
             } catch (error) {
-                console.error('❌ خطأ في حفظ البيانات:', error);
+
                 alert('حدث خطأ أثناء حفظ البيانات');
             }
         });
@@ -181,7 +181,7 @@ function loadUserData() {
             document.getElementById('postalCode').value = user.postalCode || '';
             
         } catch (error) {
-            console.error('❌ خطأ في تحميل بيانات المستخدم:', error);
+
         }
     } else {
     }
@@ -220,7 +220,7 @@ function updateReferences() {
         
         return references;
     } catch (error) {
-        console.error('❌ خطأ في تحديث المراجع:', error);
+
         return {};
     }
 } 

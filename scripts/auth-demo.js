@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function addProfileIcon() {
         // التحقق من وجود عنصر mainIconsGroup
         if (!mainIconsGroup) {
-            console.error('لم يتم العثور على مجموعة الأيقونات');
+
             return;
         }
         
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
             }
         } catch (error) {
-            console.error('خطأ في تحميل بيانات المستخدم:', error);
+
         }
     }
     

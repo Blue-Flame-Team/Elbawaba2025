@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setupModalCloseFunctionality();
             })
             .catch(error => {
-                console.warn('⚠️ Failed to load user dashboard modal:', error);
+
                 // Fallback: create a simple modal
                 createFallbackModal();
             });
@@ -543,18 +543,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                 if (window.showEditProfileModal) {
                                     window.showEditProfileModal();
                                 } else {
-                                    console.error('❌ showEditProfileModal function still not found after loading script');
+
                                 }
                             };
                             script.onerror = function(error) {
-                                console.error('❌ Failed to load edit-profile-modal.js:', error);
+
                             };
                             document.head.appendChild(script);
                         }
                     });
                 }
             } else {
-                console.error('❌ Failed to open profile modal');
+
                 alert('حدث خطأ في فتح نافذة الملف الشخصي');
             }
         });
@@ -583,7 +583,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     userName = currentUser.includes('مسجل') ? 'مستخدم مسجل' : currentUser;
                 }
             } catch (e) {
-                console.warn('Error parsing user data:', e);
+
             }
         }
         

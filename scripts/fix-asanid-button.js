@@ -21,7 +21,7 @@
             if (typeof showAsanidServicePopup === 'function') {
                 showAsanidServicePopup();
             } else {
-                console.error('❌ دالة showAsanidServicePopup غير متاحة');
+
             }
         }, 50);
     };
@@ -64,7 +64,7 @@
                     if (typeof showAsanidServicePopup === 'function') {
                         showAsanidServicePopup();
                     } else {
-                        console.error('❌ دالة showAsanidServicePopup غير متاحة');
+
                         
                         // محاولة البحث عن الدالة
                         for (let prop in window) {

@@ -23,7 +23,7 @@ const ScriptLoader = {
 
             // معالجة فشل التحميل
             script.onerror = () => {
-                console.error(`فشل تحميل الملف البرمجي: ${src}`);
+
                 reject(new Error(`فشل تحميل الملف البرمجي: ${src}`));
             };
 
@@ -53,6 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
         })
         .catch(error => {
-            console.error('حدث خطأ أثناء تحميل الملفات البرمجية:', error);
+
         });
 }); 

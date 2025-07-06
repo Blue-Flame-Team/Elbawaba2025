@@ -153,7 +153,7 @@
             
             // Fallback chain: CDN → Local SVG → Emoji
             flagImg.onerror = function() {
-                console.warn(`❌ فشل تحميل العلم: ${this.src}`);
+
                 
                 // محاولة المسار البديل
                 if (country.flagLocal && this.src !== country.flagLocal) {
@@ -331,7 +331,7 @@
                     }
                 }, 2000);
             } catch (error) {
-                console.error('❌ خطأ في التهيئة:', error);
+
             }
         };
         

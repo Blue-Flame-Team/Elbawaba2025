@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     setupForgotPasswordEvents();
                 })
                 .catch(error => {
-                    console.error('خطأ في تحميل نافذة نسيت كلمة المرور:', error);
+
                 });
         }
         return Promise.resolve();
@@ -140,32 +140,22 @@ function openLoginModal() {
 }
 
 // معالجة فتح النافذة المنبثقة
-const loginTriggers = document.querySelectorAll('[href="#login-modal"], .login-btn, #mobile-login-btn');
-loginTriggers.forEach(trigger => {
-    trigger.addEventListener('click', function(e) {
+// const loginTriggers = document.querySelectorAll('[href="#login-modal"], .login-btn, #mobile-login-btn');
+// loginTriggers.forEach(trigger => {
+    // trigger.addEventListener('click', function(e) {
         
         
-        // محاولة العثور على النافذة المنبثقة
-        const loginModal = document.getElementById('login-modal') || 
-                           document.querySelector('.login-modal');
+    //     // محاولة العثور على النافذة المنبثقة
+    //     const loginModal = document.getElementById('login-modal') || 
+    //                        document.querySelector('.login-modal');
         
-        if (loginModal) {
+    //     if (loginModal) {
             
             
-            // محاولة تهيئة محدد الدولة
-            const countrySelectors = loginModal.querySelectorAll('.country-code-select');
+    //         // محاولة تهيئة محدد الدولة
+    //         const countrySelectors = loginModal.querySelectorAll('.country-code-select');
             
             
-            countrySelectors.forEach((selector, index) => {
-                
-                console.log('Selector Details:', {
-                    initialized: selector.dataset.initialized,
-                    children: selector.children.length,
-                    hasSelectedCountry: !!selector.querySelector('.selected-country')
-                });
-            });
-        } else {
-            console.error('❌ Login Modal Not Found');
-        }
-    });
-});
+            
+    //     }
+    // });

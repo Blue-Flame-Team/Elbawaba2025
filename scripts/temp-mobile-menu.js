@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // التحقق من وجود العناصر الأساسية
     if (!hamburgerMenu || !mobileMenuOverlay || !mobileSideMenu) {
-        console.error('لم يتم العثور على عناصر القائمة المتنقلة');
+
         return;
     }
     
